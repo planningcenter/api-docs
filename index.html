@@ -13,7 +13,7 @@
 
       <script>
         $(function() {
-          setupLanguages(["shell","ruby","python"]);
+          setupLanguages(["shell"]);
         });
       </script>
   </head>
@@ -26,11 +26,9 @@
       </span>
     </a>
     <div class="tocify-wrapper">
-      <img src="images/logo.png" />
+      <img style="width:230px" src="images/logo.png" />
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -48,43 +46,11 @@
       <div class="content">
         <h1 id="introduction">Introduction</h1>
 
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
-
-<p>We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
-
-<p>This example API documentation page was created with <a href="http://github.com/tripit/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&rsquo;s documentation.</p>
+<p>Welcome to the Planning Center Online API! You can use our API to access data in some of our apps (with other apps coming online soon) through a single unified API.</p>
 
 <h1 id="authentication">Authentication</h1>
 
-<blockquote>
-<p>To authorize, use this code:</p>
-</blockquote>
-<pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre>
-<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre>
-<pre><code class="highlight shell"><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre>
-
-<blockquote>
-<p>Make sure to replace <code class="prettyprint">meowmeowmeow</code> with your API key.</p>
-</blockquote>
-
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
-
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
-
-<p><code class="prettyprint">Authorization: meowmeowmeow</code></p>
-
-<aside class="notice">
-You must replace `meowmeowmeow` with your personal API key.
-</aside>
+<p>TODO</p>
 
           <h1 id="people">People</h1>
 
@@ -94,8 +60,9 @@ You must replace `meowmeowmeow` with your personal API key.
 
 <p>An address represents a physical and/or mailing address for a person.</p>
 
-<h3 id="get-all-addresses">Get all Addresses</h3>
-<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/people/1/addresses"</span>
+<h3 id="list-addresses">List Addresses</h3>
+<pre><code class="highlight shell"><span class="c"># to list records...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v1/people/1/addresses"</span>
 </code></pre>
 
 <h4 id="http-request">HTTP Request</h4>
@@ -116,10 +83,16 @@ You must replace `meowmeowmeow` with your personal API key.
 <td><em>id</em></td>
 <td>get page after the specified id</td>
 </tr>
+<tr>
+<td>per_page</td>
+<td><em>integer</em></td>
+<td>how many records to return per page (min=1, max=100, default=25)</td>
+</tr>
 </tbody></table>
 
 <h3 id="get-a-single-address">Get a single Address</h3>
-<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/people/1/addresses/1"</span>
+<pre><code class="highlight shell"><span class="c"># to show...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v1/people/1/addresses/1"</span>
 </code></pre>
 
 <blockquote>
@@ -147,8 +120,9 @@ You must replace `meowmeowmeow` with your personal API key.
 
 <p>An app is one of the handful of apps that PCO offers that organizations can subscribe to, e.g. Services, Registrations, etc.</p>
 
-<h3 id="get-all-apps">Get all Apps</h3>
-<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/apps"</span>
+<h3 id="list-apps">List Apps</h3>
+<pre><code class="highlight shell"><span class="c"># to list records...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v1/apps"</span>
 </code></pre>
 
 <h4 id="http-request">HTTP Request</h4>
@@ -169,10 +143,16 @@ You must replace `meowmeowmeow` with your personal API key.
 <td><em>id</em></td>
 <td>get page after the specified id</td>
 </tr>
+<tr>
+<td>per_page</td>
+<td><em>integer</em></td>
+<td>how many records to return per page (min=1, max=100, default=25)</td>
+</tr>
 </tbody></table>
 
 <h3 id="get-a-single-app">Get a single App</h3>
-<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/apps/1"</span>
+<pre><code class="highlight shell"><span class="c"># to show...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v1/apps/1"</span>
 </code></pre>
 
 <blockquote>
@@ -199,8 +179,9 @@ You must replace `meowmeowmeow` with your personal API key.
 
 <p>A condition is an individual criterion used by a List Rule.</p>
 
-<h3 id="get-all-conditions">Get all Conditions</h3>
-<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/lists/1/rules/1/conditions"</span>
+<h3 id="list-conditions">List Conditions</h3>
+<pre><code class="highlight shell"><span class="c"># to list records...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v1/lists/1/rules/1/conditions"</span>
 </code></pre>
 
 <h4 id="http-request">HTTP Request</h4>
@@ -261,10 +242,16 @@ You must replace `meowmeowmeow` with your personal API key.
 <td><em>id</em></td>
 <td>get page after the specified id</td>
 </tr>
+<tr>
+<td>per_page</td>
+<td><em>integer</em></td>
+<td>how many records to return per page (min=1, max=100, default=25)</td>
+</tr>
 </tbody></table>
 
 <h3 id="get-a-single-condition">Get a single Condition</h3>
-<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/lists/1/rules/1/conditions/1"</span>
+<pre><code class="highlight shell"><span class="c"># to show...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v1/lists/1/rules/1/conditions/1"</span>
 </code></pre>
 
 <blockquote>
@@ -297,8 +284,9 @@ You must replace `meowmeowmeow` with your personal API key.
 
 <p>An email represents an email address and location.</p>
 
-<h3 id="get-all-emails">Get all Emails</h3>
-<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/emails"</span>
+<h3 id="list-emails">List Emails</h3>
+<pre><code class="highlight shell"><span class="c"># to list records...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v1/emails"</span>
 </code></pre>
 
 <h4 id="http-request">HTTP Request</h4>
@@ -329,10 +317,16 @@ You must replace `meowmeowmeow` with your personal API key.
 <td><em>id</em></td>
 <td>get page after the specified id</td>
 </tr>
+<tr>
+<td>per_page</td>
+<td><em>integer</em></td>
+<td>how many records to return per page (min=1, max=100, default=25)</td>
+</tr>
 </tbody></table>
 
 <h3 id="get-a-single-email">Get a single Email</h3>
-<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/emails/1"</span>
+<pre><code class="highlight shell"><span class="c"># to show...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v1/emails/1"</span>
 </code></pre>
 
 <blockquote>
@@ -355,12 +349,82 @@ You must replace `meowmeowmeow` with your personal API key.
 
 <p><em>none</em></p>
 
+<h3 id="create-a-new-email">Create a new Email</h3>
+<pre><code class="highlight shell"><span class="c"># to create a record...</span>
+curl -v -u token:secret -X POST -d <span class="s1">'{"data":{...}}'</span> <span class="s2">"https://api.planningcenteronline.com/people/v1/people/1/emails"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>editor</code> can create this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">POST https://api.planningcenteronline.com/people/v1/people/1/emails</code></p>
+
+<h4 id="resource-attributes">Resource Attributes</h4>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>address</td>
+<td>string</td>
+</tr>
+<tr>
+<td>location</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<h3 id="update-an-existing-email">Update an existing Email</h3>
+<pre><code class="highlight shell"><span class="c"># to update a record...</span>
+curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{...}}'</span> <span class="s2">"https://api.planningcenteronline.com/people/v1/emails/1"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>editor</code> can update this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">PATCH https://api.planningcenteronline.com/people/v1/emails/1</code></p>
+
+<h4 id="resource-attributes">Resource Attributes</h4>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>address</td>
+<td>string</td>
+</tr>
+<tr>
+<td>location</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<h3 id="delete-a-email">Delete a Email</h3>
+<pre><code class="highlight shell"><span class="c"># to delete a record...</span>
+curl -v -u token:secret -X DELETE <span class="s2">"https://api.planningcenteronline.com/people/v1/emails/1"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>editor</code> can delete this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">DELETE https://api.planningcenteronline.com/people/v1/emails/1</code></p>
+
 <h2 id="fielddata">FieldData</h2>
 
 <p>A field datum is an individual piece of data for a custom field.</p>
 
-<h3 id="get-all-field-data">Get all Field Data</h3>
-<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/people/1/field_data"</span>
+<h3 id="list-field-data">List Field Data</h3>
+<pre><code class="highlight shell"><span class="c"># to list records...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v1/people/1/field_data"</span>
 </code></pre>
 
 <h4 id="http-request">HTTP Request</h4>
@@ -411,12 +475,18 @@ You must replace `meowmeowmeow` with your personal API key.
 <td><em>id</em></td>
 <td>get page after the specified id</td>
 </tr>
+<tr>
+<td>per_page</td>
+<td><em>integer</em></td>
+<td>how many records to return per page (min=1, max=100, default=25)</td>
+</tr>
 </tbody></table>
 
 <p><em>Note: you can specify multiple includes with a comma, e.g. `?include=field</em>definition,field_option`_</p>
 
 <h3 id="get-a-single-field-datum">Get a single Field Datum</h3>
-<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/people/1/field_data/1"</span>
+<pre><code class="highlight shell"><span class="c"># to show...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v1/people/1/field_data/1"</span>
 </code></pre>
 
 <blockquote>
@@ -464,8 +534,9 @@ You must replace `meowmeowmeow` with your personal API key.
 
 <p>A field definition represents a custom field &ndash; its name, data type, etc.</p>
 
-<h3 id="get-all-field-definitions">Get all Field Definitions</h3>
-<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/field_definitions"</span>
+<h3 id="list-field-definitions">List Field Definitions</h3>
+<pre><code class="highlight shell"><span class="c"># to list records...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v1/field_definitions"</span>
 </code></pre>
 
 <h4 id="http-request">HTTP Request</h4>
@@ -516,10 +587,16 @@ You must replace `meowmeowmeow` with your personal API key.
 <td><em>id</em></td>
 <td>get page after the specified id</td>
 </tr>
+<tr>
+<td>per_page</td>
+<td><em>integer</em></td>
+<td>how many records to return per page (min=1, max=100, default=25)</td>
+</tr>
 </tbody></table>
 
 <h3 id="get-a-single-field-definition">Get a single Field Definition</h3>
-<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/field_definitions/1"</span>
+<pre><code class="highlight shell"><span class="c"># to show...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v1/field_definitions/1"</span>
 </code></pre>
 
 <blockquote>
@@ -561,8 +638,9 @@ You must replace `meowmeowmeow` with your personal API key.
 
 <p>A field option represents an individual option for a custom field of type &ldquo;select&rdquo; or &ldquo;checkboxes&rdquo;.</p>
 
-<h3 id="get-all-field-options">Get all Field Options</h3>
-<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/field_definitions/1/field_options"</span>
+<h3 id="list-field-options">List Field Options</h3>
+<pre><code class="highlight shell"><span class="c"># to list records...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v1/field_definitions/1/field_options"</span>
 </code></pre>
 
 <h4 id="http-request">HTTP Request</h4>
@@ -593,10 +671,16 @@ You must replace `meowmeowmeow` with your personal API key.
 <td><em>id</em></td>
 <td>get page after the specified id</td>
 </tr>
+<tr>
+<td>per_page</td>
+<td><em>integer</em></td>
+<td>how many records to return per page (min=1, max=100, default=25)</td>
+</tr>
 </tbody></table>
 
 <h3 id="get-a-single-field-option">Get a single Field Option</h3>
-<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/field_definitions/1/field_options/1"</span>
+<pre><code class="highlight shell"><span class="c"># to show...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v1/field_definitions/1/field_options/1"</span>
 </code></pre>
 
 <blockquote>
@@ -623,8 +707,9 @@ You must replace `meowmeowmeow` with your personal API key.
 
 <p>A household membership is the linking record between a household and a person.</p>
 
-<h3 id="get-all-household-memberships">Get all Household Memberships</h3>
-<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/households/1/household_memberships"</span>
+<h3 id="list-household-memberships">List Household Memberships</h3>
+<pre><code class="highlight shell"><span class="c"># to list records...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v1/households/1/household_memberships"</span>
 </code></pre>
 
 <h4 id="http-request">HTTP Request</h4>
@@ -655,12 +740,18 @@ You must replace `meowmeowmeow` with your personal API key.
 <td><em>id</em></td>
 <td>get page after the specified id</td>
 </tr>
+<tr>
+<td>per_page</td>
+<td><em>integer</em></td>
+<td>how many records to return per page (min=1, max=100, default=25)</td>
+</tr>
 </tbody></table>
 
 <p><em>Note: you can specify multiple includes with a comma, e.g. <code class="prettyprint">?include=person,household</code></em></p>
 
 <h3 id="get-a-single-household-membership">Get a single Household Membership</h3>
-<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/households/1/household_memberships/1"</span>
+<pre><code class="highlight shell"><span class="c"># to show...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v1/households/1/household_memberships/1"</span>
 </code></pre>
 
 <blockquote>
@@ -706,8 +797,9 @@ You must replace `meowmeowmeow` with your personal API key.
 
 <p>A household links people together and can have a primary contaact.</p>
 
-<h3 id="get-all-households">Get all Households</h3>
-<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/households"</span>
+<h3 id="list-households">List Households</h3>
+<pre><code class="highlight shell"><span class="c"># to list records...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v1/households"</span>
 </code></pre>
 
 <h4 id="http-request">HTTP Request</h4>
@@ -738,10 +830,16 @@ You must replace `meowmeowmeow` with your personal API key.
 <td><em>id</em></td>
 <td>get page after the specified id</td>
 </tr>
+<tr>
+<td>per_page</td>
+<td><em>integer</em></td>
+<td>how many records to return per page (min=1, max=100, default=25)</td>
+</tr>
 </tbody></table>
 
 <h3 id="get-a-single-household">Get a single Household</h3>
-<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/households/1"</span>
+<pre><code class="highlight shell"><span class="c"># to show...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v1/households/1"</span>
 </code></pre>
 
 <blockquote>
@@ -783,8 +881,9 @@ You must replace `meowmeowmeow` with your personal API key.
 
 <p>An inactive reason is a small bit of text indicating why a member is no longer active.</p>
 
-<h3 id="get-all-inactive-reasons">Get all Inactive Reasons</h3>
-<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/inactive_reasons"</span>
+<h3 id="list-inactive-reasons">List Inactive Reasons</h3>
+<pre><code class="highlight shell"><span class="c"># to list records...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v1/inactive_reasons"</span>
 </code></pre>
 
 <h4 id="http-request">HTTP Request</h4>
@@ -810,10 +909,16 @@ You must replace `meowmeowmeow` with your personal API key.
 <td><em>id</em></td>
 <td>get page after the specified id</td>
 </tr>
+<tr>
+<td>per_page</td>
+<td><em>integer</em></td>
+<td>how many records to return per page (min=1, max=100, default=25)</td>
+</tr>
 </tbody></table>
 
 <h3 id="get-a-single-inactive-reason">Get a single Inactive Reason</h3>
-<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/inactive_reasons/1"</span>
+<pre><code class="highlight shell"><span class="c"># to show...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v1/inactive_reasons/1"</span>
 </code></pre>
 
 <blockquote>
@@ -839,8 +944,9 @@ You must replace `meowmeowmeow` with your personal API key.
 
 <p>A list (aka &ldquo;filter&rdquo;) is a powerful tool for finding and grouping people together using any criteria imaginable.</p>
 
-<h3 id="get-all-lists">Get all Lists</h3>
-<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/lists"</span>
+<h3 id="list-lists">List Lists</h3>
+<pre><code class="highlight shell"><span class="c"># to list records...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v1/lists"</span>
 </code></pre>
 
 <h4 id="http-request">HTTP Request</h4>
@@ -911,12 +1017,18 @@ You must replace `meowmeowmeow` with your personal API key.
 <td><em>id</em></td>
 <td>get page after the specified id</td>
 </tr>
+<tr>
+<td>per_page</td>
+<td><em>integer</em></td>
+<td>how many records to return per page (min=1, max=100, default=25)</td>
+</tr>
 </tbody></table>
 
 <p><em>Note: you can specify multiple includes with a comma, e.g. `?include=created</em>by,updated_by,owner`_</p>
 
 <h3 id="get-a-single-list">Get a single List</h3>
-<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/lists/1"</span>
+<pre><code class="highlight shell"><span class="c"># to show...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v1/lists/1"</span>
 </code></pre>
 
 <blockquote>
@@ -980,8 +1092,9 @@ You must replace `meowmeowmeow` with your personal API key.
 
 <p>A martial status represents a member&rsquo;s current status, e.g. married, single, etc.</p>
 
-<h3 id="get-all-marital-statuses">Get all Marital Statuses</h3>
-<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/marital_statuses"</span>
+<h3 id="list-marital-statuses">List Marital Statuses</h3>
+<pre><code class="highlight shell"><span class="c"># to list records...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v1/marital_statuses"</span>
 </code></pre>
 
 <h4 id="http-request">HTTP Request</h4>
@@ -1007,10 +1120,16 @@ You must replace `meowmeowmeow` with your personal API key.
 <td><em>id</em></td>
 <td>get page after the specified id</td>
 </tr>
+<tr>
+<td>per_page</td>
+<td><em>integer</em></td>
+<td>how many records to return per page (min=1, max=100, default=25)</td>
+</tr>
 </tbody></table>
 
 <h3 id="get-a-single-marital-status">Get a single Marital Status</h3>
-<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/marital_statuses/1"</span>
+<pre><code class="highlight shell"><span class="c"># to show...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v1/marital_statuses/1"</span>
 </code></pre>
 
 <blockquote>
@@ -1036,8 +1155,9 @@ You must replace `meowmeowmeow` with your personal API key.
 
 <p>A message group represents one or more emails or text messages sent from one of the PCO apps. The message group indicates the from person, app, etc.</p>
 
-<h3 id="get-all-message-groups">Get all Message Groups</h3>
-<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/message_groups"</span>
+<h3 id="list-message-groups">List Message Groups</h3>
+<pre><code class="highlight shell"><span class="c"># to list records...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v1/message_groups"</span>
 </code></pre>
 
 <h4 id="http-request">HTTP Request</h4>
@@ -1108,12 +1228,18 @@ You must replace `meowmeowmeow` with your personal API key.
 <td><em>id</em></td>
 <td>get page after the specified id</td>
 </tr>
+<tr>
+<td>per_page</td>
+<td><em>integer</em></td>
+<td>how many records to return per page (min=1, max=100, default=25)</td>
+</tr>
 </tbody></table>
 
 <p><em>Note: you can specify multiple includes with a comma, e.g. <code class="prettyprint">?include=messages,from,app</code></em></p>
 
 <h3 id="get-a-single-message-group">Get a single Message Group</h3>
-<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/message_groups/1"</span>
+<pre><code class="highlight shell"><span class="c"># to show...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v1/message_groups/1"</span>
 </code></pre>
 
 <blockquote>
@@ -1169,8 +1295,9 @@ You must replace `meowmeowmeow` with your personal API key.
 
 <p>A message is an individual email or sms text sent to a member. Every message has a parent message group.</p>
 
-<h3 id="get-all-messages">Get all Messages</h3>
-<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/messages"</span>
+<h3 id="list-messages">List Messages</h3>
+<pre><code class="highlight shell"><span class="c"># to list records...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v1/messages"</span>
 </code></pre>
 
 <h4 id="http-request">HTTP Request</h4>
@@ -1251,12 +1378,18 @@ You must replace `meowmeowmeow` with your personal API key.
 <td><em>id</em></td>
 <td>get page after the specified id</td>
 </tr>
+<tr>
+<td>per_page</td>
+<td><em>integer</em></td>
+<td>how many records to return per page (min=1, max=100, default=25)</td>
+</tr>
 </tbody></table>
 
 <p><em>Note: you can specify multiple includes with a comma, e.g. `?include=message</em>group,to`_</p>
 
 <h3 id="get-a-single-message">Get a single Message</h3>
-<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/messages/1"</span>
+<pre><code class="highlight shell"><span class="c"># to show...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v1/messages/1"</span>
 </code></pre>
 
 <blockquote>
@@ -1310,8 +1443,9 @@ You must replace `meowmeowmeow` with your personal API key.
 
 <p>A name prefix is one of Mr., Mrs., etc.</p>
 
-<h3 id="get-all-name-prefixes">Get all Name Prefixes</h3>
-<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/name_prefixes"</span>
+<h3 id="list-name-prefixes">List Name Prefixes</h3>
+<pre><code class="highlight shell"><span class="c"># to list records...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v1/name_prefixes"</span>
 </code></pre>
 
 <h4 id="http-request">HTTP Request</h4>
@@ -1337,10 +1471,16 @@ You must replace `meowmeowmeow` with your personal API key.
 <td><em>id</em></td>
 <td>get page after the specified id</td>
 </tr>
+<tr>
+<td>per_page</td>
+<td><em>integer</em></td>
+<td>how many records to return per page (min=1, max=100, default=25)</td>
+</tr>
 </tbody></table>
 
 <h3 id="get-a-single-name-prefix">Get a single Name Prefix</h3>
-<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/name_prefixes/1"</span>
+<pre><code class="highlight shell"><span class="c"># to show...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v1/name_prefixes/1"</span>
 </code></pre>
 
 <blockquote>
@@ -1366,8 +1506,9 @@ You must replace `meowmeowmeow` with your personal API key.
 
 <p>A name suffix is one of Sr., Jr., etc.</p>
 
-<h3 id="get-all-name-suffixes">Get all Name Suffixes</h3>
-<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/name_suffixes"</span>
+<h3 id="list-name-suffixes">List Name Suffixes</h3>
+<pre><code class="highlight shell"><span class="c"># to list records...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v1/name_suffixes"</span>
 </code></pre>
 
 <h4 id="http-request">HTTP Request</h4>
@@ -1393,10 +1534,16 @@ You must replace `meowmeowmeow` with your personal API key.
 <td><em>id</em></td>
 <td>get page after the specified id</td>
 </tr>
+<tr>
+<td>per_page</td>
+<td><em>integer</em></td>
+<td>how many records to return per page (min=1, max=100, default=25)</td>
+</tr>
 </tbody></table>
 
 <h3 id="get-a-single-name-suffix">Get a single Name Suffix</h3>
-<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/name_suffixes/1"</span>
+<pre><code class="highlight shell"><span class="c"># to show...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v1/name_suffixes/1"</span>
 </code></pre>
 
 <blockquote>
@@ -1422,30 +1569,9 @@ You must replace `meowmeowmeow` with your personal API key.
 
 <p>The organization represents a single church. Every other resource is scoped to this record.</p>
 
-<h3 id="get-all-organizations">Get all Organizations</h3>
-
-<h4 id="http-request">HTTP Request</h4>
-
-<p><code class="prettyprint">GET</code></p>
-
-<h4 id="url-parameters">URL Parameters</h4>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Value</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>after</td>
-<td><em>id</em></td>
-<td>get page after the specified id</td>
-</tr>
-</tbody></table>
-
 <h3 id="get-a-single-organization">Get a single Organization</h3>
-<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1"</span>
+<pre><code class="highlight shell"><span class="c"># to show...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v1"</span>
 </code></pre>
 
 <blockquote>
@@ -1471,8 +1597,9 @@ You must replace `meowmeowmeow` with your personal API key.
 
 <p>A person record represents a single member/user of the application. Each person has different permissions that determine how the user can use this app (if at all).</p>
 
-<h3 id="get-all-people">Get all People</h3>
-<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/people"</span>
+<h3 id="list-people">List People</h3>
+<pre><code class="highlight shell"><span class="c"># to list records...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v1/people"</span>
 </code></pre>
 
 <h4 id="http-request">HTTP Request</h4>
@@ -1613,12 +1740,18 @@ You must replace `meowmeowmeow` with your personal API key.
 <td><em>id</em></td>
 <td>get page after the specified id</td>
 </tr>
+<tr>
+<td>per_page</td>
+<td><em>integer</em></td>
+<td>how many records to return per page (min=1, max=100, default=25)</td>
+</tr>
 </tbody></table>
 
 <p><em>Note: you can specify multiple includes with a comma, e.g. `?include=emails,addresses,phone</em>numbers`_</p>
 
 <h3 id="get-a-single-person">Get a single Person</h3>
-<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/people/1"</span>
+<pre><code class="highlight shell"><span class="c"># to show...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v1/people/1"</span>
 </code></pre>
 
 <blockquote>
@@ -1719,12 +1852,170 @@ You must replace `meowmeowmeow` with your personal API key.
 
 <p><em>Note: you can specify multiple includes with a comma, e.g. `?include=emails,addresses,phone</em>numbers`_</p>
 
+<h3 id="create-a-new-person">Create a new Person</h3>
+<pre><code class="highlight shell"><span class="c"># to create a record...</span>
+curl -v -u token:secret -X POST -d <span class="s1">'{"data":{...}}'</span> <span class="s2">"https://api.planningcenteronline.com/people/v1/people"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>editor</code> can create this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">POST https://api.planningcenteronline.com/people/v1/people</code></p>
+
+<h4 id="resource-attributes">Resource Attributes</h4>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>first_name</td>
+<td>string</td>
+</tr>
+<tr>
+<td>middle_name</td>
+<td>string</td>
+</tr>
+<tr>
+<td>last_name</td>
+<td>string</td>
+</tr>
+<tr>
+<td>birthdate</td>
+<td>date</td>
+</tr>
+<tr>
+<td>anniversary</td>
+<td>date</td>
+</tr>
+<tr>
+<td>gender</td>
+<td>string</td>
+</tr>
+<tr>
+<td>grade</td>
+<td>integer</td>
+</tr>
+<tr>
+<td>child</td>
+<td>boolean</td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+</tr>
+<tr>
+<td>school_type</td>
+<td>string</td>
+</tr>
+<tr>
+<td>graduation_year</td>
+<td>integer</td>
+</tr>
+<tr>
+<td>site_administrator</td>
+<td>boolean</td>
+</tr>
+<tr>
+<td>people_permissions</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<h3 id="update-an-existing-person">Update an existing Person</h3>
+<pre><code class="highlight shell"><span class="c"># to update a record...</span>
+curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{...}}'</span> <span class="s2">"https://api.planningcenteronline.com/people/v1/people/1"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>editor</code> can update this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">PATCH https://api.planningcenteronline.com/people/v1/people/1</code></p>
+
+<h4 id="resource-attributes">Resource Attributes</h4>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>first_name</td>
+<td>string</td>
+</tr>
+<tr>
+<td>middle_name</td>
+<td>string</td>
+</tr>
+<tr>
+<td>last_name</td>
+<td>string</td>
+</tr>
+<tr>
+<td>birthdate</td>
+<td>date</td>
+</tr>
+<tr>
+<td>anniversary</td>
+<td>date</td>
+</tr>
+<tr>
+<td>gender</td>
+<td>string</td>
+</tr>
+<tr>
+<td>grade</td>
+<td>integer</td>
+</tr>
+<tr>
+<td>child</td>
+<td>boolean</td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+</tr>
+<tr>
+<td>school_type</td>
+<td>string</td>
+</tr>
+<tr>
+<td>graduation_year</td>
+<td>integer</td>
+</tr>
+<tr>
+<td>site_administrator</td>
+<td>boolean</td>
+</tr>
+<tr>
+<td>people_permissions</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<h3 id="delete-a-person">Delete a Person</h3>
+<pre><code class="highlight shell"><span class="c"># to delete a record...</span>
+curl -v -u token:secret -X DELETE <span class="s2">"https://api.planningcenteronline.com/people/v1/people/1"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>editor</code> can delete this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">DELETE https://api.planningcenteronline.com/people/v1/people/1</code></p>
+
 <h2 id="phonenumbers">PhoneNumbers</h2>
 
 <p>A phone number represents a single telephone number and location.</p>
 
-<h3 id="get-all-phone-numbers">Get all Phone Numbers</h3>
-<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/people/1/phone_numbers"</span>
+<h3 id="list-phone-numbers">List Phone Numbers</h3>
+<pre><code class="highlight shell"><span class="c"># to list records...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v1/people/1/phone_numbers"</span>
 </code></pre>
 
 <h4 id="http-request">HTTP Request</h4>
@@ -1745,10 +2036,16 @@ You must replace `meowmeowmeow` with your personal API key.
 <td><em>id</em></td>
 <td>get page after the specified id</td>
 </tr>
+<tr>
+<td>per_page</td>
+<td><em>integer</em></td>
+<td>how many records to return per page (min=1, max=100, default=25)</td>
+</tr>
 </tbody></table>
 
 <h3 id="get-a-single-phone-number">Get a single Phone Number</h3>
-<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/people/1/phone_numbers/1"</span>
+<pre><code class="highlight shell"><span class="c"># to show...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v1/people/1/phone_numbers/1"</span>
 </code></pre>
 
 <blockquote>
@@ -1775,8 +2072,9 @@ You must replace `meowmeowmeow` with your personal API key.
 
 <p>A report is editable liquid syntax that provides a powerful tool for presenting your Lists however you want.</p>
 
-<h3 id="get-all-reports">Get all Reports</h3>
-<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/reports"</span>
+<h3 id="list-reports">List Reports</h3>
+<pre><code class="highlight shell"><span class="c"># to list records...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v1/reports"</span>
 </code></pre>
 
 <h4 id="http-request">HTTP Request</h4>
@@ -1832,12 +2130,18 @@ You must replace `meowmeowmeow` with your personal API key.
 <td><em>id</em></td>
 <td>get page after the specified id</td>
 </tr>
+<tr>
+<td>per_page</td>
+<td><em>integer</em></td>
+<td>how many records to return per page (min=1, max=100, default=25)</td>
+</tr>
 </tbody></table>
 
 <p><em>Note: you can specify multiple includes with a comma, e.g. `?include=created</em>by,updated_by`_</p>
 
 <h3 id="get-a-single-report">Get a single Report</h3>
-<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/reports/1"</span>
+<pre><code class="highlight shell"><span class="c"># to show...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v1/reports/1"</span>
 </code></pre>
 
 <blockquote>
@@ -1886,8 +2190,9 @@ You must replace `meowmeowmeow` with your personal API key.
 
 <p>A rule belongs to a List and groups conditions together.</p>
 
-<h3 id="get-all-rules">Get all Rules</h3>
-<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/lists/1/rules"</span>
+<h3 id="list-rules">List Rules</h3>
+<pre><code class="highlight shell"><span class="c"># to list records...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v1/lists/1/rules"</span>
 </code></pre>
 
 <h4 id="http-request">HTTP Request</h4>
@@ -1923,10 +2228,16 @@ You must replace `meowmeowmeow` with your personal API key.
 <td><em>id</em></td>
 <td>get page after the specified id</td>
 </tr>
+<tr>
+<td>per_page</td>
+<td><em>integer</em></td>
+<td>how many records to return per page (min=1, max=100, default=25)</td>
+</tr>
 </tbody></table>
 
 <h3 id="get-a-single-rule">Get a single Rule</h3>
-<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/lists/1/rules/1"</span>
+<pre><code class="highlight shell"><span class="c"># to show...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v1/lists/1/rules/1"</span>
 </code></pre>
 
 <blockquote>
@@ -1965,8 +2276,9 @@ You must replace `meowmeowmeow` with your personal API key.
 
 <p>A school option represents a school name, school type, grades, etc. and can be added to a person.</p>
 
-<h3 id="get-all-school-options">Get all School Options</h3>
-<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/school_options"</span>
+<h3 id="list-school-options">List School Options</h3>
+<pre><code class="highlight shell"><span class="c"># to list records...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v1/school_options"</span>
 </code></pre>
 
 <h4 id="http-request">HTTP Request</h4>
@@ -2007,10 +2319,16 @@ You must replace `meowmeowmeow` with your personal API key.
 <td><em>id</em></td>
 <td>get page after the specified id</td>
 </tr>
+<tr>
+<td>per_page</td>
+<td><em>integer</em></td>
+<td>how many records to return per page (min=1, max=100, default=25)</td>
+</tr>
 </tbody></table>
 
 <h3 id="get-a-single-school-option">Get a single School Option</h3>
-<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/school_options/1"</span>
+<pre><code class="highlight shell"><span class="c"># to show...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v1/school_options/1"</span>
 </code></pre>
 
 <blockquote>
@@ -2039,8 +2357,9 @@ You must replace `meowmeowmeow` with your personal API key.
 
 <p>A social profile represents a members&rsquo;s Twitter, Facebook, or other social media account.</p>
 
-<h3 id="get-all-social-profiles">Get all Social Profiles</h3>
-<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/social_profiles"</span>
+<h3 id="list-social-profiles">List Social Profiles</h3>
+<pre><code class="highlight shell"><span class="c"># to list records...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v1/social_profiles"</span>
 </code></pre>
 
 <h4 id="http-request">HTTP Request</h4>
@@ -2101,10 +2420,16 @@ You must replace `meowmeowmeow` with your personal API key.
 <td><em>id</em></td>
 <td>get page after the specified id</td>
 </tr>
+<tr>
+<td>per_page</td>
+<td><em>integer</em></td>
+<td>how many records to return per page (min=1, max=100, default=25)</td>
+</tr>
 </tbody></table>
 
 <h3 id="get-a-single-social-profile">Get a single Social Profile</h3>
-<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/social_profiles/1"</span>
+<pre><code class="highlight shell"><span class="c"># to show...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v1/social_profiles/1"</span>
 </code></pre>
 
 <blockquote>
@@ -2148,8 +2473,9 @@ You must replace `meowmeowmeow` with your personal API key.
 
 <p>A tab is a custom tab and groups like field definitions.</p>
 
-<h3 id="get-all-tabs">Get all Tabs</h3>
-<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/tabs"</span>
+<h3 id="list-tabs">List Tabs</h3>
+<pre><code class="highlight shell"><span class="c"># to list records...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v1/tabs"</span>
 </code></pre>
 
 <h4 id="http-request">HTTP Request</h4>
@@ -2190,10 +2516,16 @@ You must replace `meowmeowmeow` with your personal API key.
 <td><em>id</em></td>
 <td>get page after the specified id</td>
 </tr>
+<tr>
+<td>per_page</td>
+<td><em>integer</em></td>
+<td>how many records to return per page (min=1, max=100, default=25)</td>
+</tr>
 </tbody></table>
 
 <h3 id="get-a-single-tab">Get a single Tab</h3>
-<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/tabs/1"</span>
+<pre><code class="highlight shell"><span class="c"># to show...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v1/tabs/1"</span>
 </code></pre>
 
 <blockquote>
@@ -2231,59 +2563,44 @@ You must replace `meowmeowmeow` with your personal API key.
 
           <h1 id="errors">Errors</h1>
 
-<aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files&hellip;just save them to the `includes` folder and add them to the top of your `index.md`&rsquo;s frontmatter. Files are included in the order listed.</aside>
-
-<p>The Kittn API uses the following error codes:</p>
+<p>The PCO API uses the following error codes:</p>
 
 <table><thead>
 <tr>
 <th>Error Code</th>
-<th>Meaning</th>
+<th>Description</th>
+<th>Example Cause</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>400</td>
-<td>Bad Request &ndash; Your request sucks</td>
+<td>Bad Request</td>
+<td>Something is wrong in your request.</td>
 </tr>
 <tr>
 <td>401</td>
-<td>Unauthorized &ndash; Your API key is wrong</td>
+<td>Unauthorized</td>
+<td>You did not use the proper API token and/or secret.</td>
 </tr>
 <tr>
 <td>403</td>
-<td>Forbidden &ndash; The kitten requested is hidden for administrators only</td>
+<td>Forbidden</td>
+<td>You tried to view a resource you don&rsquo;t have access to; You tried to create a resource, but your user has an insufficient role.</td>
 </tr>
 <tr>
 <td>404</td>
-<td>Not Found &ndash; The specified kitten could not be found</td>
-</tr>
-<tr>
-<td>405</td>
-<td>Method Not Allowed &ndash; You tried to access a kitten with an invalid method</td>
-</tr>
-<tr>
-<td>406</td>
-<td>Not Acceptable &ndash; You requested a format that isn&rsquo;t json</td>
-</tr>
-<tr>
-<td>410</td>
-<td>Gone &ndash; The kitten requested has been removed from our servers</td>
-</tr>
-<tr>
-<td>418</td>
-<td>I&rsquo;m a teapot</td>
-</tr>
-<tr>
-<td>429</td>
-<td>Too Many Requests &ndash; You&rsquo;re requesting too many kittens! Slown down!</td>
+<td>Not Found</td>
+<td>You&rsquo;ve tried to access a URL or resource ID that doesn&rsquo;t exist.</td>
 </tr>
 <tr>
 <td>500</td>
-<td>Internal Server Error &ndash; We had a problem with our server. Try again later.</td>
+<td>Internal Server Error</td>
+<td>We had a problem with our server. Try again later.</td>
 </tr>
 <tr>
 <td>503</td>
-<td>Service Unavailable &ndash; We&rsquo;re temporarially offline for maintanance. Please try again later.</td>
+<td>Service Unavailable</td>
+<td>We&rsquo;re temporarially offline for maintanance. Please try again later.</td>
 </tr>
 </tbody></table>
 
@@ -2291,8 +2608,6 @@ You must replace `meowmeowmeow` with your personal API key.
       <div class="dark-box">
           <div class="lang-selector">
                 <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
           </div>
       </div>
     </div>
