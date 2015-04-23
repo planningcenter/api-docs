@@ -241,6 +241,14 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/emails/1
 
 _none_
 
+### Associations for an Email
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL
+----------- | ---
+person | https://api.planningcenteronline.com/people/v1/emails/1/person
+
 ### Create a new Email
 
 ```shell
@@ -283,7 +291,7 @@ Attribute | Type
 address | string
 location | string
 
-### Delete a Email
+### Delete an Email
 
 ```shell
 # to delete a record...
@@ -363,6 +371,15 @@ include | field_option | include associated field_option
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=field_definition,field_option</code></aside>
 
+### Associations for a Field Datum
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL
+----------- | ---
+field_definition | https://api.planningcenteronline.com/people/v1/people/1/field_data/1/field_definition
+field_option | https://api.planningcenteronline.com/people/v1/people/1/field_data/1/field_option
+
 
 
 
@@ -430,6 +447,14 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/field_de
 Parameter | Value | Description
 --------- | ----- | -----------
 include | field_options | include associated field_options
+
+### Associations for a Field Definition
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL
+----------- | ---
+field_options | https://api.planningcenteronline.com/people/v1/field_definitions/1/field_options
 
 
 
@@ -556,6 +581,15 @@ include | household | include associated household
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=person,household</code></aside>
 
+### Associations for a Household Membership
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL
+----------- | ---
+household | https://api.planningcenteronline.com/people/v1/households/1/household_memberships/1/household
+person | https://api.planningcenteronline.com/people/v1/households/1/household_memberships/1/person
+
 
 
 
@@ -619,6 +653,15 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/househol
 Parameter | Value | Description
 --------- | ----- | -----------
 include | people | include associated people
+
+### Associations for a Household
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL
+----------- | ---
+household_memberships | https://api.planningcenteronline.com/people/v1/households/1/household_memberships
+people | https://api.planningcenteronline.com/people/v1/households/1/people
 
 
 
@@ -757,6 +800,18 @@ include | rules | include associated rules
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=created_by,updated_by</code></aside>
 
+### Associations for a List
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL
+----------- | ---
+created_by | https://api.planningcenteronline.com/people/v1/lists/1/created_by
+owner | https://api.planningcenteronline.com/people/v1/lists/1/owner
+people | https://api.planningcenteronline.com/people/v1/lists/1/people
+rules | https://api.planningcenteronline.com/people/v1/lists/1/rules
+updated_by | https://api.planningcenteronline.com/people/v1/lists/1/updated_by
+
 
 
 
@@ -894,6 +949,16 @@ include | app | include associated app
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=messages,from</code></aside>
 
+### Associations for a Message Group
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL
+----------- | ---
+app | https://api.planningcenteronline.com/people/v1/message_groups/1/app
+from | https://api.planningcenteronline.com/people/v1/message_groups/1/from
+messages | https://api.planningcenteronline.com/people/v1/message_groups/1/messages
+
 
 
 
@@ -977,6 +1042,15 @@ include | message_group | include associated message_group
 include | to | include associated to
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=message_group,to</code></aside>
+
+### Associations for a Message
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL
+----------- | ---
+message_group | https://api.planningcenteronline.com/people/v1/messages/1/message_group
+to | https://api.planningcenteronline.com/people/v1/messages/1/to
 
 
 
@@ -1129,6 +1203,29 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v1"
 
 _none_
 
+### Associations for an Organization
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL
+----------- | ---
+apps | https://api.planningcenteronline.com/people/v1/apps
+emails | https://api.planningcenteronline.com/people/v1/emails
+field_definitions | https://api.planningcenteronline.com/people/v1/field_definitions
+households | https://api.planningcenteronline.com/people/v1/households
+inactive_reasons | https://api.planningcenteronline.com/people/v1/inactive_reasons
+lists | https://api.planningcenteronline.com/people/v1/lists
+marital_statuses | https://api.planningcenteronline.com/people/v1/marital_statuses
+message_groups | https://api.planningcenteronline.com/people/v1/message_groups
+messages | https://api.planningcenteronline.com/people/v1/messages
+name_prefixes | https://api.planningcenteronline.com/people/v1/name_prefixes
+name_suffixes | https://api.planningcenteronline.com/people/v1/name_suffixes
+people | https://api.planningcenteronline.com/people/v1/people
+reports | https://api.planningcenteronline.com/people/v1/reports
+school_options | https://api.planningcenteronline.com/people/v1/school_options
+social_profiles | https://api.planningcenteronline.com/people/v1/social_profiles
+tabs | https://api.planningcenteronline.com/people/v1/tabs
+
 
 
 
@@ -1239,6 +1336,26 @@ include | field_data | include associated field_data
 include | apps | include associated apps
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=emails,addresses</code></aside>
+
+### Associations for a Person
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL
+----------- | ---
+addresses | https://api.planningcenteronline.com/people/v1/people/1/addresses
+apps | https://api.planningcenteronline.com/people/v1/people/1/apps
+emails | https://api.planningcenteronline.com/people/v1/people/1/emails
+field_data | https://api.planningcenteronline.com/people/v1/people/1/field_data
+household_memberships | https://api.planningcenteronline.com/people/v1/people/1/household_memberships
+households | https://api.planningcenteronline.com/people/v1/people/1/households
+inactive_reason | https://api.planningcenteronline.com/people/v1/people/1/inactive_reason
+marital_status | https://api.planningcenteronline.com/people/v1/people/1/marital_status
+name_prefix | https://api.planningcenteronline.com/people/v1/people/1/name_prefix
+name_suffix | https://api.planningcenteronline.com/people/v1/people/1/name_suffix
+phone_numbers | https://api.planningcenteronline.com/people/v1/people/1/phone_numbers
+school | https://api.planningcenteronline.com/people/v1/people/1/school
+social_profiles | https://api.planningcenteronline.com/people/v1/people/1/social_profiles
 
 ### Create a new Person
 
@@ -1443,6 +1560,15 @@ include | updated_by | include associated updated_by
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=created_by,updated_by</code></aside>
 
+### Associations for a Report
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL
+----------- | ---
+created_by | https://api.planningcenteronline.com/people/v1/reports/1/created_by
+updated_by | https://api.planningcenteronline.com/people/v1/reports/1/updated_by
+
 
 
 
@@ -1504,6 +1630,14 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/lists/1/
 Parameter | Value | Description
 --------- | ----- | -----------
 include | conditions | include associated conditions
+
+### Associations for a Rule
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL
+----------- | ---
+conditions | https://api.planningcenteronline.com/people/v1/lists/1/rules/1/conditions
 
 
 
@@ -1567,6 +1701,14 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/school_o
 #### URL Parameters
 
 _none_
+
+### Associations for a School Option
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL
+----------- | ---
+promotes_to_school | https://api.planningcenteronline.com/people/v1/school_options/1/promotes_to_school
 
 
 
@@ -1640,6 +1782,14 @@ Parameter | Value | Description
 --------- | ----- | -----------
 include | person | include associated person
 
+### Associations for a Social Profile
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL
+----------- | ---
+person | https://api.planningcenteronline.com/people/v1/social_profiles/1/person
+
 
 
 
@@ -1703,6 +1853,14 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/tabs/1"
 Parameter | Value | Description
 --------- | ----- | -----------
 include | field_definitions | include associated field_definitions
+
+### Associations for a Tab
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL
+----------- | ---
+field_definitions | https://api.planningcenteronline.com/people/v1/tabs/1/field_definitions
 
 
 
