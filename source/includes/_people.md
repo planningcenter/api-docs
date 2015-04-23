@@ -6,10 +6,11 @@ Our People app helps you manage contact data, membership info, and everything yo
 
 An address represents a physical and/or mailing address for a person.
 
-### Get all Addresses
+### List Addresses
 
 ```shell
-curl -v -u token:secret           "https://api.planningcenteronline.com/people/v1/people/1/addresses"
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/people/1/addresses"
 ```
 
 
@@ -22,11 +23,13 @@ curl -v -u token:secret           "https://api.planningcenteronline.com/people/v
 Parameter | Value | Description
 --------- | ----- | -----------
 after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Address
 
 ```shell
-curl -v -u token:secret           "https://api.planningcenteronline.com/people/v1/people/1/addresses/1"
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/people/1/addresses/1"
 ```
 
 
@@ -51,14 +54,21 @@ curl -v -u token:secret           "https://api.planningcenteronline.com/people/v
 
 _none_
 
+
+
+
+
+
+
 ## Apps
 
 An app is one of the handful of apps that PCO offers that organizations can subscribe to, e.g. Services, Registrations, etc.
 
-### Get all Apps
+### List Apps
 
 ```shell
-curl -v -u token:secret           "https://api.planningcenteronline.com/people/v1/apps"
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/apps"
 ```
 
 
@@ -71,11 +81,13 @@ curl -v -u token:secret           "https://api.planningcenteronline.com/people/v
 Parameter | Value | Description
 --------- | ----- | -----------
 after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single App
 
 ```shell
-curl -v -u token:secret           "https://api.planningcenteronline.com/people/v1/apps/1"
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/apps/1"
 ```
 
 
@@ -99,14 +111,21 @@ curl -v -u token:secret           "https://api.planningcenteronline.com/people/v
 
 _none_
 
+
+
+
+
+
+
 ## Conditions
 
 A condition is an individual criterion used by a List Rule.
 
-### Get all Conditions
+### List Conditions
 
 ```shell
-curl -v -u token:secret           "https://api.planningcenteronline.com/people/v1/lists/1/rules/1/conditions"
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/lists/1/rules/1/conditions"
 ```
 
 
@@ -127,11 +146,13 @@ where[description] | _string_ | filter on a specific description
 where[created_at] | _datetime_ | filter on a specific created_at
 where[updated_at] | _datetime_ | filter on a specific updated_at
 after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Condition
 
 ```shell
-curl -v -u token:secret           "https://api.planningcenteronline.com/people/v1/lists/1/rules/1/conditions/1"
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/lists/1/rules/1/conditions/1"
 ```
 
 
@@ -161,14 +182,21 @@ curl -v -u token:secret           "https://api.planningcenteronline.com/people/v
 
 _none_
 
+
+
+
+
+
+
 ## Emails
 
 An email represents an email address and location.
 
-### Get all Emails
+### List Emails
 
 ```shell
-curl -v -u token:secret           "https://api.planningcenteronline.com/people/v1/emails"
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/emails"
 ```
 
 
@@ -183,11 +211,13 @@ Parameter | Value | Description
 where[address] | _string_ | filter on a specific address
 where[location] | _string_ | filter on a specific location
 after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Email
 
 ```shell
-curl -v -u token:secret           "https://api.planningcenteronline.com/people/v1/emails/1"
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/emails/1"
 ```
 
 
@@ -211,14 +241,71 @@ curl -v -u token:secret           "https://api.planningcenteronline.com/people/v
 
 _none_
 
+### Create a new Email
+
+```shell
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v1/people/1/emails"
+```
+
+
+<aside class='info'>Only users with the role <code>editor</code> can create this resource.</aside>
+
+#### HTTP Request
+
+`POST https://api.planningcenteronline.com/people/v1/people/1/emails`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+address | string
+location | string
+
+### Update an existing Email
+
+```shell
+# to update a record...
+curl -v -u token:secret -X PATCH -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v1/emails/1"
+```
+
+
+<aside class='info'>Only users with the role <code>editor</code> can update this resource.</aside>
+
+#### HTTP Request
+
+`PATCH https://api.planningcenteronline.com/people/v1/emails/1`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+address | string
+location | string
+
+### Delete a Email
+
+```shell
+# to delete a record...
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v1/emails/1"
+```
+
+
+<aside class='info'>Only users with the role <code>editor</code> can delete this resource.</aside>
+
+#### HTTP Request
+
+`DELETE https://api.planningcenteronline.com/people/v1/emails/1`
+
 ## FieldData
 
 A field datum is an individual piece of data for a custom field.
 
-### Get all Field Data
+### List Field Data
 
 ```shell
-curl -v -u token:secret           "https://api.planningcenteronline.com/people/v1/people/1/field_data"
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/people/1/field_data"
 ```
 
 
@@ -237,13 +324,15 @@ where[file_content_type] | _string_ | filter on a specific file_content_type
 include | field_definition | include associated field_definition
 include | field_option | include associated field_option
 after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 _Note: you can specify multiple includes with a comma, e.g. `?include=field_definition,field_option`_
 
 ### Get a single Field Datum
 
 ```shell
-curl -v -u token:secret           "https://api.planningcenteronline.com/people/v1/people/1/field_data/1"
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/people/1/field_data/1"
 ```
 
 
@@ -274,14 +363,21 @@ include | field_option | include associated field_option
 
 _Note: you can specify multiple includes with a comma, e.g. `?include=field_definition,field_option`_
 
+
+
+
+
+
+
 ## FieldDefinitions
 
 A field definition represents a custom field -- its name, data type, etc.
 
-### Get all Field Definitions
+### List Field Definitions
 
 ```shell
-curl -v -u token:secret           "https://api.planningcenteronline.com/people/v1/field_definitions"
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/field_definitions"
 ```
 
 
@@ -300,11 +396,13 @@ where[slug] | _string_ | filter on a specific slug
 where[deleted_at] | _datetime_ | filter on a specific deleted_at
 include | field_options | include associated field_options
 after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Field Definition
 
 ```shell
-curl -v -u token:secret           "https://api.planningcenteronline.com/people/v1/field_definitions/1"
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/field_definitions/1"
 ```
 
 
@@ -333,14 +431,21 @@ Parameter | Value | Description
 --------- | ----- | -----------
 include | field_options | include associated field_options
 
+
+
+
+
+
+
 ## FieldOptions
 
 A field option represents an individual option for a custom field of type "select" or "checkboxes".
 
-### Get all Field Options
+### List Field Options
 
 ```shell
-curl -v -u token:secret           "https://api.planningcenteronline.com/people/v1/field_definitions/1/field_options"
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/field_definitions/1/field_options"
 ```
 
 
@@ -355,11 +460,13 @@ Parameter | Value | Description
 where[value] | _string_ | filter on a specific value
 where[sequence] | _integer_ | filter on a specific sequence
 after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Field Option
 
 ```shell
-curl -v -u token:secret           "https://api.planningcenteronline.com/people/v1/field_definitions/1/field_options/1"
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/field_definitions/1/field_options/1"
 ```
 
 
@@ -383,14 +490,21 @@ curl -v -u token:secret           "https://api.planningcenteronline.com/people/v
 
 _none_
 
+
+
+
+
+
+
 ## HouseholdMemberships
 
 A household membership is the linking record between a household and a person.
 
-### Get all Household Memberships
+### List Household Memberships
 
 ```shell
-curl -v -u token:secret           "https://api.planningcenteronline.com/people/v1/households/1/household_memberships"
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/households/1/household_memberships"
 ```
 
 
@@ -405,13 +519,15 @@ Parameter | Value | Description
 include | person | include associated person
 include | household | include associated household
 after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 _Note: you can specify multiple includes with a comma, e.g. `?include=person,household`_
 
 ### Get a single Household Membership
 
 ```shell
-curl -v -u token:secret           "https://api.planningcenteronline.com/people/v1/households/1/household_memberships/1"
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/households/1/household_memberships/1"
 ```
 
 
@@ -440,14 +556,21 @@ include | household | include associated household
 
 _Note: you can specify multiple includes with a comma, e.g. `?include=person,household`_
 
+
+
+
+
+
+
 ## Households
 
 A household links people together and can have a primary contaact.
 
-### Get all Households
+### List Households
 
 ```shell
-curl -v -u token:secret           "https://api.planningcenteronline.com/people/v1/households"
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/households"
 ```
 
 
@@ -462,11 +585,13 @@ Parameter | Value | Description
 where[name] | _string_ | filter on a specific name
 include | people | include associated people
 after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Household
 
 ```shell
-curl -v -u token:secret           "https://api.planningcenteronline.com/people/v1/households/1"
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/households/1"
 ```
 
 
@@ -495,14 +620,21 @@ Parameter | Value | Description
 --------- | ----- | -----------
 include | people | include associated people
 
+
+
+
+
+
+
 ## InactiveReasons
 
 An inactive reason is a small bit of text indicating why a member is no longer active.
 
-### Get all Inactive Reasons
+### List Inactive Reasons
 
 ```shell
-curl -v -u token:secret           "https://api.planningcenteronline.com/people/v1/inactive_reasons"
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/inactive_reasons"
 ```
 
 
@@ -516,11 +648,13 @@ Parameter | Value | Description
 --------- | ----- | -----------
 where[value] | _string_ | filter on a specific value
 after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Inactive Reason
 
 ```shell
-curl -v -u token:secret           "https://api.planningcenteronline.com/people/v1/inactive_reasons/1"
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/inactive_reasons/1"
 ```
 
 
@@ -543,14 +677,21 @@ curl -v -u token:secret           "https://api.planningcenteronline.com/people/v
 
 _none_
 
+
+
+
+
+
+
 ## Lists
 
 A list (aka "filter") is a powerful tool for finding and grouping people together using any criteria imaginable.
 
-### Get all Lists
+### List Lists
 
 ```shell
-curl -v -u token:secret           "https://api.planningcenteronline.com/people/v1/lists"
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/lists"
 ```
 
 
@@ -573,13 +714,15 @@ include | owner | include associated owner
 include | people | include associated people
 include | rules | include associated rules
 after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 _Note: you can specify multiple includes with a comma, e.g. `?include=created_by,updated_by,owner`_
 
 ### Get a single List
 
 ```shell
-curl -v -u token:secret           "https://api.planningcenteronline.com/people/v1/lists/1"
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/lists/1"
 ```
 
 
@@ -614,14 +757,21 @@ include | rules | include associated rules
 
 _Note: you can specify multiple includes with a comma, e.g. `?include=created_by,updated_by,owner`_
 
+
+
+
+
+
+
 ## MaritalStatuses
 
 A martial status represents a member's current status, e.g. married, single, etc.
 
-### Get all Marital Statuses
+### List Marital Statuses
 
 ```shell
-curl -v -u token:secret           "https://api.planningcenteronline.com/people/v1/marital_statuses"
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/marital_statuses"
 ```
 
 
@@ -635,11 +785,13 @@ Parameter | Value | Description
 --------- | ----- | -----------
 where[value] | _string_ | filter on a specific value
 after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Marital Status
 
 ```shell
-curl -v -u token:secret           "https://api.planningcenteronline.com/people/v1/marital_statuses/1"
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/marital_statuses/1"
 ```
 
 
@@ -662,14 +814,21 @@ curl -v -u token:secret           "https://api.planningcenteronline.com/people/v
 
 _none_
 
+
+
+
+
+
+
 ## MessageGroups
 
 A message group represents one or more emails or text messages sent from one of the PCO apps. The message group indicates the from person, app, etc.
 
-### Get all Message Groups
+### List Message Groups
 
 ```shell
-curl -v -u token:secret           "https://api.planningcenteronline.com/people/v1/message_groups"
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/message_groups"
 ```
 
 
@@ -692,13 +851,15 @@ include | messages | include associated messages
 include | from | include associated from
 include | app | include associated app
 after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 _Note: you can specify multiple includes with a comma, e.g. `?include=messages,from,app`_
 
 ### Get a single Message Group
 
 ```shell
-curl -v -u token:secret           "https://api.planningcenteronline.com/people/v1/message_groups/1"
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/message_groups/1"
 ```
 
 
@@ -733,14 +894,21 @@ include | app | include associated app
 
 _Note: you can specify multiple includes with a comma, e.g. `?include=messages,from,app`_
 
+
+
+
+
+
+
 ## Messages
 
 A message is an individual email or sms text sent to a member. Every message has a parent message group.
 
-### Get all Messages
+### List Messages
 
 ```shell
-curl -v -u token:secret           "https://api.planningcenteronline.com/people/v1/messages"
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/messages"
 ```
 
 
@@ -765,13 +933,15 @@ where[rejection_notification_sent_at] | _datetime_ | filter on a specific reject
 include | message_group | include associated message_group
 include | to | include associated to
 after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 _Note: you can specify multiple includes with a comma, e.g. `?include=message_group,to`_
 
 ### Get a single Message
 
 ```shell
-curl -v -u token:secret           "https://api.planningcenteronline.com/people/v1/messages/1"
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/messages/1"
 ```
 
 
@@ -808,14 +978,21 @@ include | to | include associated to
 
 _Note: you can specify multiple includes with a comma, e.g. `?include=message_group,to`_
 
+
+
+
+
+
+
 ## NamePrefixes
 
 A name prefix is one of Mr., Mrs., etc.
 
-### Get all Name Prefixes
+### List Name Prefixes
 
 ```shell
-curl -v -u token:secret           "https://api.planningcenteronline.com/people/v1/name_prefixes"
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/name_prefixes"
 ```
 
 
@@ -829,11 +1006,13 @@ Parameter | Value | Description
 --------- | ----- | -----------
 where[value] | _string_ | filter on a specific value
 after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Name Prefix
 
 ```shell
-curl -v -u token:secret           "https://api.planningcenteronline.com/people/v1/name_prefixes/1"
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/name_prefixes/1"
 ```
 
 
@@ -856,14 +1035,21 @@ curl -v -u token:secret           "https://api.planningcenteronline.com/people/v
 
 _none_
 
+
+
+
+
+
+
 ## NameSuffixes
 
 A name suffix is one of Sr., Jr., etc.
 
-### Get all Name Suffixes
+### List Name Suffixes
 
 ```shell
-curl -v -u token:secret           "https://api.planningcenteronline.com/people/v1/name_suffixes"
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/name_suffixes"
 ```
 
 
@@ -877,11 +1063,13 @@ Parameter | Value | Description
 --------- | ----- | -----------
 where[value] | _string_ | filter on a specific value
 after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Name Suffix
 
 ```shell
-curl -v -u token:secret           "https://api.planningcenteronline.com/people/v1/name_suffixes/1"
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/name_suffixes/1"
 ```
 
 
@@ -904,26 +1092,21 @@ curl -v -u token:secret           "https://api.planningcenteronline.com/people/v
 
 _none_
 
+
+
+
+
+
+
 ## Organizations
 
 The organization represents a single church. Every other resource is scoped to this record.
 
-### Get all Organizations
-
-#### HTTP Request
-
-`GET `
-
-#### URL Parameters
-
-Parameter | Value | Description
---------- | ----- | -----------
-after | _id_ | get page after the specified id
-
 ### Get a single Organization
 
 ```shell
-curl -v -u token:secret           "https://api.planningcenteronline.com/people/v1"
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v1"
 ```
 
 
@@ -946,14 +1129,21 @@ curl -v -u token:secret           "https://api.planningcenteronline.com/people/v
 
 _none_
 
+
+
+
+
+
+
 ## People
 
 A person record represents a single member/user of the application. Each person has different permissions that determine how the user can use this app (if at all).
 
-### Get all People
+### List People
 
 ```shell
-curl -v -u token:secret           "https://api.planningcenteronline.com/people/v1/people"
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/people"
 ```
 
 
@@ -990,13 +1180,15 @@ include | name_suffix | include associated name_suffix
 include | field_data | include associated field_data
 include | apps | include associated apps
 after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 _Note: you can specify multiple includes with a comma, e.g. `?include=emails,addresses,phone_numbers`_
 
 ### Get a single Person
 
 ```shell
-curl -v -u token:secret           "https://api.planningcenteronline.com/people/v1/people/1"
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/people/1"
 ```
 
 
@@ -1048,14 +1240,93 @@ include | apps | include associated apps
 
 _Note: you can specify multiple includes with a comma, e.g. `?include=emails,addresses,phone_numbers`_
 
+### Create a new Person
+
+```shell
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v1/people"
+```
+
+
+<aside class='info'>Only users with the role <code>editor</code> can create this resource.</aside>
+
+#### HTTP Request
+
+`POST https://api.planningcenteronline.com/people/v1/people`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+first_name | string
+middle_name | string
+last_name | string
+birthdate | date
+anniversary | date
+gender | string
+grade | integer
+child | boolean
+status | string
+school_type | string
+graduation_year | integer
+site_administrator | boolean
+people_permissions | string
+
+### Update an existing Person
+
+```shell
+# to update a record...
+curl -v -u token:secret -X PATCH -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v1/people/1"
+```
+
+
+<aside class='info'>Only users with the role <code>editor</code> can update this resource.</aside>
+
+#### HTTP Request
+
+`PATCH https://api.planningcenteronline.com/people/v1/people/1`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+first_name | string
+middle_name | string
+last_name | string
+birthdate | date
+anniversary | date
+gender | string
+grade | integer
+child | boolean
+status | string
+school_type | string
+graduation_year | integer
+site_administrator | boolean
+people_permissions | string
+
+### Delete a Person
+
+```shell
+# to delete a record...
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v1/people/1"
+```
+
+
+<aside class='info'>Only users with the role <code>editor</code> can delete this resource.</aside>
+
+#### HTTP Request
+
+`DELETE https://api.planningcenteronline.com/people/v1/people/1`
+
 ## PhoneNumbers
 
 A phone number represents a single telephone number and location.
 
-### Get all Phone Numbers
+### List Phone Numbers
 
 ```shell
-curl -v -u token:secret           "https://api.planningcenteronline.com/people/v1/people/1/phone_numbers"
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/people/1/phone_numbers"
 ```
 
 
@@ -1068,11 +1339,13 @@ curl -v -u token:secret           "https://api.planningcenteronline.com/people/v
 Parameter | Value | Description
 --------- | ----- | -----------
 after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Phone Number
 
 ```shell
-curl -v -u token:secret           "https://api.planningcenteronline.com/people/v1/people/1/phone_numbers/1"
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/people/1/phone_numbers/1"
 ```
 
 
@@ -1096,14 +1369,21 @@ curl -v -u token:secret           "https://api.planningcenteronline.com/people/v
 
 _none_
 
+
+
+
+
+
+
 ## Reports
 
 A report is editable liquid syntax that provides a powerful tool for presenting your Lists however you want.
 
-### Get all Reports
+### List Reports
 
 ```shell
-curl -v -u token:secret           "https://api.planningcenteronline.com/people/v1/reports"
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/reports"
 ```
 
 
@@ -1123,13 +1403,15 @@ where[updated_at] | _datetime_ | filter on a specific updated_at
 include | created_by | include associated created_by
 include | updated_by | include associated updated_by
 after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 _Note: you can specify multiple includes with a comma, e.g. `?include=created_by,updated_by`_
 
 ### Get a single Report
 
 ```shell
-curl -v -u token:secret           "https://api.planningcenteronline.com/people/v1/reports/1"
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/reports/1"
 ```
 
 
@@ -1161,14 +1443,21 @@ include | updated_by | include associated updated_by
 
 _Note: you can specify multiple includes with a comma, e.g. `?include=created_by,updated_by`_
 
+
+
+
+
+
+
 ## Rules
 
 A rule belongs to a List and groups conditions together.
 
-### Get all Rules
+### List Rules
 
 ```shell
-curl -v -u token:secret           "https://api.planningcenteronline.com/people/v1/lists/1/rules"
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/lists/1/rules"
 ```
 
 
@@ -1184,11 +1473,13 @@ where[created_at] | _datetime_ | filter on a specific created_at
 where[updated_at] | _datetime_ | filter on a specific updated_at
 include | conditions | include associated conditions
 after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Rule
 
 ```shell
-curl -v -u token:secret           "https://api.planningcenteronline.com/people/v1/lists/1/rules/1"
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/lists/1/rules/1"
 ```
 
 
@@ -1214,14 +1505,21 @@ Parameter | Value | Description
 --------- | ----- | -----------
 include | conditions | include associated conditions
 
+
+
+
+
+
+
 ## SchoolOptions
 
 A school option represents a school name, school type, grades, etc. and can be added to a person.
 
-### Get all School Options
+### List School Options
 
 ```shell
-curl -v -u token:secret           "https://api.planningcenteronline.com/people/v1/school_options"
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/school_options"
 ```
 
 
@@ -1238,11 +1536,13 @@ where[school_types] | __ | filter on a specific school_types
 where[beginning_grade] | __ | filter on a specific beginning_grade
 where[ending_grade] | __ | filter on a specific ending_grade
 after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single School Option
 
 ```shell
-curl -v -u token:secret           "https://api.planningcenteronline.com/people/v1/school_options/1"
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/school_options/1"
 ```
 
 
@@ -1268,14 +1568,21 @@ curl -v -u token:secret           "https://api.planningcenteronline.com/people/v
 
 _none_
 
+
+
+
+
+
+
 ## SocialProfiles
 
 A social profile represents a members's Twitter, Facebook, or other social media account.
 
-### Get all Social Profiles
+### List Social Profiles
 
 ```shell
-curl -v -u token:secret           "https://api.planningcenteronline.com/people/v1/social_profiles"
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/social_profiles"
 ```
 
 
@@ -1296,11 +1603,13 @@ where[created_at] | _datetime_ | filter on a specific created_at
 where[updated_at] | _datetime_ | filter on a specific updated_at
 include | person | include associated person
 after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Social Profile
 
 ```shell
-curl -v -u token:secret           "https://api.planningcenteronline.com/people/v1/social_profiles/1"
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/social_profiles/1"
 ```
 
 
@@ -1331,14 +1640,21 @@ Parameter | Value | Description
 --------- | ----- | -----------
 include | person | include associated person
 
+
+
+
+
+
+
 ## Tabs
 
 A tab is a custom tab and groups like field definitions.
 
-### Get all Tabs
+### List Tabs
 
 ```shell
-curl -v -u token:secret           "https://api.planningcenteronline.com/people/v1/tabs"
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/tabs"
 ```
 
 
@@ -1355,11 +1671,13 @@ where[sequence] | _integer_ | filter on a specific sequence
 where[slug] | _string_ | filter on a specific slug
 include | field_definitions | include associated field_definitions
 after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Tab
 
 ```shell
-curl -v -u token:secret           "https://api.planningcenteronline.com/people/v1/tabs/1"
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/tabs/1"
 ```
 
 
@@ -1385,3 +1703,8 @@ curl -v -u token:secret           "https://api.planningcenteronline.com/people/v
 Parameter | Value | Description
 --------- | ----- | -----------
 include | field_definitions | include associated field_definitions
+
+
+
+
+
