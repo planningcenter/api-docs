@@ -1,0 +1,2300 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>API Reference</title>
+
+    <link href="stylesheets/screen.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+      <script src="javascripts/all.js" type="text/javascript"></script>
+
+      <script>
+        $(function() {
+          setupLanguages(["shell","ruby","python"]);
+        });
+      </script>
+  </head>
+
+  <body class="index">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+      <img src="images/logo.png" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="shell">shell</a>
+              <a href="#" data-language-name="ruby">ruby</a>
+              <a href="#" data-language-name="python">python</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <div id="toc">
+      </div>
+        <ul class="toc-footer">
+            <li><a href='#'>Sign Up for a Developer Key</a></li>
+            <li><a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id="introduction">Introduction</h1>
+
+<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
+
+<p>We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+
+<p>This example API documentation page was created with <a href="http://github.com/tripit/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&rsquo;s documentation.</p>
+
+<h1 id="authentication">Authentication</h1>
+
+<blockquote>
+<p>To authorize, use this code:</p>
+</blockquote>
+<pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'kittn'</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
+</code></pre>
+<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">kittn</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
+</code></pre>
+<pre><code class="highlight shell"><span class="c"># With shell, you can just pass the correct header with each request</span>
+curl <span class="s2">"api_endpoint_here"</span>
+  -H <span class="s2">"Authorization: meowmeowmeow"</span>
+</code></pre>
+
+<blockquote>
+<p>Make sure to replace <code class="prettyprint">meowmeowmeow</code> with your API key.</p>
+</blockquote>
+
+<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
+
+<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
+
+<p><code class="prettyprint">Authorization: meowmeowmeow</code></p>
+
+<aside class="notice">
+You must replace `meowmeowmeow` with your personal API key.
+</aside>
+
+          <h1 id="people">People</h1>
+
+<p>Our People app helps you manage contact data, membership info, and everything you need to know about your people with confidence.</p>
+
+<h2 id="addresses">Addresses</h2>
+
+<p>An address represents a physical and/or mailing address for a person.</p>
+
+<h3 id="get-all-addresses">Get all Addresses</h3>
+<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/people/1/addresses"</span>
+</code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v1/people/1/addresses</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>after</td>
+<td><em>id</em></td>
+<td>get page after the specified id</td>
+</tr>
+</tbody></table>
+
+<h3 id="get-a-single-address">Get a single Address</h3>
+<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/people/1/addresses/1"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v1/people/1/addresses/1</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<p><em>none</em></p>
+
+<h2 id="apps">Apps</h2>
+
+<p>An app is one of the handful of apps that PCO offers that organizations can subscribe to, e.g. Services, Registrations, etc.</p>
+
+<h3 id="get-all-apps">Get all Apps</h3>
+<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/apps"</span>
+</code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v1/apps</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>after</td>
+<td><em>id</em></td>
+<td>get page after the specified id</td>
+</tr>
+</tbody></table>
+
+<h3 id="get-a-single-app">Get a single App</h3>
+<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/apps/1"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v1/apps/1</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<p><em>none</em></p>
+
+<h2 id="conditions">Conditions</h2>
+
+<p>A condition is an individual criterion used by a List Rule.</p>
+
+<h3 id="get-all-conditions">Get all Conditions</h3>
+<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/lists/1/rules/1/conditions"</span>
+</code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v1/lists/1/rules/1/conditions</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>where[application]</td>
+<td><em>string</em></td>
+<td>filter on a specific application</td>
+</tr>
+<tr>
+<td>where[definition_class]</td>
+<td><em>string</em></td>
+<td>filter on a specific definition_class</td>
+</tr>
+<tr>
+<td>where[comparison]</td>
+<td><em>string</em></td>
+<td>filter on a specific comparison</td>
+</tr>
+<tr>
+<td>where[settings]</td>
+<td><em>text</em></td>
+<td>filter on a specific settings</td>
+</tr>
+<tr>
+<td>where[definition_identifier]</td>
+<td><em>string</em></td>
+<td>filter on a specific definition_identifier</td>
+</tr>
+<tr>
+<td>where[description]</td>
+<td><em>string</em></td>
+<td>filter on a specific description</td>
+</tr>
+<tr>
+<td>where[created_at]</td>
+<td><em>datetime</em></td>
+<td>filter on a specific created_at</td>
+</tr>
+<tr>
+<td>where[updated_at]</td>
+<td><em>datetime</em></td>
+<td>filter on a specific updated_at</td>
+</tr>
+<tr>
+<td>after</td>
+<td><em>id</em></td>
+<td>get page after the specified id</td>
+</tr>
+</tbody></table>
+
+<h3 id="get-a-single-condition">Get a single Condition</h3>
+<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/lists/1/rules/1/conditions/1"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"application"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"definition_class"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"comparison"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"settings"</span><span class="p">:</span><span class="w"> </span><span class="s2">"stuff"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"definition_identifier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v1/lists/1/rules/1/conditions/1</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<p><em>none</em></p>
+
+<h2 id="emails">Emails</h2>
+
+<p>An email represents an email address and location.</p>
+
+<h3 id="get-all-emails">Get all Emails</h3>
+<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/emails"</span>
+</code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v1/emails</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>where[address]</td>
+<td><em>string</em></td>
+<td>filter on a specific address</td>
+</tr>
+<tr>
+<td>where[location]</td>
+<td><em>string</em></td>
+<td>filter on a specific location</td>
+</tr>
+<tr>
+<td>after</td>
+<td><em>id</em></td>
+<td>get page after the specified id</td>
+</tr>
+</tbody></table>
+
+<h3 id="get-a-single-email">Get a single Email</h3>
+<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/emails/1"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v1/emails/1</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<p><em>none</em></p>
+
+<h2 id="fielddata">FieldData</h2>
+
+<p>A field datum is an individual piece of data for a custom field.</p>
+
+<h3 id="get-all-field-data">Get all Field Data</h3>
+<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/people/1/field_data"</span>
+</code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v1/people/1/field_data</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>where[value]</td>
+<td><em>string</em></td>
+<td>filter on a specific value</td>
+</tr>
+<tr>
+<td>where[file]</td>
+<td><em>string</em></td>
+<td>filter on a specific file</td>
+</tr>
+<tr>
+<td>where[file_size]</td>
+<td><em>integer</em></td>
+<td>filter on a specific file_size</td>
+</tr>
+<tr>
+<td>where[file_content_type]</td>
+<td><em>string</em></td>
+<td>filter on a specific file_content_type</td>
+</tr>
+<tr>
+<td>include</td>
+<td>field_definition</td>
+<td>include associated field_definition</td>
+</tr>
+<tr>
+<td>include</td>
+<td>field_option</td>
+<td>include associated field_option</td>
+</tr>
+<tr>
+<td>after</td>
+<td><em>id</em></td>
+<td>get page after the specified id</td>
+</tr>
+</tbody></table>
+
+<p><em>Note: you can specify multiple includes with a comma, e.g. `?include=field</em>definition,field_option`_</p>
+
+<h3 id="get-a-single-field-datum">Get a single Field Datum</h3>
+<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/people/1/field_data/1"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"file"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"file_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"file_content_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v1/people/1/field_data/1</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>include</td>
+<td>field_definition</td>
+<td>include associated field_definition</td>
+</tr>
+<tr>
+<td>include</td>
+<td>field_option</td>
+<td>include associated field_option</td>
+</tr>
+</tbody></table>
+
+<p><em>Note: you can specify multiple includes with a comma, e.g. `?include=field</em>definition,field_option`_</p>
+
+<h2 id="fielddefinitions">FieldDefinitions</h2>
+
+<p>A field definition represents a custom field &ndash; its name, data type, etc.</p>
+
+<h3 id="get-all-field-definitions">Get all Field Definitions</h3>
+<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/field_definitions"</span>
+</code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v1/field_definitions</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>where[data_type]</td>
+<td><em>string</em></td>
+<td>filter on a specific data_type</td>
+</tr>
+<tr>
+<td>where[name]</td>
+<td><em>string</em></td>
+<td>filter on a specific name</td>
+</tr>
+<tr>
+<td>where[sequence]</td>
+<td><em>integer</em></td>
+<td>filter on a specific sequence</td>
+</tr>
+<tr>
+<td>where[slug]</td>
+<td><em>string</em></td>
+<td>filter on a specific slug</td>
+</tr>
+<tr>
+<td>where[deleted_at]</td>
+<td><em>datetime</em></td>
+<td>filter on a specific deleted_at</td>
+</tr>
+<tr>
+<td>include</td>
+<td>field_options</td>
+<td>include associated field_options</td>
+</tr>
+<tr>
+<td>after</td>
+<td><em>id</em></td>
+<td>get page after the specified id</td>
+</tr>
+</tbody></table>
+
+<h3 id="get-a-single-field-definition">Get a single Field Definition</h3>
+<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/field_definitions/1"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sequence"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"deleted_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v1/field_definitions/1</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>include</td>
+<td>field_options</td>
+<td>include associated field_options</td>
+</tr>
+</tbody></table>
+
+<h2 id="fieldoptions">FieldOptions</h2>
+
+<p>A field option represents an individual option for a custom field of type &ldquo;select&rdquo; or &ldquo;checkboxes&rdquo;.</p>
+
+<h3 id="get-all-field-options">Get all Field Options</h3>
+<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/field_definitions/1/field_options"</span>
+</code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v1/field_definitions/1/field_options</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>where[value]</td>
+<td><em>string</em></td>
+<td>filter on a specific value</td>
+</tr>
+<tr>
+<td>where[sequence]</td>
+<td><em>integer</em></td>
+<td>filter on a specific sequence</td>
+</tr>
+<tr>
+<td>after</td>
+<td><em>id</em></td>
+<td>get page after the specified id</td>
+</tr>
+</tbody></table>
+
+<h3 id="get-a-single-field-option">Get a single Field Option</h3>
+<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/field_definitions/1/field_options/1"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sequence"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v1/field_definitions/1/field_options/1</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<p><em>none</em></p>
+
+<h2 id="householdmemberships">HouseholdMemberships</h2>
+
+<p>A household membership is the linking record between a household and a person.</p>
+
+<h3 id="get-all-household-memberships">Get all Household Memberships</h3>
+<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/households/1/household_memberships"</span>
+</code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v1/households/1/household_memberships</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>include</td>
+<td>person</td>
+<td>include associated person</td>
+</tr>
+<tr>
+<td>include</td>
+<td>household</td>
+<td>include associated household</td>
+</tr>
+<tr>
+<td>after</td>
+<td><em>id</em></td>
+<td>get page after the specified id</td>
+</tr>
+</tbody></table>
+
+<p><em>Note: you can specify multiple includes with a comma, e.g. <code class="prettyprint">?include=person,household</code></em></p>
+
+<h3 id="get-a-single-household-membership">Get a single Household Membership</h3>
+<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/households/1/household_memberships/1"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"person_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pending"</span><span class="p">:</span><span class="w"> </span><span class="s2">"stuff"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v1/households/1/household_memberships/1</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>include</td>
+<td>person</td>
+<td>include associated person</td>
+</tr>
+<tr>
+<td>include</td>
+<td>household</td>
+<td>include associated household</td>
+</tr>
+</tbody></table>
+
+<p><em>Note: you can specify multiple includes with a comma, e.g. <code class="prettyprint">?include=person,household</code></em></p>
+
+<h2 id="households">Households</h2>
+
+<p>A household links people together and can have a primary contaact.</p>
+
+<h3 id="get-all-households">Get all Households</h3>
+<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/households"</span>
+</code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v1/households</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>where[name]</td>
+<td><em>string</em></td>
+<td>filter on a specific name</td>
+</tr>
+<tr>
+<td>include</td>
+<td>people</td>
+<td>include associated people</td>
+</tr>
+<tr>
+<td>after</td>
+<td><em>id</em></td>
+<td>get page after the specified id</td>
+</tr>
+</tbody></table>
+
+<h3 id="get-a-single-household">Get a single Household</h3>
+<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/households/1"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"primary_contact_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"member_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v1/households/1</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>include</td>
+<td>people</td>
+<td>include associated people</td>
+</tr>
+</tbody></table>
+
+<h2 id="inactivereasons">InactiveReasons</h2>
+
+<p>An inactive reason is a small bit of text indicating why a member is no longer active.</p>
+
+<h3 id="get-all-inactive-reasons">Get all Inactive Reasons</h3>
+<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/inactive_reasons"</span>
+</code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v1/inactive_reasons</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>where[value]</td>
+<td><em>string</em></td>
+<td>filter on a specific value</td>
+</tr>
+<tr>
+<td>after</td>
+<td><em>id</em></td>
+<td>get page after the specified id</td>
+</tr>
+</tbody></table>
+
+<h3 id="get-a-single-inactive-reason">Get a single Inactive Reason</h3>
+<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/inactive_reasons/1"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v1/inactive_reasons/1</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<p><em>none</em></p>
+
+<h2 id="lists">Lists</h2>
+
+<p>A list (aka &ldquo;filter&rdquo;) is a powerful tool for finding and grouping people together using any criteria imaginable.</p>
+
+<h3 id="get-all-lists">Get all Lists</h3>
+<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/lists"</span>
+</code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v1/lists</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>where[name]</td>
+<td><em>string</em></td>
+<td>filter on a specific name</td>
+</tr>
+<tr>
+<td>where[status]</td>
+<td><em>string</em></td>
+<td>filter on a specific status</td>
+</tr>
+<tr>
+<td>where[batch_completed_at]</td>
+<td><em>datetime</em></td>
+<td>filter on a specific batch_completed_at</td>
+</tr>
+<tr>
+<td>where[created_at]</td>
+<td><em>datetime</em></td>
+<td>filter on a specific created_at</td>
+</tr>
+<tr>
+<td>where[updated_at]</td>
+<td><em>datetime</em></td>
+<td>filter on a specific updated_at</td>
+</tr>
+<tr>
+<td>include</td>
+<td>created_by</td>
+<td>include associated created_by</td>
+</tr>
+<tr>
+<td>include</td>
+<td>updated_by</td>
+<td>include associated updated_by</td>
+</tr>
+<tr>
+<td>include</td>
+<td>owner</td>
+<td>include associated owner</td>
+</tr>
+<tr>
+<td>include</td>
+<td>people</td>
+<td>include associated people</td>
+</tr>
+<tr>
+<td>include</td>
+<td>rules</td>
+<td>include associated rules</td>
+</tr>
+<tr>
+<td>after</td>
+<td><em>id</em></td>
+<td>get page after the specified id</td>
+</tr>
+</tbody></table>
+
+<p><em>Note: you can specify multiple includes with a comma, e.g. `?include=created</em>by,updated_by,owner`_</p>
+
+<h3 id="get-a-single-list">Get a single List</h3>
+<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/lists/1"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"batch_completed_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v1/lists/1</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>include</td>
+<td>created_by</td>
+<td>include associated created_by</td>
+</tr>
+<tr>
+<td>include</td>
+<td>updated_by</td>
+<td>include associated updated_by</td>
+</tr>
+<tr>
+<td>include</td>
+<td>owner</td>
+<td>include associated owner</td>
+</tr>
+<tr>
+<td>include</td>
+<td>people</td>
+<td>include associated people</td>
+</tr>
+<tr>
+<td>include</td>
+<td>rules</td>
+<td>include associated rules</td>
+</tr>
+</tbody></table>
+
+<p><em>Note: you can specify multiple includes with a comma, e.g. `?include=created</em>by,updated_by,owner`_</p>
+
+<h2 id="maritalstatuses">MaritalStatuses</h2>
+
+<p>A martial status represents a member&rsquo;s current status, e.g. married, single, etc.</p>
+
+<h3 id="get-all-marital-statuses">Get all Marital Statuses</h3>
+<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/marital_statuses"</span>
+</code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v1/marital_statuses</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>where[value]</td>
+<td><em>string</em></td>
+<td>filter on a specific value</td>
+</tr>
+<tr>
+<td>after</td>
+<td><em>id</em></td>
+<td>get page after the specified id</td>
+</tr>
+</tbody></table>
+
+<h3 id="get-a-single-marital-status">Get a single Marital Status</h3>
+<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/marital_statuses/1"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v1/marital_statuses/1</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<p><em>none</em></p>
+
+<h2 id="messagegroups">MessageGroups</h2>
+
+<p>A message group represents one or more emails or text messages sent from one of the PCO apps. The message group indicates the from person, app, etc.</p>
+
+<h3 id="get-all-message-groups">Get all Message Groups</h3>
+<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/message_groups"</span>
+</code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v1/message_groups</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>where[uuid]</td>
+<td><em>string</em></td>
+<td>filter on a specific uuid</td>
+</tr>
+<tr>
+<td>where[message_type]</td>
+<td><em>string</em></td>
+<td>filter on a specific message_type</td>
+</tr>
+<tr>
+<td>where[from_address]</td>
+<td><em>string</em></td>
+<td>filter on a specific from_address</td>
+</tr>
+<tr>
+<td>where[subject]</td>
+<td><em>string</em></td>
+<td>filter on a specific subject</td>
+</tr>
+<tr>
+<td>where[message_count]</td>
+<td><em>integer</em></td>
+<td>filter on a specific message_count</td>
+</tr>
+<tr>
+<td>where[system_message]</td>
+<td><em>boolean</em></td>
+<td>filter on a specific system_message</td>
+</tr>
+<tr>
+<td>where[created_at]</td>
+<td><em>datetime</em></td>
+<td>filter on a specific created_at</td>
+</tr>
+<tr>
+<td>include</td>
+<td>messages</td>
+<td>include associated messages</td>
+</tr>
+<tr>
+<td>include</td>
+<td>from</td>
+<td>include associated from</td>
+</tr>
+<tr>
+<td>include</td>
+<td>app</td>
+<td>include associated app</td>
+</tr>
+<tr>
+<td>after</td>
+<td><em>id</em></td>
+<td>get page after the specified id</td>
+</tr>
+</tbody></table>
+
+<p><em>Note: you can specify multiple includes with a comma, e.g. <code class="prettyprint">?include=messages,from,app</code></em></p>
+
+<h3 id="get-a-single-message-group">Get a single Message Group</h3>
+<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/message_groups/1"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"from_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"subject"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"system_message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"stuff"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v1/message_groups/1</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>include</td>
+<td>messages</td>
+<td>include associated messages</td>
+</tr>
+<tr>
+<td>include</td>
+<td>from</td>
+<td>include associated from</td>
+</tr>
+<tr>
+<td>include</td>
+<td>app</td>
+<td>include associated app</td>
+</tr>
+</tbody></table>
+
+<p><em>Note: you can specify multiple includes with a comma, e.g. <code class="prettyprint">?include=messages,from,app</code></em></p>
+
+<h2 id="messages">Messages</h2>
+
+<p>A message is an individual email or sms text sent to a member. Every message has a parent message group.</p>
+
+<h3 id="get-all-messages">Get all Messages</h3>
+<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/messages"</span>
+</code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v1/messages</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>where[kind]</td>
+<td><em>integer</em></td>
+<td>filter on a specific kind</td>
+</tr>
+<tr>
+<td>where[to_addresses]</td>
+<td><em>string</em></td>
+<td>filter on a specific to_addresses</td>
+</tr>
+<tr>
+<td>where[subject]</td>
+<td><em>string</em></td>
+<td>filter on a specific subject</td>
+</tr>
+<tr>
+<td>where[file]</td>
+<td><em>string</em></td>
+<td>filter on a specific file</td>
+</tr>
+<tr>
+<td>where[delivery_status]</td>
+<td><em>string</em></td>
+<td>filter on a specific delivery_status</td>
+</tr>
+<tr>
+<td>where[reject_reason]</td>
+<td><em>string</em></td>
+<td>filter on a specific reject_reason</td>
+</tr>
+<tr>
+<td>where[created_at]</td>
+<td><em>datetime</em></td>
+<td>filter on a specific created_at</td>
+</tr>
+<tr>
+<td>where[sent_at]</td>
+<td><em>datetime</em></td>
+<td>filter on a specific sent_at</td>
+</tr>
+<tr>
+<td>where[bounced_at]</td>
+<td><em>datetime</em></td>
+<td>filter on a specific bounced_at</td>
+</tr>
+<tr>
+<td>where[rejection_notification_sent_at]</td>
+<td><em>datetime</em></td>
+<td>filter on a specific rejection_notification_sent_at</td>
+</tr>
+<tr>
+<td>include</td>
+<td>message_group</td>
+<td>include associated message_group</td>
+</tr>
+<tr>
+<td>include</td>
+<td>to</td>
+<td>include associated to</td>
+</tr>
+<tr>
+<td>after</td>
+<td><em>id</em></td>
+<td>get page after the specified id</td>
+</tr>
+</tbody></table>
+
+<p><em>Note: you can specify multiple includes with a comma, e.g. `?include=message</em>group,to`_</p>
+
+<h3 id="get-a-single-message">Get a single Message</h3>
+<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/messages/1"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"kind"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"to_addresses"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"subject"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"file"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"delivery_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"reject_reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sent_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bounced_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"rejection_notification_sent_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v1/messages/1</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>include</td>
+<td>message_group</td>
+<td>include associated message_group</td>
+</tr>
+<tr>
+<td>include</td>
+<td>to</td>
+<td>include associated to</td>
+</tr>
+</tbody></table>
+
+<p><em>Note: you can specify multiple includes with a comma, e.g. `?include=message</em>group,to`_</p>
+
+<h2 id="nameprefixes">NamePrefixes</h2>
+
+<p>A name prefix is one of Mr., Mrs., etc.</p>
+
+<h3 id="get-all-name-prefixes">Get all Name Prefixes</h3>
+<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/name_prefixes"</span>
+</code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v1/name_prefixes</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>where[value]</td>
+<td><em>string</em></td>
+<td>filter on a specific value</td>
+</tr>
+<tr>
+<td>after</td>
+<td><em>id</em></td>
+<td>get page after the specified id</td>
+</tr>
+</tbody></table>
+
+<h3 id="get-a-single-name-prefix">Get a single Name Prefix</h3>
+<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/name_prefixes/1"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v1/name_prefixes/1</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<p><em>none</em></p>
+
+<h2 id="namesuffixes">NameSuffixes</h2>
+
+<p>A name suffix is one of Sr., Jr., etc.</p>
+
+<h3 id="get-all-name-suffixes">Get all Name Suffixes</h3>
+<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/name_suffixes"</span>
+</code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v1/name_suffixes</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>where[value]</td>
+<td><em>string</em></td>
+<td>filter on a specific value</td>
+</tr>
+<tr>
+<td>after</td>
+<td><em>id</em></td>
+<td>get page after the specified id</td>
+</tr>
+</tbody></table>
+
+<h3 id="get-a-single-name-suffix">Get a single Name Suffix</h3>
+<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/name_suffixes/1"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v1/name_suffixes/1</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<p><em>none</em></p>
+
+<h2 id="organizations">Organizations</h2>
+
+<p>The organization represents a single church. Every other resource is scoped to this record.</p>
+
+<h3 id="get-all-organizations">Get all Organizations</h3>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>after</td>
+<td><em>id</em></td>
+<td>get page after the specified id</td>
+</tr>
+</tbody></table>
+
+<h3 id="get-a-single-organization">Get a single Organization</h3>
+<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v1</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<p><em>none</em></p>
+
+<h2 id="people">People</h2>
+
+<p>A person record represents a single member/user of the application. Each person has different permissions that determine how the user can use this app (if at all).</p>
+
+<h3 id="get-all-people">Get all People</h3>
+<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/people"</span>
+</code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v1/people</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>where[first_name]</td>
+<td><em>string</em></td>
+<td>filter on a specific first_name</td>
+</tr>
+<tr>
+<td>where[middle_name]</td>
+<td><em>string</em></td>
+<td>filter on a specific middle_name</td>
+</tr>
+<tr>
+<td>where[last_name]</td>
+<td><em>string</em></td>
+<td>filter on a specific last_name</td>
+</tr>
+<tr>
+<td>where[birthdate]</td>
+<td><em>date</em></td>
+<td>filter on a specific birthdate</td>
+</tr>
+<tr>
+<td>where[anniversary]</td>
+<td><em>date</em></td>
+<td>filter on a specific anniversary</td>
+</tr>
+<tr>
+<td>where[gender]</td>
+<td><em>string</em></td>
+<td>filter on a specific gender</td>
+</tr>
+<tr>
+<td>where[grade]</td>
+<td><em>integer</em></td>
+<td>filter on a specific grade</td>
+</tr>
+<tr>
+<td>where[child]</td>
+<td><em>boolean</em></td>
+<td>filter on a specific child</td>
+</tr>
+<tr>
+<td>where[status]</td>
+<td><em>string</em></td>
+<td>filter on a specific status</td>
+</tr>
+<tr>
+<td>where[school_type]</td>
+<td><em>string</em></td>
+<td>filter on a specific school_type</td>
+</tr>
+<tr>
+<td>where[graduation_year]</td>
+<td><em>integer</em></td>
+<td>filter on a specific graduation_year</td>
+</tr>
+<tr>
+<td>where[site_administrator]</td>
+<td><em>boolean</em></td>
+<td>filter on a specific site_administrator</td>
+</tr>
+<tr>
+<td>where[people_permissions]</td>
+<td><em>string</em></td>
+<td>filter on a specific people_permissions</td>
+</tr>
+<tr>
+<td>include</td>
+<td>emails</td>
+<td>include associated emails</td>
+</tr>
+<tr>
+<td>include</td>
+<td>addresses</td>
+<td>include associated addresses</td>
+</tr>
+<tr>
+<td>include</td>
+<td>phone_numbers</td>
+<td>include associated phone_numbers</td>
+</tr>
+<tr>
+<td>include</td>
+<td>households</td>
+<td>include associated households</td>
+</tr>
+<tr>
+<td>include</td>
+<td>school</td>
+<td>include associated school</td>
+</tr>
+<tr>
+<td>include</td>
+<td>inactive_reason</td>
+<td>include associated inactive_reason</td>
+</tr>
+<tr>
+<td>include</td>
+<td>marital_status</td>
+<td>include associated marital_status</td>
+</tr>
+<tr>
+<td>include</td>
+<td>name_prefix</td>
+<td>include associated name_prefix</td>
+</tr>
+<tr>
+<td>include</td>
+<td>name_suffix</td>
+<td>include associated name_suffix</td>
+</tr>
+<tr>
+<td>include</td>
+<td>field_data</td>
+<td>include associated field_data</td>
+</tr>
+<tr>
+<td>include</td>
+<td>apps</td>
+<td>include associated apps</td>
+</tr>
+<tr>
+<td>after</td>
+<td><em>id</em></td>
+<td>get page after the specified id</td>
+</tr>
+</tbody></table>
+
+<p><em>Note: you can specify multiple includes with a comma, e.g. `?include=emails,addresses,phone</em>numbers`_</p>
+
+<h3 id="get-a-single-person">Get a single Person</h3>
+<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/people/1"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"middle_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"birthdate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"anniversary"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"grade"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"child"</span><span class="p">:</span><span class="w"> </span><span class="s2">"stuff"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"school_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"graduation_year"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"site_administrator"</span><span class="p">:</span><span class="w"> </span><span class="s2">"stuff"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"people_permissions"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"avatar"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v1/people/1</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>include</td>
+<td>emails</td>
+<td>include associated emails</td>
+</tr>
+<tr>
+<td>include</td>
+<td>addresses</td>
+<td>include associated addresses</td>
+</tr>
+<tr>
+<td>include</td>
+<td>phone_numbers</td>
+<td>include associated phone_numbers</td>
+</tr>
+<tr>
+<td>include</td>
+<td>households</td>
+<td>include associated households</td>
+</tr>
+<tr>
+<td>include</td>
+<td>school</td>
+<td>include associated school</td>
+</tr>
+<tr>
+<td>include</td>
+<td>inactive_reason</td>
+<td>include associated inactive_reason</td>
+</tr>
+<tr>
+<td>include</td>
+<td>marital_status</td>
+<td>include associated marital_status</td>
+</tr>
+<tr>
+<td>include</td>
+<td>name_prefix</td>
+<td>include associated name_prefix</td>
+</tr>
+<tr>
+<td>include</td>
+<td>name_suffix</td>
+<td>include associated name_suffix</td>
+</tr>
+<tr>
+<td>include</td>
+<td>field_data</td>
+<td>include associated field_data</td>
+</tr>
+<tr>
+<td>include</td>
+<td>apps</td>
+<td>include associated apps</td>
+</tr>
+</tbody></table>
+
+<p><em>Note: you can specify multiple includes with a comma, e.g. `?include=emails,addresses,phone</em>numbers`_</p>
+
+<h2 id="phonenumbers">PhoneNumbers</h2>
+
+<p>A phone number represents a single telephone number and location.</p>
+
+<h3 id="get-all-phone-numbers">Get all Phone Numbers</h3>
+<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/people/1/phone_numbers"</span>
+</code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v1/people/1/phone_numbers</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>after</td>
+<td><em>id</em></td>
+<td>get page after the specified id</td>
+</tr>
+</tbody></table>
+
+<h3 id="get-a-single-phone-number">Get a single Phone Number</h3>
+<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/people/1/phone_numbers/1"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v1/people/1/phone_numbers/1</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<p><em>none</em></p>
+
+<h2 id="reports">Reports</h2>
+
+<p>A report is editable liquid syntax that provides a powerful tool for presenting your Lists however you want.</p>
+
+<h3 id="get-all-reports">Get all Reports</h3>
+<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/reports"</span>
+</code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v1/reports</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>where[name]</td>
+<td><em>string</em></td>
+<td>filter on a specific name</td>
+</tr>
+<tr>
+<td>where[settings]</td>
+<td><em>text</em></td>
+<td>filter on a specific settings</td>
+</tr>
+<tr>
+<td>where[body]</td>
+<td><em>text</em></td>
+<td>filter on a specific body</td>
+</tr>
+<tr>
+<td>where[created_at]</td>
+<td><em>datetime</em></td>
+<td>filter on a specific created_at</td>
+</tr>
+<tr>
+<td>where[updated_at]</td>
+<td><em>datetime</em></td>
+<td>filter on a specific updated_at</td>
+</tr>
+<tr>
+<td>include</td>
+<td>created_by</td>
+<td>include associated created_by</td>
+</tr>
+<tr>
+<td>include</td>
+<td>updated_by</td>
+<td>include associated updated_by</td>
+</tr>
+<tr>
+<td>after</td>
+<td><em>id</em></td>
+<td>get page after the specified id</td>
+</tr>
+</tbody></table>
+
+<p><em>Note: you can specify multiple includes with a comma, e.g. `?include=created</em>by,updated_by`_</p>
+
+<h3 id="get-a-single-report">Get a single Report</h3>
+<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/reports/1"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"settings"</span><span class="p">:</span><span class="w"> </span><span class="s2">"stuff"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"stuff"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v1/reports/1</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>include</td>
+<td>created_by</td>
+<td>include associated created_by</td>
+</tr>
+<tr>
+<td>include</td>
+<td>updated_by</td>
+<td>include associated updated_by</td>
+</tr>
+</tbody></table>
+
+<p><em>Note: you can specify multiple includes with a comma, e.g. `?include=created</em>by,updated_by`_</p>
+
+<h2 id="rules">Rules</h2>
+
+<p>A rule belongs to a List and groups conditions together.</p>
+
+<h3 id="get-all-rules">Get all Rules</h3>
+<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/lists/1/rules"</span>
+</code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v1/lists/1/rules</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>where[created_at]</td>
+<td><em>datetime</em></td>
+<td>filter on a specific created_at</td>
+</tr>
+<tr>
+<td>where[updated_at]</td>
+<td><em>datetime</em></td>
+<td>filter on a specific updated_at</td>
+</tr>
+<tr>
+<td>include</td>
+<td>conditions</td>
+<td>include associated conditions</td>
+</tr>
+<tr>
+<td>after</td>
+<td><em>id</em></td>
+<td>get page after the specified id</td>
+</tr>
+</tbody></table>
+
+<h3 id="get-a-single-rule">Get a single Rule</h3>
+<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/lists/1/rules/1"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v1/lists/1/rules/1</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>include</td>
+<td>conditions</td>
+<td>include associated conditions</td>
+</tr>
+</tbody></table>
+
+<h2 id="schooloptions">SchoolOptions</h2>
+
+<p>A school option represents a school name, school type, grades, etc. and can be added to a person.</p>
+
+<h3 id="get-all-school-options">Get all School Options</h3>
+<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/school_options"</span>
+</code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v1/school_options</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>where[name]</td>
+<td>__</td>
+<td>filter on a specific name</td>
+</tr>
+<tr>
+<td>where[school_types]</td>
+<td>__</td>
+<td>filter on a specific school_types</td>
+</tr>
+<tr>
+<td>where[beginning_grade]</td>
+<td>__</td>
+<td>filter on a specific beginning_grade</td>
+</tr>
+<tr>
+<td>where[ending_grade]</td>
+<td>__</td>
+<td>filter on a specific ending_grade</td>
+</tr>
+<tr>
+<td>after</td>
+<td><em>id</em></td>
+<td>get page after the specified id</td>
+</tr>
+</tbody></table>
+
+<h3 id="get-a-single-school-option">Get a single School Option</h3>
+<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/school_options/1"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"stuff"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"school_types"</span><span class="p">:</span><span class="w"> </span><span class="s2">"stuff"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"beginning_grade"</span><span class="p">:</span><span class="w"> </span><span class="s2">"stuff"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ending_grade"</span><span class="p">:</span><span class="w"> </span><span class="s2">"stuff"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v1/school_options/1</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<p><em>none</em></p>
+
+<h2 id="socialprofiles">SocialProfiles</h2>
+
+<p>A social profile represents a members&rsquo;s Twitter, Facebook, or other social media account.</p>
+
+<h3 id="get-all-social-profiles">Get all Social Profiles</h3>
+<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/social_profiles"</span>
+</code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v1/social_profiles</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>where[site]</td>
+<td><em>string</em></td>
+<td>filter on a specific site</td>
+</tr>
+<tr>
+<td>where[profile_identifier]</td>
+<td><em>string</em></td>
+<td>filter on a specific profile_identifier</td>
+</tr>
+<tr>
+<td>where[username]</td>
+<td><em>string</em></td>
+<td>filter on a specific username</td>
+</tr>
+<tr>
+<td>where[url]</td>
+<td><em>string</em></td>
+<td>filter on a specific url</td>
+</tr>
+<tr>
+<td>where[verified]</td>
+<td><em>boolean</em></td>
+<td>filter on a specific verified</td>
+</tr>
+<tr>
+<td>where[created_at]</td>
+<td><em>datetime</em></td>
+<td>filter on a specific created_at</td>
+</tr>
+<tr>
+<td>where[updated_at]</td>
+<td><em>datetime</em></td>
+<td>filter on a specific updated_at</td>
+</tr>
+<tr>
+<td>include</td>
+<td>person</td>
+<td>include associated person</td>
+</tr>
+<tr>
+<td>after</td>
+<td><em>id</em></td>
+<td>get page after the specified id</td>
+</tr>
+</tbody></table>
+
+<h3 id="get-a-single-social-profile">Get a single Social Profile</h3>
+<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/social_profiles/1"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"site"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"profile_identifier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"verified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"stuff"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v1/social_profiles/1</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>include</td>
+<td>person</td>
+<td>include associated person</td>
+</tr>
+</tbody></table>
+
+<h2 id="tabs">Tabs</h2>
+
+<p>A tab is a custom tab and groups like field definitions.</p>
+
+<h3 id="get-all-tabs">Get all Tabs</h3>
+<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/tabs"</span>
+</code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v1/tabs</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>where[name]</td>
+<td><em>string</em></td>
+<td>filter on a specific name</td>
+</tr>
+<tr>
+<td>where[sequence]</td>
+<td><em>integer</em></td>
+<td>filter on a specific sequence</td>
+</tr>
+<tr>
+<td>where[slug]</td>
+<td><em>string</em></td>
+<td>filter on a specific slug</td>
+</tr>
+<tr>
+<td>include</td>
+<td>field_definitions</td>
+<td>include associated field_definitions</td>
+</tr>
+<tr>
+<td>after</td>
+<td><em>id</em></td>
+<td>get page after the specified id</td>
+</tr>
+</tbody></table>
+
+<h3 id="get-a-single-tab">Get a single Tab</h3>
+<pre><code class="highlight shell">curl -v -u token:secret           <span class="s2">"https://api.planningcenteronline.com/people/v1/tabs/1"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sequence"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v1/tabs/1</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>include</td>
+<td>field_definitions</td>
+<td>include associated field_definitions</td>
+</tr>
+</tbody></table>
+
+          <h1 id="errors">Errors</h1>
+
+<aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files&hellip;just save them to the `includes` folder and add them to the top of your `index.md`&rsquo;s frontmatter. Files are included in the order listed.</aside>
+
+<p>The Kittn API uses the following error codes:</p>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>Bad Request &ndash; Your request sucks</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized &ndash; Your API key is wrong</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden &ndash; The kitten requested is hidden for administrators only</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found &ndash; The specified kitten could not be found</td>
+</tr>
+<tr>
+<td>405</td>
+<td>Method Not Allowed &ndash; You tried to access a kitten with an invalid method</td>
+</tr>
+<tr>
+<td>406</td>
+<td>Not Acceptable &ndash; You requested a format that isn&rsquo;t json</td>
+</tr>
+<tr>
+<td>410</td>
+<td>Gone &ndash; The kitten requested has been removed from our servers</td>
+</tr>
+<tr>
+<td>418</td>
+<td>I&rsquo;m a teapot</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests &ndash; You&rsquo;re requesting too many kittens! Slown down!</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error &ndash; We had a problem with our server. Try again later.</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable &ndash; We&rsquo;re temporarially offline for maintanance. Please try again later.</td>
+</tr>
+</tbody></table>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="shell">shell</a>
+                <a href="#" data-language-name="ruby">ruby</a>
+                <a href="#" data-language-name="python">python</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
