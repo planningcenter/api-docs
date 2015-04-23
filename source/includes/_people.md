@@ -326,7 +326,7 @@ include | field_option | include associated field_option
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
-_Note: you can specify multiple includes with a comma, e.g. `?include=field_definition,field_option`_
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=field_definition,field_option</code></aside>
 
 ### Get a single Field Datum
 
@@ -361,7 +361,7 @@ Parameter | Value | Description
 include | field_definition | include associated field_definition
 include | field_option | include associated field_option
 
-_Note: you can specify multiple includes with a comma, e.g. `?include=field_definition,field_option`_
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=field_definition,field_option</code></aside>
 
 
 
@@ -521,7 +521,7 @@ include | household | include associated household
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
-_Note: you can specify multiple includes with a comma, e.g. `?include=person,household`_
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=person,household</code></aside>
 
 ### Get a single Household Membership
 
@@ -554,7 +554,7 @@ Parameter | Value | Description
 include | person | include associated person
 include | household | include associated household
 
-_Note: you can specify multiple includes with a comma, e.g. `?include=person,household`_
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=person,household</code></aside>
 
 
 
@@ -716,7 +716,7 @@ include | rules | include associated rules
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
-_Note: you can specify multiple includes with a comma, e.g. `?include=created_by,updated_by,owner`_
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=created_by,updated_by</code></aside>
 
 ### Get a single List
 
@@ -755,7 +755,7 @@ include | owner | include associated owner
 include | people | include associated people
 include | rules | include associated rules
 
-_Note: you can specify multiple includes with a comma, e.g. `?include=created_by,updated_by,owner`_
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=created_by,updated_by</code></aside>
 
 
 
@@ -853,7 +853,7 @@ include | app | include associated app
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
-_Note: you can specify multiple includes with a comma, e.g. `?include=messages,from,app`_
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=messages,from</code></aside>
 
 ### Get a single Message Group
 
@@ -892,7 +892,7 @@ include | messages | include associated messages
 include | from | include associated from
 include | app | include associated app
 
-_Note: you can specify multiple includes with a comma, e.g. `?include=messages,from,app`_
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=messages,from</code></aside>
 
 
 
@@ -935,7 +935,7 @@ include | to | include associated to
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
-_Note: you can specify multiple includes with a comma, e.g. `?include=message_group,to`_
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=message_group,to</code></aside>
 
 ### Get a single Message
 
@@ -976,7 +976,7 @@ Parameter | Value | Description
 include | message_group | include associated message_group
 include | to | include associated to
 
-_Note: you can specify multiple includes with a comma, e.g. `?include=message_group,to`_
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=message_group,to</code></aside>
 
 
 
@@ -1182,7 +1182,7 @@ include | apps | include associated apps
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
-_Note: you can specify multiple includes with a comma, e.g. `?include=emails,addresses,phone_numbers`_
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=emails,addresses</code></aside>
 
 ### Get a single Person
 
@@ -1238,7 +1238,7 @@ include | name_suffix | include associated name_suffix
 include | field_data | include associated field_data
 include | apps | include associated apps
 
-_Note: you can specify multiple includes with a comma, e.g. `?include=emails,addresses,phone_numbers`_
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=emails,addresses</code></aside>
 
 ### Create a new Person
 
@@ -1405,7 +1405,7 @@ include | updated_by | include associated updated_by
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
-_Note: you can specify multiple includes with a comma, e.g. `?include=created_by,updated_by`_
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=created_by,updated_by</code></aside>
 
 ### Get a single Report
 
@@ -1441,7 +1441,7 @@ Parameter | Value | Description
 include | created_by | include associated created_by
 include | updated_by | include associated updated_by
 
-_Note: you can specify multiple includes with a comma, e.g. `?include=created_by,updated_by`_
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=created_by,updated_by</code></aside>
 
 
 
