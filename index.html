@@ -349,6 +349,22 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 
 <p><em>none</em></p>
 
+<h3 id="associations-for-an-email">Associations for an Email</h3>
+
+<p>You can append one of the following associations onto this resource URL to jump to an associated record.</p>
+
+<table><thead>
+<tr>
+<th>Association</th>
+<th>URL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>person</td>
+<td>https://api.planningcenteronline.com/people/v1/emails/1/person</td>
+</tr>
+</tbody></table>
+
 <h3 id="create-a-new-email">Create a new Email</h3>
 <pre><code class="highlight shell"><span class="c"># to create a record...</span>
 curl -v -u token:secret -X POST -d <span class="s1">'{"data":{...}}'</span> <span class="s2">"https://api.planningcenteronline.com/people/v1/people/1/emails"</span>
@@ -407,7 +423,7 @@ curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{...}}'</span> <sp
 </tr>
 </tbody></table>
 
-<h3 id="delete-a-email">Delete a Email</h3>
+<h3 id="delete-an-email">Delete an Email</h3>
 <pre><code class="highlight shell"><span class="c"># to delete a record...</span>
 curl -v -u token:secret -X DELETE <span class="s2">"https://api.planningcenteronline.com/people/v1/emails/1"</span>
 </code></pre>
@@ -530,6 +546,26 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=field_definition,field_option</code></aside>
 
+<h3 id="associations-for-a-field-datum">Associations for a Field Datum</h3>
+
+<p>You can append one of the following associations onto this resource URL to jump to an associated record.</p>
+
+<table><thead>
+<tr>
+<th>Association</th>
+<th>URL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>field_definition</td>
+<td>https://api.planningcenteronline.com/people/v1/people/1/field_data/1/field_definition</td>
+</tr>
+<tr>
+<td>field_option</td>
+<td>https://api.planningcenteronline.com/people/v1/people/1/field_data/1/field_option</td>
+</tr>
+</tbody></table>
+
 <h2 id="fielddefinitions">FieldDefinitions</h2>
 
 <p>A field definition represents a custom field &ndash; its name, data type, etc.</p>
@@ -631,6 +667,22 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 <td>include</td>
 <td>field_options</td>
 <td>include associated field_options</td>
+</tr>
+</tbody></table>
+
+<h3 id="associations-for-a-field-definition">Associations for a Field Definition</h3>
+
+<p>You can append one of the following associations onto this resource URL to jump to an associated record.</p>
+
+<table><thead>
+<tr>
+<th>Association</th>
+<th>URL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>field_options</td>
+<td>https://api.planningcenteronline.com/people/v1/field_definitions/1/field_options</td>
 </tr>
 </tbody></table>
 
@@ -793,6 +845,26 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=person,household</code></aside>
 
+<h3 id="associations-for-a-household-membership">Associations for a Household Membership</h3>
+
+<p>You can append one of the following associations onto this resource URL to jump to an associated record.</p>
+
+<table><thead>
+<tr>
+<th>Association</th>
+<th>URL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>household</td>
+<td>https://api.planningcenteronline.com/people/v1/households/1/household_memberships/1/household</td>
+</tr>
+<tr>
+<td>person</td>
+<td>https://api.planningcenteronline.com/people/v1/households/1/household_memberships/1/person</td>
+</tr>
+</tbody></table>
+
 <h2 id="households">Households</h2>
 
 <p>A household links people together and can have a primary contaact.</p>
@@ -874,6 +946,26 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 <td>include</td>
 <td>people</td>
 <td>include associated people</td>
+</tr>
+</tbody></table>
+
+<h3 id="associations-for-a-household">Associations for a Household</h3>
+
+<p>You can append one of the following associations onto this resource URL to jump to an associated record.</p>
+
+<table><thead>
+<tr>
+<th>Association</th>
+<th>URL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>household_memberships</td>
+<td>https://api.planningcenteronline.com/people/v1/households/1/household_memberships</td>
+</tr>
+<tr>
+<td>people</td>
+<td>https://api.planningcenteronline.com/people/v1/households/1/people</td>
 </tr>
 </tbody></table>
 
@@ -1088,6 +1180,38 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=created_by,updated_by</code></aside>
 
+<h3 id="associations-for-a-list">Associations for a List</h3>
+
+<p>You can append one of the following associations onto this resource URL to jump to an associated record.</p>
+
+<table><thead>
+<tr>
+<th>Association</th>
+<th>URL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>created_by</td>
+<td>https://api.planningcenteronline.com/people/v1/lists/1/created_by</td>
+</tr>
+<tr>
+<td>owner</td>
+<td>https://api.planningcenteronline.com/people/v1/lists/1/owner</td>
+</tr>
+<tr>
+<td>people</td>
+<td>https://api.planningcenteronline.com/people/v1/lists/1/people</td>
+</tr>
+<tr>
+<td>rules</td>
+<td>https://api.planningcenteronline.com/people/v1/lists/1/rules</td>
+</tr>
+<tr>
+<td>updated_by</td>
+<td>https://api.planningcenteronline.com/people/v1/lists/1/updated_by</td>
+</tr>
+</tbody></table>
+
 <h2 id="maritalstatuses">MaritalStatuses</h2>
 
 <p>A martial status represents a member&rsquo;s current status, e.g. married, single, etc.</p>
@@ -1291,6 +1415,30 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=messages,from</code></aside>
 
+<h3 id="associations-for-a-message-group">Associations for a Message Group</h3>
+
+<p>You can append one of the following associations onto this resource URL to jump to an associated record.</p>
+
+<table><thead>
+<tr>
+<th>Association</th>
+<th>URL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>app</td>
+<td>https://api.planningcenteronline.com/people/v1/message_groups/1/app</td>
+</tr>
+<tr>
+<td>from</td>
+<td>https://api.planningcenteronline.com/people/v1/message_groups/1/from</td>
+</tr>
+<tr>
+<td>messages</td>
+<td>https://api.planningcenteronline.com/people/v1/message_groups/1/messages</td>
+</tr>
+</tbody></table>
+
 <h2 id="messages">Messages</h2>
 
 <p>A message is an individual email or sms text sent to a member. Every message has a parent message group.</p>
@@ -1438,6 +1586,26 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 </tbody></table>
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=message_group,to</code></aside>
+
+<h3 id="associations-for-a-message">Associations for a Message</h3>
+
+<p>You can append one of the following associations onto this resource URL to jump to an associated record.</p>
+
+<table><thead>
+<tr>
+<th>Association</th>
+<th>URL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>message_group</td>
+<td>https://api.planningcenteronline.com/people/v1/messages/1/message_group</td>
+</tr>
+<tr>
+<td>to</td>
+<td>https://api.planningcenteronline.com/people/v1/messages/1/to</td>
+</tr>
+</tbody></table>
 
 <h2 id="nameprefixes">NamePrefixes</h2>
 
@@ -1592,6 +1760,82 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 <h4 id="url-parameters">URL Parameters</h4>
 
 <p><em>none</em></p>
+
+<h3 id="associations-for-an-organization">Associations for an Organization</h3>
+
+<p>You can append one of the following associations onto this resource URL to jump to an associated record.</p>
+
+<table><thead>
+<tr>
+<th>Association</th>
+<th>URL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>apps</td>
+<td>https://api.planningcenteronline.com/people/v1/apps</td>
+</tr>
+<tr>
+<td>emails</td>
+<td>https://api.planningcenteronline.com/people/v1/emails</td>
+</tr>
+<tr>
+<td>field_definitions</td>
+<td>https://api.planningcenteronline.com/people/v1/field_definitions</td>
+</tr>
+<tr>
+<td>households</td>
+<td>https://api.planningcenteronline.com/people/v1/households</td>
+</tr>
+<tr>
+<td>inactive_reasons</td>
+<td>https://api.planningcenteronline.com/people/v1/inactive_reasons</td>
+</tr>
+<tr>
+<td>lists</td>
+<td>https://api.planningcenteronline.com/people/v1/lists</td>
+</tr>
+<tr>
+<td>marital_statuses</td>
+<td>https://api.planningcenteronline.com/people/v1/marital_statuses</td>
+</tr>
+<tr>
+<td>message_groups</td>
+<td>https://api.planningcenteronline.com/people/v1/message_groups</td>
+</tr>
+<tr>
+<td>messages</td>
+<td>https://api.planningcenteronline.com/people/v1/messages</td>
+</tr>
+<tr>
+<td>name_prefixes</td>
+<td>https://api.planningcenteronline.com/people/v1/name_prefixes</td>
+</tr>
+<tr>
+<td>name_suffixes</td>
+<td>https://api.planningcenteronline.com/people/v1/name_suffixes</td>
+</tr>
+<tr>
+<td>people</td>
+<td>https://api.planningcenteronline.com/people/v1/people</td>
+</tr>
+<tr>
+<td>reports</td>
+<td>https://api.planningcenteronline.com/people/v1/reports</td>
+</tr>
+<tr>
+<td>school_options</td>
+<td>https://api.planningcenteronline.com/people/v1/school_options</td>
+</tr>
+<tr>
+<td>social_profiles</td>
+<td>https://api.planningcenteronline.com/people/v1/social_profiles</td>
+</tr>
+<tr>
+<td>tabs</td>
+<td>https://api.planningcenteronline.com/people/v1/tabs</td>
+</tr>
+</tbody></table>
 
 <h2 id="people">People</h2>
 
@@ -1851,6 +2095,70 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 </tbody></table>
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=emails,addresses</code></aside>
+
+<h3 id="associations-for-a-person">Associations for a Person</h3>
+
+<p>You can append one of the following associations onto this resource URL to jump to an associated record.</p>
+
+<table><thead>
+<tr>
+<th>Association</th>
+<th>URL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>addresses</td>
+<td>https://api.planningcenteronline.com/people/v1/people/1/addresses</td>
+</tr>
+<tr>
+<td>apps</td>
+<td>https://api.planningcenteronline.com/people/v1/people/1/apps</td>
+</tr>
+<tr>
+<td>emails</td>
+<td>https://api.planningcenteronline.com/people/v1/people/1/emails</td>
+</tr>
+<tr>
+<td>field_data</td>
+<td>https://api.planningcenteronline.com/people/v1/people/1/field_data</td>
+</tr>
+<tr>
+<td>household_memberships</td>
+<td>https://api.planningcenteronline.com/people/v1/people/1/household_memberships</td>
+</tr>
+<tr>
+<td>households</td>
+<td>https://api.planningcenteronline.com/people/v1/people/1/households</td>
+</tr>
+<tr>
+<td>inactive_reason</td>
+<td>https://api.planningcenteronline.com/people/v1/people/1/inactive_reason</td>
+</tr>
+<tr>
+<td>marital_status</td>
+<td>https://api.planningcenteronline.com/people/v1/people/1/marital_status</td>
+</tr>
+<tr>
+<td>name_prefix</td>
+<td>https://api.planningcenteronline.com/people/v1/people/1/name_prefix</td>
+</tr>
+<tr>
+<td>name_suffix</td>
+<td>https://api.planningcenteronline.com/people/v1/people/1/name_suffix</td>
+</tr>
+<tr>
+<td>phone_numbers</td>
+<td>https://api.planningcenteronline.com/people/v1/people/1/phone_numbers</td>
+</tr>
+<tr>
+<td>school</td>
+<td>https://api.planningcenteronline.com/people/v1/people/1/school</td>
+</tr>
+<tr>
+<td>social_profiles</td>
+<td>https://api.planningcenteronline.com/people/v1/people/1/social_profiles</td>
+</tr>
+</tbody></table>
 
 <h3 id="create-a-new-person">Create a new Person</h3>
 <pre><code class="highlight shell"><span class="c"># to create a record...</span>
@@ -2186,6 +2494,26 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=created_by,updated_by</code></aside>
 
+<h3 id="associations-for-a-report">Associations for a Report</h3>
+
+<p>You can append one of the following associations onto this resource URL to jump to an associated record.</p>
+
+<table><thead>
+<tr>
+<th>Association</th>
+<th>URL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>created_by</td>
+<td>https://api.planningcenteronline.com/people/v1/reports/1/created_by</td>
+</tr>
+<tr>
+<td>updated_by</td>
+<td>https://api.planningcenteronline.com/people/v1/reports/1/updated_by</td>
+</tr>
+</tbody></table>
+
 <h2 id="rules">Rules</h2>
 
 <p>A rule belongs to a List and groups conditions together.</p>
@@ -2272,6 +2600,22 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 </tr>
 </tbody></table>
 
+<h3 id="associations-for-a-rule">Associations for a Rule</h3>
+
+<p>You can append one of the following associations onto this resource URL to jump to an associated record.</p>
+
+<table><thead>
+<tr>
+<th>Association</th>
+<th>URL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>conditions</td>
+<td>https://api.planningcenteronline.com/people/v1/lists/1/rules/1/conditions</td>
+</tr>
+</tbody></table>
+
 <h2 id="schooloptions">SchoolOptions</h2>
 
 <p>A school option represents a school name, school type, grades, etc. and can be added to a person.</p>
@@ -2352,6 +2696,22 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 <h4 id="url-parameters">URL Parameters</h4>
 
 <p><em>none</em></p>
+
+<h3 id="associations-for-a-school-option">Associations for a School Option</h3>
+
+<p>You can append one of the following associations onto this resource URL to jump to an associated record.</p>
+
+<table><thead>
+<tr>
+<th>Association</th>
+<th>URL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>promotes_to_school</td>
+<td>https://api.planningcenteronline.com/people/v1/school_options/1/promotes_to_school</td>
+</tr>
+</tbody></table>
 
 <h2 id="socialprofiles">SocialProfiles</h2>
 
@@ -2469,6 +2829,22 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 </tr>
 </tbody></table>
 
+<h3 id="associations-for-a-social-profile">Associations for a Social Profile</h3>
+
+<p>You can append one of the following associations onto this resource URL to jump to an associated record.</p>
+
+<table><thead>
+<tr>
+<th>Association</th>
+<th>URL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>person</td>
+<td>https://api.planningcenteronline.com/people/v1/social_profiles/1/person</td>
+</tr>
+</tbody></table>
+
 <h2 id="tabs">Tabs</h2>
 
 <p>A tab is a custom tab and groups like field definitions.</p>
@@ -2558,6 +2934,22 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 <td>include</td>
 <td>field_definitions</td>
 <td>include associated field_definitions</td>
+</tr>
+</tbody></table>
+
+<h3 id="associations-for-a-tab">Associations for a Tab</h3>
+
+<p>You can append one of the following associations onto this resource URL to jump to an associated record.</p>
+
+<table><thead>
+<tr>
+<th>Association</th>
+<th>URL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>field_definitions</td>
+<td>https://api.planningcenteronline.com/people/v1/tabs/1/field_definitions</td>
 </tr>
 </tbody></table>
 
