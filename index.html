@@ -52,6 +52,26 @@
 
 <p>TODO</p>
 
+<h1 id="json-api">JSON API</h1>
+
+<p>This API is built to conform to the <a href="http://jsonapi.org/">JSON API</a> standard.</p>
+
+<p>Some benefits:</p>
+
+<ul>
+<li>Excellent documentation is already available <a href="http://jsonapi.org/format/">here</a> and we do our best to stay true to it.</li>
+<li>Our API returns resources that contain links to related resources, making it easier to &ldquo;browse&rdquo; this API and learn about associated endpoints.</li>
+<li>You can include related resources by adding <code class="prettyprint">?include=something</code> to the URL. This makes grabbing what you need much simpler.</li>
+</ul>
+
+<p>Gotchas:</p>
+
+<ul>
+<li>Resources are wrapped in an object that looks like this: <code class="prettyprint">{ &quot;data&quot;: { ... } }</code>.
+This means you will need to dive one layer down into any API result to get the resource you&rsquo;re looking for.</li>
+<li>Creating or updating resources also requires that same <code class="prettyprint">data</code> key. Put the resource&rsquo;s attributes <em>inside</em> the &ldquo;data&rdquo; object.</li>
+</ul>
+
           <h1 id="people">People</h1>
 
 <p>Our People app helps you manage contact data, membership info, and everything you need to know about your people with confidence.</p>
@@ -78,6 +98,21 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>where[city]</td>
+<td><em>string</em></td>
+<td>filter on a specific city</td>
+</tr>
+<tr>
+<td>where[state]</td>
+<td><em>string</em></td>
+<td>filter on a specific state</td>
+</tr>
+<tr>
+<td>where[zip]</td>
+<td><em>string</em></td>
+<td>filter on a specific zip</td>
+</tr>
 <tr>
 <td>after</td>
 <td><em>id</em></td>
@@ -116,6 +151,83 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 
 <p><em>none</em></p>
 
+<h3 id="create-a-new-address">Create a new Address</h3>
+<pre><code class="highlight shell"><span class="c"># to create a record...</span>
+curl -v -u token:secret -X POST -d <span class="s1">'{"data":{...}}'</span> <span class="s2">"https://api.planningcenteronline.com/people/v1/people/1/addresses"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>editor</code> can create this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">POST https://api.planningcenteronline.com/people/v1/people/1/addresses</code></p>
+
+<h4 id="resource-attributes">Resource Attributes</h4>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>city</td>
+<td>string</td>
+</tr>
+<tr>
+<td>state</td>
+<td>string</td>
+</tr>
+<tr>
+<td>zip</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<h3 id="update-an-existing-address">Update an existing Address</h3>
+<pre><code class="highlight shell"><span class="c"># to update a record...</span>
+curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{...}}'</span> <span class="s2">"https://api.planningcenteronline.com/people/v1/people/1/addresses/1"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>editor</code> can update this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">PATCH https://api.planningcenteronline.com/people/v1/people/1/addresses/1</code></p>
+
+<h4 id="resource-attributes">Resource Attributes</h4>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>city</td>
+<td>string</td>
+</tr>
+<tr>
+<td>state</td>
+<td>string</td>
+</tr>
+<tr>
+<td>zip</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<h3 id="delete-an-address">Delete an Address</h3>
+<pre><code class="highlight shell"><span class="c"># to delete a record...</span>
+curl -v -u token:secret -X DELETE <span class="s2">"https://api.planningcenteronline.com/people/v1/people/1/addresses/1"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>editor</code> can delete this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">DELETE https://api.planningcenteronline.com/people/v1/people/1/addresses/1</code></p>
+
 <h2 id="apps">Apps</h2>
 
 <p>An app is one of the handful of apps that PCO offers that organizations can subscribe to, e.g. Services, Registrations, etc.</p>
@@ -138,6 +250,16 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>where[name]</td>
+<td><em>string</em></td>
+<td>filter on a specific name</td>
+</tr>
+<tr>
+<td>where[url]</td>
+<td><em>string</em></td>
+<td>filter on a specific url</td>
+</tr>
 <tr>
 <td>after</td>
 <td><em>id</em></td>
@@ -279,6 +401,107 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 <h4 id="url-parameters">URL Parameters</h4>
 
 <p><em>none</em></p>
+
+<h3 id="create-a-new-condition">Create a new Condition</h3>
+<pre><code class="highlight shell"><span class="c"># to create a record...</span>
+curl -v -u token:secret -X POST -d <span class="s1">'{"data":{...}}'</span> <span class="s2">"https://api.planningcenteronline.com/people/v1/lists/1/rules/1/conditions"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>viewer</code> can create this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">POST https://api.planningcenteronline.com/people/v1/lists/1/rules/1/conditions</code></p>
+
+<h4 id="resource-attributes">Resource Attributes</h4>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>application</td>
+<td>string</td>
+</tr>
+<tr>
+<td>definition_class</td>
+<td>string</td>
+</tr>
+<tr>
+<td>comparison</td>
+<td>string</td>
+</tr>
+<tr>
+<td>settings</td>
+<td>text</td>
+</tr>
+<tr>
+<td>definition_identifier</td>
+<td>string</td>
+</tr>
+<tr>
+<td>description</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<h3 id="update-an-existing-condition">Update an existing Condition</h3>
+<pre><code class="highlight shell"><span class="c"># to update a record...</span>
+curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{...}}'</span> <span class="s2">"https://api.planningcenteronline.com/people/v1/lists/1/rules/1/conditions/1"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>viewer</code> can update this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">PATCH https://api.planningcenteronline.com/people/v1/lists/1/rules/1/conditions/1</code></p>
+
+<h4 id="resource-attributes">Resource Attributes</h4>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>application</td>
+<td>string</td>
+</tr>
+<tr>
+<td>definition_class</td>
+<td>string</td>
+</tr>
+<tr>
+<td>comparison</td>
+<td>string</td>
+</tr>
+<tr>
+<td>settings</td>
+<td>text</td>
+</tr>
+<tr>
+<td>definition_identifier</td>
+<td>string</td>
+</tr>
+<tr>
+<td>description</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<h3 id="delete-a-condition">Delete a Condition</h3>
+<pre><code class="highlight shell"><span class="c"># to delete a record...</span>
+curl -v -u token:secret -X DELETE <span class="s2">"https://api.planningcenteronline.com/people/v1/lists/1/rules/1/conditions/1"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>viewer</code> can delete this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">DELETE https://api.planningcenteronline.com/people/v1/lists/1/rules/1/conditions/1</code></p>
 
 <h2 id="emails">Emails</h2>
 
@@ -566,6 +789,83 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 </tr>
 </tbody></table>
 
+<h3 id="create-a-new-field-datum">Create a new Field Datum</h3>
+<pre><code class="highlight shell"><span class="c"># to create a record...</span>
+curl -v -u token:secret -X POST -d <span class="s1">'{"data":{...}}'</span> <span class="s2">"https://api.planningcenteronline.com/people/v1/people/1/field_data"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>editor</code> can create this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">POST https://api.planningcenteronline.com/people/v1/people/1/field_data</code></p>
+
+<h4 id="resource-attributes">Resource Attributes</h4>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>value</td>
+<td>string</td>
+</tr>
+<tr>
+<td>value</td>
+<td>string</td>
+</tr>
+<tr>
+<td>file</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<h3 id="update-an-existing-field-datum">Update an existing Field Datum</h3>
+<pre><code class="highlight shell"><span class="c"># to update a record...</span>
+curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{...}}'</span> <span class="s2">"https://api.planningcenteronline.com/people/v1/people/1/field_data/1"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>editor</code> can update this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">PATCH https://api.planningcenteronline.com/people/v1/people/1/field_data/1</code></p>
+
+<h4 id="resource-attributes">Resource Attributes</h4>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>value</td>
+<td>string</td>
+</tr>
+<tr>
+<td>value</td>
+<td>string</td>
+</tr>
+<tr>
+<td>file</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<h3 id="delete-a-field-datum">Delete a Field Datum</h3>
+<pre><code class="highlight shell"><span class="c"># to delete a record...</span>
+curl -v -u token:secret -X DELETE <span class="s2">"https://api.planningcenteronline.com/people/v1/people/1/field_data/1"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>editor</code> can delete this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">DELETE https://api.planningcenteronline.com/people/v1/people/1/field_data/1</code></p>
+
 <h2 id="fielddefinitions">FieldDefinitions</h2>
 
 <p>A field definition represents a custom field &ndash; its name, data type, etc.</p>
@@ -630,6 +930,8 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 </tr>
 </tbody></table>
 
+<p>To exclude deleted field definitions, query with <code class="prettyprint">where[deleted_at]=</code> (blank value).</p>
+
 <h3 id="get-a-single-field-definition">Get a single Field Definition</h3>
 <pre><code class="highlight shell"><span class="c"># to show...</span>
 curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v1/field_definitions/1"</span>
@@ -685,6 +987,101 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 <td>https://api.planningcenteronline.com/people/v1/field_definitions/1/field_options</td>
 </tr>
 </tbody></table>
+
+<h3 id="create-a-new-field-definition">Create a new Field Definition</h3>
+<pre><code class="highlight shell"><span class="c"># to create a record...</span>
+curl -v -u token:secret -X POST -d <span class="s1">'{"data":{...}}'</span> <span class="s2">"https://api.planningcenteronline.com/people/v1/tabs/1/field_definitions"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>manager</code> can create this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">POST https://api.planningcenteronline.com/people/v1/tabs/1/field_definitions</code></p>
+
+<h4 id="resource-attributes">Resource Attributes</h4>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>data_type</td>
+<td>string</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+</tr>
+<tr>
+<td>sequence</td>
+<td>integer</td>
+</tr>
+<tr>
+<td>slug</td>
+<td>string</td>
+</tr>
+<tr>
+<td>deleted_at</td>
+<td>datetime</td>
+</tr>
+</tbody></table>
+
+<h3 id="update-an-existing-field-definition">Update an existing Field Definition</h3>
+<pre><code class="highlight shell"><span class="c"># to update a record...</span>
+curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{...}}'</span> <span class="s2">"https://api.planningcenteronline.com/people/v1/field_definitions/1"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>manager</code> can update this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">PATCH https://api.planningcenteronline.com/people/v1/field_definitions/1</code></p>
+
+<h4 id="resource-attributes">Resource Attributes</h4>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>data_type</td>
+<td>string</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+</tr>
+<tr>
+<td>sequence</td>
+<td>integer</td>
+</tr>
+<tr>
+<td>slug</td>
+<td>string</td>
+</tr>
+<tr>
+<td>deleted_at</td>
+<td>datetime</td>
+</tr>
+</tbody></table>
+
+<h3 id="delete-a-field-definition">Delete a Field Definition</h3>
+<pre><code class="highlight shell"><span class="c"># to delete a record...</span>
+curl -v -u token:secret -X DELETE <span class="s2">"https://api.planningcenteronline.com/people/v1/field_definitions/1"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>manager</code> can delete this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">DELETE https://api.planningcenteronline.com/people/v1/field_definitions/1</code></p>
+
+<p>Deleting a field definition internally sets its <code class="prettyprint">deleted_at</code> attribute to the current time.</p>
 
 <h2 id="fieldoptions">FieldOptions</h2>
 
@@ -755,6 +1152,75 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 
 <p><em>none</em></p>
 
+<h3 id="create-a-new-field-option">Create a new Field Option</h3>
+<pre><code class="highlight shell"><span class="c"># to create a record...</span>
+curl -v -u token:secret -X POST -d <span class="s1">'{"data":{...}}'</span> <span class="s2">"https://api.planningcenteronline.com/people/v1/field_definitions/1/field_options"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>manager</code> can create this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">POST https://api.planningcenteronline.com/people/v1/field_definitions/1/field_options</code></p>
+
+<h4 id="resource-attributes">Resource Attributes</h4>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>value</td>
+<td>string</td>
+</tr>
+<tr>
+<td>sequence</td>
+<td>integer</td>
+</tr>
+</tbody></table>
+
+<h3 id="update-an-existing-field-option">Update an existing Field Option</h3>
+<pre><code class="highlight shell"><span class="c"># to update a record...</span>
+curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{...}}'</span> <span class="s2">"https://api.planningcenteronline.com/people/v1/field_definitions/1/field_options/1"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>manager</code> can update this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">PATCH https://api.planningcenteronline.com/people/v1/field_definitions/1/field_options/1</code></p>
+
+<h4 id="resource-attributes">Resource Attributes</h4>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>value</td>
+<td>string</td>
+</tr>
+<tr>
+<td>sequence</td>
+<td>integer</td>
+</tr>
+</tbody></table>
+
+<h3 id="delete-a-field-option">Delete a Field Option</h3>
+<pre><code class="highlight shell"><span class="c"># to delete a record...</span>
+curl -v -u token:secret -X DELETE <span class="s2">"https://api.planningcenteronline.com/people/v1/field_definitions/1/field_options/1"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>manager</code> can delete this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">DELETE https://api.planningcenteronline.com/people/v1/field_definitions/1/field_options/1</code></p>
+
 <h2 id="householdmemberships">HouseholdMemberships</h2>
 
 <p>A household membership is the linking record between a household and a person.</p>
@@ -777,6 +1243,16 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>where[person_name]</td>
+<td><em>string</em></td>
+<td>filter on a specific person_name</td>
+</tr>
+<tr>
+<td>where[pending]</td>
+<td><em>boolean</em></td>
+<td>filter on a specific pending</td>
+</tr>
 <tr>
 <td>include</td>
 <td>person</td>
@@ -865,6 +1341,75 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 </tr>
 </tbody></table>
 
+<h3 id="create-a-new-household-membership">Create a new Household Membership</h3>
+<pre><code class="highlight shell"><span class="c"># to create a record...</span>
+curl -v -u token:secret -X POST -d <span class="s1">'{"data":{...}}'</span> <span class="s2">"https://api.planningcenteronline.com/people/v1/households/1/household_memberships"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>editor</code> can create this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">POST https://api.planningcenteronline.com/people/v1/households/1/household_memberships</code></p>
+
+<h4 id="resource-attributes">Resource Attributes</h4>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>person_name</td>
+<td>string</td>
+</tr>
+<tr>
+<td>pending</td>
+<td>boolean</td>
+</tr>
+</tbody></table>
+
+<h3 id="update-an-existing-household-membership">Update an existing Household Membership</h3>
+<pre><code class="highlight shell"><span class="c"># to update a record...</span>
+curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{...}}'</span> <span class="s2">"https://api.planningcenteronline.com/people/v1/households/1/household_memberships/1"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>editor</code> can update this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">PATCH https://api.planningcenteronline.com/people/v1/households/1/household_memberships/1</code></p>
+
+<h4 id="resource-attributes">Resource Attributes</h4>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>person_name</td>
+<td>string</td>
+</tr>
+<tr>
+<td>pending</td>
+<td>boolean</td>
+</tr>
+</tbody></table>
+
+<h3 id="delete-a-household-membership">Delete a Household Membership</h3>
+<pre><code class="highlight shell"><span class="c"># to delete a record...</span>
+curl -v -u token:secret -X DELETE <span class="s2">"https://api.planningcenteronline.com/people/v1/households/1/household_memberships/1"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>editor</code> can delete this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">DELETE https://api.planningcenteronline.com/people/v1/households/1/household_memberships/1</code></p>
+
 <h2 id="households">Households</h2>
 
 <p>A household links people together and can have a primary contaact.</p>
@@ -887,6 +1432,31 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>where[name]</td>
+<td><em>string</em></td>
+<td>filter on a specific name</td>
+</tr>
+<tr>
+<td>where[primary_contact_name]</td>
+<td><em>string</em></td>
+<td>filter on a specific primary_contact_name</td>
+</tr>
+<tr>
+<td>where[member_count]</td>
+<td><em>integer</em></td>
+<td>filter on a specific member_count</td>
+</tr>
+<tr>
+<td>where[created_at]</td>
+<td><em>datetime</em></td>
+<td>filter on a specific created_at</td>
+</tr>
+<tr>
+<td>where[updated_at]</td>
+<td><em>datetime</em></td>
+<td>filter on a specific updated_at</td>
+</tr>
 <tr>
 <td>where[name]</td>
 <td><em>string</em></td>
@@ -969,6 +1539,83 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 </tr>
 </tbody></table>
 
+<h3 id="create-a-new-household">Create a new Household</h3>
+<pre><code class="highlight shell"><span class="c"># to create a record...</span>
+curl -v -u token:secret -X POST -d <span class="s1">'{"data":{...}}'</span> <span class="s2">"https://api.planningcenteronline.com/people/v1/households"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>editor</code> can create this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">POST https://api.planningcenteronline.com/people/v1/households</code></p>
+
+<h4 id="resource-attributes">Resource Attributes</h4>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+</tr>
+<tr>
+<td>primary_contact_name</td>
+<td>string</td>
+</tr>
+<tr>
+<td>member_count</td>
+<td>integer</td>
+</tr>
+</tbody></table>
+
+<h3 id="update-an-existing-household">Update an existing Household</h3>
+<pre><code class="highlight shell"><span class="c"># to update a record...</span>
+curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{...}}'</span> <span class="s2">"https://api.planningcenteronline.com/people/v1/households/1"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>editor</code> can update this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">PATCH https://api.planningcenteronline.com/people/v1/households/1</code></p>
+
+<h4 id="resource-attributes">Resource Attributes</h4>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+</tr>
+<tr>
+<td>primary_contact_name</td>
+<td>string</td>
+</tr>
+<tr>
+<td>member_count</td>
+<td>integer</td>
+</tr>
+</tbody></table>
+
+<h3 id="delete-a-household">Delete a Household</h3>
+<pre><code class="highlight shell"><span class="c"># to delete a record...</span>
+curl -v -u token:secret -X DELETE <span class="s2">"https://api.planningcenteronline.com/people/v1/households/1"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>editor</code> can delete this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">DELETE https://api.planningcenteronline.com/people/v1/households/1</code></p>
+
 <h2 id="inactivereasons">InactiveReasons</h2>
 
 <p>An inactive reason is a small bit of text indicating why a member is no longer active.</p>
@@ -1031,6 +1678,67 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 <h4 id="url-parameters">URL Parameters</h4>
 
 <p><em>none</em></p>
+
+<h3 id="create-a-new-inactive-reason">Create a new Inactive Reason</h3>
+<pre><code class="highlight shell"><span class="c"># to create a record...</span>
+curl -v -u token:secret -X POST -d <span class="s1">'{"data":{...}}'</span> <span class="s2">"https://api.planningcenteronline.com/people/v1/inactive_reasons"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>manager</code> can create this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">POST https://api.planningcenteronline.com/people/v1/inactive_reasons</code></p>
+
+<h4 id="resource-attributes">Resource Attributes</h4>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>value</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<h3 id="update-an-existing-inactive-reason">Update an existing Inactive Reason</h3>
+<pre><code class="highlight shell"><span class="c"># to update a record...</span>
+curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{...}}'</span> <span class="s2">"https://api.planningcenteronline.com/people/v1/inactive_reasons/1"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>manager</code> can update this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">PATCH https://api.planningcenteronline.com/people/v1/inactive_reasons/1</code></p>
+
+<h4 id="resource-attributes">Resource Attributes</h4>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>value</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<h3 id="delete-an-inactive-reason">Delete an Inactive Reason</h3>
+<pre><code class="highlight shell"><span class="c"># to delete a record...</span>
+curl -v -u token:secret -X DELETE <span class="s2">"https://api.planningcenteronline.com/people/v1/inactive_reasons/1"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>manager</code> can delete this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">DELETE https://api.planningcenteronline.com/people/v1/inactive_reasons/1</code></p>
 
 <h2 id="lists">Lists</h2>
 
@@ -1212,6 +1920,75 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 </tr>
 </tbody></table>
 
+<h3 id="create-a-new-list">Create a new List</h3>
+<pre><code class="highlight shell"><span class="c"># to create a record...</span>
+curl -v -u token:secret -X POST -d <span class="s1">'{"data":{...}}'</span> <span class="s2">"https://api.planningcenteronline.com/people/v1/lists"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>viewer</code> can create this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">POST https://api.planningcenteronline.com/people/v1/lists</code></p>
+
+<h4 id="resource-attributes">Resource Attributes</h4>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<h3 id="update-an-existing-list">Update an existing List</h3>
+<pre><code class="highlight shell"><span class="c"># to update a record...</span>
+curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{...}}'</span> <span class="s2">"https://api.planningcenteronline.com/people/v1/lists/1"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>viewer</code> can update this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">PATCH https://api.planningcenteronline.com/people/v1/lists/1</code></p>
+
+<h4 id="resource-attributes">Resource Attributes</h4>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<h3 id="delete-a-list">Delete a List</h3>
+<pre><code class="highlight shell"><span class="c"># to delete a record...</span>
+curl -v -u token:secret -X DELETE <span class="s2">"https://api.planningcenteronline.com/people/v1/lists/1"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>viewer</code> can delete this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">DELETE https://api.planningcenteronline.com/people/v1/lists/1</code></p>
+
 <h2 id="maritalstatuses">MaritalStatuses</h2>
 
 <p>A martial status represents a member&rsquo;s current status, e.g. married, single, etc.</p>
@@ -1274,6 +2051,67 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 <h4 id="url-parameters">URL Parameters</h4>
 
 <p><em>none</em></p>
+
+<h3 id="create-a-new-marital-status">Create a new Marital Status</h3>
+<pre><code class="highlight shell"><span class="c"># to create a record...</span>
+curl -v -u token:secret -X POST -d <span class="s1">'{"data":{...}}'</span> <span class="s2">"https://api.planningcenteronline.com/people/v1/marital_statuses"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>manager</code> can create this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">POST https://api.planningcenteronline.com/people/v1/marital_statuses</code></p>
+
+<h4 id="resource-attributes">Resource Attributes</h4>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>value</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<h3 id="update-an-existing-marital-status">Update an existing Marital Status</h3>
+<pre><code class="highlight shell"><span class="c"># to update a record...</span>
+curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{...}}'</span> <span class="s2">"https://api.planningcenteronline.com/people/v1/marital_statuses/1"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>manager</code> can update this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">PATCH https://api.planningcenteronline.com/people/v1/marital_statuses/1</code></p>
+
+<h4 id="resource-attributes">Resource Attributes</h4>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>value</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<h3 id="delete-a-marital-status">Delete a Marital Status</h3>
+<pre><code class="highlight shell"><span class="c"># to delete a record...</span>
+curl -v -u token:secret -X DELETE <span class="s2">"https://api.planningcenteronline.com/people/v1/marital_statuses/1"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>manager</code> can delete this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">DELETE https://api.planningcenteronline.com/people/v1/marital_statuses/1</code></p>
 
 <h2 id="messagegroups">MessageGroups</h2>
 
@@ -1670,6 +2508,67 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 
 <p><em>none</em></p>
 
+<h3 id="create-a-new-name-prefix">Create a new Name Prefix</h3>
+<pre><code class="highlight shell"><span class="c"># to create a record...</span>
+curl -v -u token:secret -X POST -d <span class="s1">'{"data":{...}}'</span> <span class="s2">"https://api.planningcenteronline.com/people/v1/name_prefixes"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>manager</code> can create this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">POST https://api.planningcenteronline.com/people/v1/name_prefixes</code></p>
+
+<h4 id="resource-attributes">Resource Attributes</h4>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>value</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<h3 id="update-an-existing-name-prefix">Update an existing Name Prefix</h3>
+<pre><code class="highlight shell"><span class="c"># to update a record...</span>
+curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{...}}'</span> <span class="s2">"https://api.planningcenteronline.com/people/v1/name_prefixes/1"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>manager</code> can update this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">PATCH https://api.planningcenteronline.com/people/v1/name_prefixes/1</code></p>
+
+<h4 id="resource-attributes">Resource Attributes</h4>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>value</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<h3 id="delete-a-name-prefix">Delete a Name Prefix</h3>
+<pre><code class="highlight shell"><span class="c"># to delete a record...</span>
+curl -v -u token:secret -X DELETE <span class="s2">"https://api.planningcenteronline.com/people/v1/name_prefixes/1"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>manager</code> can delete this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">DELETE https://api.planningcenteronline.com/people/v1/name_prefixes/1</code></p>
+
 <h2 id="namesuffixes">NameSuffixes</h2>
 
 <p>A name suffix is one of Sr., Jr., etc.</p>
@@ -1732,6 +2631,67 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 <h4 id="url-parameters">URL Parameters</h4>
 
 <p><em>none</em></p>
+
+<h3 id="create-a-new-name-suffix">Create a new Name Suffix</h3>
+<pre><code class="highlight shell"><span class="c"># to create a record...</span>
+curl -v -u token:secret -X POST -d <span class="s1">'{"data":{...}}'</span> <span class="s2">"https://api.planningcenteronline.com/people/v1/name_suffixes"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>manager</code> can create this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">POST https://api.planningcenteronline.com/people/v1/name_suffixes</code></p>
+
+<h4 id="resource-attributes">Resource Attributes</h4>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>value</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<h3 id="update-an-existing-name-suffix">Update an existing Name Suffix</h3>
+<pre><code class="highlight shell"><span class="c"># to update a record...</span>
+curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{...}}'</span> <span class="s2">"https://api.planningcenteronline.com/people/v1/name_suffixes/1"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>manager</code> can update this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">PATCH https://api.planningcenteronline.com/people/v1/name_suffixes/1</code></p>
+
+<h4 id="resource-attributes">Resource Attributes</h4>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>value</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<h3 id="delete-a-name-suffix">Delete a Name Suffix</h3>
+<pre><code class="highlight shell"><span class="c"># to delete a record...</span>
+curl -v -u token:secret -X DELETE <span class="s2">"https://api.planningcenteronline.com/people/v1/name_suffixes/1"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>manager</code> can delete this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">DELETE https://api.planningcenteronline.com/people/v1/name_suffixes/1</code></p>
 
 <h2 id="organizations">Organizations</h2>
 
@@ -1925,6 +2885,21 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 <td>filter on a specific people_permissions</td>
 </tr>
 <tr>
+<td>where[data]</td>
+<td>__</td>
+<td>filter on a specific data</td>
+</tr>
+<tr>
+<td>where[created_at]</td>
+<td><em>datetime</em></td>
+<td>filter on a specific created_at</td>
+</tr>
+<tr>
+<td>where[updated_at]</td>
+<td><em>datetime</em></td>
+<td>filter on a specific updated_at</td>
+</tr>
+<tr>
 <td>include</td>
 <td>emails</td>
 <td>include associated emails</td>
@@ -2003,23 +2978,29 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 </blockquote>
 <pre><code class="highlight json"><span class="p">{</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"middle_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"birthdate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"anniversary"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"grade"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"child"</span><span class="p">:</span><span class="w"> </span><span class="s2">"stuff"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"school_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"graduation_year"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"site_administrator"</span><span class="p">:</span><span class="w"> </span><span class="s2">"stuff"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"people_permissions"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"avatar"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Person"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PiCO"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"middle_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ross"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Das Robot"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"birthdate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1982-01-01"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"anniversary"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-04-01"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"M"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"grade"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"child"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"active"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"school_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"elementary"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"graduation_year"</span><span class="p">:</span><span class="w"> </span><span class="mi">2000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"site_administrator"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"people_permissions"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Viewer"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"personal_notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"this is a custom string field"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-03-18T19:31:54Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-04-21T22:52:53Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"avatar"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://account-center-production.s3.amazonaws.com/uploads/person/1-1426707114/avatar.4.png"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -2231,6 +3212,10 @@ curl -v -u token:secret -X POST -d <span class="s1">'{"data":{...}}'</span> <spa
 <td>people_permissions</td>
 <td>string</td>
 </tr>
+<tr>
+<td>data</td>
+<td></td>
+</tr>
 </tbody></table>
 
 <h3 id="update-an-existing-person">Update an existing Person</h3>
@@ -2304,6 +3289,10 @@ curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{...}}'</span> <sp
 <td>people_permissions</td>
 <td>string</td>
 </tr>
+<tr>
+<td>data</td>
+<td></td>
+</tr>
 </tbody></table>
 
 <h3 id="delete-a-person">Delete a Person</h3>
@@ -2340,6 +3329,26 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 </tr>
 </thead><tbody>
 <tr>
+<td>where[number]</td>
+<td><em>string</em></td>
+<td>filter on a specific number</td>
+</tr>
+<tr>
+<td>where[location]</td>
+<td><em>string</em></td>
+<td>filter on a specific location</td>
+</tr>
+<tr>
+<td>where[created_at]</td>
+<td><em>datetime</em></td>
+<td>filter on a specific created_at</td>
+</tr>
+<tr>
+<td>where[updated_at]</td>
+<td><em>datetime</em></td>
+<td>filter on a specific updated_at</td>
+</tr>
+<tr>
 <td>after</td>
 <td><em>id</em></td>
 <td>get page after the specified id</td>
@@ -2363,7 +3372,9 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="s2">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+    </span><span class="s2">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -2375,6 +3386,75 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 <h4 id="url-parameters">URL Parameters</h4>
 
 <p><em>none</em></p>
+
+<h3 id="create-a-new-phone-number">Create a new Phone Number</h3>
+<pre><code class="highlight shell"><span class="c"># to create a record...</span>
+curl -v -u token:secret -X POST -d <span class="s1">'{"data":{...}}'</span> <span class="s2">"https://api.planningcenteronline.com/people/v1/people/1/phone_numbers"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>editor</code> can create this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">POST https://api.planningcenteronline.com/people/v1/people/1/phone_numbers</code></p>
+
+<h4 id="resource-attributes">Resource Attributes</h4>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>number</td>
+<td>string</td>
+</tr>
+<tr>
+<td>location</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<h3 id="update-an-existing-phone-number">Update an existing Phone Number</h3>
+<pre><code class="highlight shell"><span class="c"># to update a record...</span>
+curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{...}}'</span> <span class="s2">"https://api.planningcenteronline.com/people/v1/people/1/phone_numbers/1"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>editor</code> can update this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">PATCH https://api.planningcenteronline.com/people/v1/people/1/phone_numbers/1</code></p>
+
+<h4 id="resource-attributes">Resource Attributes</h4>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>number</td>
+<td>string</td>
+</tr>
+<tr>
+<td>location</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<h3 id="delete-a-phone-number">Delete a Phone Number</h3>
+<pre><code class="highlight shell"><span class="c"># to delete a record...</span>
+curl -v -u token:secret -X DELETE <span class="s2">"https://api.planningcenteronline.com/people/v1/people/1/phone_numbers/1"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>editor</code> can delete this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">DELETE https://api.planningcenteronline.com/people/v1/people/1/phone_numbers/1</code></p>
 
 <h2 id="reports">Reports</h2>
 
@@ -2514,6 +3594,83 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 </tr>
 </tbody></table>
 
+<h3 id="create-a-new-report">Create a new Report</h3>
+<pre><code class="highlight shell"><span class="c"># to create a record...</span>
+curl -v -u token:secret -X POST -d <span class="s1">'{"data":{...}}'</span> <span class="s2">"https://api.planningcenteronline.com/people/v1/reports"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>manager</code> can create this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">POST https://api.planningcenteronline.com/people/v1/reports</code></p>
+
+<h4 id="resource-attributes">Resource Attributes</h4>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+</tr>
+<tr>
+<td>settings</td>
+<td>text</td>
+</tr>
+<tr>
+<td>body</td>
+<td>text</td>
+</tr>
+</tbody></table>
+
+<h3 id="update-an-existing-report">Update an existing Report</h3>
+<pre><code class="highlight shell"><span class="c"># to update a record...</span>
+curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{...}}'</span> <span class="s2">"https://api.planningcenteronline.com/people/v1/reports/1"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>manager</code> can update this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">PATCH https://api.planningcenteronline.com/people/v1/reports/1</code></p>
+
+<h4 id="resource-attributes">Resource Attributes</h4>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+</tr>
+<tr>
+<td>settings</td>
+<td>text</td>
+</tr>
+<tr>
+<td>body</td>
+<td>text</td>
+</tr>
+</tbody></table>
+
+<h3 id="delete-a-report">Delete a Report</h3>
+<pre><code class="highlight shell"><span class="c"># to delete a record...</span>
+curl -v -u token:secret -X DELETE <span class="s2">"https://api.planningcenteronline.com/people/v1/reports/1"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>manager</code> can delete this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">DELETE https://api.planningcenteronline.com/people/v1/reports/1</code></p>
+
 <h2 id="rules">Rules</h2>
 
 <p>A rule belongs to a List and groups conditions together.</p>
@@ -2616,6 +3773,47 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 </tr>
 </tbody></table>
 
+<h3 id="create-a-new-rule">Create a new Rule</h3>
+<pre><code class="highlight shell"><span class="c"># to create a record...</span>
+curl -v -u token:secret -X POST -d <span class="s1">'{"data":{...}}'</span> <span class="s2">"https://api.planningcenteronline.com/people/v1/lists/1/rules"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>viewer</code> can create this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">POST https://api.planningcenteronline.com/people/v1/lists/1/rules</code></p>
+
+<h4 id="resource-attributes">Resource Attributes</h4>
+
+<p><em>none</em></p>
+
+<h3 id="update-an-existing-rule">Update an existing Rule</h3>
+<pre><code class="highlight shell"><span class="c"># to update a record...</span>
+curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{...}}'</span> <span class="s2">"https://api.planningcenteronline.com/people/v1/lists/1/rules/1"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>viewer</code> can update this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">PATCH https://api.planningcenteronline.com/people/v1/lists/1/rules/1</code></p>
+
+<h4 id="resource-attributes">Resource Attributes</h4>
+
+<p><em>none</em></p>
+
+<h3 id="delete-a-rule">Delete a Rule</h3>
+<pre><code class="highlight shell"><span class="c"># to delete a record...</span>
+curl -v -u token:secret -X DELETE <span class="s2">"https://api.planningcenteronline.com/people/v1/lists/1/rules/1"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>viewer</code> can delete this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">DELETE https://api.planningcenteronline.com/people/v1/lists/1/rules/1</code></p>
+
 <h2 id="schooloptions">SchoolOptions</h2>
 
 <p>A school option represents a school name, school type, grades, etc. and can be added to a person.</p>
@@ -2639,9 +3837,9 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 </tr>
 </thead><tbody>
 <tr>
-<td>where[name]</td>
-<td>__</td>
-<td>filter on a specific name</td>
+<td>where[value]</td>
+<td><em>string</em></td>
+<td>filter on a specific value</td>
 </tr>
 <tr>
 <td>where[school_types]</td>
@@ -2681,7 +3879,7 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 <pre><code class="highlight json"><span class="p">{</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"stuff"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"school_types"</span><span class="p">:</span><span class="w"> </span><span class="s2">"stuff"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"beginning_grade"</span><span class="p">:</span><span class="w"> </span><span class="s2">"stuff"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"ending_grade"</span><span class="p">:</span><span class="w"> </span><span class="s2">"stuff"</span><span class="w">
@@ -2712,6 +3910,91 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 <td>https://api.planningcenteronline.com/people/v1/school_options/1/promotes_to_school</td>
 </tr>
 </tbody></table>
+
+<h3 id="create-a-new-school-option">Create a new School Option</h3>
+<pre><code class="highlight shell"><span class="c"># to create a record...</span>
+curl -v -u token:secret -X POST -d <span class="s1">'{"data":{...}}'</span> <span class="s2">"https://api.planningcenteronline.com/people/v1/school_options"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>manager</code> can create this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">POST https://api.planningcenteronline.com/people/v1/school_options</code></p>
+
+<h4 id="resource-attributes">Resource Attributes</h4>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>value</td>
+<td>string</td>
+</tr>
+<tr>
+<td>school_types</td>
+<td></td>
+</tr>
+<tr>
+<td>beginning_grade</td>
+<td></td>
+</tr>
+<tr>
+<td>ending_grade</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<h3 id="update-an-existing-school-option">Update an existing School Option</h3>
+<pre><code class="highlight shell"><span class="c"># to update a record...</span>
+curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{...}}'</span> <span class="s2">"https://api.planningcenteronline.com/people/v1/school_options/1"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>manager</code> can update this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">PATCH https://api.planningcenteronline.com/people/v1/school_options/1</code></p>
+
+<h4 id="resource-attributes">Resource Attributes</h4>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>value</td>
+<td>string</td>
+</tr>
+<tr>
+<td>school_types</td>
+<td></td>
+</tr>
+<tr>
+<td>beginning_grade</td>
+<td></td>
+</tr>
+<tr>
+<td>ending_grade</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<h3 id="delete-a-school-option">Delete a School Option</h3>
+<pre><code class="highlight shell"><span class="c"># to delete a record...</span>
+curl -v -u token:secret -X DELETE <span class="s2">"https://api.planningcenteronline.com/people/v1/school_options/1"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>manager</code> can delete this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">DELETE https://api.planningcenteronline.com/people/v1/school_options/1</code></p>
 
 <h2 id="socialprofiles">SocialProfiles</h2>
 
@@ -2845,6 +4128,99 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 </tr>
 </tbody></table>
 
+<h3 id="create-a-new-social-profile">Create a new Social Profile</h3>
+<pre><code class="highlight shell"><span class="c"># to create a record...</span>
+curl -v -u token:secret -X POST -d <span class="s1">'{"data":{...}}'</span> <span class="s2">"https://api.planningcenteronline.com/people/v1/people/1/social_profiles"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>editor</code> can create this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">POST https://api.planningcenteronline.com/people/v1/people/1/social_profiles</code></p>
+
+<h4 id="resource-attributes">Resource Attributes</h4>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>site</td>
+<td>string</td>
+</tr>
+<tr>
+<td>profile_identifier</td>
+<td>string</td>
+</tr>
+<tr>
+<td>username</td>
+<td>string</td>
+</tr>
+<tr>
+<td>url</td>
+<td>string</td>
+</tr>
+<tr>
+<td>verified</td>
+<td>boolean</td>
+</tr>
+</tbody></table>
+
+<h3 id="update-an-existing-social-profile">Update an existing Social Profile</h3>
+<pre><code class="highlight shell"><span class="c"># to update a record...</span>
+curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{...}}'</span> <span class="s2">"https://api.planningcenteronline.com/people/v1/social_profiles/1"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>editor</code> can update this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">PATCH https://api.planningcenteronline.com/people/v1/social_profiles/1</code></p>
+
+<h4 id="resource-attributes">Resource Attributes</h4>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>site</td>
+<td>string</td>
+</tr>
+<tr>
+<td>profile_identifier</td>
+<td>string</td>
+</tr>
+<tr>
+<td>username</td>
+<td>string</td>
+</tr>
+<tr>
+<td>url</td>
+<td>string</td>
+</tr>
+<tr>
+<td>verified</td>
+<td>boolean</td>
+</tr>
+</tbody></table>
+
+<h3 id="delete-a-social-profile">Delete a Social Profile</h3>
+<pre><code class="highlight shell"><span class="c"># to delete a record...</span>
+curl -v -u token:secret -X DELETE <span class="s2">"https://api.planningcenteronline.com/people/v1/social_profiles/1"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>editor</code> can delete this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">DELETE https://api.planningcenteronline.com/people/v1/social_profiles/1</code></p>
+
 <h2 id="tabs">Tabs</h2>
 
 <p>A tab is a custom tab and groups like field definitions.</p>
@@ -2952,6 +4328,83 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 <td>https://api.planningcenteronline.com/people/v1/tabs/1/field_definitions</td>
 </tr>
 </tbody></table>
+
+<h3 id="create-a-new-tab">Create a new Tab</h3>
+<pre><code class="highlight shell"><span class="c"># to create a record...</span>
+curl -v -u token:secret -X POST -d <span class="s1">'{"data":{...}}'</span> <span class="s2">"https://api.planningcenteronline.com/people/v1/tabs"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>manager</code> can create this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">POST https://api.planningcenteronline.com/people/v1/tabs</code></p>
+
+<h4 id="resource-attributes">Resource Attributes</h4>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+</tr>
+<tr>
+<td>sequence</td>
+<td>integer</td>
+</tr>
+<tr>
+<td>slug</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<h3 id="update-an-existing-tab">Update an existing Tab</h3>
+<pre><code class="highlight shell"><span class="c"># to update a record...</span>
+curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{...}}'</span> <span class="s2">"https://api.planningcenteronline.com/people/v1/tabs/1"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>manager</code> can update this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">PATCH https://api.planningcenteronline.com/people/v1/tabs/1</code></p>
+
+<h4 id="resource-attributes">Resource Attributes</h4>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+</tr>
+<tr>
+<td>sequence</td>
+<td>integer</td>
+</tr>
+<tr>
+<td>slug</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<h3 id="delete-a-tab">Delete a Tab</h3>
+<pre><code class="highlight shell"><span class="c"># to delete a record...</span>
+curl -v -u token:secret -X DELETE <span class="s2">"https://api.planningcenteronline.com/people/v1/tabs/1"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>manager</code> can delete this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">DELETE https://api.planningcenteronline.com/people/v1/tabs/1</code></p>
 
           <h1 id="errors">Errors</h1>
 
