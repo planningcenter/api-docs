@@ -22,6 +22,9 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/people/1
 
 Parameter | Value | Description
 --------- | ----- | -----------
+where[city] | _string_ | filter on a specific city
+where[state] | _string_ | filter on a specific state
+where[zip] | _string_ | filter on a specific zip
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
@@ -54,11 +57,63 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/people/1
 
 _none_
 
+### Create a new Address
+
+```shell
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v1/people/1/addresses"
+```
 
 
+<aside class='info'>Only users with the role <code>editor</code> can create this resource.</aside>
+
+#### HTTP Request
+
+`POST https://api.planningcenteronline.com/people/v1/people/1/addresses`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+city | string
+state | string
+zip | string
+
+### Update an existing Address
+
+```shell
+# to update a record...
+curl -v -u token:secret -X PATCH -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v1/people/1/addresses/1"
+```
 
 
+<aside class='info'>Only users with the role <code>editor</code> can update this resource.</aside>
 
+#### HTTP Request
+
+`PATCH https://api.planningcenteronline.com/people/v1/people/1/addresses/1`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+city | string
+state | string
+zip | string
+
+### Delete an Address
+
+```shell
+# to delete a record...
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v1/people/1/addresses/1"
+```
+
+
+<aside class='info'>Only users with the role <code>editor</code> can delete this resource.</aside>
+
+#### HTTP Request
+
+`DELETE https://api.planningcenteronline.com/people/v1/people/1/addresses/1`
 
 ## Apps
 
@@ -80,6 +135,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/apps"
 
 Parameter | Value | Description
 --------- | ----- | -----------
+where[name] | _string_ | filter on a specific name
+where[url] | _string_ | filter on a specific url
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
@@ -182,11 +239,69 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/lists/1/
 
 _none_
 
+### Create a new Condition
+
+```shell
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v1/lists/1/rules/1/conditions"
+```
 
 
+<aside class='info'>Only users with the role <code>viewer</code> can create this resource.</aside>
+
+#### HTTP Request
+
+`POST https://api.planningcenteronline.com/people/v1/lists/1/rules/1/conditions`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+application | string
+definition_class | string
+comparison | string
+settings | text
+definition_identifier | string
+description | string
+
+### Update an existing Condition
+
+```shell
+# to update a record...
+curl -v -u token:secret -X PATCH -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v1/lists/1/rules/1/conditions/1"
+```
 
 
+<aside class='info'>Only users with the role <code>viewer</code> can update this resource.</aside>
 
+#### HTTP Request
+
+`PATCH https://api.planningcenteronline.com/people/v1/lists/1/rules/1/conditions/1`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+application | string
+definition_class | string
+comparison | string
+settings | text
+definition_identifier | string
+description | string
+
+### Delete a Condition
+
+```shell
+# to delete a record...
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v1/lists/1/rules/1/conditions/1"
+```
+
+
+<aside class='info'>Only users with the role <code>viewer</code> can delete this resource.</aside>
+
+#### HTTP Request
+
+`DELETE https://api.planningcenteronline.com/people/v1/lists/1/rules/1/conditions/1`
 
 ## Emails
 
@@ -380,11 +495,63 @@ Association | URL
 field_definition | https://api.planningcenteronline.com/people/v1/people/1/field_data/1/field_definition
 field_option | https://api.planningcenteronline.com/people/v1/people/1/field_data/1/field_option
 
+### Create a new Field Datum
+
+```shell
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v1/people/1/field_data"
+```
 
 
+<aside class='info'>Only users with the role <code>editor</code> can create this resource.</aside>
+
+#### HTTP Request
+
+`POST https://api.planningcenteronline.com/people/v1/people/1/field_data`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+value | string
+value | string
+file | string
+
+### Update an existing Field Datum
+
+```shell
+# to update a record...
+curl -v -u token:secret -X PATCH -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v1/people/1/field_data/1"
+```
 
 
+<aside class='info'>Only users with the role <code>editor</code> can update this resource.</aside>
 
+#### HTTP Request
+
+`PATCH https://api.planningcenteronline.com/people/v1/people/1/field_data/1`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+value | string
+value | string
+file | string
+
+### Delete a Field Datum
+
+```shell
+# to delete a record...
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v1/people/1/field_data/1"
+```
+
+
+<aside class='info'>Only users with the role <code>editor</code> can delete this resource.</aside>
+
+#### HTTP Request
+
+`DELETE https://api.planningcenteronline.com/people/v1/people/1/field_data/1`
 
 ## FieldDefinitions
 
@@ -414,6 +581,8 @@ where[deleted_at] | _datetime_ | filter on a specific deleted_at
 include | field_options | include associated field_options
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+To exclude deleted field definitions, query with `where[deleted_at]=` (blank value).
 
 ### Get a single Field Definition
 
@@ -456,11 +625,69 @@ Association | URL
 ----------- | ---
 field_options | https://api.planningcenteronline.com/people/v1/field_definitions/1/field_options
 
+### Create a new Field Definition
+
+```shell
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v1/tabs/1/field_definitions"
+```
 
 
+<aside class='info'>Only users with the role <code>manager</code> can create this resource.</aside>
+
+#### HTTP Request
+
+`POST https://api.planningcenteronline.com/people/v1/tabs/1/field_definitions`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+data_type | string
+name | string
+sequence | integer
+slug | string
+deleted_at | datetime
+
+### Update an existing Field Definition
+
+```shell
+# to update a record...
+curl -v -u token:secret -X PATCH -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v1/field_definitions/1"
+```
 
 
+<aside class='info'>Only users with the role <code>manager</code> can update this resource.</aside>
 
+#### HTTP Request
+
+`PATCH https://api.planningcenteronline.com/people/v1/field_definitions/1`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+data_type | string
+name | string
+sequence | integer
+slug | string
+deleted_at | datetime
+
+### Delete a Field Definition
+
+```shell
+# to delete a record...
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v1/field_definitions/1"
+```
+
+
+<aside class='info'>Only users with the role <code>manager</code> can delete this resource.</aside>
+
+#### HTTP Request
+
+`DELETE https://api.planningcenteronline.com/people/v1/field_definitions/1`
+
+Deleting a field definition internally sets its `deleted_at` attribute to the current time.
 
 ## FieldOptions
 
@@ -515,11 +742,61 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/field_de
 
 _none_
 
+### Create a new Field Option
+
+```shell
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v1/field_definitions/1/field_options"
+```
 
 
+<aside class='info'>Only users with the role <code>manager</code> can create this resource.</aside>
+
+#### HTTP Request
+
+`POST https://api.planningcenteronline.com/people/v1/field_definitions/1/field_options`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+value | string
+sequence | integer
+
+### Update an existing Field Option
+
+```shell
+# to update a record...
+curl -v -u token:secret -X PATCH -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v1/field_definitions/1/field_options/1"
+```
 
 
+<aside class='info'>Only users with the role <code>manager</code> can update this resource.</aside>
 
+#### HTTP Request
+
+`PATCH https://api.planningcenteronline.com/people/v1/field_definitions/1/field_options/1`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+value | string
+sequence | integer
+
+### Delete a Field Option
+
+```shell
+# to delete a record...
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v1/field_definitions/1/field_options/1"
+```
+
+
+<aside class='info'>Only users with the role <code>manager</code> can delete this resource.</aside>
+
+#### HTTP Request
+
+`DELETE https://api.planningcenteronline.com/people/v1/field_definitions/1/field_options/1`
 
 ## HouseholdMemberships
 
@@ -541,6 +818,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/househol
 
 Parameter | Value | Description
 --------- | ----- | -----------
+where[person_name] | _string_ | filter on a specific person_name
+where[pending] | _boolean_ | filter on a specific pending
 include | person | include associated person
 include | household | include associated household
 after | _id_ | get page after the specified id
@@ -590,11 +869,61 @@ Association | URL
 household | https://api.planningcenteronline.com/people/v1/households/1/household_memberships/1/household
 person | https://api.planningcenteronline.com/people/v1/households/1/household_memberships/1/person
 
+### Create a new Household Membership
+
+```shell
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v1/households/1/household_memberships"
+```
 
 
+<aside class='info'>Only users with the role <code>editor</code> can create this resource.</aside>
+
+#### HTTP Request
+
+`POST https://api.planningcenteronline.com/people/v1/households/1/household_memberships`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+person_name | string
+pending | boolean
+
+### Update an existing Household Membership
+
+```shell
+# to update a record...
+curl -v -u token:secret -X PATCH -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v1/households/1/household_memberships/1"
+```
 
 
+<aside class='info'>Only users with the role <code>editor</code> can update this resource.</aside>
 
+#### HTTP Request
+
+`PATCH https://api.planningcenteronline.com/people/v1/households/1/household_memberships/1`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+person_name | string
+pending | boolean
+
+### Delete a Household Membership
+
+```shell
+# to delete a record...
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v1/households/1/household_memberships/1"
+```
+
+
+<aside class='info'>Only users with the role <code>editor</code> can delete this resource.</aside>
+
+#### HTTP Request
+
+`DELETE https://api.planningcenteronline.com/people/v1/households/1/household_memberships/1`
 
 ## Households
 
@@ -616,6 +945,11 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/househol
 
 Parameter | Value | Description
 --------- | ----- | -----------
+where[name] | _string_ | filter on a specific name
+where[primary_contact_name] | _string_ | filter on a specific primary_contact_name
+where[member_count] | _integer_ | filter on a specific member_count
+where[created_at] | _datetime_ | filter on a specific created_at
+where[updated_at] | _datetime_ | filter on a specific updated_at
 where[name] | _string_ | filter on a specific name
 include | people | include associated people
 after | _id_ | get page after the specified id
@@ -663,11 +997,63 @@ Association | URL
 household_memberships | https://api.planningcenteronline.com/people/v1/households/1/household_memberships
 people | https://api.planningcenteronline.com/people/v1/households/1/people
 
+### Create a new Household
+
+```shell
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v1/households"
+```
 
 
+<aside class='info'>Only users with the role <code>editor</code> can create this resource.</aside>
+
+#### HTTP Request
+
+`POST https://api.planningcenteronline.com/people/v1/households`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+name | string
+primary_contact_name | string
+member_count | integer
+
+### Update an existing Household
+
+```shell
+# to update a record...
+curl -v -u token:secret -X PATCH -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v1/households/1"
+```
 
 
+<aside class='info'>Only users with the role <code>editor</code> can update this resource.</aside>
 
+#### HTTP Request
+
+`PATCH https://api.planningcenteronline.com/people/v1/households/1`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+name | string
+primary_contact_name | string
+member_count | integer
+
+### Delete a Household
+
+```shell
+# to delete a record...
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v1/households/1"
+```
+
+
+<aside class='info'>Only users with the role <code>editor</code> can delete this resource.</aside>
+
+#### HTTP Request
+
+`DELETE https://api.planningcenteronline.com/people/v1/households/1`
 
 ## InactiveReasons
 
@@ -720,11 +1106,59 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/inactive
 
 _none_
 
+### Create a new Inactive Reason
+
+```shell
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v1/inactive_reasons"
+```
 
 
+<aside class='info'>Only users with the role <code>manager</code> can create this resource.</aside>
+
+#### HTTP Request
+
+`POST https://api.planningcenteronline.com/people/v1/inactive_reasons`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+value | string
+
+### Update an existing Inactive Reason
+
+```shell
+# to update a record...
+curl -v -u token:secret -X PATCH -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v1/inactive_reasons/1"
+```
 
 
+<aside class='info'>Only users with the role <code>manager</code> can update this resource.</aside>
 
+#### HTTP Request
+
+`PATCH https://api.planningcenteronline.com/people/v1/inactive_reasons/1`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+value | string
+
+### Delete an Inactive Reason
+
+```shell
+# to delete a record...
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v1/inactive_reasons/1"
+```
+
+
+<aside class='info'>Only users with the role <code>manager</code> can delete this resource.</aside>
+
+#### HTTP Request
+
+`DELETE https://api.planningcenteronline.com/people/v1/inactive_reasons/1`
 
 ## Lists
 
@@ -812,11 +1246,61 @@ people | https://api.planningcenteronline.com/people/v1/lists/1/people
 rules | https://api.planningcenteronline.com/people/v1/lists/1/rules
 updated_by | https://api.planningcenteronline.com/people/v1/lists/1/updated_by
 
+### Create a new List
+
+```shell
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v1/lists"
+```
 
 
+<aside class='info'>Only users with the role <code>viewer</code> can create this resource.</aside>
+
+#### HTTP Request
+
+`POST https://api.planningcenteronline.com/people/v1/lists`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+name | string
+status | string
+
+### Update an existing List
+
+```shell
+# to update a record...
+curl -v -u token:secret -X PATCH -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v1/lists/1"
+```
 
 
+<aside class='info'>Only users with the role <code>viewer</code> can update this resource.</aside>
 
+#### HTTP Request
+
+`PATCH https://api.planningcenteronline.com/people/v1/lists/1`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+name | string
+status | string
+
+### Delete a List
+
+```shell
+# to delete a record...
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v1/lists/1"
+```
+
+
+<aside class='info'>Only users with the role <code>viewer</code> can delete this resource.</aside>
+
+#### HTTP Request
+
+`DELETE https://api.planningcenteronline.com/people/v1/lists/1`
 
 ## MaritalStatuses
 
@@ -869,11 +1353,59 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/marital_
 
 _none_
 
+### Create a new Marital Status
+
+```shell
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v1/marital_statuses"
+```
 
 
+<aside class='info'>Only users with the role <code>manager</code> can create this resource.</aside>
+
+#### HTTP Request
+
+`POST https://api.planningcenteronline.com/people/v1/marital_statuses`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+value | string
+
+### Update an existing Marital Status
+
+```shell
+# to update a record...
+curl -v -u token:secret -X PATCH -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v1/marital_statuses/1"
+```
 
 
+<aside class='info'>Only users with the role <code>manager</code> can update this resource.</aside>
 
+#### HTTP Request
+
+`PATCH https://api.planningcenteronline.com/people/v1/marital_statuses/1`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+value | string
+
+### Delete a Marital Status
+
+```shell
+# to delete a record...
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v1/marital_statuses/1"
+```
+
+
+<aside class='info'>Only users with the role <code>manager</code> can delete this resource.</aside>
+
+#### HTTP Request
+
+`DELETE https://api.planningcenteronline.com/people/v1/marital_statuses/1`
 
 ## MessageGroups
 
@@ -1109,11 +1641,59 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/name_pre
 
 _none_
 
+### Create a new Name Prefix
+
+```shell
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v1/name_prefixes"
+```
 
 
+<aside class='info'>Only users with the role <code>manager</code> can create this resource.</aside>
+
+#### HTTP Request
+
+`POST https://api.planningcenteronline.com/people/v1/name_prefixes`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+value | string
+
+### Update an existing Name Prefix
+
+```shell
+# to update a record...
+curl -v -u token:secret -X PATCH -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v1/name_prefixes/1"
+```
 
 
+<aside class='info'>Only users with the role <code>manager</code> can update this resource.</aside>
 
+#### HTTP Request
+
+`PATCH https://api.planningcenteronline.com/people/v1/name_prefixes/1`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+value | string
+
+### Delete a Name Prefix
+
+```shell
+# to delete a record...
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v1/name_prefixes/1"
+```
+
+
+<aside class='info'>Only users with the role <code>manager</code> can delete this resource.</aside>
+
+#### HTTP Request
+
+`DELETE https://api.planningcenteronline.com/people/v1/name_prefixes/1`
 
 ## NameSuffixes
 
@@ -1166,11 +1746,59 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/name_suf
 
 _none_
 
+### Create a new Name Suffix
+
+```shell
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v1/name_suffixes"
+```
 
 
+<aside class='info'>Only users with the role <code>manager</code> can create this resource.</aside>
+
+#### HTTP Request
+
+`POST https://api.planningcenteronline.com/people/v1/name_suffixes`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+value | string
+
+### Update an existing Name Suffix
+
+```shell
+# to update a record...
+curl -v -u token:secret -X PATCH -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v1/name_suffixes/1"
+```
 
 
+<aside class='info'>Only users with the role <code>manager</code> can update this resource.</aside>
 
+#### HTTP Request
+
+`PATCH https://api.planningcenteronline.com/people/v1/name_suffixes/1`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+value | string
+
+### Delete a Name Suffix
+
+```shell
+# to delete a record...
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v1/name_suffixes/1"
+```
+
+
+<aside class='info'>Only users with the role <code>manager</code> can delete this resource.</aside>
+
+#### HTTP Request
+
+`DELETE https://api.planningcenteronline.com/people/v1/name_suffixes/1`
 
 ## Organizations
 
@@ -1265,6 +1893,9 @@ where[school_type] | _string_ | filter on a specific school_type
 where[graduation_year] | _integer_ | filter on a specific graduation_year
 where[site_administrator] | _boolean_ | filter on a specific site_administrator
 where[people_permissions] | _string_ | filter on a specific people_permissions
+where[data] | __ | filter on a specific data
+where[created_at] | _datetime_ | filter on a specific created_at
+where[updated_at] | _datetime_ | filter on a specific updated_at
 include | emails | include associated emails
 include | addresses | include associated addresses
 include | phone_numbers | include associated phone_numbers
@@ -1294,23 +1925,29 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/people/1
 ```json
 {
   "data": {
-    "id": 1,
-    "first_name": "string",
-    "middle_name": "string",
-    "last_name": "string",
-    "birthdate": "2000-01-01",
-    "anniversary": "2000-01-01",
-    "gender": "string",
-    "grade": 1,
-    "child": "stuff",
-    "status": "string",
-    "school_type": "string",
-    "graduation_year": 1,
-    "site_administrator": "stuff",
-    "people_permissions": "string",
-    "avatar": "string",
-    "created_at": "2000-01-01T12:00:00Z",
-    "updated_at": "2000-01-01T12:00:00Z"
+    "type": "Person",
+    "id": "1",
+    "first_name": "PiCO",
+    "middle_name": "Ross",
+    "last_name": "Das Robot",
+    "birthdate": "1982-01-01",
+    "anniversary": "2012-04-01",
+    "gender": "M",
+    "grade": null,
+    "child": false,
+    "status": "active",
+    "school_type": "elementary",
+    "graduation_year": 2000,
+    "site_administrator": true,
+    "people_permissions": "Viewer",
+    "data": {
+      "personal_notes": "this is a custom string field"
+    },
+    "created_at": "2015-03-18T19:31:54Z",
+    "updated_at": "2015-04-21T22:52:53Z",
+    "avatar": {
+      "url": "https://account-center-production.s3.amazonaws.com/uploads/person/1-1426707114/avatar.4.png"
+    }
   }
 }
 ```
@@ -1388,6 +2025,7 @@ school_type | string
 graduation_year | integer
 site_administrator | boolean
 people_permissions | string
+data | 
 
 ### Update an existing Person
 
@@ -1420,6 +2058,7 @@ school_type | string
 graduation_year | integer
 site_administrator | boolean
 people_permissions | string
+data | 
 
 ### Delete a Person
 
@@ -1455,6 +2094,10 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/people/1
 
 Parameter | Value | Description
 --------- | ----- | -----------
+where[number] | _string_ | filter on a specific number
+where[location] | _string_ | filter on a specific location
+where[created_at] | _datetime_ | filter on a specific created_at
+where[updated_at] | _datetime_ | filter on a specific updated_at
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
@@ -1473,7 +2116,9 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/people/1
   "data": {
     "id": 1,
     "number": "string",
-    "location": "string"
+    "location": "string",
+    "created_at": "2000-01-01T12:00:00Z",
+    "updated_at": "2000-01-01T12:00:00Z"
   }
 }
 ```
@@ -1486,11 +2131,61 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/people/1
 
 _none_
 
+### Create a new Phone Number
+
+```shell
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v1/people/1/phone_numbers"
+```
 
 
+<aside class='info'>Only users with the role <code>editor</code> can create this resource.</aside>
+
+#### HTTP Request
+
+`POST https://api.planningcenteronline.com/people/v1/people/1/phone_numbers`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+number | string
+location | string
+
+### Update an existing Phone Number
+
+```shell
+# to update a record...
+curl -v -u token:secret -X PATCH -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v1/people/1/phone_numbers/1"
+```
 
 
+<aside class='info'>Only users with the role <code>editor</code> can update this resource.</aside>
 
+#### HTTP Request
+
+`PATCH https://api.planningcenteronline.com/people/v1/people/1/phone_numbers/1`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+number | string
+location | string
+
+### Delete a Phone Number
+
+```shell
+# to delete a record...
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v1/people/1/phone_numbers/1"
+```
+
+
+<aside class='info'>Only users with the role <code>editor</code> can delete this resource.</aside>
+
+#### HTTP Request
+
+`DELETE https://api.planningcenteronline.com/people/v1/people/1/phone_numbers/1`
 
 ## Reports
 
@@ -1569,11 +2264,63 @@ Association | URL
 created_by | https://api.planningcenteronline.com/people/v1/reports/1/created_by
 updated_by | https://api.planningcenteronline.com/people/v1/reports/1/updated_by
 
+### Create a new Report
+
+```shell
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v1/reports"
+```
 
 
+<aside class='info'>Only users with the role <code>manager</code> can create this resource.</aside>
+
+#### HTTP Request
+
+`POST https://api.planningcenteronline.com/people/v1/reports`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+name | string
+settings | text
+body | text
+
+### Update an existing Report
+
+```shell
+# to update a record...
+curl -v -u token:secret -X PATCH -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v1/reports/1"
+```
 
 
+<aside class='info'>Only users with the role <code>manager</code> can update this resource.</aside>
 
+#### HTTP Request
+
+`PATCH https://api.planningcenteronline.com/people/v1/reports/1`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+name | string
+settings | text
+body | text
+
+### Delete a Report
+
+```shell
+# to delete a record...
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v1/reports/1"
+```
+
+
+<aside class='info'>Only users with the role <code>manager</code> can delete this resource.</aside>
+
+#### HTTP Request
+
+`DELETE https://api.planningcenteronline.com/people/v1/reports/1`
 
 ## Rules
 
@@ -1639,11 +2386,55 @@ Association | URL
 ----------- | ---
 conditions | https://api.planningcenteronline.com/people/v1/lists/1/rules/1/conditions
 
+### Create a new Rule
+
+```shell
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v1/lists/1/rules"
+```
 
 
+<aside class='info'>Only users with the role <code>viewer</code> can create this resource.</aside>
+
+#### HTTP Request
+
+`POST https://api.planningcenteronline.com/people/v1/lists/1/rules`
+
+#### Resource Attributes
+
+_none_
+
+### Update an existing Rule
+
+```shell
+# to update a record...
+curl -v -u token:secret -X PATCH -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v1/lists/1/rules/1"
+```
 
 
+<aside class='info'>Only users with the role <code>viewer</code> can update this resource.</aside>
 
+#### HTTP Request
+
+`PATCH https://api.planningcenteronline.com/people/v1/lists/1/rules/1`
+
+#### Resource Attributes
+
+_none_
+
+### Delete a Rule
+
+```shell
+# to delete a record...
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v1/lists/1/rules/1"
+```
+
+
+<aside class='info'>Only users with the role <code>viewer</code> can delete this resource.</aside>
+
+#### HTTP Request
+
+`DELETE https://api.planningcenteronline.com/people/v1/lists/1/rules/1`
 
 ## SchoolOptions
 
@@ -1665,7 +2456,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/school_o
 
 Parameter | Value | Description
 --------- | ----- | -----------
-where[name] | __ | filter on a specific name
+where[value] | _string_ | filter on a specific value
 where[school_types] | __ | filter on a specific school_types
 where[beginning_grade] | __ | filter on a specific beginning_grade
 where[ending_grade] | __ | filter on a specific ending_grade
@@ -1686,7 +2477,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/school_o
 {
   "data": {
     "id": 1,
-    "name": "stuff",
+    "value": "string",
     "school_types": "stuff",
     "beginning_grade": "stuff",
     "ending_grade": "stuff"
@@ -1710,11 +2501,65 @@ Association | URL
 ----------- | ---
 promotes_to_school | https://api.planningcenteronline.com/people/v1/school_options/1/promotes_to_school
 
+### Create a new School Option
+
+```shell
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v1/school_options"
+```
 
 
+<aside class='info'>Only users with the role <code>manager</code> can create this resource.</aside>
+
+#### HTTP Request
+
+`POST https://api.planningcenteronline.com/people/v1/school_options`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+value | string
+school_types | 
+beginning_grade | 
+ending_grade | 
+
+### Update an existing School Option
+
+```shell
+# to update a record...
+curl -v -u token:secret -X PATCH -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v1/school_options/1"
+```
 
 
+<aside class='info'>Only users with the role <code>manager</code> can update this resource.</aside>
 
+#### HTTP Request
+
+`PATCH https://api.planningcenteronline.com/people/v1/school_options/1`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+value | string
+school_types | 
+beginning_grade | 
+ending_grade | 
+
+### Delete a School Option
+
+```shell
+# to delete a record...
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v1/school_options/1"
+```
+
+
+<aside class='info'>Only users with the role <code>manager</code> can delete this resource.</aside>
+
+#### HTTP Request
+
+`DELETE https://api.planningcenteronline.com/people/v1/school_options/1`
 
 ## SocialProfiles
 
@@ -1790,11 +2635,67 @@ Association | URL
 ----------- | ---
 person | https://api.planningcenteronline.com/people/v1/social_profiles/1/person
 
+### Create a new Social Profile
+
+```shell
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v1/people/1/social_profiles"
+```
 
 
+<aside class='info'>Only users with the role <code>editor</code> can create this resource.</aside>
+
+#### HTTP Request
+
+`POST https://api.planningcenteronline.com/people/v1/people/1/social_profiles`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+site | string
+profile_identifier | string
+username | string
+url | string
+verified | boolean
+
+### Update an existing Social Profile
+
+```shell
+# to update a record...
+curl -v -u token:secret -X PATCH -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v1/social_profiles/1"
+```
 
 
+<aside class='info'>Only users with the role <code>editor</code> can update this resource.</aside>
 
+#### HTTP Request
+
+`PATCH https://api.planningcenteronline.com/people/v1/social_profiles/1`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+site | string
+profile_identifier | string
+username | string
+url | string
+verified | boolean
+
+### Delete a Social Profile
+
+```shell
+# to delete a record...
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v1/social_profiles/1"
+```
+
+
+<aside class='info'>Only users with the role <code>editor</code> can delete this resource.</aside>
+
+#### HTTP Request
+
+`DELETE https://api.planningcenteronline.com/people/v1/social_profiles/1`
 
 ## Tabs
 
@@ -1862,7 +2763,60 @@ Association | URL
 ----------- | ---
 field_definitions | https://api.planningcenteronline.com/people/v1/tabs/1/field_definitions
 
+### Create a new Tab
+
+```shell
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v1/tabs"
+```
 
 
+<aside class='info'>Only users with the role <code>manager</code> can create this resource.</aside>
+
+#### HTTP Request
+
+`POST https://api.planningcenteronline.com/people/v1/tabs`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+name | string
+sequence | integer
+slug | string
+
+### Update an existing Tab
+
+```shell
+# to update a record...
+curl -v -u token:secret -X PATCH -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v1/tabs/1"
+```
 
 
+<aside class='info'>Only users with the role <code>manager</code> can update this resource.</aside>
+
+#### HTTP Request
+
+`PATCH https://api.planningcenteronline.com/people/v1/tabs/1`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+name | string
+sequence | integer
+slug | string
+
+### Delete a Tab
+
+```shell
+# to delete a record...
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v1/tabs/1"
+```
+
+
+<aside class='info'>Only users with the role <code>manager</code> can delete this resource.</aside>
+
+#### HTTP Request
+
+`DELETE https://api.planningcenteronline.com/people/v1/tabs/1`
