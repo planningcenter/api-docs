@@ -1893,7 +1893,6 @@ where[school_type] | _string_ | filter on a specific school_type
 where[graduation_year] | _integer_ | filter on a specific graduation_year
 where[site_administrator] | _boolean_ | filter on a specific site_administrator
 where[people_permissions] | _string_ | filter on a specific people_permissions
-where[data] | __ | filter on a specific data
 where[created_at] | _datetime_ | filter on a specific created_at
 where[updated_at] | _datetime_ | filter on a specific updated_at
 include | emails | include associated emails
@@ -2010,8 +2009,8 @@ curl -v -u token:secret -X POST -d '{"data":{...}}' "https://api.planningcentero
 
 #### Resource Attributes
 
-Attribute | Type
---------- | ----
+Attribute | Type | Note
+--------- | ---- | ----
 first_name | string
 middle_name | string
 last_name | string
@@ -2025,7 +2024,12 @@ school_type | string
 graduation_year | integer
 site_administrator | boolean
 people_permissions | string
-data | 
+data | object | An object/hash of custom field data using field_definition.slug for the key
+name_prefix_id | integer
+name_suffix_id | integer
+inactive_reason_id | integer
+school_id | integer
+marital_status_id | integer
 
 ### Update an existing Person
 
@@ -2043,8 +2047,8 @@ curl -v -u token:secret -X PATCH -d '{"data":{...}}' "https://api.planningcenter
 
 #### Resource Attributes
 
-Attribute | Type
---------- | ----
+Attribute | Type | Note
+--------- | ---- | ----
 first_name | string
 middle_name | string
 last_name | string
@@ -2058,7 +2062,12 @@ school_type | string
 graduation_year | integer
 site_administrator | boolean
 people_permissions | string
-data | 
+data | object | An object/hash of custom field data using field_definition.slug for the key
+name_prefix_id | integer
+name_suffix_id | integer
+inactive_reason_id | integer
+school_id | integer
+marital_status_id | integer
 
 ### Delete a Person
 
