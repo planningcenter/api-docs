@@ -37,7 +37,7 @@
       <div id="toc">
       </div>
         <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
+            <li><a href='https://api.planningcenteronline.com/oauth/applications'>Sign Up for an Authentication Key</a></li>
             <li><a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
         </ul>
     </div>
@@ -46,11 +46,45 @@
       <div class="content">
         <h1 id="introduction">Introduction</h1>
 
-<p>Welcome to the Planning Center Online API! You can use our API to access data in some of our apps (with other apps coming online soon) through a single unified API.</p>
+<p>Welcome to the Planning Center Online API! You can use our API to access data in some of our apps
+(with other apps coming online soon) through a single unified API.</p>
 
 <h1 id="authentication">Authentication</h1>
 
-<p>TODO</p>
+<p>There are several ways to authenticate with the API.</p>
+
+<h2 id="session-authentication">Session Authentication</h2>
+
+<p>If you need to access the API via a browser, you can use session (cookie) based authentication:</p>
+
+<ol>
+<li>Visit <a href="https://accounts.planningcenteronline.com">accounts.planningcenteronline.com</a> and sign in.</li>
+<li>Visit <a href="https://api.planningcenteronline.com/people/v1/people">api.planningcenteronline.com/people/v1/people</a>
+(for example) or other API endpoints.</li>
+</ol>
+
+<p>Browsing the API with your web browser is best experienced with an extension like JSONView, which formats
+JSON output in the browser for easier reading.</p>
+
+<h2 id="personal-access-token">Personal Access Token</h2>
+
+<p>Create a Personal Access Token and use HTTP Basic Auth if you just need access to your own account:</p>
+
+<ol>
+<li>Visit <a href="https://api.planningcenteronline.com/oauth/applications">api.planningcenteronline.com/oauth/applications</a>.</li>
+<li>Create a new &ldquo;HTTP Basic Application&rdquo;</li>
+<li>Pass your token and secret in every request using <a href="https://en.wikipedia.org/wiki/Basic_access_authentication">HTTP Basic Auth</a>.</li>
+</ol>
+
+<h2 id="oauth-2.0">OAuth 2.0</h2>
+
+<p>If you are distributing your app to multiple churches, you should use <a href="https://en.wikipedia.org/wiki/OAuth">OAuth</a>.</p>
+
+<ol>
+<li>Visit <a href="https://api.planningcenteronline.com/oauth/applications">api.planningcenteronline.com/oauth/applications</a>
+and create an OAuth application token.</li>
+<li>Make sure your app conforms to the <a href="http://oauth.net/2/">OAuth 2.0</a> specification.</li>
+</ol>
 
 <h1 id="json-api">JSON API</h1>
 
@@ -401,107 +435,6 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 <h4 id="url-parameters">URL Parameters</h4>
 
 <p><em>none</em></p>
-
-<h3 id="create-a-new-condition">Create a new Condition</h3>
-<pre><code class="highlight shell"><span class="c"># to create a record...</span>
-curl -v -u token:secret -X POST -d <span class="s1">'{"data":{...}}'</span> <span class="s2">"https://api.planningcenteronline.com/people/v1/lists/1/rules/1/conditions"</span>
-</code></pre>
-
-<aside class='info'>Only users with the role <code>viewer</code> can create this resource.</aside>
-
-<h4 id="http-request">HTTP Request</h4>
-
-<p><code class="prettyprint">POST https://api.planningcenteronline.com/people/v1/lists/1/rules/1/conditions</code></p>
-
-<h4 id="resource-attributes">Resource Attributes</h4>
-
-<table><thead>
-<tr>
-<th>Attribute</th>
-<th>Type</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>application</td>
-<td>string</td>
-</tr>
-<tr>
-<td>definition_class</td>
-<td>string</td>
-</tr>
-<tr>
-<td>comparison</td>
-<td>string</td>
-</tr>
-<tr>
-<td>settings</td>
-<td>text</td>
-</tr>
-<tr>
-<td>definition_identifier</td>
-<td>string</td>
-</tr>
-<tr>
-<td>description</td>
-<td>string</td>
-</tr>
-</tbody></table>
-
-<h3 id="update-an-existing-condition">Update an existing Condition</h3>
-<pre><code class="highlight shell"><span class="c"># to update a record...</span>
-curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{...}}'</span> <span class="s2">"https://api.planningcenteronline.com/people/v1/lists/1/rules/1/conditions/1"</span>
-</code></pre>
-
-<aside class='info'>Only users with the role <code>viewer</code> can update this resource.</aside>
-
-<h4 id="http-request">HTTP Request</h4>
-
-<p><code class="prettyprint">PATCH https://api.planningcenteronline.com/people/v1/lists/1/rules/1/conditions/1</code></p>
-
-<h4 id="resource-attributes">Resource Attributes</h4>
-
-<table><thead>
-<tr>
-<th>Attribute</th>
-<th>Type</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>application</td>
-<td>string</td>
-</tr>
-<tr>
-<td>definition_class</td>
-<td>string</td>
-</tr>
-<tr>
-<td>comparison</td>
-<td>string</td>
-</tr>
-<tr>
-<td>settings</td>
-<td>text</td>
-</tr>
-<tr>
-<td>definition_identifier</td>
-<td>string</td>
-</tr>
-<tr>
-<td>description</td>
-<td>string</td>
-</tr>
-</tbody></table>
-
-<h3 id="delete-a-condition">Delete a Condition</h3>
-<pre><code class="highlight shell"><span class="c"># to delete a record...</span>
-curl -v -u token:secret -X DELETE <span class="s2">"https://api.planningcenteronline.com/people/v1/lists/1/rules/1/conditions/1"</span>
-</code></pre>
-
-<aside class='info'>Only users with the role <code>viewer</code> can delete this resource.</aside>
-
-<h4 id="http-request">HTTP Request</h4>
-
-<p><code class="prettyprint">DELETE https://api.planningcenteronline.com/people/v1/lists/1/rules/1/conditions/1</code></p>
 
 <h2 id="emails">Emails</h2>
 
@@ -1361,8 +1294,8 @@ curl -v -u token:secret -X POST -d <span class="s1">'{"data":{...}}'</span> <spa
 </tr>
 </thead><tbody>
 <tr>
-<td>person_name</td>
-<td>string</td>
+<td>person_id</td>
+<td>integer</td>
 </tr>
 <tr>
 <td>pending</td>
@@ -1390,8 +1323,8 @@ curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{...}}'</span> <sp
 </tr>
 </thead><tbody>
 <tr>
-<td>person_name</td>
-<td>string</td>
+<td>person_id</td>
+<td>integer</td>
 </tr>
 <tr>
 <td>pending</td>
@@ -1438,14 +1371,14 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 <td>filter on a specific name</td>
 </tr>
 <tr>
-<td>where[primary_contact_name]</td>
-<td><em>string</em></td>
-<td>filter on a specific primary_contact_name</td>
-</tr>
-<tr>
 <td>where[member_count]</td>
 <td><em>integer</em></td>
 <td>filter on a specific member_count</td>
+</tr>
+<tr>
+<td>where[primary_contact_name]</td>
+<td><em>string</em></td>
+<td>filter on a specific primary_contact_name</td>
 </tr>
 <tr>
 <td>where[created_at]</td>
@@ -1456,11 +1389,6 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 <td>where[updated_at]</td>
 <td><em>datetime</em></td>
 <td>filter on a specific updated_at</td>
-</tr>
-<tr>
-<td>where[name]</td>
-<td><em>string</em></td>
-<td>filter on a specific name</td>
 </tr>
 <tr>
 <td>include</td>
@@ -1491,10 +1419,11 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"primary_contact_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"member_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"primary_contact_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="w">
+    </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"primary_contact_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -1563,11 +1492,11 @@ curl -v -u token:secret -X POST -d <span class="s1">'{"data":{...}}'</span> <spa
 <td>string</td>
 </tr>
 <tr>
-<td>primary_contact_name</td>
-<td>string</td>
+<td>member_count</td>
+<td>integer</td>
 </tr>
 <tr>
-<td>member_count</td>
+<td>primary_contact_id</td>
 <td>integer</td>
 </tr>
 </tbody></table>
@@ -1596,11 +1525,11 @@ curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{...}}'</span> <sp
 <td>string</td>
 </tr>
 <tr>
-<td>primary_contact_name</td>
-<td>string</td>
+<td>member_count</td>
+<td>integer</td>
 </tr>
 <tr>
-<td>member_count</td>
+<td>primary_contact_id</td>
 <td>integer</td>
 </tr>
 </tbody></table>
@@ -1919,75 +1848,6 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 <td>https://api.planningcenteronline.com/people/v1/lists/1/updated_by</td>
 </tr>
 </tbody></table>
-
-<h3 id="create-a-new-list">Create a new List</h3>
-<pre><code class="highlight shell"><span class="c"># to create a record...</span>
-curl -v -u token:secret -X POST -d <span class="s1">'{"data":{...}}'</span> <span class="s2">"https://api.planningcenteronline.com/people/v1/lists"</span>
-</code></pre>
-
-<aside class='info'>Only users with the role <code>viewer</code> can create this resource.</aside>
-
-<h4 id="http-request">HTTP Request</h4>
-
-<p><code class="prettyprint">POST https://api.planningcenteronline.com/people/v1/lists</code></p>
-
-<h4 id="resource-attributes">Resource Attributes</h4>
-
-<table><thead>
-<tr>
-<th>Attribute</th>
-<th>Type</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>name</td>
-<td>string</td>
-</tr>
-<tr>
-<td>status</td>
-<td>string</td>
-</tr>
-</tbody></table>
-
-<h3 id="update-an-existing-list">Update an existing List</h3>
-<pre><code class="highlight shell"><span class="c"># to update a record...</span>
-curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{...}}'</span> <span class="s2">"https://api.planningcenteronline.com/people/v1/lists/1"</span>
-</code></pre>
-
-<aside class='info'>Only users with the role <code>viewer</code> can update this resource.</aside>
-
-<h4 id="http-request">HTTP Request</h4>
-
-<p><code class="prettyprint">PATCH https://api.planningcenteronline.com/people/v1/lists/1</code></p>
-
-<h4 id="resource-attributes">Resource Attributes</h4>
-
-<table><thead>
-<tr>
-<th>Attribute</th>
-<th>Type</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>name</td>
-<td>string</td>
-</tr>
-<tr>
-<td>status</td>
-<td>string</td>
-</tr>
-</tbody></table>
-
-<h3 id="delete-a-list">Delete a List</h3>
-<pre><code class="highlight shell"><span class="c"># to delete a record...</span>
-curl -v -u token:secret -X DELETE <span class="s2">"https://api.planningcenteronline.com/people/v1/lists/1"</span>
-</code></pre>
-
-<aside class='info'>Only users with the role <code>viewer</code> can delete this resource.</aside>
-
-<h4 id="http-request">HTTP Request</h4>
-
-<p><code class="prettyprint">DELETE https://api.planningcenteronline.com/people/v1/lists/1</code></p>
 
 <h2 id="maritalstatuses">MaritalStatuses</h2>
 
@@ -2988,9 +2848,6 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
     </span><span class="s2">"graduation_year"</span><span class="p">:</span><span class="w"> </span><span class="mi">2000</span><span class="p">,</span><span class="w">
     </span><span class="s2">"site_administrator"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="s2">"people_permissions"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Viewer"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"personal_notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"this is a custom string field"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
     </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-03-18T19:31:54Z"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-04-21T22:52:53Z"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"avatar"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -3153,103 +3010,79 @@ curl -v -u token:secret -X POST -d <span class="s1">'{"data":{...}}'</span> <spa
 <tr>
 <th>Attribute</th>
 <th>Type</th>
-<th>Note</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>first_name</td>
 <td>string</td>
-<td></td>
 </tr>
 <tr>
 <td>middle_name</td>
 <td>string</td>
-<td></td>
 </tr>
 <tr>
 <td>last_name</td>
 <td>string</td>
-<td></td>
 </tr>
 <tr>
 <td>birthdate</td>
 <td>date</td>
-<td></td>
 </tr>
 <tr>
 <td>anniversary</td>
 <td>date</td>
-<td></td>
 </tr>
 <tr>
 <td>gender</td>
 <td>string</td>
-<td></td>
 </tr>
 <tr>
 <td>grade</td>
 <td>integer</td>
-<td></td>
 </tr>
 <tr>
 <td>child</td>
 <td>boolean</td>
-<td></td>
 </tr>
 <tr>
 <td>status</td>
 <td>string</td>
-<td></td>
 </tr>
 <tr>
 <td>school_type</td>
 <td>string</td>
-<td></td>
 </tr>
 <tr>
 <td>graduation_year</td>
 <td>integer</td>
-<td></td>
 </tr>
 <tr>
 <td>site_administrator</td>
 <td>boolean</td>
-<td></td>
 </tr>
 <tr>
 <td>people_permissions</td>
 <td>string</td>
-<td></td>
-</tr>
-<tr>
-<td>data</td>
-<td>object</td>
-<td>An object/hash of custom field data using field_definition.slug for the key</td>
 </tr>
 <tr>
 <td>name_prefix_id</td>
 <td>integer</td>
-<td></td>
 </tr>
 <tr>
 <td>name_suffix_id</td>
 <td>integer</td>
-<td></td>
 </tr>
 <tr>
 <td>inactive_reason_id</td>
 <td>integer</td>
-<td></td>
 </tr>
 <tr>
 <td>school_id</td>
 <td>integer</td>
-<td></td>
 </tr>
 <tr>
 <td>marital_status_id</td>
 <td>integer</td>
-<td></td>
 </tr>
 </tbody></table>
 
@@ -3270,103 +3103,79 @@ curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{...}}'</span> <sp
 <tr>
 <th>Attribute</th>
 <th>Type</th>
-<th>Note</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>first_name</td>
 <td>string</td>
-<td></td>
 </tr>
 <tr>
 <td>middle_name</td>
 <td>string</td>
-<td></td>
 </tr>
 <tr>
 <td>last_name</td>
 <td>string</td>
-<td></td>
 </tr>
 <tr>
 <td>birthdate</td>
 <td>date</td>
-<td></td>
 </tr>
 <tr>
 <td>anniversary</td>
 <td>date</td>
-<td></td>
 </tr>
 <tr>
 <td>gender</td>
 <td>string</td>
-<td></td>
 </tr>
 <tr>
 <td>grade</td>
 <td>integer</td>
-<td></td>
 </tr>
 <tr>
 <td>child</td>
 <td>boolean</td>
-<td></td>
 </tr>
 <tr>
 <td>status</td>
 <td>string</td>
-<td></td>
 </tr>
 <tr>
 <td>school_type</td>
 <td>string</td>
-<td></td>
 </tr>
 <tr>
 <td>graduation_year</td>
 <td>integer</td>
-<td></td>
 </tr>
 <tr>
 <td>site_administrator</td>
 <td>boolean</td>
-<td></td>
 </tr>
 <tr>
 <td>people_permissions</td>
 <td>string</td>
-<td></td>
-</tr>
-<tr>
-<td>data</td>
-<td>object</td>
-<td>An object/hash of custom field data using field_definition.slug for the key</td>
 </tr>
 <tr>
 <td>name_prefix_id</td>
 <td>integer</td>
-<td></td>
 </tr>
 <tr>
 <td>name_suffix_id</td>
 <td>integer</td>
-<td></td>
 </tr>
 <tr>
 <td>inactive_reason_id</td>
 <td>integer</td>
-<td></td>
 </tr>
 <tr>
 <td>school_id</td>
 <td>integer</td>
-<td></td>
 </tr>
 <tr>
 <td>marital_status_id</td>
 <td>integer</td>
-<td></td>
 </tr>
 </tbody></table>
 
@@ -3559,11 +3368,6 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 <td>filter on a specific name</td>
 </tr>
 <tr>
-<td>where[settings]</td>
-<td><em>text</em></td>
-<td>filter on a specific settings</td>
-</tr>
-<tr>
 <td>where[body]</td>
 <td><em>text</em></td>
 <td>filter on a specific body</td>
@@ -3614,7 +3418,6 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"settings"</span><span class="p">:</span><span class="w"> </span><span class="s2">"stuff"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"stuff"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="w">
@@ -3693,10 +3496,6 @@ curl -v -u token:secret -X POST -d <span class="s1">'{"data":{...}}'</span> <spa
 <td>string</td>
 </tr>
 <tr>
-<td>settings</td>
-<td>text</td>
-</tr>
-<tr>
 <td>body</td>
 <td>text</td>
 </tr>
@@ -3724,10 +3523,6 @@ curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{...}}'</span> <sp
 <tr>
 <td>name</td>
 <td>string</td>
-</tr>
-<tr>
-<td>settings</td>
-<td>text</td>
 </tr>
 <tr>
 <td>body</td>
@@ -3847,47 +3642,6 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 <td>https://api.planningcenteronline.com/people/v1/lists/1/rules/1/conditions</td>
 </tr>
 </tbody></table>
-
-<h3 id="create-a-new-rule">Create a new Rule</h3>
-<pre><code class="highlight shell"><span class="c"># to create a record...</span>
-curl -v -u token:secret -X POST -d <span class="s1">'{"data":{...}}'</span> <span class="s2">"https://api.planningcenteronline.com/people/v1/lists/1/rules"</span>
-</code></pre>
-
-<aside class='info'>Only users with the role <code>viewer</code> can create this resource.</aside>
-
-<h4 id="http-request">HTTP Request</h4>
-
-<p><code class="prettyprint">POST https://api.planningcenteronline.com/people/v1/lists/1/rules</code></p>
-
-<h4 id="resource-attributes">Resource Attributes</h4>
-
-<p><em>none</em></p>
-
-<h3 id="update-an-existing-rule">Update an existing Rule</h3>
-<pre><code class="highlight shell"><span class="c"># to update a record...</span>
-curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{...}}'</span> <span class="s2">"https://api.planningcenteronline.com/people/v1/lists/1/rules/1"</span>
-</code></pre>
-
-<aside class='info'>Only users with the role <code>viewer</code> can update this resource.</aside>
-
-<h4 id="http-request">HTTP Request</h4>
-
-<p><code class="prettyprint">PATCH https://api.planningcenteronline.com/people/v1/lists/1/rules/1</code></p>
-
-<h4 id="resource-attributes">Resource Attributes</h4>
-
-<p><em>none</em></p>
-
-<h3 id="delete-a-rule">Delete a Rule</h3>
-<pre><code class="highlight shell"><span class="c"># to delete a record...</span>
-curl -v -u token:secret -X DELETE <span class="s2">"https://api.planningcenteronline.com/people/v1/lists/1/rules/1"</span>
-</code></pre>
-
-<aside class='info'>Only users with the role <code>viewer</code> can delete this resource.</aside>
-
-<h4 id="http-request">HTTP Request</h4>
-
-<p><code class="prettyprint">DELETE https://api.planningcenteronline.com/people/v1/lists/1/rules/1</code></p>
 
 <h2 id="schooloptions">SchoolOptions</h2>
 
@@ -4099,16 +3853,6 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 <td>filter on a specific site</td>
 </tr>
 <tr>
-<td>where[profile_identifier]</td>
-<td><em>string</em></td>
-<td>filter on a specific profile_identifier</td>
-</tr>
-<tr>
-<td>where[username]</td>
-<td><em>string</em></td>
-<td>filter on a specific username</td>
-</tr>
-<tr>
 <td>where[url]</td>
 <td><em>string</em></td>
 <td>filter on a specific url</td>
@@ -4157,8 +3901,6 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="s2">"site"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"profile_identifier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"verified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"stuff"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="p">,</span><span class="w">
@@ -4227,14 +3969,6 @@ curl -v -u token:secret -X POST -d <span class="s1">'{"data":{...}}'</span> <spa
 <td>string</td>
 </tr>
 <tr>
-<td>profile_identifier</td>
-<td>string</td>
-</tr>
-<tr>
-<td>username</td>
-<td>string</td>
-</tr>
-<tr>
 <td>url</td>
 <td>string</td>
 </tr>
@@ -4265,14 +3999,6 @@ curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{...}}'</span> <sp
 </thead><tbody>
 <tr>
 <td>site</td>
-<td>string</td>
-</tr>
-<tr>
-<td>profile_identifier</td>
-<td>string</td>
-</tr>
-<tr>
-<td>username</td>
 <td>string</td>
 </tr>
 <tr>
