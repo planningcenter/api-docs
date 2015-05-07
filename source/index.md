@@ -5,7 +5,7 @@ language_tabs:
   - shell
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
+  - <a href='https://api.planningcenteronline.com/oauth/applications'>Sign Up for an Authentication Key</a>
   - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
@@ -13,15 +13,45 @@ includes:
   - errors
 
 search: true
+
+# _
 ---
 
 # Introduction
 
-Welcome to the Planning Center Online API! You can use our API to access data in some of our apps (with other apps coming online soon) through a single unified API.
+Welcome to the Planning Center Online API! You can use our API to access data in some of our apps
+(with other apps coming online soon) through a single unified API.
 
 # Authentication
 
-TODO
+There are several ways to authenticate with the API.
+
+## Session Authentication
+
+If you need to access the API via a browser, you can use session (cookie) based authentication:
+
+1. Visit [accounts.planningcenteronline.com](https://accounts.planningcenteronline.com) and sign in.
+2. Visit [api.planningcenteronline.com/people/v1/people](https://api.planningcenteronline.com/people/v1/people)
+   (for example) or other API endpoints.
+
+Browsing the API with your web browser is best experienced with an extension like JSONView, which formats
+JSON output in the browser for easier reading.
+
+## Personal Access Token
+
+Create a Personal Access Token and use HTTP Basic Auth if you just need access to your own account:
+
+1. Visit [api.planningcenteronline.com/oauth/applications](https://api.planningcenteronline.com/oauth/applications).
+2. Create a new "HTTP Basic Application"
+3. Pass your token and secret in every request using [HTTP Basic Auth](https://en.wikipedia.org/wiki/Basic_access_authentication).
+
+## OAuth 2.0
+
+If you are distributing your app to multiple churches, you should use [OAuth](https://en.wikipedia.org/wiki/OAuth).
+
+1. Visit [api.planningcenteronline.com/oauth/applications](https://api.planningcenteronline.com/oauth/applications)
+   and create an OAuth application token.
+2. Make sure your app conforms to the [OAuth 2.0](http://oauth.net/2/) specification.
 
 # JSON API
 
