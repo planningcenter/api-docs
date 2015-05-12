@@ -68,3 +68,13 @@ Gotchas:
 * Resources are wrapped in an object that looks like this: `{ "data": { ... } }`.
   This means you will need to dive one layer down into any API result to get the resource you're looking for.
 * Creating or updating resources also requires that same `data` key. Put the resource's attributes _inside_ the "data" object.
+
+# Dates & Times
+
+All dates and times conform to the [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) standard and look like this:
+
+| date | 2015-05-05 |
+| date and time | 2015-05-05T22:40:07Z |
+
+Times are always returned in UTC.
+```
