@@ -41,6 +41,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/people/1
 ```json
 {
   "data": {
+    "type": "Address",
     "id": 1,
     "city": "string",
     "state": "string",
@@ -153,6 +154,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/apps/1"
 ```json
 {
   "data": {
+    "type": "App",
     "id": 1,
     "name": "string",
     "url": "string"
@@ -218,11 +220,12 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/lists/1/
 ```json
 {
   "data": {
+    "type": "Condition",
     "id": 1,
     "application": "string",
     "definition_class": "string",
     "comparison": "string",
-    "settings": "stuff",
+    "settings": "string",
     "definition_identifier": "string",
     "description": "string",
     "created_at": "2000-01-01T12:00:00Z",
@@ -345,6 +348,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/emails/1
 ```json
 {
   "data": {
+    "type": "Email",
     "id": 1,
     "address": "string",
     "location": "string"
@@ -468,6 +472,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/people/1
 ```json
 {
   "data": {
+    "type": "FieldDatum",
     "id": 1,
     "value": "string",
     "file": "string",
@@ -601,6 +606,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/field_de
 ```json
 {
   "data": {
+    "type": "FieldDefinition",
     "id": 1,
     "data_type": "string",
     "name": "string",
@@ -731,6 +737,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/field_de
 ```json
 {
   "data": {
+    "type": "FieldOption",
     "id": 1,
     "value": "string",
     "sequence": 1
@@ -844,9 +851,10 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/househol
 ```json
 {
   "data": {
+    "type": "HouseholdMembership",
     "id": 1,
     "person_name": "string",
-    "pending": "stuff"
+    "pending": true
   }
 }
 ```
@@ -971,6 +979,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/househol
 ```json
 {
   "data": {
+    "type": "Household",
     "id": 1,
     "name": "string",
     "member_count": 1,
@@ -1096,6 +1105,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/inactive
 ```json
 {
   "data": {
+    "type": "InactiveReason",
     "id": 1,
     "value": "string"
   }
@@ -1212,6 +1222,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/lists/1"
 ```json
 {
   "data": {
+    "type": "List",
     "id": 1,
     "name": "string",
     "status": "string",
@@ -1293,6 +1304,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/marital_
 ```json
 {
   "data": {
+    "type": "MaritalStatus",
     "id": 1,
     "value": "string"
   }
@@ -1409,13 +1421,14 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/message_
 ```json
 {
   "data": {
+    "type": "MessageGroup",
     "id": 1,
     "uuid": "string",
     "message_type": "string",
     "from_address": "string",
     "subject": "string",
     "message_count": 1,
-    "system_message": "stuff",
+    "system_message": true,
     "created_at": "2000-01-01T12:00:00Z"
   }
 }
@@ -1501,6 +1514,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/messages
 ```json
 {
   "data": {
+    "type": "Message",
     "id": 1,
     "kind": 1,
     "to_addresses": "string",
@@ -1581,6 +1595,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/name_pre
 ```json
 {
   "data": {
+    "type": "NamePrefix",
     "id": 1,
     "value": "string"
   }
@@ -1686,6 +1701,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/name_suf
 ```json
 {
   "data": {
+    "type": "NameSuffix",
     "id": 1,
     "value": "string"
   }
@@ -1771,6 +1787,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v1"
 ```json
 {
   "data": {
+    "type": "Organization",
     "id": 1,
     "name": "string"
   }
@@ -2071,6 +2088,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/people/1
 ```json
 {
   "data": {
+    "type": "PhoneNumber",
     "id": 1,
     "number": "string",
     "location": "string",
@@ -2188,9 +2206,10 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/reports/
 ```json
 {
   "data": {
+    "type": "Report",
     "id": 1,
     "name": "string",
-    "body": "stuff",
+    "body": "string",
     "created_at": "2000-01-01T12:00:00Z",
     "updated_at": "2000-01-01T12:00:00Z"
   }
@@ -2314,6 +2333,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/lists/1/
 ```json
 {
   "data": {
+    "type": "Rule",
     "id": 1,
     "created_at": "2000-01-01T12:00:00Z",
     "updated_at": "2000-01-01T12:00:00Z"
@@ -2385,11 +2405,14 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/school_o
 ```json
 {
   "data": {
+    "type": "SchoolOption",
     "id": 1,
-    "value": "string",
-    "school_types": "stuff",
-    "beginning_grade": "stuff",
-    "ending_grade": "stuff"
+    "value": "Colcord Elementary",
+    "school_types": [
+      "elementary"
+    ],
+    "beginning_grade": "0",
+    "ending_grade": "5"
   }
 }
 ```
@@ -2512,10 +2535,11 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/social_p
 ```json
 {
   "data": {
+    "type": "SocialProfile",
     "id": 1,
     "site": "string",
     "url": "string",
-    "verified": "stuff",
+    "verified": true,
     "created_at": "2000-01-01T12:00:00Z",
     "updated_at": "2000-01-01T12:00:00Z"
   }
@@ -2638,6 +2662,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/tabs/1"
 ```json
 {
   "data": {
+    "type": "Tab",
     "id": 1,
     "name": "string",
     "sequence": 1,
