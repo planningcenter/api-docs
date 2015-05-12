@@ -245,6 +245,67 @@ _none_
 
 
 
+## ConnectedPeople
+
+A Connected Person is an account from a different organization linked to an account in this organization.
+
+### List Connected People
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/people/1/connected_people"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/people/v1/people/1/connected_people`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+### Get a single Connected Person
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/people/1/connected_people/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "id": 1,
+    "first_name": "string",
+    "middle_name": "string",
+    "last_name": "string",
+    "gender": "string",
+    "organization_id": 1,
+    "organization_name": "stuff"
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/people/v1/people/1/connected_people/1`
+
+#### URL Parameters
+
+_none_
+
+
+
+
+
+
+
 ## Emails
 
 An email represents an email address and location.
@@ -1833,9 +1894,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/people/1
     "people_permissions": "Viewer",
     "created_at": "2015-03-18T19:31:54Z",
     "updated_at": "2015-04-21T22:52:53Z",
-    "avatar": {
-      "url": "https://account-center-production.s3.amazonaws.com/uploads/person/1-1426707114/avatar.4.png"
-    }
+    "avatar": "https://account-center-production.s3.amazonaws.com/uploads/person/1-1426707114/avatar.4.png"
   }
 }
 ```
@@ -1870,6 +1929,7 @@ Association | URL
 ----------- | ---
 addresses | https://api.planningcenteronline.com/people/v1/people/1/addresses
 apps | https://api.planningcenteronline.com/people/v1/people/1/apps
+connected_people | https://api.planningcenteronline.com/people/v1/people/1/connected_people
 emails | https://api.planningcenteronline.com/people/v1/people/1/emails
 field_data | https://api.planningcenteronline.com/people/v1/people/1/field_data
 household_memberships | https://api.planningcenteronline.com/people/v1/people/1/household_memberships
