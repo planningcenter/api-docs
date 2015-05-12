@@ -281,13 +281,14 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v1/people/1
 ```json
 {
   "data": {
-    "id": 1,
-    "first_name": "string",
-    "middle_name": "string",
-    "last_name": "string",
-    "gender": "string",
+    "type": "ConnectedPerson",
+    "id": "1",
+    "first_name": "PiCO",
+    "middle_name": "Ross",
+    "last_name": "Das Robot",
+    "gender": "M",
     "organization_id": 1,
-    "organization_name": "stuff"
+    "organization_name": "Ministry Centered Technologies"
   }
 }
 ```
