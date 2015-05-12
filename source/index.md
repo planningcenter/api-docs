@@ -73,8 +73,9 @@ Gotchas:
 
 All dates and times conform to the [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) standard and look like this:
 
-| date | 2015-05-05 |
-| date and time | 2015-05-05T22:40:07Z |
+| value         | format               | example              |
+| ------------- | -------------------- | -------------------- |
+| date          | YYYY-MM-DD           | 2015-05-05           |
+| date and time | YYYY-MM-DDTHH:MM:SSZ | 2015-05-05T22:40:07Z |
 
-Times are always returned in UTC.
-```
+<aside class='info'>Times are always returned in UTC.</aside>
