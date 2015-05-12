@@ -1,6 +1,6 @@
-# People
+# PCO People
 
-Our People app helps you manage contact data, membership info, and everything you need to know about your people with confidence.
+PCO People helps you manage contact data, membership info, and everything you need to know about your people with confidence.
 
 ## Addresses
 
