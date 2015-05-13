@@ -15,7 +15,7 @@ task :fetch do
   %w(
     people
   ).each do |app|
-    url = "#{base_url}/#{app}/v1/docs"
+    url = "#{base_url}/#{app}/v2/docs"
     p "getting #{url}..."
     content = open(url).read
     path = "source/includes/_#{app}.md"

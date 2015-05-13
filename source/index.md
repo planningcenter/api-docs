@@ -31,7 +31,7 @@ There are several ways to authenticate with the API.
 If you need to access the API via a browser, you can use session (cookie) based authentication:
 
 1. Visit [accounts.planningcenteronline.com](https://accounts.planningcenteronline.com) and sign in.
-2. Visit [api.planningcenteronline.com/people/v1/people](https://api.planningcenteronline.com/people/v1/people)
+2. Visit [api.planningcenteronline.com/people/v2/people](https://api.planningcenteronline.com/people/v2/people)
    (for example) or other API endpoints.
 
 Browsing the API with your web browser is best experienced with an extension like JSONView, which formats
