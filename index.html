@@ -1032,27 +1032,33 @@ curl -v -u token:secret -X POST -d <span class="s1">'{"data":{...}}'</span> <spa
 <tr>
 <th>Attribute</th>
 <th>Type</th>
+<th>Note</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>data_type</td>
 <td>string</td>
+<td>Acceptable values are &ldquo;string&rdquo;, &ldquo;text&rdquo;, &ldquo;date&rdquo;, &ldquo;boolean&rdquo;, &ldquo;select&rdquo;, &ldquo;checkboxes&rdquo;, &ldquo;header&rdquo;, and &ldquo;file&rdquo;.</td>
 </tr>
 <tr>
 <td>name</td>
 <td>string</td>
+<td></td>
 </tr>
 <tr>
 <td>sequence</td>
 <td>integer</td>
+<td></td>
 </tr>
 <tr>
 <td>slug</td>
 <td>string</td>
+<td></td>
 </tr>
 <tr>
 <td>deleted_at</td>
 <td>datetime</td>
+<td></td>
 </tr>
 </tbody></table>
 
@@ -1073,27 +1079,33 @@ curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{...}}'</span> <sp
 <tr>
 <th>Attribute</th>
 <th>Type</th>
+<th>Note</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>data_type</td>
 <td>string</td>
+<td>Acceptable values are &ldquo;string&rdquo;, &ldquo;text&rdquo;, &ldquo;date&rdquo;, &ldquo;boolean&rdquo;, &ldquo;select&rdquo;, &ldquo;checkboxes&rdquo;, &ldquo;header&rdquo;, and &ldquo;file&rdquo;.</td>
 </tr>
 <tr>
 <td>name</td>
 <td>string</td>
+<td></td>
 </tr>
 <tr>
 <td>sequence</td>
 <td>integer</td>
+<td></td>
 </tr>
 <tr>
 <td>slug</td>
 <td>string</td>
+<td></td>
 </tr>
 <tr>
 <td>deleted_at</td>
 <td>datetime</td>
+<td></td>
 </tr>
 </tbody></table>
 
@@ -2825,6 +2837,11 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 <td>filter on a specific child</td>
 </tr>
 <tr>
+<td>where[status]</td>
+<td><em>string</em></td>
+<td>filter on a specific status</td>
+</tr>
+<tr>
 <td>where[school_type]</td>
 <td><em>string</em></td>
 <td>filter on a specific school_type</td>
@@ -2853,11 +2870,6 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 <td>where[updated_at]</td>
 <td><em>datetime</em></td>
 <td>filter on a specific updated_at</td>
-</tr>
-<tr>
-<td>where[status]</td>
-<td><em>string</em></td>
-<td>filter on a specific status</td>
 </tr>
 <tr>
 <td>include</td>
@@ -3148,7 +3160,7 @@ curl -v -u token:secret -X POST -d <span class="s1">'{"data":{...}}'</span> <spa
 <tr>
 <td>gender</td>
 <td>string</td>
-<td></td>
+<td>Acceptable values are &ldquo;M&rdquo; and &ldquo;F&rdquo;.</td>
 </tr>
 <tr>
 <td>grade</td>
@@ -3158,12 +3170,17 @@ curl -v -u token:secret -X POST -d <span class="s1">'{"data":{...}}'</span> <spa
 <tr>
 <td>child</td>
 <td>boolean</td>
-<td></td>
+<td>Acceptable values are true and false.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>Acceptable values are &ldquo;active&rdquo;, &ldquo;pending&rdquo;, and &ldquo;inactive&rdquo;.</td>
 </tr>
 <tr>
 <td>school_type</td>
 <td>string</td>
-<td></td>
+<td>Acceptable values are &ldquo;elementary&rdquo;, &ldquo;middle_school&rdquo;, &ldquo;high_school&rdquo;, &ldquo;college&rdquo;, and &ldquo;other&rdquo;.</td>
 </tr>
 <tr>
 <td>graduation_year</td>
@@ -3178,12 +3195,7 @@ curl -v -u token:secret -X POST -d <span class="s1">'{"data":{...}}'</span> <spa
 <tr>
 <td>people_permissions</td>
 <td>string</td>
-<td></td>
-</tr>
-<tr>
-<td>status</td>
-<td>string</td>
-<td>Acceptable values are &ldquo;active&rdquo;, &ldquo;pending&rdquo;, and &ldquo;inactive&rdquo;</td>
+<td>Acceptable values are &ldquo;Viewer&rdquo;, &ldquo;Editor&rdquo;, and &ldquo;Manager&rdquo;.</td>
 </tr>
 <tr>
 <td>name_prefix_id</td>
@@ -3260,7 +3272,7 @@ curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{...}}'</span> <sp
 <tr>
 <td>gender</td>
 <td>string</td>
-<td></td>
+<td>Acceptable values are &ldquo;M&rdquo; and &ldquo;F&rdquo;.</td>
 </tr>
 <tr>
 <td>grade</td>
@@ -3270,12 +3282,17 @@ curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{...}}'</span> <sp
 <tr>
 <td>child</td>
 <td>boolean</td>
-<td></td>
+<td>Acceptable values are true and false.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>Acceptable values are &ldquo;active&rdquo;, &ldquo;pending&rdquo;, and &ldquo;inactive&rdquo;.</td>
 </tr>
 <tr>
 <td>school_type</td>
 <td>string</td>
-<td></td>
+<td>Acceptable values are &ldquo;elementary&rdquo;, &ldquo;middle_school&rdquo;, &ldquo;high_school&rdquo;, &ldquo;college&rdquo;, and &ldquo;other&rdquo;.</td>
 </tr>
 <tr>
 <td>graduation_year</td>
@@ -3290,12 +3307,7 @@ curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{...}}'</span> <sp
 <tr>
 <td>people_permissions</td>
 <td>string</td>
-<td></td>
-</tr>
-<tr>
-<td>status</td>
-<td>string</td>
-<td>Acceptable values are &ldquo;active&rdquo;, &ldquo;pending&rdquo;, and &ldquo;inactive&rdquo;</td>
+<td>Acceptable values are &ldquo;Viewer&rdquo;, &ldquo;Editor&rdquo;, and &ldquo;Manager&rdquo;.</td>
 </tr>
 <tr>
 <td>name_prefix_id</td>
@@ -3908,23 +3920,28 @@ curl -v -u token:secret -X POST -d <span class="s1">'{"data":{...}}'</span> <spa
 <tr>
 <th>Attribute</th>
 <th>Type</th>
+<th>Note</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>value</td>
 <td>string</td>
+<td></td>
 </tr>
 <tr>
 <td>school_types</td>
+<td></td>
 <td></td>
 </tr>
 <tr>
 <td>beginning_grade</td>
 <td></td>
+<td>Acceptable values are &ldquo;-1&rdquo;, &ldquo;0&rdquo;, &ldquo;1&rdquo;, &ldquo;2&rdquo;, &ldquo;3&rdquo;, &ldquo;4&rdquo;, &ldquo;5&rdquo;, &ldquo;6&rdquo;, &ldquo;7&rdquo;, &ldquo;8&rdquo;, &ldquo;9&rdquo;, &ldquo;10&rdquo;, &ldquo;11&rdquo;, and &ldquo;12&rdquo;.</td>
 </tr>
 <tr>
 <td>ending_grade</td>
 <td></td>
+<td>Acceptable values are &ldquo;-1&rdquo;, &ldquo;0&rdquo;, &ldquo;1&rdquo;, &ldquo;2&rdquo;, &ldquo;3&rdquo;, &ldquo;4&rdquo;, &ldquo;5&rdquo;, &ldquo;6&rdquo;, &ldquo;7&rdquo;, &ldquo;8&rdquo;, &ldquo;9&rdquo;, &ldquo;10&rdquo;, &ldquo;11&rdquo;, and &ldquo;12&rdquo;.</td>
 </tr>
 </tbody></table>
 
@@ -3945,23 +3962,28 @@ curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{...}}'</span> <sp
 <tr>
 <th>Attribute</th>
 <th>Type</th>
+<th>Note</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>value</td>
 <td>string</td>
+<td></td>
 </tr>
 <tr>
 <td>school_types</td>
+<td></td>
 <td></td>
 </tr>
 <tr>
 <td>beginning_grade</td>
 <td></td>
+<td>Acceptable values are &ldquo;-1&rdquo;, &ldquo;0&rdquo;, &ldquo;1&rdquo;, &ldquo;2&rdquo;, &ldquo;3&rdquo;, &ldquo;4&rdquo;, &ldquo;5&rdquo;, &ldquo;6&rdquo;, &ldquo;7&rdquo;, &ldquo;8&rdquo;, &ldquo;9&rdquo;, &ldquo;10&rdquo;, &ldquo;11&rdquo;, and &ldquo;12&rdquo;.</td>
 </tr>
 <tr>
 <td>ending_grade</td>
 <td></td>
+<td>Acceptable values are &ldquo;-1&rdquo;, &ldquo;0&rdquo;, &ldquo;1&rdquo;, &ldquo;2&rdquo;, &ldquo;3&rdquo;, &ldquo;4&rdquo;, &ldquo;5&rdquo;, &ldquo;6&rdquo;, &ldquo;7&rdquo;, &ldquo;8&rdquo;, &ldquo;9&rdquo;, &ldquo;10&rdquo;, &ldquo;11&rdquo;, and &ldquo;12&rdquo;.</td>
 </tr>
 </tbody></table>
 
