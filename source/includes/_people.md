@@ -1859,13 +1859,13 @@ where[anniversary] | _date_ | filter on a specific anniversary
 where[gender] | _string_ | filter on a specific gender
 where[grade] | _integer_ | filter on a specific grade
 where[child] | _boolean_ | filter on a specific child
-where[status] | _string_ | filter on a specific status
 where[school_type] | _string_ | filter on a specific school_type
 where[graduation_year] | _integer_ | filter on a specific graduation_year
 where[site_administrator] | _boolean_ | filter on a specific site_administrator
 where[people_permissions] | _string_ | filter on a specific people_permissions
 where[created_at] | _datetime_ | filter on a specific created_at
 where[updated_at] | _datetime_ | filter on a specific updated_at
+where[status] | _string_ | filter on a specific status
 include | emails | include associated emails
 include | addresses | include associated addresses
 include | phone_numbers | include associated phone_numbers
@@ -1976,8 +1976,8 @@ curl -v -u token:secret -X POST -d '{"data":{...}}' "https://api.planningcentero
 
 #### Resource Attributes
 
-Attribute | Type
---------- | ----
+Attribute | Type | Note
+--------- | ---- | ----
 first_name | string
 middle_name | string
 last_name | string
@@ -1986,11 +1986,11 @@ anniversary | date
 gender | string
 grade | integer
 child | boolean
-status | string
 school_type | string
 graduation_year | integer
 site_administrator | boolean
 people_permissions | string
+status | string | Acceptable values are "active", "pending", and "inactive"
 name_prefix_id | integer
 name_suffix_id | integer
 inactive_reason_id | integer
@@ -2013,8 +2013,8 @@ curl -v -u token:secret -X PATCH -d '{"data":{...}}' "https://api.planningcenter
 
 #### Resource Attributes
 
-Attribute | Type
---------- | ----
+Attribute | Type | Note
+--------- | ---- | ----
 first_name | string
 middle_name | string
 last_name | string
@@ -2023,11 +2023,11 @@ anniversary | date
 gender | string
 grade | integer
 child | boolean
-status | string
 school_type | string
 graduation_year | integer
 site_administrator | boolean
 people_permissions | string
+status | string | Acceptable values are "active", "pending", and "inactive"
 name_prefix_id | integer
 name_suffix_id | integer
 inactive_reason_id | integer
