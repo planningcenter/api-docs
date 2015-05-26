@@ -651,9 +651,9 @@ curl -v -u token:secret -X POST -d '{"data":{...}}' "https://api.planningcentero
 
 #### Resource Attributes
 
-Attribute | Type
---------- | ----
-data_type | string
+Attribute | Type | Note
+--------- | ---- | ----
+data_type | string | Acceptable values are "string", "text", "date", "boolean", "select", "checkboxes", "header", and "file".
 name | string
 sequence | integer
 slug | string
@@ -675,9 +675,9 @@ curl -v -u token:secret -X PATCH -d '{"data":{...}}' "https://api.planningcenter
 
 #### Resource Attributes
 
-Attribute | Type
---------- | ----
-data_type | string
+Attribute | Type | Note
+--------- | ---- | ----
+data_type | string | Acceptable values are "string", "text", "date", "boolean", "select", "checkboxes", "header", and "file".
 name | string
 sequence | integer
 slug | string
@@ -1859,13 +1859,13 @@ where[anniversary] | _date_ | filter on a specific anniversary
 where[gender] | _string_ | filter on a specific gender
 where[grade] | _integer_ | filter on a specific grade
 where[child] | _boolean_ | filter on a specific child
+where[status] | _string_ | filter on a specific status
 where[school_type] | _string_ | filter on a specific school_type
 where[graduation_year] | _integer_ | filter on a specific graduation_year
 where[site_administrator] | _boolean_ | filter on a specific site_administrator
 where[people_permissions] | _string_ | filter on a specific people_permissions
 where[created_at] | _datetime_ | filter on a specific created_at
 where[updated_at] | _datetime_ | filter on a specific updated_at
-where[status] | _string_ | filter on a specific status
 include | emails | include associated emails
 include | addresses | include associated addresses
 include | phone_numbers | include associated phone_numbers
@@ -1983,14 +1983,14 @@ middle_name | string
 last_name | string
 birthdate | date
 anniversary | date
-gender | string
+gender | string | Acceptable values are "M" and "F".
 grade | integer
-child | boolean
-school_type | string
+child | boolean | Acceptable values are true and false.
+status | string | Acceptable values are "active", "pending", and "inactive".
+school_type | string | Acceptable values are "elementary", "middle_school", "high_school", "college", and "other".
 graduation_year | integer
 site_administrator | boolean
-people_permissions | string
-status | string | Acceptable values are "active", "pending", and "inactive"
+people_permissions | string | Acceptable values are "Viewer", "Editor", and "Manager".
 name_prefix_id | integer
 name_suffix_id | integer
 inactive_reason_id | integer
@@ -2020,14 +2020,14 @@ middle_name | string
 last_name | string
 birthdate | date
 anniversary | date
-gender | string
+gender | string | Acceptable values are "M" and "F".
 grade | integer
-child | boolean
-school_type | string
+child | boolean | Acceptable values are true and false.
+status | string | Acceptable values are "active", "pending", and "inactive".
+school_type | string | Acceptable values are "elementary", "middle_school", "high_school", "college", and "other".
 graduation_year | integer
 site_administrator | boolean
-people_permissions | string
-status | string | Acceptable values are "active", "pending", and "inactive"
+people_permissions | string | Acceptable values are "Viewer", "Editor", and "Manager".
 name_prefix_id | integer
 name_suffix_id | integer
 inactive_reason_id | integer
@@ -2449,12 +2449,12 @@ curl -v -u token:secret -X POST -d '{"data":{...}}' "https://api.planningcentero
 
 #### Resource Attributes
 
-Attribute | Type
---------- | ----
+Attribute | Type | Note
+--------- | ---- | ----
 value | string
 school_types | 
-beginning_grade | 
-ending_grade | 
+beginning_grade |  | Acceptable values are "-1", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", and "12".
+ending_grade |  | Acceptable values are "-1", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", and "12".
 
 ### Update an existing School Option
 
@@ -2472,12 +2472,12 @@ curl -v -u token:secret -X PATCH -d '{"data":{...}}' "https://api.planningcenter
 
 #### Resource Attributes
 
-Attribute | Type
---------- | ----
+Attribute | Type | Note
+--------- | ---- | ----
 value | string
 school_types | 
-beginning_grade | 
-ending_grade | 
+beginning_grade |  | Acceptable values are "-1", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", and "12".
+ending_grade |  | Acceptable values are "-1", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", and "12".
 
 ### Delete a School Option
 
