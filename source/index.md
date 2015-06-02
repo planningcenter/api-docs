@@ -54,7 +54,7 @@ If you are distributing your app to multiple churches, you should use [OAuth](ht
 
 # JSON API
 
-This API is built to conform to the [JSON API](http://jsonapi.org/) standard.
+This API is built to conform to the [JSON API](http://jsonapi.org/) 1.0 specification.
 
 Some benefits:
 
@@ -64,9 +64,8 @@ Some benefits:
 
 Gotchas:
 
-* Resources are wrapped in an object that looks like this: `{ "data": { ... } }`.
-  This means you will need to dive one layer down into any API result to get the resource you're looking for.
-* Creating or updating resources also requires that same `data` key. Put the resource's attributes _inside_ the "data" object.
+* Resources are wrapped in an object that looks like this: `{ "data": { "type": "Thing", "id": "1", "attributes": { ... } } }`.
+* Creating or updating resources also requires that same structure. Be sure to pass the "type" key and put the resource's attributes _inside_ the "attributes" object.
 
 # Dates & Times
 

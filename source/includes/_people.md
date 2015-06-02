@@ -42,10 +42,12 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1
 {
   "data": {
     "type": "Address",
-    "id": 1,
-    "city": "string",
-    "state": "string",
-    "zip": "string"
+    "id": "1",
+    "attributes": {
+      "city": "string",
+      "state": "string",
+      "zip": "string"
+    }
   }
 }
 ```
@@ -62,7 +64,7 @@ _none_
 
 ```shell
 # to create a record...
-curl -v -u token:secret -X POST -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v2/people/1/addresses"
+curl -v -u token:secret -X POST -d '{"data":{"type":"Address","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/people/1/addresses"
 ```
 
 
@@ -84,7 +86,7 @@ zip | string
 
 ```shell
 # to update a record...
-curl -v -u token:secret -X PATCH -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v2/people/1/addresses/1"
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"Address","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/people/1/addresses/1"
 ```
 
 
@@ -155,9 +157,11 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/apps/1"
 {
   "data": {
     "type": "App",
-    "id": 1,
-    "name": "string",
-    "url": "string"
+    "id": "1",
+    "attributes": {
+      "name": "string",
+      "url": "string"
+    }
   }
 }
 ```
@@ -221,15 +225,17 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/lists/1/
 {
   "data": {
     "type": "Condition",
-    "id": 1,
-    "application": "string",
-    "definition_class": "string",
-    "comparison": "string",
-    "settings": "string",
-    "definition_identifier": "string",
-    "description": "string",
-    "created_at": "2000-01-01T12:00:00Z",
-    "updated_at": "2000-01-01T12:00:00Z"
+    "id": "1",
+    "attributes": {
+      "application": "string",
+      "definition_class": "string",
+      "comparison": "string",
+      "settings": "string",
+      "definition_identifier": "string",
+      "description": "string",
+      "created_at": "2000-01-01T12:00:00Z",
+      "updated_at": "2000-01-01T12:00:00Z"
+    }
   }
 }
 ```
@@ -286,12 +292,15 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1
   "data": {
     "type": "ConnectedPerson",
     "id": "1",
-    "first_name": "PiCO",
-    "middle_name": "Ross",
-    "last_name": "Das Robot",
-    "gender": "M",
-    "organization_id": 1,
-    "organization_name": "Ministry Centered Technologies"
+    "attributes": {
+      "type": "ConnectedPerson",
+      "first_name": "PiCO",
+      "middle_name": "Ross",
+      "last_name": "Das Robot",
+      "gender": "M",
+      "organization_id": 1,
+      "organization_name": "Ministry Centered Technologies"
+    }
   }
 }
 ```
@@ -349,9 +358,11 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/emails/1
 {
   "data": {
     "type": "Email",
-    "id": 1,
-    "address": "string",
-    "location": "string"
+    "id": "1",
+    "attributes": {
+      "address": "string",
+      "location": "string"
+    }
   }
 }
 ```
@@ -376,7 +387,7 @@ person | https://api.planningcenteronline.com/people/v2/emails/1/person
 
 ```shell
 # to create a record...
-curl -v -u token:secret -X POST -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v2/people/1/emails"
+curl -v -u token:secret -X POST -d '{"data":{"type":"Email","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/people/1/emails"
 ```
 
 
@@ -397,7 +408,7 @@ location | string
 
 ```shell
 # to update a record...
-curl -v -u token:secret -X PATCH -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v2/emails/1"
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"Email","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/emails/1"
 ```
 
 
@@ -473,11 +484,13 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1
 {
   "data": {
     "type": "FieldDatum",
-    "id": 1,
-    "value": "string",
-    "file": "string",
-    "file_size": 1,
-    "file_content_type": "string"
+    "id": "1",
+    "attributes": {
+      "value": "string",
+      "file": "string",
+      "file_size": 1,
+      "file_content_type": "string"
+    }
   }
 }
 ```
@@ -508,7 +521,7 @@ field_option | https://api.planningcenteronline.com/people/v2/people/1/field_dat
 
 ```shell
 # to create a record...
-curl -v -u token:secret -X POST -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v2/people/1/field_data"
+curl -v -u token:secret -X POST -d '{"data":{"type":"FieldDatum","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/people/1/field_data"
 ```
 
 
@@ -530,7 +543,7 @@ file | string
 
 ```shell
 # to update a record...
-curl -v -u token:secret -X PATCH -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v2/people/1/field_data/1"
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"FieldDatum","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/people/1/field_data/1"
 ```
 
 
@@ -607,12 +620,14 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/field_de
 {
   "data": {
     "type": "FieldDefinition",
-    "id": 1,
-    "data_type": "string",
-    "name": "string",
-    "sequence": 1,
-    "slug": "string",
-    "deleted_at": "2000-01-01T12:00:00Z"
+    "id": "1",
+    "attributes": {
+      "data_type": "string",
+      "name": "string",
+      "sequence": 1,
+      "slug": "string",
+      "deleted_at": "2000-01-01T12:00:00Z"
+    }
   }
 }
 ```
@@ -639,7 +654,7 @@ field_options | https://api.planningcenteronline.com/people/v2/field_definitions
 
 ```shell
 # to create a record...
-curl -v -u token:secret -X POST -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v2/tabs/1/field_definitions"
+curl -v -u token:secret -X POST -d '{"data":{"type":"FieldDefinition","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/tabs/1/field_definitions"
 ```
 
 
@@ -663,7 +678,7 @@ deleted_at | datetime
 
 ```shell
 # to update a record...
-curl -v -u token:secret -X PATCH -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v2/field_definitions/1"
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"FieldDefinition","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/field_definitions/1"
 ```
 
 
@@ -738,9 +753,11 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/field_de
 {
   "data": {
     "type": "FieldOption",
-    "id": 1,
-    "value": "string",
-    "sequence": 1
+    "id": "1",
+    "attributes": {
+      "value": "string",
+      "sequence": 1
+    }
   }
 }
 ```
@@ -757,7 +774,7 @@ _none_
 
 ```shell
 # to create a record...
-curl -v -u token:secret -X POST -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v2/field_definitions/1/field_options"
+curl -v -u token:secret -X POST -d '{"data":{"type":"FieldOption","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/field_definitions/1/field_options"
 ```
 
 
@@ -778,7 +795,7 @@ sequence | integer
 
 ```shell
 # to update a record...
-curl -v -u token:secret -X PATCH -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v2/field_definitions/1/field_options/1"
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"FieldOption","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/field_definitions/1/field_options/1"
 ```
 
 
@@ -852,9 +869,11 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/househol
 {
   "data": {
     "type": "HouseholdMembership",
-    "id": 1,
-    "person_name": "string",
-    "pending": true
+    "id": "1",
+    "attributes": {
+      "person_name": "string",
+      "pending": true
+    }
   }
 }
 ```
@@ -885,7 +904,7 @@ person | https://api.planningcenteronline.com/people/v2/households/1/household_m
 
 ```shell
 # to create a record...
-curl -v -u token:secret -X POST -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v2/households/1/household_memberships"
+curl -v -u token:secret -X POST -d '{"data":{"type":"HouseholdMembership","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/households/1/household_memberships"
 ```
 
 
@@ -906,7 +925,7 @@ pending | boolean
 
 ```shell
 # to update a record...
-curl -v -u token:secret -X PATCH -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1"
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"HouseholdMembership","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1"
 ```
 
 
@@ -980,13 +999,15 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/househol
 {
   "data": {
     "type": "Household",
-    "id": 1,
-    "name": "string",
-    "member_count": 1,
-    "primary_contact_name": "string",
-    "created_at": "2000-01-01T12:00:00Z",
-    "updated_at": "2000-01-01T12:00:00Z",
-    "primary_contact_id": 1
+    "id": "1",
+    "attributes": {
+      "name": "string",
+      "member_count": 1,
+      "primary_contact_name": "string",
+      "created_at": "2000-01-01T12:00:00Z",
+      "updated_at": "2000-01-01T12:00:00Z",
+      "primary_contact_id": 1
+    }
   }
 }
 ```
@@ -1014,7 +1035,7 @@ people | https://api.planningcenteronline.com/people/v2/households/1/people
 
 ```shell
 # to create a record...
-curl -v -u token:secret -X POST -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v2/households"
+curl -v -u token:secret -X POST -d '{"data":{"type":"Household","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/households"
 ```
 
 
@@ -1036,7 +1057,7 @@ primary_contact_id | integer
 
 ```shell
 # to update a record...
-curl -v -u token:secret -X PATCH -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v2/households/1"
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"Household","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/households/1"
 ```
 
 
@@ -1106,8 +1127,10 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/inactive
 {
   "data": {
     "type": "InactiveReason",
-    "id": 1,
-    "value": "string"
+    "id": "1",
+    "attributes": {
+      "value": "string"
+    }
   }
 }
 ```
@@ -1124,7 +1147,7 @@ _none_
 
 ```shell
 # to create a record...
-curl -v -u token:secret -X POST -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v2/inactive_reasons"
+curl -v -u token:secret -X POST -d '{"data":{"type":"InactiveReason","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/inactive_reasons"
 ```
 
 
@@ -1144,7 +1167,7 @@ value | string
 
 ```shell
 # to update a record...
-curl -v -u token:secret -X PATCH -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v2/inactive_reasons/1"
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"InactiveReason","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/inactive_reasons/1"
 ```
 
 
@@ -1223,12 +1246,14 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/lists/1"
 {
   "data": {
     "type": "List",
-    "id": 1,
-    "name": "string",
-    "status": "string",
-    "batch_completed_at": "2000-01-01T12:00:00Z",
-    "created_at": "2000-01-01T12:00:00Z",
-    "updated_at": "2000-01-01T12:00:00Z"
+    "id": "1",
+    "attributes": {
+      "name": "string",
+      "status": "string",
+      "batch_completed_at": "2000-01-01T12:00:00Z",
+      "created_at": "2000-01-01T12:00:00Z",
+      "updated_at": "2000-01-01T12:00:00Z"
+    }
   }
 }
 ```
@@ -1305,8 +1330,10 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/marital_
 {
   "data": {
     "type": "MaritalStatus",
-    "id": 1,
-    "value": "string"
+    "id": "1",
+    "attributes": {
+      "value": "string"
+    }
   }
 }
 ```
@@ -1323,7 +1350,7 @@ _none_
 
 ```shell
 # to create a record...
-curl -v -u token:secret -X POST -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v2/marital_statuses"
+curl -v -u token:secret -X POST -d '{"data":{"type":"MaritalStatus","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/marital_statuses"
 ```
 
 
@@ -1343,7 +1370,7 @@ value | string
 
 ```shell
 # to update a record...
-curl -v -u token:secret -X PATCH -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v2/marital_statuses/1"
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"MaritalStatus","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/marital_statuses/1"
 ```
 
 
@@ -1422,14 +1449,16 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/message_
 {
   "data": {
     "type": "MessageGroup",
-    "id": 1,
-    "uuid": "string",
-    "message_type": "string",
-    "from_address": "string",
-    "subject": "string",
-    "message_count": 1,
-    "system_message": true,
-    "created_at": "2000-01-01T12:00:00Z"
+    "id": "1",
+    "attributes": {
+      "uuid": "string",
+      "message_type": "string",
+      "from_address": "string",
+      "subject": "string",
+      "message_count": 1,
+      "system_message": true,
+      "created_at": "2000-01-01T12:00:00Z"
+    }
   }
 }
 ```
@@ -1515,17 +1544,19 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/messages
 {
   "data": {
     "type": "Message",
-    "id": 1,
-    "kind": 1,
-    "to_addresses": "string",
-    "subject": "string",
-    "file": "string",
-    "delivery_status": "string",
-    "reject_reason": "string",
-    "created_at": "2000-01-01T12:00:00Z",
-    "sent_at": "2000-01-01T12:00:00Z",
-    "bounced_at": "2000-01-01T12:00:00Z",
-    "rejection_notification_sent_at": "2000-01-01T12:00:00Z"
+    "id": "1",
+    "attributes": {
+      "kind": 1,
+      "to_addresses": "string",
+      "subject": "string",
+      "file": "string",
+      "delivery_status": "string",
+      "reject_reason": "string",
+      "created_at": "2000-01-01T12:00:00Z",
+      "sent_at": "2000-01-01T12:00:00Z",
+      "bounced_at": "2000-01-01T12:00:00Z",
+      "rejection_notification_sent_at": "2000-01-01T12:00:00Z"
+    }
   }
 }
 ```
@@ -1596,8 +1627,10 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/name_pre
 {
   "data": {
     "type": "NamePrefix",
-    "id": 1,
-    "value": "string"
+    "id": "1",
+    "attributes": {
+      "value": "string"
+    }
   }
 }
 ```
@@ -1614,7 +1647,7 @@ _none_
 
 ```shell
 # to create a record...
-curl -v -u token:secret -X POST -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v2/name_prefixes"
+curl -v -u token:secret -X POST -d '{"data":{"type":"NamePrefix","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/name_prefixes"
 ```
 
 
@@ -1634,7 +1667,7 @@ value | string
 
 ```shell
 # to update a record...
-curl -v -u token:secret -X PATCH -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v2/name_prefixes/1"
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"NamePrefix","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/name_prefixes/1"
 ```
 
 
@@ -1702,8 +1735,10 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/name_suf
 {
   "data": {
     "type": "NameSuffix",
-    "id": 1,
-    "value": "string"
+    "id": "1",
+    "attributes": {
+      "value": "string"
+    }
   }
 }
 ```
@@ -1720,7 +1755,7 @@ _none_
 
 ```shell
 # to create a record...
-curl -v -u token:secret -X POST -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v2/name_suffixes"
+curl -v -u token:secret -X POST -d '{"data":{"type":"NameSuffix","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/name_suffixes"
 ```
 
 
@@ -1740,7 +1775,7 @@ value | string
 
 ```shell
 # to update a record...
-curl -v -u token:secret -X PATCH -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v2/name_suffixes/1"
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"NameSuffix","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/name_suffixes/1"
 ```
 
 
@@ -1788,8 +1823,10 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2"
 {
   "data": {
     "type": "Organization",
-    "id": 1,
-    "name": "string"
+    "id": "1",
+    "attributes": {
+      "name": "string"
+    }
   }
 }
 ```
@@ -1897,22 +1934,25 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1
   "data": {
     "type": "Person",
     "id": "1",
-    "first_name": "PiCO",
-    "middle_name": "Ross",
-    "last_name": "Das Robot",
-    "birthdate": "1982-01-01",
-    "anniversary": "2012-04-01",
-    "gender": "M",
-    "grade": null,
-    "child": false,
-    "status": "active",
-    "school_type": "elementary",
-    "graduation_year": 2000,
-    "site_administrator": true,
-    "people_permissions": "Viewer",
-    "created_at": "2015-03-18T19:31:54Z",
-    "updated_at": "2015-04-21T22:52:53Z",
-    "avatar": "https://account-center-production.s3.amazonaws.com/uploads/person/1-1426707114/avatar.4.png"
+    "attributes": {
+      "type": "Person",
+      "first_name": "PiCO",
+      "middle_name": "Ross",
+      "last_name": "Das Robot",
+      "birthdate": "1982-01-01",
+      "anniversary": "2012-04-01",
+      "gender": "M",
+      "grade": null,
+      "child": false,
+      "status": "active",
+      "school_type": "elementary",
+      "graduation_year": 2000,
+      "site_administrator": true,
+      "people_permissions": "Viewer",
+      "created_at": "2015-03-18T19:31:54Z",
+      "updated_at": "2015-04-21T22:52:53Z",
+      "avatar": "https://account-center-production.s3.amazonaws.com/uploads/person/1-1426707114/avatar.4.png"
+    }
   }
 }
 ```
@@ -1964,7 +2004,7 @@ social_profiles | https://api.planningcenteronline.com/people/v2/people/1/social
 
 ```shell
 # to create a record...
-curl -v -u token:secret -X POST -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v2/people"
+curl -v -u token:secret -X POST -d '{"data":{"type":"Person","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/people"
 ```
 
 
@@ -2001,7 +2041,7 @@ marital_status_id | integer
 
 ```shell
 # to update a record...
-curl -v -u token:secret -X PATCH -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v2/people/1"
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"Person","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/people/1"
 ```
 
 
@@ -2089,11 +2129,13 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1
 {
   "data": {
     "type": "PhoneNumber",
-    "id": 1,
-    "number": "string",
-    "location": "string",
-    "created_at": "2000-01-01T12:00:00Z",
-    "updated_at": "2000-01-01T12:00:00Z"
+    "id": "1",
+    "attributes": {
+      "number": "string",
+      "location": "string",
+      "created_at": "2000-01-01T12:00:00Z",
+      "updated_at": "2000-01-01T12:00:00Z"
+    }
   }
 }
 ```
@@ -2110,7 +2152,7 @@ _none_
 
 ```shell
 # to create a record...
-curl -v -u token:secret -X POST -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v2/people/1/phone_numbers"
+curl -v -u token:secret -X POST -d '{"data":{"type":"PhoneNumber","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/people/1/phone_numbers"
 ```
 
 
@@ -2131,7 +2173,7 @@ location | string
 
 ```shell
 # to update a record...
-curl -v -u token:secret -X PATCH -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v2/people/1/phone_numbers/1"
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"PhoneNumber","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/people/1/phone_numbers/1"
 ```
 
 
@@ -2207,11 +2249,13 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/reports/
 {
   "data": {
     "type": "Report",
-    "id": 1,
-    "name": "string",
-    "body": "string",
-    "created_at": "2000-01-01T12:00:00Z",
-    "updated_at": "2000-01-01T12:00:00Z"
+    "id": "1",
+    "attributes": {
+      "name": "string",
+      "body": "string",
+      "created_at": "2000-01-01T12:00:00Z",
+      "updated_at": "2000-01-01T12:00:00Z"
+    }
   }
 }
 ```
@@ -2242,7 +2286,7 @@ updated_by | https://api.planningcenteronline.com/people/v2/reports/1/updated_by
 
 ```shell
 # to create a record...
-curl -v -u token:secret -X POST -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v2/reports"
+curl -v -u token:secret -X POST -d '{"data":{"type":"Report","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/reports"
 ```
 
 
@@ -2263,7 +2307,7 @@ body | text
 
 ```shell
 # to update a record...
-curl -v -u token:secret -X PATCH -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v2/reports/1"
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"Report","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/reports/1"
 ```
 
 
@@ -2334,9 +2378,11 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/lists/1/
 {
   "data": {
     "type": "Rule",
-    "id": 1,
-    "created_at": "2000-01-01T12:00:00Z",
-    "updated_at": "2000-01-01T12:00:00Z"
+    "id": "1",
+    "attributes": {
+      "created_at": "2000-01-01T12:00:00Z",
+      "updated_at": "2000-01-01T12:00:00Z"
+    }
   }
 }
 ```
@@ -2406,13 +2452,16 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/school_o
 {
   "data": {
     "type": "SchoolOption",
-    "id": 1,
-    "value": "Colcord Elementary",
-    "school_types": [
-      "elementary"
-    ],
-    "beginning_grade": "0",
-    "ending_grade": "5"
+    "id": "1",
+    "attributes": {
+      "type": "SchoolOption",
+      "value": "Colcord Elementary",
+      "school_types": [
+        "elementary"
+      ],
+      "beginning_grade": "0",
+      "ending_grade": "5"
+    }
   }
 }
 ```
@@ -2437,7 +2486,7 @@ promotes_to_school | https://api.planningcenteronline.com/people/v2/school_optio
 
 ```shell
 # to create a record...
-curl -v -u token:secret -X POST -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v2/school_options"
+curl -v -u token:secret -X POST -d '{"data":{"type":"SchoolOption","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/school_options"
 ```
 
 
@@ -2460,7 +2509,7 @@ ending_grade |  | Acceptable values are "-1", "0", "1", "2", "3", "4", "5", "6",
 
 ```shell
 # to update a record...
-curl -v -u token:secret -X PATCH -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v2/school_options/1"
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"SchoolOption","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/school_options/1"
 ```
 
 
@@ -2536,12 +2585,14 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/social_p
 {
   "data": {
     "type": "SocialProfile",
-    "id": 1,
-    "site": "string",
-    "url": "string",
-    "verified": true,
-    "created_at": "2000-01-01T12:00:00Z",
-    "updated_at": "2000-01-01T12:00:00Z"
+    "id": "1",
+    "attributes": {
+      "site": "string",
+      "url": "string",
+      "verified": true,
+      "created_at": "2000-01-01T12:00:00Z",
+      "updated_at": "2000-01-01T12:00:00Z"
+    }
   }
 }
 ```
@@ -2568,7 +2619,7 @@ person | https://api.planningcenteronline.com/people/v2/social_profiles/1/person
 
 ```shell
 # to create a record...
-curl -v -u token:secret -X POST -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v2/people/1/social_profiles"
+curl -v -u token:secret -X POST -d '{"data":{"type":"SocialProfile","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/people/1/social_profiles"
 ```
 
 
@@ -2590,7 +2641,7 @@ verified | boolean
 
 ```shell
 # to update a record...
-curl -v -u token:secret -X PATCH -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v2/social_profiles/1"
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"SocialProfile","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/social_profiles/1"
 ```
 
 
@@ -2663,10 +2714,12 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/tabs/1"
 {
   "data": {
     "type": "Tab",
-    "id": 1,
-    "name": "string",
-    "sequence": 1,
-    "slug": "string"
+    "id": "1",
+    "attributes": {
+      "name": "string",
+      "sequence": 1,
+      "slug": "string"
+    }
   }
 }
 ```
@@ -2693,7 +2746,7 @@ field_definitions | https://api.planningcenteronline.com/people/v2/tabs/1/field_
 
 ```shell
 # to create a record...
-curl -v -u token:secret -X POST -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v2/tabs"
+curl -v -u token:secret -X POST -d '{"data":{"type":"Tab","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/tabs"
 ```
 
 
@@ -2715,7 +2768,7 @@ slug | string
 
 ```shell
 # to update a record...
-curl -v -u token:secret -X PATCH -d '{"data":{...}}' "https://api.planningcenteronline.com/people/v2/tabs/1"
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"Tab","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/tabs/1"
 ```
 
 
