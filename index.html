@@ -75,9 +75,13 @@ JSON output in the browser for easier reading.</p>
 <li>Pass your token and secret in every request using <a href="https://en.wikipedia.org/wiki/Basic_access_authentication">HTTP Basic Auth</a>.</li>
 </ol>
 
+<p>This can be done via <code class="prettyprint">curl</code> like so:</p>
+<pre><code class="highlight plaintext">curl -u app_id:secret https://api.planningcenteronline.com/people/v2/people
+</code></pre>
+
 <h2 id="oauth-2.0">OAuth 2.0</h2>
 
-<p>If you are distributing your app to multiple churches, you should use <a href="https://en.wikipedia.org/wiki/OAuth">OAuth</a>.</p>
+<p>If you are distributing your app to multiple churches, you should use <a href="https://en.wikipedia.org/wiki/OAuth">OAuth</a> version 2.0.</p>
 
 <ol>
 <li>Visit <a href="https://api.planningcenteronline.com/oauth/applications">api.planningcenteronline.com/oauth/applications</a>
@@ -128,6 +132,14 @@ and create an OAuth application token.</li>
 </tbody></table>
 
 <aside class='info'>Times are always returned in UTC.</aside>
+
+<h1 id="libraries">Libraries</h1>
+
+<p>Since our API talks HTTP and JSON, you get to use off-the-shelf components for your language of choice.</p>
+
+<p>Since we love Ruby so much, we went ahead and built a very simple API wrapper library called
+<a href="https://github.com/planningcenter/pco_api_ruby">pco_api</a>. <code class="prettyprint">gem install</code> it, and you&rsquo;ll be building
+cool stuff in no time!</p>
 
           <h1 id="pco-people">PCO People</h1>
 
