@@ -44,9 +44,15 @@ Create a Personal Access Token and use HTTP Basic Auth if you just need access t
 2. Create a new "HTTP Basic Application"
 3. Pass your token and secret in every request using [HTTP Basic Auth](https://en.wikipedia.org/wiki/Basic_access_authentication).
 
+This can be done via `curl` like so:
+
+```
+curl -u app_id:secret https://api.planningcenteronline.com/people/v2/people
+```
+
 ## OAuth 2.0
 
-If you are distributing your app to multiple churches, you should use [OAuth](https://en.wikipedia.org/wiki/OAuth).
+If you are distributing your app to multiple churches, you should use [OAuth](https://en.wikipedia.org/wiki/OAuth) version 2.0.
 
 1. Visit [api.planningcenteronline.com/oauth/applications](https://api.planningcenteronline.com/oauth/applications)
    and create an OAuth application token.
@@ -77,3 +83,11 @@ All dates and times conform to the [ISO 8601](https://en.wikipedia.org/wiki/ISO_
 | date and time | YYYY-MM-DDTHH:MM:SSZ | 2015-05-05T22:40:07Z |
 
 <aside class='info'>Times are always returned in UTC.</aside>
+
+# Libraries
+
+Since our API talks HTTP and JSON, you get to use off-the-shelf components for your language of choice.
+
+Since we love Ruby so much, we went ahead and built a very simple API wrapper library called
+[pco_api](https://github.com/planningcenter/pco_api_ruby). `gem install` it, and you'll be building
+cool stuff in no time!
