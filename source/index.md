@@ -27,7 +27,7 @@ There are several ways to authenticate with the API.
 
 ## Session Authentication
 
-If you need to access the API via a browser, you can use session (cookie) based authentication:
+You (the developer) can browse the API via a browser using your session cookie:
 
 1. Visit [accounts.planningcenteronline.com](https://accounts.planningcenteronline.com) and sign in.
 2. Visit [api.planningcenteronline.com/people/v2/people](https://api.planningcenteronline.com/people/v2/people)
@@ -35,6 +35,8 @@ If you need to access the API via a browser, you can use session (cookie) based 
 
 Browsing the API with your web browser is best experienced with an extension like JSONView, which formats
 JSON output in the browser for easier reading.
+
+Note: session auth won't work for building an application for users because of the same-origin policy.
 
 ## Personal Access Token
 
