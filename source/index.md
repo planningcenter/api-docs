@@ -58,6 +58,12 @@ If you are distributing your app to multiple churches, you should use [OAuth](ht
    and create an OAuth application token.
 2. Make sure your app conforms to the [OAuth 2.0](http://oauth.net/2/) specification.
 
+OAuth access tokens expire after 60 days from the time they are issued, but we also provide a [refresh token](https://tools.ietf.org/html/rfc6749#section-1.5) you can use to get a new access token at any time, even after the access token expires, without forcing the user to re-authorize.
+
+We will honor refresh tokens for up to 1 year after the date its associated access token was issued. This means that, if your app does not issue a refresh for 1 year, then your user will need to re-authorize.
+
+We have an example Ruby/Sinatra app showing how to obtain and use access tokens and refresh tokens at [github.com/planningcenter/pco_api_oauth_example](https://github.com/planningcenter/pco_api_oauth_example).
+
 # JSON API
 
 This API is built to conform to the [JSON API](http://jsonapi.org/) 1.0 specification.
