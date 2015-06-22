@@ -1,5 +1,3 @@
-# PCO Api Docs
+# PCO API Docs
 
-**WiP**
-
-Built on [Slate](https://github.com/tripit/slate)
+Source for [PCO API docs](http://planningcenter.github.io/api-docs/) in the branch `gh-pages`.
