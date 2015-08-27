@@ -6,6 +6,8 @@ PCO People helps you manage contact data, membership info, and everything you ne
 
 An address represents a physical and/or mailing address for a person.
 
+
+
 ### List Addresses
 
 ```shell
@@ -25,6 +27,8 @@ Parameter | Value | Description
 where[city] | _string_ | filter on a specific city
 where[state] | _string_ | filter on a specific state
 where[zip] | _string_ | filter on a specific zip
+where[street] | _string_ | filter on a specific street
+where[location] | _string_ | filter on a specific location
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
@@ -46,7 +50,9 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1
     "attributes": {
       "city": "string",
       "state": "string",
-      "zip": "string"
+      "zip": "string",
+      "street": "string",
+      "location": "string"
     }
   }
 }
@@ -81,6 +87,8 @@ Attribute | Type
 city | string
 state | string
 zip | string
+street | string
+location | string
 
 ### Update an existing Address
 
@@ -103,6 +111,8 @@ Attribute | Type
 city | string
 state | string
 zip | string
+street | string
+location | string
 
 ### Delete an Address
 
@@ -121,6 +131,8 @@ curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v
 ## Apps
 
 An app is one of the handful of apps that PCO offers that organizations can subscribe to, e.g. Services, Registrations, etc.
+
+
 
 ### List Apps
 
@@ -180,9 +192,106 @@ _none_
 
 
 
+## Campuses
+
+A Campus is a location belonging to an Organization
+
+
+
+### List Campuses
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/campuses"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/people/v2/campuses`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+### Get a single Campus
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/campuses/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "Campus",
+    "id": "1",
+    "attributes": {
+      "name": "string",
+      "latitude": 1.42,
+      "longitude": 1.42
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/people/v2/campuses/1`
+
+#### URL Parameters
+
+_none_
+
+### Create a new Campus
+
+#### HTTP Request
+
+`POST `
+
+#### Resource Attributes
+
+_none_
+
+### Update an existing Campus
+
+```shell
+# to update a record...
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"Campus","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/campuses/1"
+```
+
+
+#### HTTP Request
+
+`PATCH https://api.planningcenteronline.com/people/v2/campuses/1`
+
+#### Resource Attributes
+
+_none_
+
+### Delete a Campus
+
+```shell
+# to delete a record...
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v2/campuses/1"
+```
+
+
+#### HTTP Request
+
+`DELETE https://api.planningcenteronline.com/people/v2/campuses/1`
+
 ## Conditions
 
 A condition is an individual criterion used by a List Rule.
+
+
 
 ### List Conditions
 
@@ -258,6 +367,8 @@ _none_
 
 A Connected Person is an account from a different organization linked to an account in this organization.
 
+
+
 ### List Connected People
 
 ```shell
@@ -322,6 +433,8 @@ _none_
 ## Emails
 
 An email represents an email address and location.
+
+
 
 ### List Emails
 
@@ -442,6 +555,8 @@ curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v
 ## FieldData
 
 A field datum is an individual piece of data for a custom field.
+
+
 
 ### List Field Data
 
@@ -578,6 +693,8 @@ curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v
 ## FieldDefinitions
 
 A field definition represents a custom field -- its name, data type, etc.
+
+
 
 ### List Field Definitions
 
@@ -718,6 +835,8 @@ Deleting a field definition internally sets its `deleted_at` attribute to the cu
 
 A field option represents an individual option for a custom field of type "select" or "checkboxes".
 
+
+
 ### List Field Options
 
 ```shell
@@ -826,139 +945,11 @@ curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v
 
 `DELETE https://api.planningcenteronline.com/people/v2/field_definitions/1/field_options/1`
 
-## HouseholdMemberships
-
-A household membership is the linking record between a household and a person.
-
-### List Household Memberships
-
-```shell
-# to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/households/1/household_memberships"
-```
-
-
-#### HTTP Request
-
-`GET https://api.planningcenteronline.com/people/v2/households/1/household_memberships`
-
-#### URL Parameters
-
-Parameter | Value | Description
---------- | ----- | -----------
-where[person_name] | _string_ | filter on a specific person_name
-where[pending] | _boolean_ | filter on a specific pending
-include | person | include associated person
-include | household | include associated household
-after | _id_ | get page after the specified id
-per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
-
-<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=person,household</code></aside>
-
-### Get a single Household Membership
-
-```shell
-# to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1"
-```
-
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "data": {
-    "type": "HouseholdMembership",
-    "id": "1",
-    "attributes": {
-      "person_name": "string",
-      "pending": true
-    }
-  }
-}
-```
-
-#### HTTP Request
-
-`GET https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1`
-
-#### URL Parameters
-
-Parameter | Value | Description
---------- | ----- | -----------
-include | person | include associated person
-include | household | include associated household
-
-<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=person,household</code></aside>
-
-### Associations for a Household Membership
-
-You can append one of the following associations onto this resource URL to jump to an associated record.
-
-Association | URL
------------ | ---
-household | https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1/household
-person | https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1/person
-
-### Create a new Household Membership
-
-```shell
-# to create a record...
-curl -v -u token:secret -X POST -d '{"data":{"type":"HouseholdMembership","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/households/1/household_memberships"
-```
-
-
-<aside class='info'>Only users with the role <code>editor</code> can create this resource.</aside>
-
-#### HTTP Request
-
-`POST https://api.planningcenteronline.com/people/v2/households/1/household_memberships`
-
-#### Resource Attributes
-
-Attribute | Type
---------- | ----
-person_id | integer
-pending | boolean
-
-### Update an existing Household Membership
-
-```shell
-# to update a record...
-curl -v -u token:secret -X PATCH -d '{"data":{"type":"HouseholdMembership","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1"
-```
-
-
-<aside class='info'>Only users with the role <code>editor</code> can update this resource.</aside>
-
-#### HTTP Request
-
-`PATCH https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1`
-
-#### Resource Attributes
-
-Attribute | Type
---------- | ----
-person_id | integer
-pending | boolean
-
-### Delete a Household Membership
-
-```shell
-# to delete a record...
-curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1"
-```
-
-
-<aside class='info'>Only users with the role <code>editor</code> can delete this resource.</aside>
-
-#### HTTP Request
-
-`DELETE https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1`
-
 ## Households
 
 A household links people together and can have a primary contaact.
+
+
 
 ### List Households
 
@@ -1089,9 +1080,143 @@ curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v
 
 `DELETE https://api.planningcenteronline.com/people/v2/households/1`
 
+## HouseholdMemberships
+
+A household membership is the linking record between a household and a person.
+
+
+
+### List Household Memberships
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/households/1/household_memberships"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/people/v2/households/1/household_memberships`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+where[person_name] | _string_ | filter on a specific person_name
+where[pending] | _boolean_ | filter on a specific pending
+include | person | include associated person
+include | household | include associated household
+after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=person,household</code></aside>
+
+### Get a single Household Membership
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "HouseholdMembership",
+    "id": "1",
+    "attributes": {
+      "person_name": "string",
+      "pending": true
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+include | person | include associated person
+include | household | include associated household
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=person,household</code></aside>
+
+### Associations for a Household Membership
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL
+----------- | ---
+household | https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1/household
+person | https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1/person
+
+### Create a new Household Membership
+
+```shell
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{"type":"HouseholdMembership","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/households/1/household_memberships"
+```
+
+
+<aside class='info'>Only users with the role <code>editor</code> can create this resource.</aside>
+
+#### HTTP Request
+
+`POST https://api.planningcenteronline.com/people/v2/households/1/household_memberships`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+person_id | integer
+pending | boolean
+
+### Update an existing Household Membership
+
+```shell
+# to update a record...
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"HouseholdMembership","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1"
+```
+
+
+<aside class='info'>Only users with the role <code>editor</code> can update this resource.</aside>
+
+#### HTTP Request
+
+`PATCH https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+person_id | integer
+pending | boolean
+
+### Delete a Household Membership
+
+```shell
+# to delete a record...
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1"
+```
+
+
+<aside class='info'>Only users with the role <code>editor</code> can delete this resource.</aside>
+
+#### HTTP Request
+
+`DELETE https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1`
+
 ## InactiveReasons
 
 An inactive reason is a small bit of text indicating why a member is no longer active.
+
+
 
 ### List Inactive Reasons
 
@@ -1199,7 +1324,9 @@ curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v
 
 ## Lists
 
-A list (aka "filter") is a powerful tool for finding and grouping people together using any criteria imaginable.
+A list is a powerful tool for finding and grouping people together using any criteria imaginable.
+
+
 
 ### List Lists
 
@@ -1295,6 +1422,8 @@ updated_by | https://api.planningcenteronline.com/people/v2/lists/1/updated_by
 ## MaritalStatuses
 
 A martial status represents a member's current status, e.g. married, single, etc.
+
+
 
 ### List Marital Statuses
 
@@ -1400,9 +1529,116 @@ curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v
 
 `DELETE https://api.planningcenteronline.com/people/v2/marital_statuses/1`
 
+## Messages
+
+A message is an individual email or sms text sent to a member. Every message has a parent message group.
+
+
+
+### List Messages
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/messages"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/people/v2/messages`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+where[kind] | _integer_ | filter on a specific kind
+where[to_addresses] | _string_ | filter on a specific to_addresses
+where[subject] | _string_ | filter on a specific subject
+where[file] | _string_ | filter on a specific file
+where[app_name] | __ | filter on a specific app_name
+where[delivery_status] | _string_ | filter on a specific delivery_status
+where[reject_reason] | _string_ | filter on a specific reject_reason
+where[from_name] | __ | filter on a specific from_name
+where[from_address] | __ | filter on a specific from_address
+where[created_at] | _datetime_ | filter on a specific created_at
+where[sent_at] | _datetime_ | filter on a specific sent_at
+where[bounced_at] | _datetime_ | filter on a specific bounced_at
+where[rejection_notification_sent_at] | _datetime_ | filter on a specific rejection_notification_sent_at
+where[app_name] | __ | filter on a specific app_name
+include | message_group | include associated message_group
+include | to | include associated to
+after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=message_group,to</code></aside>
+
+### Get a single Message
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/messages/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "Message",
+    "id": "1",
+    "attributes": {
+      "kind": 1,
+      "to_addresses": "string",
+      "subject": "string",
+      "file": "string",
+      "app_name": "unknown",
+      "delivery_status": "string",
+      "reject_reason": "string",
+      "from_name": "unknown",
+      "from_address": "unknown",
+      "created_at": "2000-01-01T12:00:00Z",
+      "sent_at": "2000-01-01T12:00:00Z",
+      "bounced_at": "2000-01-01T12:00:00Z",
+      "rejection_notification_sent_at": "2000-01-01T12:00:00Z"
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/people/v2/messages/1`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+include | message_group | include associated message_group
+include | to | include associated to
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=message_group,to</code></aside>
+
+### Associations for a Message
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL
+----------- | ---
+message_group | https://api.planningcenteronline.com/people/v2/messages/1/message_group
+to | https://api.planningcenteronline.com/people/v2/messages/1/to
+
+
+
+
+
+
+
 ## MessageGroups
 
 A message group represents one or more emails or text messages sent from one of the PCO apps. The message group indicates the from person, app, etc.
+
+
 
 ### List Message Groups
 
@@ -1493,105 +1729,11 @@ messages | https://api.planningcenteronline.com/people/v2/message_groups/1/messa
 
 
 
-## Messages
-
-A message is an individual email or sms text sent to a member. Every message has a parent message group.
-
-### List Messages
-
-```shell
-# to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/messages"
-```
-
-
-#### HTTP Request
-
-`GET https://api.planningcenteronline.com/people/v2/messages`
-
-#### URL Parameters
-
-Parameter | Value | Description
---------- | ----- | -----------
-where[kind] | _integer_ | filter on a specific kind
-where[to_addresses] | _string_ | filter on a specific to_addresses
-where[subject] | _string_ | filter on a specific subject
-where[file] | _string_ | filter on a specific file
-where[delivery_status] | _string_ | filter on a specific delivery_status
-where[reject_reason] | _string_ | filter on a specific reject_reason
-where[created_at] | _datetime_ | filter on a specific created_at
-where[sent_at] | _datetime_ | filter on a specific sent_at
-where[bounced_at] | _datetime_ | filter on a specific bounced_at
-where[rejection_notification_sent_at] | _datetime_ | filter on a specific rejection_notification_sent_at
-include | message_group | include associated message_group
-include | to | include associated to
-after | _id_ | get page after the specified id
-per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
-
-<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=message_group,to</code></aside>
-
-### Get a single Message
-
-```shell
-# to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/messages/1"
-```
-
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "data": {
-    "type": "Message",
-    "id": "1",
-    "attributes": {
-      "kind": 1,
-      "to_addresses": "string",
-      "subject": "string",
-      "file": "string",
-      "delivery_status": "string",
-      "reject_reason": "string",
-      "created_at": "2000-01-01T12:00:00Z",
-      "sent_at": "2000-01-01T12:00:00Z",
-      "bounced_at": "2000-01-01T12:00:00Z",
-      "rejection_notification_sent_at": "2000-01-01T12:00:00Z"
-    }
-  }
-}
-```
-
-#### HTTP Request
-
-`GET https://api.planningcenteronline.com/people/v2/messages/1`
-
-#### URL Parameters
-
-Parameter | Value | Description
---------- | ----- | -----------
-include | message_group | include associated message_group
-include | to | include associated to
-
-<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=message_group,to</code></aside>
-
-### Associations for a Message
-
-You can append one of the following associations onto this resource URL to jump to an associated record.
-
-Association | URL
------------ | ---
-message_group | https://api.planningcenteronline.com/people/v2/messages/1/message_group
-to | https://api.planningcenteronline.com/people/v2/messages/1/to
-
-
-
-
-
-
-
 ## NamePrefixes
 
 A name prefix is one of Mr., Mrs., etc.
+
+
 
 ### List Name Prefixes
 
@@ -1701,6 +1843,8 @@ curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v
 
 A name suffix is one of Sr., Jr., etc.
 
+
+
 ### List Name Suffixes
 
 ```shell
@@ -1809,6 +1953,8 @@ curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v
 
 The organization represents a single church. Every other resource is scoped to this record.
 
+
+
 ### Get a single Organization
 
 ```shell
@@ -1846,6 +1992,7 @@ You can append one of the following associations onto this resource URL to jump 
 Association | URL
 ----------- | ---
 apps | https://api.planningcenteronline.com/people/v2/apps
+campuses | https://api.planningcenteronline.com/people/v2/campuses
 emails | https://api.planningcenteronline.com/people/v2/emails
 field_definitions | https://api.planningcenteronline.com/people/v2/field_definitions
 households | https://api.planningcenteronline.com/people/v2/households
@@ -1860,6 +2007,7 @@ people | https://api.planningcenteronline.com/people/v2/people
 reports | https://api.planningcenteronline.com/people/v2/reports
 school_options | https://api.planningcenteronline.com/people/v2/school_options
 social_profiles | https://api.planningcenteronline.com/people/v2/social_profiles
+stats | https://api.planningcenteronline.com/people/v2/stats
 tabs | https://api.planningcenteronline.com/people/v2/tabs
 
 
@@ -1871,6 +2019,8 @@ tabs | https://api.planningcenteronline.com/people/v2/tabs
 ## People
 
 A person record represents a single member/user of the application. Each person has different permissions that determine how the user can use this app (if at all).
+
+
 
 ### List People
 
@@ -1901,6 +2051,7 @@ where[school_type] | _string_ | filter on a specific school_type
 where[graduation_year] | _integer_ | filter on a specific graduation_year
 where[site_administrator] | _boolean_ | filter on a specific site_administrator
 where[people_permissions] | _string_ | filter on a specific people_permissions
+where[membership] | _string_ | filter on a specific membership
 where[created_at] | _datetime_ | filter on a specific created_at
 where[updated_at] | _datetime_ | filter on a specific updated_at
 include | emails | include associated emails
@@ -1913,7 +2064,6 @@ include | marital_status | include associated marital_status
 include | name_prefix | include associated name_prefix
 include | name_suffix | include associated name_suffix
 include | field_data | include associated field_data
-include | apps | include associated apps
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
@@ -1975,7 +2125,6 @@ include | marital_status | include associated marital_status
 include | name_prefix | include associated name_prefix
 include | name_suffix | include associated name_suffix
 include | field_data | include associated field_data
-include | apps | include associated apps
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=emails,addresses</code></aside>
 
@@ -1994,6 +2143,8 @@ household_memberships | https://api.planningcenteronline.com/people/v2/people/1/
 households | https://api.planningcenteronline.com/people/v2/people/1/households
 inactive_reason | https://api.planningcenteronline.com/people/v2/people/1/inactive_reason
 marital_status | https://api.planningcenteronline.com/people/v2/people/1/marital_status
+message_groups | https://api.planningcenteronline.com/people/v2/people/1/message_groups
+messages | https://api.planningcenteronline.com/people/v2/people/1/messages
 name_prefix | https://api.planningcenteronline.com/people/v2/people/1/name_prefix
 name_suffix | https://api.planningcenteronline.com/people/v2/people/1/name_suffix
 phone_numbers | https://api.planningcenteronline.com/people/v2/people/1/phone_numbers
@@ -2031,6 +2182,7 @@ school_type | string | Acceptable values are "elementary", "middle_school", "hig
 graduation_year | integer
 site_administrator | boolean
 people_permissions | string | Acceptable values are "Viewer", "Editor", and "Manager".
+membership | string | Acceptable values are "member", "regular_attender", "visitor", "participant", and "in_progress".
 name_prefix_id | integer
 name_suffix_id | integer
 inactive_reason_id | integer
@@ -2068,6 +2220,7 @@ school_type | string | Acceptable values are "elementary", "middle_school", "hig
 graduation_year | integer
 site_administrator | boolean
 people_permissions | string | Acceptable values are "Viewer", "Editor", and "Manager".
+membership | string | Acceptable values are "member", "regular_attender", "visitor", "participant", and "in_progress".
 name_prefix_id | integer
 name_suffix_id | integer
 inactive_reason_id | integer
@@ -2091,6 +2244,8 @@ curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v
 ## PhoneNumbers
 
 A phone number represents a single telephone number and location.
+
+
 
 ### List Phone Numbers
 
@@ -2207,6 +2362,8 @@ curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v
 ## Reports
 
 A report is editable liquid syntax that provides a powerful tool for presenting your Lists however you want.
+
+
 
 ### List Reports
 
@@ -2342,6 +2499,8 @@ curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v
 
 A rule belongs to a List and groups conditions together.
 
+
+
 ### List Rules
 
 ```shell
@@ -2414,6 +2573,8 @@ conditions | https://api.planningcenteronline.com/people/v2/lists/1/rules/1/cond
 ## SchoolOptions
 
 A school option represents a school name, school type, grades, etc. and can be added to a person.
+
+
 
 ### List School Options
 
@@ -2546,6 +2707,8 @@ curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v
 
 A social profile represents a members's Twitter, Facebook, or other social media account.
 
+
+
 ### List Social Profiles
 
 ```shell
@@ -2673,9 +2836,13 @@ curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v
 
 `DELETE https://api.planningcenteronline.com/people/v2/social_profiles/1`
 
+
+
 ## Tabs
 
 A tab is a custom tab and groups like field definitions.
+
+
 
 ### List Tabs
 
