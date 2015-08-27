@@ -10,6 +10,7 @@ toc_footers:
 
 includes:
   - people
+  - services
   - errors
 
 search: true

@@ -14,6 +14,7 @@ task :fetch do
   end
   %w(
     people
+    services
   ).each do |app|
     url = "#{base_url}/#{app}/v2/docs"
     p "getting #{url}..."
