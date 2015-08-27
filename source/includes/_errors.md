@@ -9,4 +9,4 @@ Error Code | Description           | Example Cause
 403        | Forbidden             | You tried to view a resource you don't have access to; You tried to create a resource, but your user has an insufficient role.
 404        | Not Found             | You've tried to access a URL or resource ID that doesn't exist.
 500        | Internal Server Error | We had a problem with our server. Try again later.
-503        | Service Unavailable   | We're temporarially offline for maintanance. Please try again later.
+503        | Service Unavailable   | We're temporarily offline for maintenance. Please try again later.
