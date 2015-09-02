@@ -12,13 +12,13 @@ A single pen stroke, highlighter stroke, or text annotation a user has added to 
 
 ```shell
 # to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items/1/attachments/1/annotation_drawings"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/songs/1/arrangements/1/attachments/1/annotation_drawings"
 ```
 
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items/1/attachments/1/annotation_drawings`
+`GET https://api.planningcenteronline.com/services/v2/songs/1/arrangements/1/attachments/1/annotation_drawings`
 
 #### URL Parameters
 
@@ -31,7 +31,7 @@ per_page | _integer_ | how many records to return per page (min=1, max=100, defa
 
 ```shell
 # to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items/1/attachments/1/annotation_drawings/1"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/songs/1/arrangements/1/attachments/1/annotation_drawings/1"
 ```
 
 
@@ -52,7 +52,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items/1/attachments/1/annotation_drawings/1`
+`GET https://api.planningcenteronline.com/services/v2/songs/1/arrangements/1/attachments/1/annotation_drawings/1`
 
 #### URL Parameters
 
@@ -64,6 +64,198 @@ _none_
 
 
 
+## Arrangements
+
+Each arrangement belongs to a song and is a different version of that song.
+
+### Attribute Info
+
+<span class='attribute-info-name'>chord_chart_fonts</span>
+
+Possible Values:
+
+- `Courier`
+
+- `Helvetica`
+
+- `Monaco`
+
+- `Times-Roman`
+
+
+<span class='attribute-info-name'>chord_chart_font_size</span>
+
+Possible Values:
+
+`10`, `11`, `12`, `13`, `14`, `15`, `16`, `18`, `20`, `24`, `28`, `32`, `36`, `42`, `48`
+
+
+<span class='attribute-info-name'>meter</span>
+
+Possible Values:
+
+- `2/2`
+
+- `2/4`
+
+- `3/4`
+
+- `4/4`
+
+- `5/4`
+
+- `6/4`
+
+- `3/8`
+
+- `6/8`
+
+- `7/8`
+
+- `9/8`
+
+- `12/8`
+
+
+### List Arrangements
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/songs/1/arrangements"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/services/v2/songs/1/arrangements`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+### Get a single Arrangement
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/songs/1/arrangements/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "Arrangement",
+    "id": "1",
+    "attributes": {
+      "name": "string",
+      "bpm": 1,
+      "has_chords": true,
+      "has_chord_chart": "unknown",
+      "length": 1,
+      "meter": "string",
+      "updated_by_id": "unknown",
+      "created_by_id": 1,
+      "notes": "string",
+      "chord_chart": "string",
+      "chord_chart_font": "string",
+      "chord_chart_key": "string",
+      "chord_chart_columns": 1,
+      "chord_chart_font_size": 1,
+      "created_at": "2000-01-01T12:00:00Z",
+      "updated_at": "2000-01-01T12:00:00Z"
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/services/v2/songs/1/arrangements/1`
+
+#### URL Parameters
+
+_none_
+
+### Associations for an Arrangement
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL
+----------- | ---
+attachments | https://api.planningcenteronline.com/services/v2/songs/1/arrangements/1/attachments
+keys | https://api.planningcenteronline.com/services/v2/songs/1/arrangements/1/keys
+
+### Create a new Arrangement
+
+```shell
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{"type":"Arrangement","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/songs/1/arrangements"
+```
+
+
+#### HTTP Request
+
+`POST https://api.planningcenteronline.com/services/v2/songs/1/arrangements`
+
+#### Resource Attributes
+
+Attribute | Type | Note
+--------- | ---- | ----
+name | string
+bpm | float
+length | integer
+meter | string | Acceptable values are "2/2", "2/4", "3/4", "4/4", "5/4", "6/4", "3/8", "6/8", "7/8", "9/8", and "12/8".
+notes | text
+chord_chart | text
+chord_chart_font | string | Acceptable values are "Courier", "Helvetica", "Monaco", and "Times-Roman".
+chord_chart_key | string | Acceptable values are "Ab", "A", "A#", "Bb", "B", "C", "C#", "Db", "D", "D#", "Eb", "E", "F", "F#", "Gb", "G", "G#", "Abm", "Am", "A#m", "Bbm", "Bm", "Cm", "C#m", "Dbm", "Dm", "D#m", "Ebm", "Em", "Fm", "F#m", "Gbm", "Gm", and "G#m".
+chord_chart_columns | integer
+chord_chart_font_size | integer | Acceptable values are 10, 11, 12, 13, 14, 15, 16, 18, 20, 24, 28, 32, 36, 42, and 48.
+
+### Update an existing Arrangement
+
+```shell
+# to update a record...
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"Arrangement","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/songs/1/arrangements/1"
+```
+
+
+#### HTTP Request
+
+`PATCH https://api.planningcenteronline.com/services/v2/songs/1/arrangements/1`
+
+#### Resource Attributes
+
+Attribute | Type | Note
+--------- | ---- | ----
+name | string
+bpm | float
+length | integer
+meter | string | Acceptable values are "2/2", "2/4", "3/4", "4/4", "5/4", "6/4", "3/8", "6/8", "7/8", "9/8", and "12/8".
+notes | text
+chord_chart | text
+chord_chart_font | string | Acceptable values are "Courier", "Helvetica", "Monaco", and "Times-Roman".
+chord_chart_key | string | Acceptable values are "Ab", "A", "A#", "Bb", "B", "C", "C#", "Db", "D", "D#", "Eb", "E", "F", "F#", "Gb", "G", "G#", "Abm", "Am", "A#m", "Bbm", "Bm", "Cm", "C#m", "Dbm", "Dm", "D#m", "Ebm", "Em", "Fm", "F#m", "Gbm", "Gm", and "G#m".
+chord_chart_columns | integer
+chord_chart_font_size | integer | Acceptable values are 10, 11, 12, 13, 14, 15, 16, 18, 20, 24, 28, 32, 36, 42, and 48.
+
+### Delete an Arrangement
+
+```shell
+# to delete a record...
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/services/v2/songs/1/arrangements/1"
+```
+
+
+#### HTTP Request
+
+`DELETE https://api.planningcenteronline.com/services/v2/songs/1/arrangements/1`
+
 ## Attachments
 
 A file, whether it's stored on Planning Center or linked from another location.
@@ -74,13 +266,13 @@ A file, whether it's stored on Planning Center or linked from another location.
 
 ```shell
 # to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items/1/attachments"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/songs/1/arrangements/1/attachments"
 ```
 
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items/1/attachments`
+`GET https://api.planningcenteronline.com/services/v2/songs/1/arrangements/1/attachments`
 
 #### URL Parameters
 
@@ -96,7 +288,7 @@ per_page | _integer_ | how many records to return per page (min=1, max=100, defa
 
 ```shell
 # to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items/1/attachments/1"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/songs/1/arrangements/1/attachments/1"
 ```
 
 
@@ -131,7 +323,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items/1/attachments/1`
+`GET https://api.planningcenteronline.com/services/v2/songs/1/arrangements/1/attachments/1`
 
 #### URL Parameters
 
@@ -143,8 +335,8 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL
 ----------- | ---
-annotation_drawings | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items/1/attachments/1/annotation_drawings
-attachment_annotations | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items/1/attachments/1/attachment_annotations
+annotation_drawings | https://api.planningcenteronline.com/services/v2/songs/1/arrangements/1/attachments/1/annotation_drawings
+attachment_annotations | https://api.planningcenteronline.com/services/v2/songs/1/arrangements/1/attachments/1/attachment_annotations
 
 
 
@@ -162,13 +354,13 @@ A set of annotation drawings that make up all annotations a user has added to a 
 
 ```shell
 # to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items/1/attachments/1/attachment_annotations"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/songs/1/arrangements/1/attachments/1/attachment_annotations"
 ```
 
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items/1/attachments/1/attachment_annotations`
+`GET https://api.planningcenteronline.com/services/v2/songs/1/arrangements/1/attachments/1/attachment_annotations`
 
 #### URL Parameters
 
@@ -183,7 +375,7 @@ per_page | _integer_ | how many records to return per page (min=1, max=100, defa
 
 ```shell
 # to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items/1/attachments/1/attachment_annotations/1"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/songs/1/arrangements/1/attachments/1/attachment_annotations/1"
 ```
 
 
@@ -205,7 +397,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items/1/attachments/1/attachment_annotations/1`
+`GET https://api.planningcenteronline.com/services/v2/songs/1/arrangements/1/attachments/1/attachment_annotations/1`
 
 #### URL Parameters
 
@@ -285,13 +477,72 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL
 ----------- | ---
+folders | https://api.planningcenteronline.com/services/v2/folders/1/folders
 service_types | https://api.planningcenteronline.com/services/v2/folders/1/service_types
 
+### Create a new Folder
+
+```shell
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{"type":"Folder","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/folders"
+```
 
 
+#### HTTP Request
+
+`POST https://api.planningcenteronline.com/services/v2/folders`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+name | string
+
+```shell
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{"type":"Folder","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/folders/1/folders"
+```
 
 
+#### HTTP Request
 
+`POST https://api.planningcenteronline.com/services/v2/folders/1/folders`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+name | string
+
+### Update an existing Folder
+
+```shell
+# to update a record...
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"Folder","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/folders/1"
+```
+
+
+#### HTTP Request
+
+`PATCH https://api.planningcenteronline.com/services/v2/folders/1`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+name | string
+
+### Delete a Folder
+
+```shell
+# to delete a record...
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/services/v2/folders/1"
+```
+
+
+#### HTTP Request
+
+`DELETE https://api.planningcenteronline.com/services/v2/folders/1`
 
 ## Items
 
@@ -327,13 +578,13 @@ There are 3 possible values:
 
 ```shell
 # to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/series/1/plans/1/items"
 ```
 
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items`
+`GET https://api.planningcenteronline.com/services/v2/series/1/plans/1/items`
 
 #### URL Parameters
 
@@ -351,7 +602,7 @@ per_page | _integer_ | how many records to return per page (min=1, max=100, defa
 
 ```shell
 # to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items/1"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/series/1/plans/1/items/1"
 ```
 
 
@@ -379,7 +630,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items/1`
+`GET https://api.planningcenteronline.com/services/v2/series/1/plans/1/items/1`
 
 #### URL Parameters
 
@@ -397,10 +648,10 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL
 ----------- | ---
-attachments | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items/1/attachments
-item_media | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items/1/item_media
-item_notes | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items/1/item_notes
-song | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items/1/song
+attachments | https://api.planningcenteronline.com/services/v2/series/1/plans/1/items/1/attachments
+item_media | https://api.planningcenteronline.com/services/v2/series/1/plans/1/items/1/item_media
+item_notes | https://api.planningcenteronline.com/services/v2/series/1/plans/1/items/1/item_notes
+song | https://api.planningcenteronline.com/services/v2/series/1/plans/1/items/1/song
 
 
 
@@ -418,13 +669,13 @@ A media item attached to a plan item
 
 ```shell
 # to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items/1/item_medias"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/series/1/plans/1/items/1/item_medias"
 ```
 
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items/1/item_medias`
+`GET https://api.planningcenteronline.com/services/v2/series/1/plans/1/items/1/item_medias`
 
 #### URL Parameters
 
@@ -441,7 +692,7 @@ per_page | _integer_ | how many records to return per page (min=1, max=100, defa
 
 ```shell
 # to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items/1/item_medias/1"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/series/1/plans/1/items/1/item_medias/1"
 ```
 
 
@@ -463,7 +714,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items/1/item_medias/1`
+`GET https://api.planningcenteronline.com/services/v2/series/1/plans/1/items/1/item_medias/1`
 
 #### URL Parameters
 
@@ -477,7 +728,7 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL
 ----------- | ---
-media | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items/1/item_medias/1/media
+media | https://api.planningcenteronline.com/services/v2/series/1/plans/1/items/1/item_medias/1/media
 
 
 
@@ -495,13 +746,13 @@ A plan item note that belongs to a category
 
 ```shell
 # to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items/1/item_notes"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/series/1/plans/1/items/1/item_notes"
 ```
 
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items/1/item_notes`
+`GET https://api.planningcenteronline.com/services/v2/series/1/plans/1/items/1/item_notes`
 
 #### URL Parameters
 
@@ -518,7 +769,7 @@ per_page | _integer_ | how many records to return per page (min=1, max=100, defa
 
 ```shell
 # to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items/1/item_notes/1"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/series/1/plans/1/items/1/item_notes/1"
 ```
 
 
@@ -542,7 +793,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items/1/item_notes/1`
+`GET https://api.planningcenteronline.com/services/v2/series/1/plans/1/items/1/item_notes/1`
 
 #### URL Parameters
 
@@ -554,10 +805,311 @@ _none_
 
 
 
+## Keys
+
+Each song arrangement can have multiple keys. A key is the pitch center of the song.
+
+### Attribute Info
+
+<span class='attribute-info-name'>starting_key</span>
+
+  __REQUIRED__
+
+Possible Values:
+
+- `Ab`
+
+- `A`
+
+- `A#`
+
+- `Bb`
+
+- `B`
+
+- `C`
+
+- `C#`
+
+- `Db`
+
+- `D`
+
+- `D#`
+
+- `Eb`
+
+- `E`
+
+- `F`
+
+- `F#`
+
+- `Gb`
+
+- `G`
+
+- `G#`
+
+- `Abm`
+
+- `Am`
+
+- `A#m`
+
+- `Bbm`
+
+- `Bm`
+
+- `Cm`
+
+- `C#m`
+
+- `Dbm`
+
+- `Dm`
+
+- `D#m`
+
+- `Ebm`
+
+- `Em`
+
+- `Fm`
+
+- `F#m`
+
+- `Gbm`
+
+- `Gm`
+
+- `G#m`
+
+
+<span class='attribute-info-name'>ending_key</span>
+
+Possible Values:
+
+- `Ab`
+
+- `A`
+
+- `A#`
+
+- `Bb`
+
+- `B`
+
+- `C`
+
+- `C#`
+
+- `Db`
+
+- `D`
+
+- `D#`
+
+- `Eb`
+
+- `E`
+
+- `F`
+
+- `F#`
+
+- `Gb`
+
+- `G`
+
+- `G#`
+
+- `Abm`
+
+- `Am`
+
+- `A#m`
+
+- `Bbm`
+
+- `Bm`
+
+- `Cm`
+
+- `C#m`
+
+- `Dbm`
+
+- `Dm`
+
+- `D#m`
+
+- `Ebm`
+
+- `Em`
+
+- `Fm`
+
+- `F#m`
+
+- `Gbm`
+
+- `Gm`
+
+- `G#m`
+
+
+<span class='attribute-info-name'>alternate_keys</span>
+
+An array of objects.
+
+```
+{
+  "name": "My Alternate Key",
+  "key": "B"
+}
+```
+
+
+### List Keys
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/songs/1/arrangements/1/keys"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/services/v2/songs/1/arrangements/1/keys`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+### Get a single Key
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/songs/1/arrangements/1/keys/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "Key",
+    "id": "1",
+    "attributes": {
+      "created_at": "2000-01-01T12:00:00Z",
+      "updated_at": "2000-01-01T12:00:00Z",
+      "name": "string",
+      "starting_key": "unknown",
+      "ending_key": "unknown",
+      "alternate_keys": "string"
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/services/v2/songs/1/arrangements/1/keys/1`
+
+#### URL Parameters
+
+_none_
+
+### Create a new Key
+
+```shell
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{"type":"Key","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/songs/1/arrangements/1/keys"
+```
+
+
+#### HTTP Request
+
+`POST https://api.planningcenteronline.com/services/v2/songs/1/arrangements/1/keys`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+name | string
+starting_key | 
+ending_key | 
+alternate_keys | string
+
+### Update an existing Key
+
+```shell
+# to update a record...
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"Key","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/songs/1/arrangements/1/keys/1"
+```
+
+
+#### HTTP Request
+
+`PATCH https://api.planningcenteronline.com/services/v2/songs/1/arrangements/1/keys/1`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+name | string
+starting_key | 
+ending_key | 
+alternate_keys | string
+
+### Delete a Key
+
+```shell
+# to delete a record...
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/services/v2/songs/1/arrangements/1/keys/1"
+```
+
+
+#### HTTP Request
+
+`DELETE https://api.planningcenteronline.com/services/v2/songs/1/arrangements/1/keys/1`
+
 ## Medias
 
 A piece of media
 
+### Attribute Info
+
+<span class='attribute-info-name'>media_type</span>
+
+Possible Values:
+
+- `Audio`
+
+- `Background Audio`
+
+- `Background Image`
+
+- `Background Video`
+
+- `Countdown`
+
+- `Document`
+
+- `Drama`
+
+- `Image`
+
+- `Powerpoint`
+
+- `Song Video`
+
+- `Video`
 
 
 ### List Medias
@@ -622,11 +1174,57 @@ Association | URL
 ----------- | ---
 attachments | https://api.planningcenteronline.com/services/v2/medias/1/attachments
 
+### Create a new Media
+
+```shell
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{"type":"Media","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/medias"
+```
 
 
+#### HTTP Request
+
+`POST https://api.planningcenteronline.com/services/v2/medias`
+
+#### Resource Attributes
+
+Attribute | Type | Note
+--------- | ---- | ----
+media_type | string | Acceptable values are "Audio", "Background Audio", "Background Image", "Background Video", "Countdown", "Document", "Drama", "Image", "Powerpoint", "Song Video", and "Video".
+title | string
+creator_name | 
+
+### Update an existing Media
+
+```shell
+# to update a record...
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"Media","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/medias/1"
+```
 
 
+#### HTTP Request
 
+`PATCH https://api.planningcenteronline.com/services/v2/medias/1`
+
+#### Resource Attributes
+
+Attribute | Type | Note
+--------- | ---- | ----
+media_type | string | Acceptable values are "Audio", "Background Audio", "Background Image", "Background Video", "Countdown", "Document", "Drama", "Image", "Powerpoint", "Song Video", and "Video".
+title | string
+creator_name | 
+
+### Delete a Media
+
+```shell
+# to delete a record...
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/services/v2/medias/1"
+```
+
+
+#### HTTP Request
+
+`DELETE https://api.planningcenteronline.com/services/v2/medias/1`
 
 ## NeededPositions
 
@@ -638,13 +1236,13 @@ An amount of unfilled positions needed within a team in a plan.
 
 ```shell
 # to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/needed_positions"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/series/1/plans/1/needed_positions"
 ```
 
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/needed_positions`
+`GET https://api.planningcenteronline.com/services/v2/series/1/plans/1/needed_positions`
 
 #### URL Parameters
 
@@ -657,7 +1255,7 @@ per_page | _integer_ | how many records to return per page (min=1, max=100, defa
 
 ```shell
 # to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/needed_positions/1"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/series/1/plans/1/needed_positions/1"
 ```
 
 
@@ -678,7 +1276,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/needed_positions/1`
+`GET https://api.planningcenteronline.com/services/v2/series/1/plans/1/needed_positions/1`
 
 #### URL Parameters
 
@@ -690,8 +1288,8 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL
 ----------- | ---
-team | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/needed_positions/1/team
-time | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/needed_positions/1/time
+team | https://api.planningcenteronline.com/services/v2/series/1/plans/1/needed_positions/1/team
+time | https://api.planningcenteronline.com/services/v2/series/1/plans/1/needed_positions/1/time
 
 
 
@@ -703,7 +1301,11 @@ time | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/
 
 The root level of an organization where account-level settings are applied.
 
+### Attribute Info
 
+<span class='attribute-info-name'>date_format</span>
+
+Two possible values, `US` `EU`
 
 ### Get a single Organization
 
@@ -756,6 +1358,7 @@ Association | URL
 folders | https://api.planningcenteronline.com/services/v2/folders
 media | https://api.planningcenteronline.com/services/v2/media
 people | https://api.planningcenteronline.com/services/v2/people
+series | https://api.planningcenteronline.com/services/v2/series
 service_types | https://api.planningcenteronline.com/services/v2/service_types
 songs | https://api.planningcenteronline.com/services/v2/songs
 tag_groups | https://api.planningcenteronline.com/services/v2/tag_groups
@@ -770,7 +1373,11 @@ tag_groups | https://api.planningcenteronline.com/services/v2/tag_groups
 
 A person added to PCO Services.
 
+### Attribute Info
 
+<span class='attribute-info-name'>legacy_id</span>
+
+If you've used Person.id from API v1 this attribute can be used to map from those old IDs to the new IDs used in API v2
 
 ### List People
 
@@ -819,7 +1426,6 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
       "last_name": "string",
       "created_at": "2000-01-01T12:00:00Z",
       "updated_at": "2000-01-01T12:00:00Z",
-      "accounts_id": "unknown",
       "photo_thumbnail_url": "unknown",
       "photo_url": "unknown",
       "permissions": "unknown",
@@ -831,6 +1437,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
       "birthdate": "2000-01-01T12:00:00Z",
       "anniversary": "2000-01-01T12:00:00Z",
       "ical_code": "string",
+      "legacy_id": "unknown",
       "site_administrator": true,
       "max_permissions": "unknown",
       "logged_in_at": "2000-01-01T12:00:00Z",
@@ -943,41 +1550,74 @@ _none_
 
 A single plan within a Service Type.
 
-Potentially confusing attributes:
-  - attachment_type_ids: The attachment type IDs assigned to the current user based on what positions they are scheduled to in this plan. This determines what files they can see.
-  - files_expire_at: A date 1 month after the last service time.
-  - items_count: The total number of items, including regular items, songs, media, and headers, that the current user can see in the plan.
-  - next_plan_id: The ID of the next chronological plan within the current Service Type.
-  - previous_plan_id: The ID of the previous chronological plan within the current Service Type.
-  - permissions: The current user's permissions for this plan's Service Type.
-  - total_length: The total of length of all items, excluding pre-service and post-service items.
-  - display_dates: The shortened date string representing all Service Time dates. Months are abbreviated, and the year is omitted.
-  - sort_date: A time representing the chronological first Service Time, used to sort plan chronologically. If no Service Times exist, it uses Rehearsal Times, then Other Times, then NOW.
-  - starts_at: A time representing the chronological last Time (Service, Rehearsal, or Other). Once this passes, a plan is considered to be in the past.
-  - dates: The full date string representing all Service Time dates.
-  - public: True if Public Access has been enabled.
+### Attribute Info
 
+<span class='attribute-info-name'>attachment_type_ids</span>
 
+The attachment type IDs assigned to the current user based on what positions they are scheduled to in this plan. This determines what files they can see.
 
+<span class='attribute-info-name'>files_expire_at</span>
+
+A date 1 month after the last service time.
+
+<span class='attribute-info-name'>items_count</span>
+
+The total number of items, including regular items, songs, media, and headers, that the current user can see in the plan.
+
+<span class='attribute-info-name'>next_plan_id</span>
+
+The ID of the next chronological plan within the current Service Type.
+
+<span class='attribute-info-name'>previous_plan_id</span>
+
+The ID of the previous chronological plan within the current Service Type.
+
+<span class='attribute-info-name'>permissions</span>
+
+The current user's permissions for this plan's Service Type.
+
+<span class='attribute-info-name'>total_length</span>
+
+The total of length of all items, excluding pre-service and post-service items.
+
+<span class='attribute-info-name'>short_dates</span>
+
+The shortened date string representing all Service Time dates. Months are abbreviated, and the year is omitted.
+
+<span class='attribute-info-name'>sort_date</span>
+
+A time representing the chronological first Service Time, used to sort plan chronologically. If no Service Times exist, it uses Rehearsal Times, then Other Times, then NOW.
+
+<span class='attribute-info-name'>starts_at</span>
+
+A time representing the chronological last Time (Service, Rehearsal, or Other). Once this passes, a plan is considered to be in the past.
+
+<span class='attribute-info-name'>dates</span>
+
+The full date string representing all Service Time dates.
+
+<span class='attribute-info-name'>public</span>
+
+True if Public Access has been enabled.
 
 ### List Plans
 
 ```shell
 # to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/service_types/1/plans"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/series/1/plans"
 ```
 
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/service_types/1/plans`
+`GET https://api.planningcenteronline.com/services/v2/series/1/plans`
 
 #### URL Parameters
 
 Parameter | Value | Description
 --------- | ----- | -----------
-where[plan_title] | __ | filter on a specific plan_title
-where[starts_at] | __ | filter on a specific starts_at
+where[title] | _string_ | filter on a specific title
+where[last_time_at] | __ | filter on a specific last_time_at
 include | series | include associated series
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
@@ -986,7 +1626,7 @@ per_page | _integer_ | how many records to return per page (min=1, max=100, defa
 
 ```shell
 # to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/service_types/1/plans/1"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/series/1/plans/1"
 ```
 
 
@@ -1027,7 +1667,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/service_types/1/plans/1`
+`GET https://api.planningcenteronline.com/services/v2/series/1/plans/1`
 
 #### URL Parameters
 
@@ -1041,21 +1681,67 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL
 ----------- | ---
-attachments | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/attachments
-items | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items
-needed_positions | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/needed_positions
-next_plan | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/next_plan
-notes | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/notes
-plan_times | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/plan_times
-previous_plan | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/previous_plan
-series | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/series
-team_member | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/team_member
+attachments | https://api.planningcenteronline.com/services/v2/series/1/plans/1/attachments
+items | https://api.planningcenteronline.com/services/v2/series/1/plans/1/items
+needed_positions | https://api.planningcenteronline.com/services/v2/series/1/plans/1/needed_positions
+next_plan | https://api.planningcenteronline.com/services/v2/series/1/plans/1/next_plan
+notes | https://api.planningcenteronline.com/services/v2/series/1/plans/1/notes
+plan_times | https://api.planningcenteronline.com/services/v2/series/1/plans/1/plan_times
+previous_plan | https://api.planningcenteronline.com/services/v2/series/1/plans/1/previous_plan
+series | https://api.planningcenteronline.com/services/v2/series/1/plans/1/series
+team_member | https://api.planningcenteronline.com/services/v2/series/1/plans/1/team_member
+
+### Create a new Plan
+
+```shell
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{"type":"Plan","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/service_types/1/plans"
+```
 
 
+#### HTTP Request
+
+`POST https://api.planningcenteronline.com/services/v2/service_types/1/plans`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+title | string
+public | boolean
+series_id | integer
+
+### Update an existing Plan
+
+```shell
+# to update a record...
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"Plan","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/series/1/plans/1"
+```
 
 
+#### HTTP Request
+
+`PATCH https://api.planningcenteronline.com/services/v2/series/1/plans/1`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+title | string
+public | boolean
+series_id | integer
+
+### Delete a Plan
+
+```shell
+# to delete a record...
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/services/v2/series/1/plans/1"
+```
 
 
+#### HTTP Request
+
+`DELETE https://api.planningcenteronline.com/services/v2/series/1/plans/1`
 
 ## PlanNotes
 
@@ -1067,13 +1753,13 @@ A specific plan note within a single plan.
 
 ```shell
 # to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/notes"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/series/1/plans/1/notes"
 ```
 
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/notes`
+`GET https://api.planningcenteronline.com/services/v2/series/1/plans/1/notes`
 
 #### URL Parameters
 
@@ -1089,7 +1775,7 @@ per_page | _integer_ | how many records to return per page (min=1, max=100, defa
 
 ```shell
 # to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/notes/1"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/series/1/plans/1/notes/1"
 ```
 
 
@@ -1112,7 +1798,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/notes/1`
+`GET https://api.planningcenteronline.com/services/v2/series/1/plans/1/notes/1`
 
 #### URL Parameters
 
@@ -1124,7 +1810,7 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL
 ----------- | ---
-plan_note_category | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/notes/1/plan_note_category
+plan_note_category | https://api.planningcenteronline.com/services/v2/series/1/plans/1/notes/1/plan_note_category
 
 
 
@@ -1198,12 +1884,16 @@ _none_
 ## PlanPeople
 
 A person scheduled within a specific plan.
-The potentially confusing attributes are:
-  - can_accept_partial: If the person is scheduled to a split team where they could potentially accept 1 time and decline another.
-  - excluded_times: Scheduled people are assigned to all service, rehearsal, and other times, unless you exclude them. Exclude any times the person is not assigned to for that plan.
 
+### Attribute Info
 
+<span class='attribute-info-name'>can_accept_partial</span>
 
+If the person is scheduled to a split team where they could potentially accept 1 time and decline another.
+
+<span class='attribute-info-name'>excluded_times</span>
+
+Scheduled people are assigned to all service, rehearsal, and other times, unless you exclude them. Exclude any times the person is not assigned to for that plan.
 
 ### List Plan People
 
@@ -1251,6 +1941,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
       "created_at": "2000-01-01T12:00:00Z",
       "updated_at": "2000-01-01T12:00:00Z",
       "plan_id": "unknown",
+      "person_id": 1,
       "prepare_notification": "unknown",
       "photo_thumbnail": "unknown",
       "name": "unknown",
@@ -1299,20 +1990,41 @@ team | https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/t
 
 A time in a plan.
 
+### Attribute Info
+
+<span class='attribute-info-name'>starts_at</span>
+
+Planned start time.
+
+<span class='attribute-info-name'>ends_at</span>
+
+Planned end time.
+
+<span class='attribute-info-name'>live_starts_at</span>
+
+Start time as recorded by Services LIVE.
+
+<span class='attribute-info-name'>live_ends_at</span>
+
+End time as recorded by Services LIVE.
+
+<span class='attribute-info-name'>team_reminders</span>
+
+A Hash that maps a Team ID to a reminder value. If nothing is specified, no reminder is set for that team. A reminder value is an integer (0-7) equal to the number of days before the selected time a reminder should be sent.
+
+<span class='attribute-info-name'>included_category_ids</span>
+
+The IDs of each Team assigned to this time.
+
+<span class='attribute-info-name'>time_type</span>
+
 There are 3 possible 'time_type' values:
-  - Service
-  - Rehearsal
-  - Other
 
-Potentially confusing attributes:
-  - starts_at: Planned start time.
-  - ends_at: Planned end time.
-  - live_start: Start time as recorded by Services LIVE.
-  - live_end: End time as recorded by Services LIVE.
-  - team_reminders: A Hash that maps a Team ID to a reminder value. If nothing is specified, no reminder is set for that team. A reminder value is an integer (0-7) equal to the number of days before the selected time a reminder should be sent.
-  - included_category_ids: The IDs of each Team assigned to this time.
+- Service
 
+- Rehearsal
 
+- Other
 
 
 ### List Plan Times
@@ -1397,13 +2109,13 @@ A Series can be specified for each plan to tie plans with similar messages toget
 
 ```shell
 # to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/series"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/series"
 ```
 
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/series`
+`GET https://api.planningcenteronline.com/services/v2/series`
 
 #### URL Parameters
 
@@ -1416,7 +2128,7 @@ per_page | _integer_ | how many records to return per page (min=1, max=100, defa
 
 ```shell
 # to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/series/1"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/series/1"
 ```
 
 
@@ -1444,17 +2156,63 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/series/1`
+`GET https://api.planningcenteronline.com/services/v2/series/1`
 
 #### URL Parameters
 
 _none_
 
+### Associations for a Series
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL
+----------- | ---
+plans | https://api.planningcenteronline.com/services/v2/series/1/plans
+
+### Create a new Series
+
+```shell
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{"type":"Series","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/series"
+```
 
 
+#### HTTP Request
+
+`POST https://api.planningcenteronline.com/services/v2/series`
+
+#### Resource Attributes
+
+_none_
+
+### Update an existing Series
+
+```shell
+# to update a record...
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"Series","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/series/1"
+```
 
 
+#### HTTP Request
 
+`PATCH https://api.planningcenteronline.com/services/v2/series/1`
+
+#### Resource Attributes
+
+_none_
+
+### Delete a Series
+
+```shell
+# to delete a record...
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/services/v2/series/1"
+```
+
+
+#### HTTP Request
+
+`DELETE https://api.planningcenteronline.com/services/v2/series/1`
 
 ## ServiceTypes
 
@@ -1526,11 +2284,72 @@ plan_note_categories | https://api.planningcenteronline.com/services/v2/service_
 plans | https://api.planningcenteronline.com/services/v2/service_types/1/plans
 teams | https://api.planningcenteronline.com/services/v2/service_types/1/teams
 
+### Create a new Service Type
+
+```shell
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{"type":"ServiceType","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/service_types"
+```
 
 
+#### HTTP Request
+
+`POST https://api.planningcenteronline.com/services/v2/service_types`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+name | string
+sequence | integer
+
+```shell
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{"type":"ServiceType","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/folders/1/service_types"
+```
 
 
+#### HTTP Request
 
+`POST https://api.planningcenteronline.com/services/v2/folders/1/service_types`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+name | string
+sequence | integer
+
+### Update an existing Service Type
+
+```shell
+# to update a record...
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"ServiceType","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/service_types/1"
+```
+
+
+#### HTTP Request
+
+`PATCH https://api.planningcenteronline.com/services/v2/service_types/1`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+name | string
+sequence | integer
+
+### Delete a Service Type
+
+```shell
+# to delete a record...
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/services/v2/service_types/1"
+```
+
+
+#### HTTP Request
+
+`DELETE https://api.planningcenteronline.com/services/v2/service_types/1`
 
 ## Songs
 
@@ -1604,173 +2423,79 @@ Association | URL
 ----------- | ---
 arrangements | https://api.planningcenteronline.com/services/v2/songs/1/arrangements
 
-
-
-
-
-
-
-## SongArrangements
-
-Each arrangement belongs to a song and is a different version of that song.
-
-
-
-### List Song Arrangements
+### Create a new Song
 
 ```shell
-# to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/songs/1/arrangements"
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{"type":"Song","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/songs"
 ```
 
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/songs/1/arrangements`
+`POST https://api.planningcenteronline.com/services/v2/songs`
 
-#### URL Parameters
+#### Resource Attributes
 
-Parameter | Value | Description
---------- | ----- | -----------
-after | _id_ | get page after the specified id
-per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+Attribute | Type
+--------- | ----
+title | string
+admin | string
+author | string
+copyright | string
+ccli_number | 
+hidden | boolean
+themes | string
 
-### Get a single Song Arrangement
-
-```shell
-# to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/songs/1/arrangements/1"
-```
-
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "data": {
-    "type": "SongArrangement",
-    "id": "1",
-    "attributes": {
-      "name": "string",
-      "bpm": 1,
-      "has_chords": true,
-      "has_chord_chart": "unknown",
-      "length": 1,
-      "meter": "string",
-      "updated_by_id": "unknown",
-      "created_by_id": 1,
-      "notes": "string",
-      "chord_chart": "string",
-      "chord_chart_font": "string",
-      "chord_chart_key": "string",
-      "chord_chart_columns": 1,
-      "chord_chart_font_size": 1,
-      "created_at": "2000-01-01T12:00:00Z",
-      "updated_at": "2000-01-01T12:00:00Z"
-    }
-  }
-}
-```
-
-#### HTTP Request
-
-`GET https://api.planningcenteronline.com/services/v2/songs/1/arrangements/1`
-
-#### URL Parameters
-
-_none_
-
-### Associations for a Song Arrangement
-
-You can append one of the following associations onto this resource URL to jump to an associated record.
-
-Association | URL
------------ | ---
-attachments | https://api.planningcenteronline.com/services/v2/songs/1/arrangements/1/attachments
-song_keys | https://api.planningcenteronline.com/services/v2/songs/1/arrangements/1/song_keys
-
-
-
-
-
-
-
-## SongKeys
-
-Each song arrangement can have multiple keys. A key is the pitch center of the song.
-
-
-
-### List Song Keys
+### Update an existing Song
 
 ```shell
-# to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/songs/1/arrangements/1/song_keys"
+# to update a record...
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"Song","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/songs/1"
 ```
 
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/songs/1/arrangements/1/song_keys`
+`PATCH https://api.planningcenteronline.com/services/v2/songs/1`
 
-#### URL Parameters
+#### Resource Attributes
 
-Parameter | Value | Description
---------- | ----- | -----------
-after | _id_ | get page after the specified id
-per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+Attribute | Type
+--------- | ----
+title | string
+admin | string
+author | string
+copyright | string
+ccli_number | 
+hidden | boolean
+themes | string
 
-### Get a single Song Key
+### Delete a Song
 
 ```shell
-# to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/songs/1/arrangements/1/song_keys/1"
+# to delete a record...
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/services/v2/songs/1"
 ```
 
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "data": {
-    "type": "SongKey",
-    "id": "1",
-    "attributes": {
-      "created_at": "2000-01-01T12:00:00Z",
-      "updated_at": "2000-01-01T12:00:00Z",
-      "name": "string",
-      "starting_key": "unknown",
-      "ending_key": "unknown",
-      "alternate_keys": "string"
-    }
-  }
-}
-```
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/songs/1/arrangements/1/song_keys/1`
-
-#### URL Parameters
-
-_none_
-
-
-
-
-
-
+`DELETE https://api.planningcenteronline.com/services/v2/songs/1`
 
 ## SplitTeamRehearsalAssignments
 
 For Rehearsal/Other Times, maps a Split Team to selected Time Preference Options. For example, used to assign 8am Ushers to 7:30 call time, and 11am Ushers to 10:30 call time.
 
-Potentially confusing attributes:
-- assigned_to: Either 'team' or 'time_preferences'
-- time_preference_ids: The IDs of the assigned time preference options.
+### Attribute Info
 
+<span class='attribute-info-name'>assigned_to</span>
 
+Either 'team' or 'time_preferences'
 
+<span class='attribute-info-name'>time_preference_ids</span>
+
+The IDs of the assigned time preference options.
 
 ### List Split Team Rehearsal Assignments
 
@@ -1903,14 +2628,11 @@ _none_
 
 A tag group contains tags
 
-tags_for scopes a tag group to
-- person
-- song
-- arrangement
-- media
+### Attribute Info
 
+<span class='attribute-info-name'>tags_for</span>
 
-
+Scopes a tag group to `person`, `song`, `arrangement`, `media`
 
 ### List Tag Groups
 
@@ -2124,13 +2846,19 @@ _none_
 
 A position within a team.
 
-Potentially confusing attributes:
-  - negative_tag_groups: If the Team is assigned via tags, these are Tags where the option "None" is specified. 
-  - tag_groups: If the Team is assigned via tags, these are Tags where the option "Any" is specified.
-  - tags: If the Team is assigned via tags, these are specific Tags that are specified.
+### Attribute Info
 
+<span class='attribute-info-name'>negative_tag_groups</span>
 
+If the Team is assigned via tags, these are Tags where the option "None" is specified.
 
+<span class='attribute-info-name'>tag_groups</span>
+
+If the Team is assigned via tags, these are Tags where the option "Any" is specified.
+
+<span class='attribute-info-name'>tags</span>
+
+If the Team is assigned via tags, these are specific Tags that are specified.
 
 ### List Team Positions
 
