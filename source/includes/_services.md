@@ -817,158 +817,26 @@ Each song arrangement can have multiple keys. A key is the pitch center of the s
 
 Possible Values:
 
-- `Ab`
-
-- `A`
-
-- `A#`
-
-- `Bb`
-
-- `B`
-
-- `C`
-
-- `C#`
-
-- `Db`
-
-- `D`
-
-- `D#`
-
-- `Eb`
-
-- `E`
-
-- `F`
-
-- `F#`
-
-- `Gb`
-
-- `G`
-
-- `G#`
-
-- `Abm`
-
-- `Am`
-
-- `A#m`
-
-- `Bbm`
-
-- `Bm`
-
-- `Cm`
-
-- `C#m`
-
-- `Dbm`
-
-- `Dm`
-
-- `D#m`
-
-- `Ebm`
-
-- `Em`
-
-- `Fm`
-
-- `F#m`
-
-- `Gbm`
-
-- `Gm`
-
-- `G#m`
+`Ab`, `A`, `A#`, `Bb`, `B`, `C`, `C#`, `Db`, `D`, `D#`, `Eb`, `E`, `F`, `F#`, `Gb`, `G`, `G#`, `Abm`, `Am`, `A#m`, `Bbm`, `Bm`, `Cm`, `C#m`, `Dbm`, `Dm`, `D#m`, `Ebm`, `Em`, `Fm`, `F#m`, `Gbm`, `Gm`, `G#m`
 
 
 <span class='attribute-info-name'>ending_key</span>
 
 Possible Values:
 
-- `Ab`
-
-- `A`
-
-- `A#`
-
-- `Bb`
-
-- `B`
-
-- `C`
-
-- `C#`
-
-- `Db`
-
-- `D`
-
-- `D#`
-
-- `Eb`
-
-- `E`
-
-- `F`
-
-- `F#`
-
-- `Gb`
-
-- `G`
-
-- `G#`
-
-- `Abm`
-
-- `Am`
-
-- `A#m`
-
-- `Bbm`
-
-- `Bm`
-
-- `Cm`
-
-- `C#m`
-
-- `Dbm`
-
-- `Dm`
-
-- `D#m`
-
-- `Ebm`
-
-- `Em`
-
-- `Fm`
-
-- `F#m`
-
-- `Gbm`
-
-- `Gm`
-
-- `G#m`
+`Ab`, `A`, `A#`, `Bb`, `B`, `C`, `C#`, `Db`, `D`, `D#`, `Eb`, `E`, `F`, `F#`, `Gb`, `G`, `G#`, `Abm`, `Am`, `A#m`, `Bbm`, `Bm`, `Cm`, `C#m`, `Dbm`, `Dm`, `D#m`, `Ebm`, `Em`, `Fm`, `F#m`, `Gbm`, `Gm`, `G#m`
 
 
 <span class='attribute-info-name'>alternate_keys</span>
 
 An array of objects.
 
-```
+`
 {
   "name": "My Alternate Key",
   "key": "B"
 }
-```
+`
 
 
 ### List Keys
