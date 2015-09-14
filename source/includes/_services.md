@@ -279,6 +279,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/songs/
 Parameter | Value | Description
 --------- | ----- | -----------
 where[created_by_id] | _integer_ | filter on a specific created_by_id
+where[updated_by_id] | _integer_ | filter on a specific updated_by_id
 where[created_at] | _datetime_ | filter on a specific created_at
 where[updated_at] | _datetime_ | filter on a specific updated_at
 after | _id_ | get page after the specified id
@@ -315,7 +316,9 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/songs/
       "pco_type": "unknown",
       "streamable": "unknown",
       "updated_at": "2000-01-01T12:00:00Z",
-      "web_streamable": "unknown"
+      "web_streamable": "unknown",
+      "created_by_id": 1,
+      "updated_by_id": 1
     }
   }
 }
@@ -562,6 +565,8 @@ There are 4 possible values:
 
 - `item`: The default item type
 
+This value can only be set when a an item is created.  The only value that you can pass is `header`.  If no value is passed then `item` will be used.  To create a media item you'll attach a video media to the item, and to create a song item, you'll attach a song.
+
 
 <span class='attribute-info-name'>service_position</span>
 
@@ -649,92 +654,67 @@ You can append one of the following associations onto this resource URL to jump 
 Association | URL
 ----------- | ---
 attachments | https://api.planningcenteronline.com/services/v2/series/1/plans/1/items/1/attachments
-item_media | https://api.planningcenteronline.com/services/v2/series/1/plans/1/items/1/item_media
 item_notes | https://api.planningcenteronline.com/services/v2/series/1/plans/1/items/1/item_notes
+media | https://api.planningcenteronline.com/services/v2/series/1/plans/1/items/1/media
 song | https://api.planningcenteronline.com/services/v2/series/1/plans/1/items/1/song
 
-
-
-
-
-
-
-## ItemMedias
-
-A media item attached to a plan item
-
-
-
-### List Item Medias
+### Create a new Item
 
 ```shell
-# to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/series/1/plans/1/items/1/item_medias"
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{"type":"Item","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/series/1/plans/1/items"
 ```
 
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/series/1/plans/1/items/1/item_medias`
+`POST https://api.planningcenteronline.com/services/v2/series/1/plans/1/items`
 
-#### URL Parameters
+#### Resource Attributes
 
-Parameter | Value | Description
---------- | ----- | -----------
-where[created_at] | _datetime_ | filter on a specific created_at
-where[updated_at] | _datetime_ | filter on a specific updated_at
-where[media_id] | _integer_ | filter on a specific media_id
-include | media | include associated media
-after | _id_ | get page after the specified id
-per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+Attribute | Type
+--------- | ----
+length | integer
+description | 
+title | string
+service_position | 
+song_id | integer
+item_type | 
 
-### Get a single Item Media
+### Update an existing Item
 
 ```shell
-# to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/series/1/plans/1/items/1/item_medias/1"
+# to update a record...
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"Item","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/series/1/plans/1/items/1"
 ```
 
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "data": {
-    "type": "ItemMedia",
-    "id": "1",
-    "attributes": {
-      "created_at": "2000-01-01T12:00:00Z",
-      "updated_at": "2000-01-01T12:00:00Z",
-      "media_id": 1
-    }
-  }
-}
-```
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/series/1/plans/1/items/1/item_medias/1`
+`PATCH https://api.planningcenteronline.com/services/v2/series/1/plans/1/items/1`
 
-#### URL Parameters
+#### Resource Attributes
 
-Parameter | Value | Description
---------- | ----- | -----------
-include | media | include associated media
+Attribute | Type
+--------- | ----
+length | integer
+description | 
+title | string
+service_position | 
+song_id | integer
+media_ids | 
 
-### Associations for an Item Media
+### Delete an Item
 
-You can append one of the following associations onto this resource URL to jump to an associated record.
-
-Association | URL
------------ | ---
-media | https://api.planningcenteronline.com/services/v2/series/1/plans/1/items/1/item_medias/1/media
-
+```shell
+# to delete a record...
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/services/v2/series/1/plans/1/items/1"
+```
 
 
+#### HTTP Request
 
-
-
+`DELETE https://api.planningcenteronline.com/services/v2/series/1/plans/1/items/1`
 
 ## ItemNotes
 
@@ -812,8 +792,6 @@ Each song arrangement can have multiple keys. A key is the pitch center of the s
 ### Attribute Info
 
 <span class='attribute-info-name'>starting_key</span>
-
-  __REQUIRED__
 
 Possible Values:
 
@@ -1061,6 +1039,7 @@ Attribute | Type | Note
 media_type | string | Acceptable values are "Audio", "Background Audio", "Background Image", "Background Video", "Countdown", "Document", "Drama", "Image", "Powerpoint", "Song Video", and "Video".
 title | string
 creator_name | 
+themes | string
 
 ### Update an existing Media
 
@@ -1081,6 +1060,7 @@ Attribute | Type | Note
 media_type | string | Acceptable values are "Audio", "Background Audio", "Background Image", "Background Video", "Countdown", "Document", "Drama", "Image", "Powerpoint", "Song Video", and "Video".
 title | string
 creator_name | 
+themes | string
 
 ### Delete a Media
 
