@@ -4997,6 +4997,11 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 <td>filter on a specific created_by_id</td>
 </tr>
 <tr>
+<td>where[updated_by_id]</td>
+<td><em>integer</em></td>
+<td>filter on a specific updated_by_id</td>
+</tr>
+<tr>
 <td>where[created_at]</td>
 <td><em>datetime</em></td>
 <td>filter on a specific created_at</td>
@@ -5046,7 +5051,9 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
       </span><span class="s2">"pco_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"streamable"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"web_streamable"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="w">
+      </span><span class="s2">"web_streamable"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_by_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated_by_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -5348,6 +5355,8 @@ curl -v -u token:secret -X DELETE <span class="s2">"https://api.planningcenteron
 <li><p><code class="prettyprint">item</code>: The default item type</p></li>
 </ul>
 
+<p>This value can only be set when a an item is created.  The only value that you can pass is <code class="prettyprint">header</code>.  If no value is passed then <code class="prettyprint">item</code> will be used.  To create a media item you&rsquo;ll attach a video media to the item, and to create a song item, you&rsquo;ll attach a song.</p>
+
 <p><span class='attribute-info-name'>service_position</span></p>
 
 <p>There are 3 possible values:</p>
@@ -5479,12 +5488,12 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 <td>https://api.planningcenteronline.com/services/v2/series/1/plans/1/items/1/attachments</td>
 </tr>
 <tr>
-<td>item_media</td>
-<td>https://api.planningcenteronline.com/services/v2/series/1/plans/1/items/1/item_media</td>
-</tr>
-<tr>
 <td>item_notes</td>
 <td>https://api.planningcenteronline.com/services/v2/series/1/plans/1/items/1/item_notes</td>
+</tr>
+<tr>
+<td>media</td>
+<td>https://api.planningcenteronline.com/services/v2/series/1/plans/1/items/1/media</td>
 </tr>
 <tr>
 <td>song</td>
@@ -5492,116 +5501,100 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 </tr>
 </tbody></table>
 
-<h2 id="itemmedias">ItemMedias</h2>
-
-<p>A media item attached to a plan item</p>
-
-<h3 id="list-item-medias">List Item Medias</h3>
-<pre><code class="highlight shell"><span class="c"># to list records...</span>
-curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/services/v2/series/1/plans/1/items/1/item_medias"</span>
+<h3 id="create-a-new-item">Create a new Item</h3>
+<pre><code class="highlight shell"><span class="c"># to create a record...</span>
+curl -v -u token:secret -X POST -d <span class="s1">'{"data":{"type":"Item","attributes":{...}}}'</span> <span class="s2">"https://api.planningcenteronline.com/services/v2/series/1/plans/1/items"</span>
 </code></pre>
 
 <h4 id="http-request">HTTP Request</h4>
 
-<p><code class="prettyprint">GET https://api.planningcenteronline.com/services/v2/series/1/plans/1/items/1/item_medias</code></p>
+<p><code class="prettyprint">POST https://api.planningcenteronline.com/services/v2/series/1/plans/1/items</code></p>
 
-<h4 id="url-parameters">URL Parameters</h4>
+<h4 id="resource-attributes">Resource Attributes</h4>
 
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Value</th>
-<th>Description</th>
+<th>Attribute</th>
+<th>Type</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>where[created_at]</td>
-<td><em>datetime</em></td>
-<td>filter on a specific created_at</td>
+<td>length</td>
+<td>integer</td>
 </tr>
 <tr>
-<td>where[updated_at]</td>
-<td><em>datetime</em></td>
-<td>filter on a specific updated_at</td>
+<td>description</td>
+<td></td>
 </tr>
 <tr>
-<td>where[media_id]</td>
-<td><em>integer</em></td>
-<td>filter on a specific media_id</td>
+<td>title</td>
+<td>string</td>
 </tr>
 <tr>
-<td>include</td>
-<td>media</td>
-<td>include associated media</td>
+<td>service_position</td>
+<td></td>
 </tr>
 <tr>
-<td>after</td>
-<td><em>id</em></td>
-<td>get page after the specified id</td>
+<td>song_id</td>
+<td>integer</td>
 </tr>
 <tr>
-<td>per_page</td>
-<td><em>integer</em></td>
-<td>how many records to return per page (min=1, max=100, default=25)</td>
+<td>item_type</td>
+<td></td>
 </tr>
 </tbody></table>
 
-<h3 id="get-a-single-item-media">Get a single Item Media</h3>
-<pre><code class="highlight shell"><span class="c"># to show...</span>
-curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/services/v2/series/1/plans/1/items/1/item_medias/1"</span>
+<h3 id="update-an-existing-item">Update an existing Item</h3>
+<pre><code class="highlight shell"><span class="c"># to update a record...</span>
+curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{"type":"Item","id":"1","attributes":{...}}}'</span> <span class="s2">"https://api.planningcenteronline.com/services/v2/series/1/plans/1/items/1"</span>
 </code></pre>
-
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre><code class="highlight json"><span class="p">{</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ItemMedia"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"media_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
 
 <h4 id="http-request">HTTP Request</h4>
 
-<p><code class="prettyprint">GET https://api.planningcenteronline.com/services/v2/series/1/plans/1/items/1/item_medias/1</code></p>
+<p><code class="prettyprint">PATCH https://api.planningcenteronline.com/services/v2/series/1/plans/1/items/1</code></p>
 
-<h4 id="url-parameters">URL Parameters</h4>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Value</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>include</td>
-<td>media</td>
-<td>include associated media</td>
-</tr>
-</tbody></table>
-
-<h3 id="associations-for-an-item-media">Associations for an Item Media</h3>
-
-<p>You can append one of the following associations onto this resource URL to jump to an associated record.</p>
+<h4 id="resource-attributes">Resource Attributes</h4>
 
 <table><thead>
 <tr>
-<th>Association</th>
-<th>URL</th>
+<th>Attribute</th>
+<th>Type</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>media</td>
-<td>https://api.planningcenteronline.com/services/v2/series/1/plans/1/items/1/item_medias/1/media</td>
+<td>length</td>
+<td>integer</td>
+</tr>
+<tr>
+<td>description</td>
+<td></td>
+</tr>
+<tr>
+<td>title</td>
+<td>string</td>
+</tr>
+<tr>
+<td>service_position</td>
+<td></td>
+</tr>
+<tr>
+<td>song_id</td>
+<td>integer</td>
+</tr>
+<tr>
+<td>media_ids</td>
+<td></td>
 </tr>
 </tbody></table>
+
+<h3 id="delete-an-item">Delete an Item</h3>
+<pre><code class="highlight shell"><span class="c"># to delete a record...</span>
+curl -v -u token:secret -X DELETE <span class="s2">"https://api.planningcenteronline.com/services/v2/series/1/plans/1/items/1"</span>
+</code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">DELETE https://api.planningcenteronline.com/services/v2/series/1/plans/1/items/1</code></p>
 
 <h2 id="itemnotes">ItemNotes</h2>
 
@@ -5993,6 +5986,11 @@ curl -v -u token:secret -X POST -d <span class="s1">'{"data":{"type":"Media","at
 <td></td>
 <td></td>
 </tr>
+<tr>
+<td>themes</td>
+<td>string</td>
+<td></td>
+</tr>
 </tbody></table>
 
 <h3 id="update-an-existing-media">Update an existing Media</h3>
@@ -6026,6 +6024,11 @@ curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{"type":"Media","i
 <tr>
 <td>creator_name</td>
 <td></td>
+<td></td>
+</tr>
+<tr>
+<td>themes</td>
+<td>string</td>
 <td></td>
 </tr>
 </tbody></table>
