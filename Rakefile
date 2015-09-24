@@ -3,6 +3,12 @@ require 'open-uri'
 
 task :default => [:fetch, :build]
 
+APP_NAMES = %w(
+  people
+  services
+  check-ins
+)
+
 task :fetch do
   base_url = case ENV['DEPLOY_ENV']
   when 'development'
@@ -12,10 +18,7 @@ task :fetch do
   else
     'https://api.planningcenteronline.com'
   end
-  %w(
-    people
-    services
-  ).each do |app|
+  APP_NAMES.each do |app|
     url = "#{base_url}/#{app}/v2/docs"
     p "getting #{url}..."
     content = open(url).read
