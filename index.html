@@ -8158,6 +8158,1927 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 
 <p><em>none</em></p>
 
+          <h1 id="pco-check-ins">PCO Check-Ins</h1>
+
+<p>Check kids &amp; volunteers in to events and track attendance.</p>
+
+<h2 id="checkins">CheckIns</h2>
+
+<p>An attendance record for an event.
+If <code class="prettyprint">person</code> is nil, this check-in is a one-time guest.
+If someone was checked out, <code class="prettyprint">checked_out_at</code> will be present.</p>
+
+<h3 id="list-check-ins">List Check Ins</h3>
+<pre><code class="highlight shell"><span class="c"># to list records...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/check-ins/v2/check_ins"</span>
+</code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/check-ins/v2/check_ins</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>include</td>
+<td>location</td>
+<td>include associated location</td>
+</tr>
+<tr>
+<td>include</td>
+<td>event</td>
+<td>include associated event</td>
+</tr>
+<tr>
+<td>include</td>
+<td>event_period</td>
+<td>include associated event_period</td>
+</tr>
+<tr>
+<td>include</td>
+<td>event_times</td>
+<td>include associated event_times</td>
+</tr>
+<tr>
+<td>include</td>
+<td>person</td>
+<td>include associated person</td>
+</tr>
+<tr>
+<td>include</td>
+<td>checked_in_at</td>
+<td>include associated checked_in_at</td>
+</tr>
+<tr>
+<td>include</td>
+<td>checked_in_by</td>
+<td>include associated checked_in_by</td>
+</tr>
+<tr>
+<td>include</td>
+<td>checked_out_by</td>
+<td>include associated checked_out_by</td>
+</tr>
+<tr>
+<td>after</td>
+<td><em>id</em></td>
+<td>get page after the specified id</td>
+</tr>
+<tr>
+<td>per_page</td>
+<td><em>integer</em></td>
+<td>how many records to return per page (min=1, max=100, default=25)</td>
+</tr>
+</tbody></table>
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=location,event</code></aside>
+
+<h3 id="get-a-single-check-in">Get a single Check In</h3>
+<pre><code class="highlight shell"><span class="c"># to show...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/check-ins/v2/check_ins/1"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CheckIn"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"medical_notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"number"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"answers"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"checked_out_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/check-ins/v2/check_ins/1</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>include</td>
+<td>location</td>
+<td>include associated location</td>
+</tr>
+<tr>
+<td>include</td>
+<td>event</td>
+<td>include associated event</td>
+</tr>
+<tr>
+<td>include</td>
+<td>event_period</td>
+<td>include associated event_period</td>
+</tr>
+<tr>
+<td>include</td>
+<td>event_times</td>
+<td>include associated event_times</td>
+</tr>
+<tr>
+<td>include</td>
+<td>person</td>
+<td>include associated person</td>
+</tr>
+<tr>
+<td>include</td>
+<td>checked_in_at</td>
+<td>include associated checked_in_at</td>
+</tr>
+<tr>
+<td>include</td>
+<td>checked_in_by</td>
+<td>include associated checked_in_by</td>
+</tr>
+<tr>
+<td>include</td>
+<td>checked_out_by</td>
+<td>include associated checked_out_by</td>
+</tr>
+</tbody></table>
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=location,event</code></aside>
+
+<h3 id="associations-for-a-check-in">Associations for a Check In</h3>
+
+<p>You can append one of the following associations onto this resource URL to jump to an associated record.</p>
+
+<table><thead>
+<tr>
+<th>Association</th>
+<th>URL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>checked_in_at</td>
+<td>https://api.planningcenteronline.com/check-ins/v2/check_ins/1/checked_in_at</td>
+</tr>
+<tr>
+<td>checked_in_by</td>
+<td>https://api.planningcenteronline.com/check-ins/v2/check_ins/1/checked_in_by</td>
+</tr>
+<tr>
+<td>checked_out_by</td>
+<td>https://api.planningcenteronline.com/check-ins/v2/check_ins/1/checked_out_by</td>
+</tr>
+<tr>
+<td>event</td>
+<td>https://api.planningcenteronline.com/check-ins/v2/check_ins/1/event</td>
+</tr>
+<tr>
+<td>event_period</td>
+<td>https://api.planningcenteronline.com/check-ins/v2/check_ins/1/event_period</td>
+</tr>
+<tr>
+<td>event_times</td>
+<td>https://api.planningcenteronline.com/check-ins/v2/check_ins/1/event_times</td>
+</tr>
+<tr>
+<td>location</td>
+<td>https://api.planningcenteronline.com/check-ins/v2/check_ins/1/location</td>
+</tr>
+<tr>
+<td>person</td>
+<td>https://api.planningcenteronline.com/check-ins/v2/check_ins/1/person</td>
+</tr>
+</tbody></table>
+
+<h2 id="events">Events</h2>
+
+<p>A recurring event which people may attend.
+Each recurrence is an <em>event period</em> (which often corresponds to a week).
+Event periods have <em>event times</em> where people may actually check in.</p>
+
+<h3 id="list-events">List Events</h3>
+<pre><code class="highlight shell"><span class="c"># to list records...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/check-ins/v2/events"</span>
+</code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/check-ins/v2/events</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>after</td>
+<td><em>id</em></td>
+<td>get page after the specified id</td>
+</tr>
+<tr>
+<td>per_page</td>
+<td><em>integer</em></td>
+<td>how many records to return per page (min=1, max=100, default=25)</td>
+</tr>
+</tbody></table>
+
+<h3 id="get-a-single-event">Get a single Event</h3>
+<pre><code class="highlight shell"><span class="c"># to show...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/check-ins/v2/events/1"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Event"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"frequency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"enable_services_integration"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/check-ins/v2/events/1</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<p><em>none</em></p>
+
+<h3 id="associations-for-an-event">Associations for an Event</h3>
+
+<p>You can append one of the following associations onto this resource URL to jump to an associated record.</p>
+
+<table><thead>
+<tr>
+<th>Association</th>
+<th>URL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>check_ins</td>
+<td>https://api.planningcenteronline.com/check-ins/v2/events/1/check_ins</td>
+</tr>
+<tr>
+<td>event_labels</td>
+<td>https://api.planningcenteronline.com/check-ins/v2/events/1/event_labels</td>
+</tr>
+<tr>
+<td>event_periods</td>
+<td>https://api.planningcenteronline.com/check-ins/v2/events/1/event_periods</td>
+</tr>
+<tr>
+<td>locations</td>
+<td>https://api.planningcenteronline.com/check-ins/v2/events/1/locations</td>
+</tr>
+<tr>
+<td>person_events</td>
+<td>https://api.planningcenteronline.com/check-ins/v2/events/1/person_events</td>
+</tr>
+</tbody></table>
+
+<h2 id="eventlabels">EventLabels</h2>
+
+<p>Says how many of a given label to print for this event and
+whether to print it for regulars, guests, and/or volunteers.</p>
+
+<h3 id="list-event-labels">List Event Labels</h3>
+<pre><code class="highlight shell"><span class="c"># to list records...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/check-ins/v2/events/1/event_labels"</span>
+</code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/check-ins/v2/events/1/event_labels</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>include</td>
+<td>event</td>
+<td>include associated event</td>
+</tr>
+<tr>
+<td>include</td>
+<td>label</td>
+<td>include associated label</td>
+</tr>
+<tr>
+<td>after</td>
+<td><em>id</em></td>
+<td>get page after the specified id</td>
+</tr>
+<tr>
+<td>per_page</td>
+<td><em>integer</em></td>
+<td>how many records to return per page (min=1, max=100, default=25)</td>
+</tr>
+</tbody></table>
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=event,label</code></aside>
+
+<h3 id="get-a-single-event-label">Get a single Event Label</h3>
+<pre><code class="highlight shell"><span class="c"># to show...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/check-ins/v2/events/1/event_labels/1"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EventLabel"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"for_regular"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"for_guest"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"for_volunteer"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/check-ins/v2/events/1/event_labels/1</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>include</td>
+<td>event</td>
+<td>include associated event</td>
+</tr>
+<tr>
+<td>include</td>
+<td>label</td>
+<td>include associated label</td>
+</tr>
+</tbody></table>
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=event,label</code></aside>
+
+<h3 id="associations-for-an-event-label">Associations for an Event Label</h3>
+
+<p>You can append one of the following associations onto this resource URL to jump to an associated record.</p>
+
+<table><thead>
+<tr>
+<th>Association</th>
+<th>URL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>event</td>
+<td>https://api.planningcenteronline.com/check-ins/v2/events/1/event_labels/1/event</td>
+</tr>
+<tr>
+<td>label</td>
+<td>https://api.planningcenteronline.com/check-ins/v2/events/1/event_labels/1/label</td>
+</tr>
+</tbody></table>
+
+<h2 id="eventperiods">EventPeriods</h2>
+
+<p>A recurrence of an event, sometimes called a &ldquo;session&rdquo;.
+For weekly events, an event period is a week.
+An event period has event times, which is what people select
+when they actually check in. When new sessions are created, times
+are copied from one session to the next.</p>
+
+<h3 id="list-event-periods">List Event Periods</h3>
+<pre><code class="highlight shell"><span class="c"># to list records...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/check-ins/v2/events/1/event_periods"</span>
+</code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/check-ins/v2/events/1/event_periods</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>include</td>
+<td>event</td>
+<td>include associated event</td>
+</tr>
+<tr>
+<td>include</td>
+<td>event_times</td>
+<td>include associated event_times</td>
+</tr>
+<tr>
+<td>after</td>
+<td><em>id</em></td>
+<td>get page after the specified id</td>
+</tr>
+<tr>
+<td>per_page</td>
+<td><em>integer</em></td>
+<td>how many records to return per page (min=1, max=100, default=25)</td>
+</tr>
+</tbody></table>
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=event,event_times</code></aside>
+
+<h3 id="get-a-single-event-period">Get a single Event Period</h3>
+<pre><code class="highlight shell"><span class="c"># to show...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/check-ins/v2/events/1/event_periods/1"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EventPeriod"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"starts_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"ends_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"regular_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"guest_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"volunteer_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/check-ins/v2/events/1/event_periods/1</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>include</td>
+<td>event</td>
+<td>include associated event</td>
+</tr>
+<tr>
+<td>include</td>
+<td>event_times</td>
+<td>include associated event_times</td>
+</tr>
+</tbody></table>
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=event,event_times</code></aside>
+
+<h3 id="associations-for-an-event-period">Associations for an Event Period</h3>
+
+<p>You can append one of the following associations onto this resource URL to jump to an associated record.</p>
+
+<table><thead>
+<tr>
+<th>Association</th>
+<th>URL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>check_ins</td>
+<td>https://api.planningcenteronline.com/check-ins/v2/events/1/event_periods/1/check_ins</td>
+</tr>
+<tr>
+<td>event</td>
+<td>https://api.planningcenteronline.com/check-ins/v2/events/1/event_periods/1/event</td>
+</tr>
+<tr>
+<td>event_times</td>
+<td>https://api.planningcenteronline.com/check-ins/v2/events/1/event_periods/1/event_times</td>
+</tr>
+<tr>
+<td>location_event_periods</td>
+<td>https://api.planningcenteronline.com/check-ins/v2/events/1/event_periods/1/location_event_periods</td>
+</tr>
+</tbody></table>
+
+<h2 id="eventtimes">EventTimes</h2>
+
+<p>A time that someone may check in. Times are copied from session to session.</p>
+
+<h3 id="list-event-times">List Event Times</h3>
+<pre><code class="highlight shell"><span class="c"># to list records...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/check-ins/v2/event_times"</span>
+</code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/check-ins/v2/event_times</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>include</td>
+<td>event_period</td>
+<td>include associated event_period</td>
+</tr>
+<tr>
+<td>include</td>
+<td>event</td>
+<td>include associated event</td>
+</tr>
+<tr>
+<td>after</td>
+<td><em>id</em></td>
+<td>get page after the specified id</td>
+</tr>
+<tr>
+<td>per_page</td>
+<td><em>integer</em></td>
+<td>how many records to return per page (min=1, max=100, default=25)</td>
+</tr>
+</tbody></table>
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=event_period,event</code></aside>
+
+<h3 id="get-a-single-event-time">Get a single Event Time</h3>
+<pre><code class="highlight shell"><span class="c"># to show...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/check-ins/v2/event_times/1"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EventTime"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"starts_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"shows_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"hides_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"regular_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"guest_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"volunteer_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"total_count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/check-ins/v2/event_times/1</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>include</td>
+<td>event_period</td>
+<td>include associated event_period</td>
+</tr>
+<tr>
+<td>include</td>
+<td>event</td>
+<td>include associated event</td>
+</tr>
+</tbody></table>
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=event_period,event</code></aside>
+
+<h3 id="associations-for-an-event-time">Associations for an Event Time</h3>
+
+<p>You can append one of the following associations onto this resource URL to jump to an associated record.</p>
+
+<table><thead>
+<tr>
+<th>Association</th>
+<th>URL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>check_ins</td>
+<td>https://api.planningcenteronline.com/check-ins/v2/event_times/1/check_ins</td>
+</tr>
+<tr>
+<td>event</td>
+<td>https://api.planningcenteronline.com/check-ins/v2/event_times/1/event</td>
+</tr>
+<tr>
+<td>event_period</td>
+<td>https://api.planningcenteronline.com/check-ins/v2/event_times/1/event_period</td>
+</tr>
+<tr>
+<td>location_event_times</td>
+<td>https://api.planningcenteronline.com/check-ins/v2/event_times/1/location_event_times</td>
+</tr>
+</tbody></table>
+
+<h2 id="labels">Labels</h2>
+
+<p>Labels can be set to print for events <em>or</em> locations
+using <code class="prettyprint">EventLabel</code> or <code class="prettyprint">LocationLabel</code> objects.
+Label type (security label / name label) is expressed with the
+<code class="prettyprint">prints_for</code> attribute. <code class="prettyprint">prints_for=&quot;Person&quot;</code> is a name label,
+<code class="prettyprint">prints_for=&quot;Group&quot;</code> is a security label.</p>
+
+<h3 id="list-labels">List Labels</h3>
+<pre><code class="highlight shell"><span class="c"># to list records...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/check-ins/v2/labels"</span>
+</code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/check-ins/v2/labels</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>after</td>
+<td><em>id</em></td>
+<td>get page after the specified id</td>
+</tr>
+<tr>
+<td>per_page</td>
+<td><em>integer</em></td>
+<td>how many records to return per page (min=1, max=100, default=25)</td>
+</tr>
+</tbody></table>
+
+<h3 id="get-a-single-label">Get a single Label</h3>
+<pre><code class="highlight shell"><span class="c"># to show...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/check-ins/v2/labels/1"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Label"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"xml"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"prints_for"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"roll"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/check-ins/v2/labels/1</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<p><em>none</em></p>
+
+<h3 id="associations-for-a-label">Associations for a Label</h3>
+
+<p>You can append one of the following associations onto this resource URL to jump to an associated record.</p>
+
+<table><thead>
+<tr>
+<th>Association</th>
+<th>URL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>event_labels</td>
+<td>https://api.planningcenteronline.com/check-ins/v2/labels/1/event_labels</td>
+</tr>
+<tr>
+<td>location_labels</td>
+<td>https://api.planningcenteronline.com/check-ins/v2/labels/1/location_labels</td>
+</tr>
+</tbody></table>
+
+<h2 id="locations">Locations</h2>
+
+<p>A place where people may check in to for a given event.
+Some locations have <code class="prettyprint">kind=&quot;Folder&quot;</code>, which means that people
+can&rsquo;t check-in here, but this location contains other locations.
+You can get its contents from the <code class="prettyprint">locations</code> attribute.
+You can get a location&rsquo;s parent folder from the <code class="prettyprint">parent</code> attribute.
+(If it&rsquo;s not in a folder, <code class="prettyprint">parent</code> will be empty.)</p>
+
+<h3 id="list-locations">List Locations</h3>
+<pre><code class="highlight shell"><span class="c"># to list records...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/check-ins/v2/events/1/locations"</span>
+</code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/check-ins/v2/events/1/locations</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>where[locations]</td>
+<td>__</td>
+<td>filter on a specific locations</td>
+</tr>
+<tr>
+<td>where[root]</td>
+<td>__</td>
+<td>filter on a specific root</td>
+</tr>
+<tr>
+<td>include</td>
+<td>parent</td>
+<td>include associated parent</td>
+</tr>
+<tr>
+<td>include</td>
+<td>event</td>
+<td>include associated event</td>
+</tr>
+<tr>
+<td>include</td>
+<td>locations</td>
+<td>include associated locations</td>
+</tr>
+<tr>
+<td>after</td>
+<td><em>id</em></td>
+<td>get page after the specified id</td>
+</tr>
+<tr>
+<td>per_page</td>
+<td><em>integer</em></td>
+<td>how many records to return per page (min=1, max=100, default=25)</td>
+</tr>
+</tbody></table>
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=parent,event</code></aside>
+
+<h3 id="get-a-single-location">Get a single Location</h3>
+<pre><code class="highlight shell"><span class="c"># to show...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/check-ins/v2/events/1/locations/1"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Location"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"opened"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"questions"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"age_min_in_months"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"age_range_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"grade_min"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"grade_max"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"max_occupancy"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/check-ins/v2/events/1/locations/1</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>include</td>
+<td>parent</td>
+<td>include associated parent</td>
+</tr>
+<tr>
+<td>include</td>
+<td>event</td>
+<td>include associated event</td>
+</tr>
+<tr>
+<td>include</td>
+<td>locations</td>
+<td>include associated locations</td>
+</tr>
+</tbody></table>
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=parent,event</code></aside>
+
+<h3 id="associations-for-a-location">Associations for a Location</h3>
+
+<p>You can append one of the following associations onto this resource URL to jump to an associated record.</p>
+
+<table><thead>
+<tr>
+<th>Association</th>
+<th>URL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>check_ins</td>
+<td>https://api.planningcenteronline.com/check-ins/v2/events/1/locations/1/check_ins</td>
+</tr>
+<tr>
+<td>event</td>
+<td>https://api.planningcenteronline.com/check-ins/v2/events/1/locations/1/event</td>
+</tr>
+<tr>
+<td>location_event_periods</td>
+<td>https://api.planningcenteronline.com/check-ins/v2/events/1/locations/1/location_event_periods</td>
+</tr>
+<tr>
+<td>location_event_times</td>
+<td>https://api.planningcenteronline.com/check-ins/v2/events/1/locations/1/location_event_times</td>
+</tr>
+<tr>
+<td>location_labels</td>
+<td>https://api.planningcenteronline.com/check-ins/v2/events/1/locations/1/location_labels</td>
+</tr>
+<tr>
+<td>locations</td>
+<td>https://api.planningcenteronline.com/check-ins/v2/events/1/locations/1/locations</td>
+</tr>
+<tr>
+<td>parent</td>
+<td>https://api.planningcenteronline.com/check-ins/v2/events/1/locations/1/parent</td>
+</tr>
+</tbody></table>
+
+<h2 id="locationeventperiods">LocationEventPeriods</h2>
+
+<p>Counts check-ins for a location during a certain event period.</p>
+
+<h3 id="list-location-event-periods">List Location Event Periods</h3>
+<pre><code class="highlight shell"><span class="c"># to list records...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/check-ins/v2/events/1/event_periods/1/location_event_periods"</span>
+</code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/check-ins/v2/events/1/event_periods/1/location_event_periods</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>include</td>
+<td>location</td>
+<td>include associated location</td>
+</tr>
+<tr>
+<td>include</td>
+<td>event_period</td>
+<td>include associated event_period</td>
+</tr>
+<tr>
+<td>after</td>
+<td><em>id</em></td>
+<td>get page after the specified id</td>
+</tr>
+<tr>
+<td>per_page</td>
+<td><em>integer</em></td>
+<td>how many records to return per page (min=1, max=100, default=25)</td>
+</tr>
+</tbody></table>
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=location,event_period</code></aside>
+
+<h3 id="get-a-single-location-event-period">Get a single Location Event Period</h3>
+<pre><code class="highlight shell"><span class="c"># to show...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/check-ins/v2/events/1/event_periods/1/location_event_periods/1"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LocationEventPeriod"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"regular_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"guest_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"volunteer_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/check-ins/v2/events/1/event_periods/1/location_event_periods/1</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>include</td>
+<td>location</td>
+<td>include associated location</td>
+</tr>
+<tr>
+<td>include</td>
+<td>event_period</td>
+<td>include associated event_period</td>
+</tr>
+</tbody></table>
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=location,event_period</code></aside>
+
+<h3 id="associations-for-a-location-event-period">Associations for a Location Event Period</h3>
+
+<p>You can append one of the following associations onto this resource URL to jump to an associated record.</p>
+
+<table><thead>
+<tr>
+<th>Association</th>
+<th>URL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>check_ins</td>
+<td>https://api.planningcenteronline.com/check-ins/v2/events/1/event_periods/1/location_event_periods/1/check_ins</td>
+</tr>
+<tr>
+<td>event_period</td>
+<td>https://api.planningcenteronline.com/check-ins/v2/events/1/event_periods/1/location_event_periods/1/event_period</td>
+</tr>
+<tr>
+<td>location</td>
+<td>https://api.planningcenteronline.com/check-ins/v2/events/1/event_periods/1/location_event_periods/1/location</td>
+</tr>
+</tbody></table>
+
+<h2 id="locationeventtimes">LocationEventTimes</h2>
+
+<p>Counts check-ins for a location for a given event time.
+This is useful for checking occupancy.</p>
+
+<h3 id="list-location-event-times">List Location Event Times</h3>
+<pre><code class="highlight shell"><span class="c"># to list records...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/check-ins/v2/event_times/1/location_event_times"</span>
+</code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/check-ins/v2/event_times/1/location_event_times</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>include</td>
+<td>location</td>
+<td>include associated location</td>
+</tr>
+<tr>
+<td>include</td>
+<td>event_time</td>
+<td>include associated event_time</td>
+</tr>
+<tr>
+<td>after</td>
+<td><em>id</em></td>
+<td>get page after the specified id</td>
+</tr>
+<tr>
+<td>per_page</td>
+<td><em>integer</em></td>
+<td>how many records to return per page (min=1, max=100, default=25)</td>
+</tr>
+</tbody></table>
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=location,event_time</code></aside>
+
+<h3 id="get-a-single-location-event-time">Get a single Location Event Time</h3>
+<pre><code class="highlight shell"><span class="c"># to show...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/check-ins/v2/event_times/1/location_event_times/1"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LocationEventTime"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"regular_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"guest_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"volunteer_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/check-ins/v2/event_times/1/location_event_times/1</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>include</td>
+<td>location</td>
+<td>include associated location</td>
+</tr>
+<tr>
+<td>include</td>
+<td>event_time</td>
+<td>include associated event_time</td>
+</tr>
+</tbody></table>
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=location,event_time</code></aside>
+
+<h3 id="associations-for-a-location-event-time">Associations for a Location Event Time</h3>
+
+<p>You can append one of the following associations onto this resource URL to jump to an associated record.</p>
+
+<table><thead>
+<tr>
+<th>Association</th>
+<th>URL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>check_ins</td>
+<td>https://api.planningcenteronline.com/check-ins/v2/event_times/1/location_event_times/1/check_ins</td>
+</tr>
+<tr>
+<td>event_time</td>
+<td>https://api.planningcenteronline.com/check-ins/v2/event_times/1/location_event_times/1/event_time</td>
+</tr>
+<tr>
+<td>location</td>
+<td>https://api.planningcenteronline.com/check-ins/v2/event_times/1/location_event_times/1/location</td>
+</tr>
+</tbody></table>
+
+<h2 id="locationlabels">LocationLabels</h2>
+
+<p>Says how many of a given label to print for this location and
+whether to print it for regulars, guests, and/or volunteers.</p>
+
+<h3 id="list-location-labels">List Location Labels</h3>
+<pre><code class="highlight shell"><span class="c"># to list records...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/check-ins/v2/labels/1/location_labels"</span>
+</code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/check-ins/v2/labels/1/location_labels</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>include</td>
+<td>location</td>
+<td>include associated location</td>
+</tr>
+<tr>
+<td>include</td>
+<td>label</td>
+<td>include associated label</td>
+</tr>
+<tr>
+<td>after</td>
+<td><em>id</em></td>
+<td>get page after the specified id</td>
+</tr>
+<tr>
+<td>per_page</td>
+<td><em>integer</em></td>
+<td>how many records to return per page (min=1, max=100, default=25)</td>
+</tr>
+</tbody></table>
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=location,label</code></aside>
+
+<h3 id="get-a-single-location-label">Get a single Location Label</h3>
+<pre><code class="highlight shell"><span class="c"># to show...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/check-ins/v2/labels/1/location_labels/1"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LocationLabel"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"for_regular"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"for_guest"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"for_volunteer"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/check-ins/v2/labels/1/location_labels/1</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>include</td>
+<td>location</td>
+<td>include associated location</td>
+</tr>
+<tr>
+<td>include</td>
+<td>label</td>
+<td>include associated label</td>
+</tr>
+</tbody></table>
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=location,label</code></aside>
+
+<h3 id="associations-for-a-location-label">Associations for a Location Label</h3>
+
+<p>You can append one of the following associations onto this resource URL to jump to an associated record.</p>
+
+<table><thead>
+<tr>
+<th>Association</th>
+<th>URL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>label</td>
+<td>https://api.planningcenteronline.com/check-ins/v2/labels/1/location_labels/1/label</td>
+</tr>
+<tr>
+<td>location</td>
+<td>https://api.planningcenteronline.com/check-ins/v2/labels/1/location_labels/1/location</td>
+</tr>
+</tbody></table>
+
+<h2 id="organizations">Organizations</h2>
+
+<p>An organization which has people and events.
+This contains its date format &amp; time zone preferences.</p>
+
+<h3 id="get-a-single-organization">Get a single Organization</h3>
+<pre><code class="highlight shell"><span class="c"># to show...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/check-ins/v2"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Organization"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"daily_check_ins"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"date_format_pattern"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"time_zone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/check-ins/v2</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<p><em>none</em></p>
+
+<h3 id="associations-for-an-organization">Associations for an Organization</h3>
+
+<p>You can append one of the following associations onto this resource URL to jump to an associated record.</p>
+
+<table><thead>
+<tr>
+<th>Association</th>
+<th>URL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>check_ins</td>
+<td>https://api.planningcenteronline.com/check-ins/v2/check_ins</td>
+</tr>
+<tr>
+<td>event_times</td>
+<td>https://api.planningcenteronline.com/check-ins/v2/event_times</td>
+</tr>
+<tr>
+<td>events</td>
+<td>https://api.planningcenteronline.com/check-ins/v2/events</td>
+</tr>
+<tr>
+<td>labels</td>
+<td>https://api.planningcenteronline.com/check-ins/v2/labels</td>
+</tr>
+<tr>
+<td>passes</td>
+<td>https://api.planningcenteronline.com/check-ins/v2/passes</td>
+</tr>
+<tr>
+<td>people</td>
+<td>https://api.planningcenteronline.com/check-ins/v2/people</td>
+</tr>
+<tr>
+<td>stations</td>
+<td>https://api.planningcenteronline.com/check-ins/v2/stations</td>
+</tr>
+<tr>
+<td>themes</td>
+<td>https://api.planningcenteronline.com/check-ins/v2/themes</td>
+</tr>
+</tbody></table>
+
+<h2 id="passes">Passes</h2>
+
+<p>Enables quick lookup of a person via barcode reader.</p>
+
+<h3 id="list-passes">List Passes</h3>
+<pre><code class="highlight shell"><span class="c"># to list records...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/check-ins/v2/passes"</span>
+</code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/check-ins/v2/passes</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>include</td>
+<td>person</td>
+<td>include associated person</td>
+</tr>
+<tr>
+<td>after</td>
+<td><em>id</em></td>
+<td>get page after the specified id</td>
+</tr>
+<tr>
+<td>per_page</td>
+<td><em>integer</em></td>
+<td>how many records to return per page (min=1, max=100, default=25)</td>
+</tr>
+</tbody></table>
+
+<h3 id="get-a-single-pass">Get a single Pass</h3>
+<pre><code class="highlight shell"><span class="c"># to show...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/check-ins/v2/passes/1"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pass"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/check-ins/v2/passes/1</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>include</td>
+<td>person</td>
+<td>include associated person</td>
+</tr>
+</tbody></table>
+
+<h3 id="associations-for-a-pass">Associations for a Pass</h3>
+
+<p>You can append one of the following associations onto this resource URL to jump to an associated record.</p>
+
+<table><thead>
+<tr>
+<th>Association</th>
+<th>URL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>person</td>
+<td>https://api.planningcenteronline.com/check-ins/v2/passes/1/person</td>
+</tr>
+</tbody></table>
+
+<h2 id="people">People</h2>
+
+<p>An attendee, volunteer or administrator.</p>
+
+<h3 id="list-people">List People</h3>
+<pre><code class="highlight shell"><span class="c"># to list records...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/check-ins/v2/people"</span>
+</code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/check-ins/v2/people</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>after</td>
+<td><em>id</em></td>
+<td>get page after the specified id</td>
+</tr>
+<tr>
+<td>per_page</td>
+<td><em>integer</em></td>
+<td>how many records to return per page (min=1, max=100, default=25)</td>
+</tr>
+</tbody></table>
+
+<h3 id="get-a-single-person">Get a single Person</h3>
+<pre><code class="highlight shell"><span class="c"># to show...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/check-ins/v2/people/1"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Person"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"avatar_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name_prefix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"middle_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name_suffix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"birthdate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"grade"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"medical_notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"child"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"addresses"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"phone_numbers"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"email_addresses"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"permission"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"check_in_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/check-ins/v2/people/1</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<p><em>none</em></p>
+
+<h3 id="associations-for-a-person">Associations for a Person</h3>
+
+<p>You can append one of the following associations onto this resource URL to jump to an associated record.</p>
+
+<table><thead>
+<tr>
+<th>Association</th>
+<th>URL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>check_ins</td>
+<td>https://api.planningcenteronline.com/check-ins/v2/people/1/check_ins</td>
+</tr>
+<tr>
+<td>passes</td>
+<td>https://api.planningcenteronline.com/check-ins/v2/people/1/passes</td>
+</tr>
+<tr>
+<td>person_events</td>
+<td>https://api.planningcenteronline.com/check-ins/v2/people/1/person_events</td>
+</tr>
+</tbody></table>
+
+<h2 id="personevents">PersonEvents</h2>
+
+<p>Counts a person&rsquo;s attendence for a given event.</p>
+
+<h3 id="list-person-events">List Person Events</h3>
+<pre><code class="highlight shell"><span class="c"># to list records...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/check-ins/v2/events/1/person_events"</span>
+</code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/check-ins/v2/events/1/person_events</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>include</td>
+<td>person</td>
+<td>include associated person</td>
+</tr>
+<tr>
+<td>include</td>
+<td>event</td>
+<td>include associated event</td>
+</tr>
+<tr>
+<td>include</td>
+<td>first_check_in</td>
+<td>include associated first_check_in</td>
+</tr>
+<tr>
+<td>include</td>
+<td>last_check_in</td>
+<td>include associated last_check_in</td>
+</tr>
+<tr>
+<td>after</td>
+<td><em>id</em></td>
+<td>get page after the specified id</td>
+</tr>
+<tr>
+<td>per_page</td>
+<td><em>integer</em></td>
+<td>how many records to return per page (min=1, max=100, default=25)</td>
+</tr>
+</tbody></table>
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=person,event</code></aside>
+
+<h3 id="get-a-single-person-event">Get a single Person Event</h3>
+<pre><code class="highlight shell"><span class="c"># to show...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/check-ins/v2/events/1/person_events/1"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PersonEvent"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"check_in_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/check-ins/v2/events/1/person_events/1</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>include</td>
+<td>person</td>
+<td>include associated person</td>
+</tr>
+<tr>
+<td>include</td>
+<td>event</td>
+<td>include associated event</td>
+</tr>
+<tr>
+<td>include</td>
+<td>first_check_in</td>
+<td>include associated first_check_in</td>
+</tr>
+<tr>
+<td>include</td>
+<td>last_check_in</td>
+<td>include associated last_check_in</td>
+</tr>
+</tbody></table>
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=person,event</code></aside>
+
+<h3 id="associations-for-a-person-event">Associations for a Person Event</h3>
+
+<p>You can append one of the following associations onto this resource URL to jump to an associated record.</p>
+
+<table><thead>
+<tr>
+<th>Association</th>
+<th>URL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>event</td>
+<td>https://api.planningcenteronline.com/check-ins/v2/events/1/person_events/1/event</td>
+</tr>
+<tr>
+<td>first_check_in</td>
+<td>https://api.planningcenteronline.com/check-ins/v2/events/1/person_events/1/first_check_in</td>
+</tr>
+<tr>
+<td>last_check_in</td>
+<td>https://api.planningcenteronline.com/check-ins/v2/events/1/person_events/1/last_check_in</td>
+</tr>
+<tr>
+<td>person</td>
+<td>https://api.planningcenteronline.com/check-ins/v2/events/1/person_events/1/person</td>
+</tr>
+</tbody></table>
+
+<h2 id="stations">Stations</h2>
+
+<p>A device where people can be checked in.
+A device may also be connected to a printer
+and print labels for itself or other stations.</p>
+
+<h3 id="list-stations">List Stations</h3>
+<pre><code class="highlight shell"><span class="c"># to list records...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/check-ins/v2/stations"</span>
+</code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/check-ins/v2/stations</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>include</td>
+<td>theme</td>
+<td>include associated theme</td>
+</tr>
+<tr>
+<td>include</td>
+<td>event</td>
+<td>include associated event</td>
+</tr>
+<tr>
+<td>include</td>
+<td>location</td>
+<td>include associated location</td>
+</tr>
+<tr>
+<td>include</td>
+<td>print_station</td>
+<td>include associated print_station</td>
+</tr>
+<tr>
+<td>after</td>
+<td><em>id</em></td>
+<td>get page after the specified id</td>
+</tr>
+<tr>
+<td>per_page</td>
+<td><em>integer</em></td>
+<td>how many records to return per page (min=1, max=100, default=25)</td>
+</tr>
+</tbody></table>
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=theme,event</code></aside>
+
+<h3 id="get-a-single-station">Get a single Station</h3>
+<pre><code class="highlight shell"><span class="c"># to show...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/check-ins/v2/stations/1"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Station"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"mode"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"timeout_seconds"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"input_type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"show_scanner"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/check-ins/v2/stations/1</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>include</td>
+<td>theme</td>
+<td>include associated theme</td>
+</tr>
+<tr>
+<td>include</td>
+<td>event</td>
+<td>include associated event</td>
+</tr>
+<tr>
+<td>include</td>
+<td>location</td>
+<td>include associated location</td>
+</tr>
+<tr>
+<td>include</td>
+<td>print_station</td>
+<td>include associated print_station</td>
+</tr>
+</tbody></table>
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=theme,event</code></aside>
+
+<h3 id="associations-for-a-station">Associations for a Station</h3>
+
+<p>You can append one of the following associations onto this resource URL to jump to an associated record.</p>
+
+<table><thead>
+<tr>
+<th>Association</th>
+<th>URL</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>checked_in_at_check_ins</td>
+<td>https://api.planningcenteronline.com/check-ins/v2/stations/1/checked_in_at_check_ins</td>
+</tr>
+<tr>
+<td>event</td>
+<td>https://api.planningcenteronline.com/check-ins/v2/stations/1/event</td>
+</tr>
+<tr>
+<td>location</td>
+<td>https://api.planningcenteronline.com/check-ins/v2/stations/1/location</td>
+</tr>
+<tr>
+<td>print_station</td>
+<td>https://api.planningcenteronline.com/check-ins/v2/stations/1/print_station</td>
+</tr>
+<tr>
+<td>theme</td>
+<td>https://api.planningcenteronline.com/check-ins/v2/stations/1/theme</td>
+</tr>
+</tbody></table>
+
+<h2 id="themes">Themes</h2>
+
+<p>A custom style which may be applied to stations.</p>
+
+<h3 id="list-themes">List Themes</h3>
+<pre><code class="highlight shell"><span class="c"># to list records...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/check-ins/v2/themes"</span>
+</code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/check-ins/v2/themes</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>after</td>
+<td><em>id</em></td>
+<td>get page after the specified id</td>
+</tr>
+<tr>
+<td>per_page</td>
+<td><em>integer</em></td>
+<td>how many records to return per page (min=1, max=100, default=25)</td>
+</tr>
+</tbody></table>
+
+<h3 id="get-a-single-theme">Get a single Theme</h3>
+<pre><code class="highlight shell"><span class="c"># to show...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/check-ins/v2/themes/1"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Theme"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"text_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"image"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"image_thumbnail"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/check-ins/v2/themes/1</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<p><em>none</em></p>
+
           <h1 id="errors">Errors</h1>
 
 <p>The PCO API uses the following error codes:</p>
