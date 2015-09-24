@@ -11,6 +11,7 @@ toc_footers:
 includes:
   - people
   - services
+  - check-ins
   - errors
 
 search: true
