@@ -1,0 +1,1358 @@
+# PCO Check-Ins
+
+Check kids & volunteers in to events and track attendance.
+
+## CheckIns
+
+An attendance record for an event.
+If `person` is nil, this check-in is a one-time guest.
+If someone was checked out, `checked_out_at` will be present.
+
+
+
+
+### List Check Ins
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/check-ins/v2/check_ins"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/check-ins/v2/check_ins`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+include | location | include associated location
+include | event | include associated event
+include | event_period | include associated event_period
+include | event_times | include associated event_times
+include | person | include associated person
+include | checked_in_at | include associated checked_in_at
+include | checked_in_by | include associated checked_in_by
+include | checked_out_by | include associated checked_out_by
+after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=location,event</code></aside>
+
+### Get a single Check In
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/check-ins/v2/check_ins/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "CheckIn",
+    "id": "1",
+    "attributes": {
+      "first_name": "string",
+      "last_name": "string",
+      "medical_notes": "string",
+      "kind": "string",
+      "number": 1,
+      "answers": "string",
+      "created_at": "2000-01-01T12:00:00Z",
+      "updated_at": "2000-01-01T12:00:00Z",
+      "checked_out_at": "2000-01-01T12:00:00Z"
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/check-ins/v2/check_ins/1`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+include | location | include associated location
+include | event | include associated event
+include | event_period | include associated event_period
+include | event_times | include associated event_times
+include | person | include associated person
+include | checked_in_at | include associated checked_in_at
+include | checked_in_by | include associated checked_in_by
+include | checked_out_by | include associated checked_out_by
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=location,event</code></aside>
+
+### Associations for a Check In
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL
+----------- | ---
+checked_in_at | https://api.planningcenteronline.com/check-ins/v2/check_ins/1/checked_in_at
+checked_in_by | https://api.planningcenteronline.com/check-ins/v2/check_ins/1/checked_in_by
+checked_out_by | https://api.planningcenteronline.com/check-ins/v2/check_ins/1/checked_out_by
+event | https://api.planningcenteronline.com/check-ins/v2/check_ins/1/event
+event_period | https://api.planningcenteronline.com/check-ins/v2/check_ins/1/event_period
+event_times | https://api.planningcenteronline.com/check-ins/v2/check_ins/1/event_times
+location | https://api.planningcenteronline.com/check-ins/v2/check_ins/1/location
+person | https://api.planningcenteronline.com/check-ins/v2/check_ins/1/person
+
+
+
+
+
+
+
+## Events
+
+A recurring event which people may attend.
+Each recurrence is an _event period_ (which often corresponds to a week).
+Event periods have _event times_ where people may actually check in.
+
+
+
+
+### List Events
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/check-ins/v2/events"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/check-ins/v2/events`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+### Get a single Event
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/check-ins/v2/events/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "Event",
+    "id": "1",
+    "attributes": {
+      "name": "string",
+      "frequency": "string",
+      "enable_services_integration": true,
+      "created_at": "2000-01-01T12:00:00Z",
+      "updated_at": "2000-01-01T12:00:00Z"
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/check-ins/v2/events/1`
+
+#### URL Parameters
+
+_none_
+
+### Associations for an Event
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL
+----------- | ---
+check_ins | https://api.planningcenteronline.com/check-ins/v2/events/1/check_ins
+event_labels | https://api.planningcenteronline.com/check-ins/v2/events/1/event_labels
+event_periods | https://api.planningcenteronline.com/check-ins/v2/events/1/event_periods
+locations | https://api.planningcenteronline.com/check-ins/v2/events/1/locations
+person_events | https://api.planningcenteronline.com/check-ins/v2/events/1/person_events
+
+
+
+
+
+
+
+## EventLabels
+
+Says how many of a given label to print for this event and
+whether to print it for regulars, guests, and/or volunteers.
+
+
+
+
+### List Event Labels
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/check-ins/v2/events/1/event_labels"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/check-ins/v2/events/1/event_labels`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+include | event | include associated event
+include | label | include associated label
+after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=event,label</code></aside>
+
+### Get a single Event Label
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/check-ins/v2/events/1/event_labels/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "EventLabel",
+    "id": "1",
+    "attributes": {
+      "quantity": 1,
+      "for_regular": true,
+      "for_guest": true,
+      "for_volunteer": true
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/check-ins/v2/events/1/event_labels/1`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+include | event | include associated event
+include | label | include associated label
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=event,label</code></aside>
+
+### Associations for an Event Label
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL
+----------- | ---
+event | https://api.planningcenteronline.com/check-ins/v2/events/1/event_labels/1/event
+label | https://api.planningcenteronline.com/check-ins/v2/events/1/event_labels/1/label
+
+
+
+
+
+
+
+## EventPeriods
+
+A recurrence of an event, sometimes called a "session".
+For weekly events, an event period is a week.
+An event period has event times, which is what people select
+when they actually check in. When new sessions are created, times
+are copied from one session to the next.
+
+
+
+
+### List Event Periods
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/check-ins/v2/events/1/event_periods"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/check-ins/v2/events/1/event_periods`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+include | event | include associated event
+include | event_times | include associated event_times
+after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=event,event_times</code></aside>
+
+### Get a single Event Period
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/check-ins/v2/events/1/event_periods/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "EventPeriod",
+    "id": "1",
+    "attributes": {
+      "starts_at": "2000-01-01T12:00:00Z",
+      "ends_at": "2000-01-01T12:00:00Z",
+      "regular_count": 1,
+      "guest_count": 1,
+      "volunteer_count": 1,
+      "created_at": "2000-01-01T12:00:00Z",
+      "updated_at": "2000-01-01T12:00:00Z"
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/check-ins/v2/events/1/event_periods/1`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+include | event | include associated event
+include | event_times | include associated event_times
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=event,event_times</code></aside>
+
+### Associations for an Event Period
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL
+----------- | ---
+check_ins | https://api.planningcenteronline.com/check-ins/v2/events/1/event_periods/1/check_ins
+event | https://api.planningcenteronline.com/check-ins/v2/events/1/event_periods/1/event
+event_times | https://api.planningcenteronline.com/check-ins/v2/events/1/event_periods/1/event_times
+location_event_periods | https://api.planningcenteronline.com/check-ins/v2/events/1/event_periods/1/location_event_periods
+
+
+
+
+
+
+
+## EventTimes
+
+A time that someone may check in. Times are copied from session to session.
+
+
+
+
+### List Event Times
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/check-ins/v2/event_times"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/check-ins/v2/event_times`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+include | event_period | include associated event_period
+include | event | include associated event
+after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=event_period,event</code></aside>
+
+### Get a single Event Time
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/check-ins/v2/event_times/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "EventTime",
+    "id": "1",
+    "attributes": {
+      "starts_at": "2000-01-01T12:00:00Z",
+      "shows_at": "2000-01-01T12:00:00Z",
+      "hides_at": "2000-01-01T12:00:00Z",
+      "regular_count": 1,
+      "guest_count": 1,
+      "volunteer_count": 1,
+      "total_count": "unknown",
+      "created_at": "2000-01-01T12:00:00Z",
+      "updated_at": "2000-01-01T12:00:00Z"
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/check-ins/v2/event_times/1`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+include | event_period | include associated event_period
+include | event | include associated event
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=event_period,event</code></aside>
+
+### Associations for an Event Time
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL
+----------- | ---
+check_ins | https://api.planningcenteronline.com/check-ins/v2/event_times/1/check_ins
+event | https://api.planningcenteronline.com/check-ins/v2/event_times/1/event
+event_period | https://api.planningcenteronline.com/check-ins/v2/event_times/1/event_period
+location_event_times | https://api.planningcenteronline.com/check-ins/v2/event_times/1/location_event_times
+
+
+
+
+
+
+
+## Labels
+
+Labels can be set to print for events _or_ locations
+using `EventLabel` or `LocationLabel` objects.
+Label type (security label / name label) is expressed with the
+`prints_for` attribute. `prints_for="Person"` is a name label,
+`prints_for="Group"` is a security label.
+
+
+
+
+### List Labels
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/check-ins/v2/labels"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/check-ins/v2/labels`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+### Get a single Label
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/check-ins/v2/labels/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "Label",
+    "id": "1",
+    "attributes": {
+      "name": "string",
+      "xml": "string",
+      "prints_for": "string",
+      "roll": "string"
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/check-ins/v2/labels/1`
+
+#### URL Parameters
+
+_none_
+
+### Associations for a Label
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL
+----------- | ---
+event_labels | https://api.planningcenteronline.com/check-ins/v2/labels/1/event_labels
+location_labels | https://api.planningcenteronline.com/check-ins/v2/labels/1/location_labels
+
+
+
+
+
+
+
+## Locations
+
+A place where people may check in to for a given event.
+Some locations have `kind="Folder"`, which means that people
+can't check-in here, but this location contains other locations.
+You can get its contents from the `locations` attribute.
+You can get a location's parent folder from the `parent` attribute.
+(If it's not in a folder, `parent` will be empty.)
+
+
+
+
+### List Locations
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/check-ins/v2/events/1/locations"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/check-ins/v2/events/1/locations`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+where[locations] | __ | filter on a specific locations
+where[root] | __ | filter on a specific root
+include | parent | include associated parent
+include | event | include associated event
+include | locations | include associated locations
+after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=parent,event</code></aside>
+
+### Get a single Location
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/check-ins/v2/events/1/locations/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "Location",
+    "id": "1",
+    "attributes": {
+      "name": "string",
+      "kind": "string",
+      "opened": true,
+      "questions": "string",
+      "age_min_in_months": 1,
+      "age_range_by": "string",
+      "grade_min": 1,
+      "grade_max": 1,
+      "max_occupancy": 1,
+      "updated_at": "2000-01-01T12:00:00Z",
+      "created_at": "2000-01-01T12:00:00Z"
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/check-ins/v2/events/1/locations/1`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+include | parent | include associated parent
+include | event | include associated event
+include | locations | include associated locations
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=parent,event</code></aside>
+
+### Associations for a Location
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL
+----------- | ---
+check_ins | https://api.planningcenteronline.com/check-ins/v2/events/1/locations/1/check_ins
+event | https://api.planningcenteronline.com/check-ins/v2/events/1/locations/1/event
+location_event_periods | https://api.planningcenteronline.com/check-ins/v2/events/1/locations/1/location_event_periods
+location_event_times | https://api.planningcenteronline.com/check-ins/v2/events/1/locations/1/location_event_times
+location_labels | https://api.planningcenteronline.com/check-ins/v2/events/1/locations/1/location_labels
+locations | https://api.planningcenteronline.com/check-ins/v2/events/1/locations/1/locations
+parent | https://api.planningcenteronline.com/check-ins/v2/events/1/locations/1/parent
+
+
+
+
+
+
+
+## LocationEventPeriods
+
+Counts check-ins for a location during a certain event period.
+
+
+
+
+### List Location Event Periods
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/check-ins/v2/events/1/event_periods/1/location_event_periods"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/check-ins/v2/events/1/event_periods/1/location_event_periods`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+include | location | include associated location
+include | event_period | include associated event_period
+after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=location,event_period</code></aside>
+
+### Get a single Location Event Period
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/check-ins/v2/events/1/event_periods/1/location_event_periods/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "LocationEventPeriod",
+    "id": "1",
+    "attributes": {
+      "regular_count": 1,
+      "guest_count": 1,
+      "volunteer_count": 1
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/check-ins/v2/events/1/event_periods/1/location_event_periods/1`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+include | location | include associated location
+include | event_period | include associated event_period
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=location,event_period</code></aside>
+
+### Associations for a Location Event Period
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL
+----------- | ---
+check_ins | https://api.planningcenteronline.com/check-ins/v2/events/1/event_periods/1/location_event_periods/1/check_ins
+event_period | https://api.planningcenteronline.com/check-ins/v2/events/1/event_periods/1/location_event_periods/1/event_period
+location | https://api.planningcenteronline.com/check-ins/v2/events/1/event_periods/1/location_event_periods/1/location
+
+
+
+
+
+
+
+## LocationEventTimes
+
+Counts check-ins for a location for a given event time.
+This is useful for checking occupancy.
+
+
+
+
+### List Location Event Times
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/check-ins/v2/event_times/1/location_event_times"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/check-ins/v2/event_times/1/location_event_times`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+include | location | include associated location
+include | event_time | include associated event_time
+after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=location,event_time</code></aside>
+
+### Get a single Location Event Time
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/check-ins/v2/event_times/1/location_event_times/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "LocationEventTime",
+    "id": "1",
+    "attributes": {
+      "regular_count": 1,
+      "guest_count": 1,
+      "volunteer_count": 1
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/check-ins/v2/event_times/1/location_event_times/1`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+include | location | include associated location
+include | event_time | include associated event_time
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=location,event_time</code></aside>
+
+### Associations for a Location Event Time
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL
+----------- | ---
+check_ins | https://api.planningcenteronline.com/check-ins/v2/event_times/1/location_event_times/1/check_ins
+event_time | https://api.planningcenteronline.com/check-ins/v2/event_times/1/location_event_times/1/event_time
+location | https://api.planningcenteronline.com/check-ins/v2/event_times/1/location_event_times/1/location
+
+
+
+
+
+
+
+## LocationLabels
+
+Says how many of a given label to print for this location and
+whether to print it for regulars, guests, and/or volunteers.
+
+
+
+
+### List Location Labels
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/check-ins/v2/labels/1/location_labels"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/check-ins/v2/labels/1/location_labels`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+include | location | include associated location
+include | label | include associated label
+after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=location,label</code></aside>
+
+### Get a single Location Label
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/check-ins/v2/labels/1/location_labels/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "LocationLabel",
+    "id": "1",
+    "attributes": {
+      "quantity": 1,
+      "for_regular": true,
+      "for_guest": true,
+      "for_volunteer": true
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/check-ins/v2/labels/1/location_labels/1`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+include | location | include associated location
+include | label | include associated label
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=location,label</code></aside>
+
+### Associations for a Location Label
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL
+----------- | ---
+label | https://api.planningcenteronline.com/check-ins/v2/labels/1/location_labels/1/label
+location | https://api.planningcenteronline.com/check-ins/v2/labels/1/location_labels/1/location
+
+
+
+
+
+
+
+## Organizations
+
+An organization which has people and events.
+This contains its date format & time zone preferences.
+
+
+
+
+### Get a single Organization
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/check-ins/v2"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "Organization",
+    "id": "1",
+    "attributes": {
+      "name": "string",
+      "daily_check_ins": 1,
+      "date_format_pattern": "unknown",
+      "time_zone": "string"
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/check-ins/v2`
+
+#### URL Parameters
+
+_none_
+
+### Associations for an Organization
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL
+----------- | ---
+check_ins | https://api.planningcenteronline.com/check-ins/v2/check_ins
+event_times | https://api.planningcenteronline.com/check-ins/v2/event_times
+events | https://api.planningcenteronline.com/check-ins/v2/events
+labels | https://api.planningcenteronline.com/check-ins/v2/labels
+passes | https://api.planningcenteronline.com/check-ins/v2/passes
+people | https://api.planningcenteronline.com/check-ins/v2/people
+stations | https://api.planningcenteronline.com/check-ins/v2/stations
+themes | https://api.planningcenteronline.com/check-ins/v2/themes
+
+
+
+
+
+
+
+## Passes
+
+Enables quick lookup of a person via barcode reader.
+
+
+
+
+### List Passes
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/check-ins/v2/passes"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/check-ins/v2/passes`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+include | person | include associated person
+after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+### Get a single Pass
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/check-ins/v2/passes/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "Pass",
+    "id": "1",
+    "attributes": {
+      "code": "string",
+      "created_at": "2000-01-01T12:00:00Z",
+      "updated_at": "2000-01-01T12:00:00Z"
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/check-ins/v2/passes/1`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+include | person | include associated person
+
+### Associations for a Pass
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL
+----------- | ---
+person | https://api.planningcenteronline.com/check-ins/v2/passes/1/person
+
+
+
+
+
+
+
+## People
+
+An attendee, volunteer or administrator.
+
+
+
+
+### List People
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/check-ins/v2/people"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/check-ins/v2/people`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+### Get a single Person
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/check-ins/v2/people/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "Person",
+    "id": "1",
+    "attributes": {
+      "avatar_url": "string",
+      "name_prefix": "string",
+      "first_name": "string",
+      "middle_name": "string",
+      "last_name": "string",
+      "name_suffix": "string",
+      "birthdate": "2000-01-01",
+      "grade": 1,
+      "gender": "string",
+      "medical_notes": "string",
+      "child": true,
+      "addresses": "unknown",
+      "phone_numbers": "unknown",
+      "email_addresses": "unknown",
+      "permission": "string",
+      "check_in_count": 1
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/check-ins/v2/people/1`
+
+#### URL Parameters
+
+_none_
+
+### Associations for a Person
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL
+----------- | ---
+check_ins | https://api.planningcenteronline.com/check-ins/v2/people/1/check_ins
+passes | https://api.planningcenteronline.com/check-ins/v2/people/1/passes
+person_events | https://api.planningcenteronline.com/check-ins/v2/people/1/person_events
+
+
+
+
+
+
+
+## PersonEvents
+
+Counts a person's attendence for a given event.
+
+
+
+
+### List Person Events
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/check-ins/v2/events/1/person_events"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/check-ins/v2/events/1/person_events`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+include | person | include associated person
+include | event | include associated event
+include | first_check_in | include associated first_check_in
+include | last_check_in | include associated last_check_in
+after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=person,event</code></aside>
+
+### Get a single Person Event
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/check-ins/v2/events/1/person_events/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "PersonEvent",
+    "id": "1",
+    "attributes": {
+      "check_in_count": 1
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/check-ins/v2/events/1/person_events/1`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+include | person | include associated person
+include | event | include associated event
+include | first_check_in | include associated first_check_in
+include | last_check_in | include associated last_check_in
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=person,event</code></aside>
+
+### Associations for a Person Event
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL
+----------- | ---
+event | https://api.planningcenteronline.com/check-ins/v2/events/1/person_events/1/event
+first_check_in | https://api.planningcenteronline.com/check-ins/v2/events/1/person_events/1/first_check_in
+last_check_in | https://api.planningcenteronline.com/check-ins/v2/events/1/person_events/1/last_check_in
+person | https://api.planningcenteronline.com/check-ins/v2/events/1/person_events/1/person
+
+
+
+
+
+
+
+## Stations
+
+A device where people can be checked in.
+A device may also be connected to a printer
+and print labels for itself or other stations.
+
+
+
+
+### List Stations
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/check-ins/v2/stations"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/check-ins/v2/stations`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+include | theme | include associated theme
+include | event | include associated event
+include | location | include associated location
+include | print_station | include associated print_station
+after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=theme,event</code></aside>
+
+### Get a single Station
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/check-ins/v2/stations/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "Station",
+    "id": "1",
+    "attributes": {
+      "mode": 1,
+      "name": "string",
+      "timeout_seconds": 1,
+      "input_type": 1,
+      "show_scanner": true
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/check-ins/v2/stations/1`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+include | theme | include associated theme
+include | event | include associated event
+include | location | include associated location
+include | print_station | include associated print_station
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=theme,event</code></aside>
+
+### Associations for a Station
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL
+----------- | ---
+checked_in_at_check_ins | https://api.planningcenteronline.com/check-ins/v2/stations/1/checked_in_at_check_ins
+event | https://api.planningcenteronline.com/check-ins/v2/stations/1/event
+location | https://api.planningcenteronline.com/check-ins/v2/stations/1/location
+print_station | https://api.planningcenteronline.com/check-ins/v2/stations/1/print_station
+theme | https://api.planningcenteronline.com/check-ins/v2/stations/1/theme
+
+
+
+
+
+
+
+## Themes
+
+A custom style which may be applied to stations.
+
+
+
+
+### List Themes
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/check-ins/v2/themes"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/check-ins/v2/themes`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+### Get a single Theme
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/check-ins/v2/themes/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "Theme",
+    "id": "1",
+    "attributes": {
+      "name": "string",
+      "color": "string",
+      "text_color": "string",
+      "image": "string",
+      "image_thumbnail": "unknown"
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/check-ins/v2/themes/1`
+
+#### URL Parameters
+
+_none_
+
+
+
+
+

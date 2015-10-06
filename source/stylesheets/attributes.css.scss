@@ -1,0 +1,10 @@
+@import 'variables';
+
+.content {
+  span.attribute-info-name {
+    background-color: $aside-notice-bg + 100;
+    padding: 4px;
+    border-radius: 3px;
+    @extend %code-font;
+  }
+}
