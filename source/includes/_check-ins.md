@@ -2,6 +2,37 @@
 
 Check kids & volunteers in to events and track attendance.
 
+## Activities
+
+An action made by a person
+
+
+
+### List Activities
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/check-ins/v2/people/1/activities"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/check-ins/v2/people/1/activities`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+
+
+
+
+
+
 ## CheckIns
 
 An attendance record for an event.
@@ -27,6 +58,14 @@ curl -v -u token:secret "https://api.planningcenteronline.com/check-ins/v2/check
 
 Parameter | Value | Description
 --------- | ----- | -----------
+filter | regular | filter using the named scope "regular"
+filter | guest | filter using the named scope "guest"
+filter | volunteer | filter using the named scope "volunteer"
+filter | attendee | filter using the named scope "attendee"
+filter | first_time | filter using the named scope "first_time"
+filter | one_time_guest | filter using the named scope "one_time_guest"
+filter | not_one_time_guest | filter using the named scope "not_one_time_guest"
+filter | checked_out | filter using the named scope "checked_out"
 include | location | include associated location
 include | event | include associated event
 include | event_period | include associated event_period
@@ -562,8 +601,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/check-ins/v2/event
 
 Parameter | Value | Description
 --------- | ----- | -----------
-where[locations] | __ | filter on a specific locations
-where[root] | __ | filter on a specific root
+where[locations] | __ | query on a specific locations
+where[root] | __ | query on a specific root
 include | parent | include associated parent
 include | event | include associated event
 include | locations | include associated locations
@@ -597,6 +636,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/check-ins/v2/event
       "grade_min": 1,
       "grade_max": 1,
       "max_occupancy": 1,
+      "position": 1,
       "updated_at": "2000-01-01T12:00:00Z",
       "created_at": "2000-01-01T12:00:00Z"
     }
@@ -1103,6 +1143,7 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL
 ----------- | ---
+activities | https://api.planningcenteronline.com/check-ins/v2/people/1/activities
 check_ins | https://api.planningcenteronline.com/check-ins/v2/people/1/check_ins
 passes | https://api.planningcenteronline.com/check-ins/v2/people/1/passes
 person_events | https://api.planningcenteronline.com/check-ins/v2/people/1/person_events

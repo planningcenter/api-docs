@@ -24,11 +24,11 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1
 
 Parameter | Value | Description
 --------- | ----- | -----------
-where[city] | _string_ | filter on a specific city
-where[state] | _string_ | filter on a specific state
-where[zip] | _string_ | filter on a specific zip
-where[street] | _string_ | filter on a specific street
-where[location] | _string_ | filter on a specific location
+where[city] | _string_ | query on a specific city
+where[state] | _string_ | query on a specific state
+where[zip] | _string_ | query on a specific zip
+where[street] | _string_ | query on a specific street
+where[location] | _string_ | query on a specific location
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
@@ -150,8 +150,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/apps"
 
 Parameter | Value | Description
 --------- | ----- | -----------
-where[name] | _string_ | filter on a specific name
-where[url] | _string_ | filter on a specific url
+where[name] | _string_ | query on a specific name
+where[url] | _string_ | query on a specific url
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
@@ -249,15 +249,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/campuses
 
 _none_
 
-### Create a new Campus
 
-#### HTTP Request
-
-`POST `
-
-#### Resource Attributes
-
-_none_
 
 ### Update an existing Campus
 
@@ -309,14 +301,14 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/lists/1/
 
 Parameter | Value | Description
 --------- | ----- | -----------
-where[application] | _string_ | filter on a specific application
-where[definition_class] | _string_ | filter on a specific definition_class
-where[comparison] | _string_ | filter on a specific comparison
-where[settings] | _text_ | filter on a specific settings
-where[definition_identifier] | _string_ | filter on a specific definition_identifier
-where[description] | _string_ | filter on a specific description
-where[created_at] | _datetime_ | filter on a specific created_at
-where[updated_at] | _datetime_ | filter on a specific updated_at
+where[application] | _string_ | query on a specific application
+where[definition_class] | _string_ | query on a specific definition_class
+where[comparison] | _string_ | query on a specific comparison
+where[settings] | _text_ | query on a specific settings
+where[definition_identifier] | _string_ | query on a specific definition_identifier
+where[description] | _string_ | query on a specific description
+where[created_at] | _datetime_ | query on a specific created_at
+where[updated_at] | _datetime_ | query on a specific updated_at
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
@@ -406,6 +398,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1
     "attributes": {
       "type": "ConnectedPerson",
       "first_name": "PiCO",
+      "goes_by_name": "P Riddy",
       "middle_name": "Ross",
       "last_name": "Das Robot",
       "gender": "M",
@@ -452,8 +445,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/emails"
 
 Parameter | Value | Description
 --------- | ----- | -----------
-where[address] | _string_ | filter on a specific address
-where[location] | _string_ | filter on a specific location
+where[address] | _string_ | query on a specific address
+where[location] | _string_ | query on a specific location
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
@@ -574,12 +567,14 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1
 
 Parameter | Value | Description
 --------- | ----- | -----------
-where[value] | _string_ | filter on a specific value
-where[file] | _string_ | filter on a specific file
-where[file_size] | _integer_ | filter on a specific file_size
-where[file_content_type] | _string_ | filter on a specific file_content_type
+where[value] | _string_ | query on a specific value
+where[file] | _string_ | query on a specific file
+where[file_size] | _integer_ | query on a specific file_size
+where[file_content_type] | _string_ | query on a specific file_content_type
+where[file_name] | __ | query on a specific file_name
 include | field_definition | include associated field_definition
 include | field_option | include associated field_option
+include | tab | include associated tab
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
@@ -604,7 +599,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1
       "value": "string",
       "file": "string",
       "file_size": 1,
-      "file_content_type": "string"
+      "file_content_type": "string",
+      "file_name": "unknown"
     }
   }
 }
@@ -620,6 +616,7 @@ Parameter | Value | Description
 --------- | ----- | -----------
 include | field_definition | include associated field_definition
 include | field_option | include associated field_option
+include | tab | include associated tab
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=field_definition,field_option</code></aside>
 
@@ -631,6 +628,7 @@ Association | URL
 ----------- | ---
 field_definition | https://api.planningcenteronline.com/people/v2/people/1/field_data/1/field_definition
 field_option | https://api.planningcenteronline.com/people/v2/people/1/field_data/1/field_option
+tab | https://api.planningcenteronline.com/people/v2/people/1/field_data/1/tab
 
 ### Create a new Field Datum
 
@@ -650,7 +648,6 @@ curl -v -u token:secret -X POST -d '{"data":{"type":"FieldDatum","attributes":{.
 
 Attribute | Type
 --------- | ----
-value | string
 value | string
 file | string
 
@@ -672,7 +669,6 @@ curl -v -u token:secret -X PATCH -d '{"data":{"type":"FieldDatum","id":"1","attr
 
 Attribute | Type
 --------- | ----
-value | string
 value | string
 file | string
 
@@ -712,14 +708,18 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/field_de
 
 Parameter | Value | Description
 --------- | ----- | -----------
-where[data_type] | _string_ | filter on a specific data_type
-where[name] | _string_ | filter on a specific name
-where[sequence] | _integer_ | filter on a specific sequence
-where[slug] | _string_ | filter on a specific slug
-where[deleted_at] | _datetime_ | filter on a specific deleted_at
+where[data_type] | _string_ | query on a specific data_type
+where[name] | _string_ | query on a specific name
+where[sequence] | _integer_ | query on a specific sequence
+where[slug] | _string_ | query on a specific slug
+where[deleted_at] | _datetime_ | query on a specific deleted_at
+filter | include_deleted | By default, deleted fields are not included. Pass filter=include_deleted to include them.
 include | field_options | include associated field_options
+include | tab | include associated tab
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=field_options,tab</code></aside>
 
 To exclude deleted field definitions, query with `where[deleted_at]=` (blank value).
 
@@ -758,6 +758,9 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/field_de
 Parameter | Value | Description
 --------- | ----- | -----------
 include | field_options | include associated field_options
+include | tab | include associated tab
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=field_options,tab</code></aside>
 
 ### Associations for a Field Definition
 
@@ -766,6 +769,7 @@ You can append one of the following associations onto this resource URL to jump 
 Association | URL
 ----------- | ---
 field_options | https://api.planningcenteronline.com/people/v2/field_definitions/1/field_options
+tab | https://api.planningcenteronline.com/people/v2/field_definitions/1/tab
 
 ### Create a new Field Definition
 
@@ -853,8 +857,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/field_de
 
 Parameter | Value | Description
 --------- | ----- | -----------
-where[value] | _string_ | filter on a specific value
-where[sequence] | _integer_ | filter on a specific sequence
+where[value] | _string_ | query on a specific value
+where[sequence] | _integer_ | query on a specific sequence
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
@@ -967,11 +971,11 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/househol
 
 Parameter | Value | Description
 --------- | ----- | -----------
-where[name] | _string_ | filter on a specific name
-where[member_count] | _integer_ | filter on a specific member_count
-where[primary_contact_name] | _string_ | filter on a specific primary_contact_name
-where[created_at] | _datetime_ | filter on a specific created_at
-where[updated_at] | _datetime_ | filter on a specific updated_at
+where[name] | _string_ | query on a specific name
+where[member_count] | _integer_ | query on a specific member_count
+where[primary_contact_name] | _string_ | query on a specific primary_contact_name
+where[created_at] | _datetime_ | query on a specific created_at
+where[updated_at] | _datetime_ | query on a specific updated_at
 include | people | include associated people
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
@@ -1102,8 +1106,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/househol
 
 Parameter | Value | Description
 --------- | ----- | -----------
-where[person_name] | _string_ | filter on a specific person_name
-where[pending] | _boolean_ | filter on a specific pending
+where[person_name] | _string_ | query on a specific person_name
+where[pending] | _boolean_ | query on a specific pending
 include | person | include associated person
 include | household | include associated household
 after | _id_ | get page after the specified id
@@ -1234,7 +1238,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/inactive
 
 Parameter | Value | Description
 --------- | ----- | -----------
-where[value] | _string_ | filter on a specific value
+where[value] | _string_ | query on a specific value
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
@@ -1344,16 +1348,16 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/lists"
 
 Parameter | Value | Description
 --------- | ----- | -----------
-where[name] | _string_ | filter on a specific name
-where[status] | _string_ | filter on a specific status
-where[batch_completed_at] | _datetime_ | filter on a specific batch_completed_at
-where[created_at] | _datetime_ | filter on a specific created_at
-where[updated_at] | _datetime_ | filter on a specific updated_at
+where[name] | _string_ | query on a specific name
+where[batch_completed_at] | _datetime_ | query on a specific batch_completed_at
+where[created_at] | _datetime_ | query on a specific created_at
+where[updated_at] | _datetime_ | query on a specific updated_at
 include | created_by | include associated created_by
 include | updated_by | include associated updated_by
 include | owner | include associated owner
 include | people | include associated people
 include | rules | include associated rules
+include | shares | include associated shares
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
@@ -1377,6 +1381,9 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/lists/1"
     "attributes": {
       "name": "string",
       "status": "string",
+      "description": "unknown",
+      "subset": "string",
+      "total_people": "unknown",
       "batch_completed_at": "2000-01-01T12:00:00Z",
       "created_at": "2000-01-01T12:00:00Z",
       "updated_at": "2000-01-01T12:00:00Z"
@@ -1398,6 +1405,7 @@ include | updated_by | include associated updated_by
 include | owner | include associated owner
 include | people | include associated people
 include | rules | include associated rules
+include | shares | include associated shares
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=created_by,updated_by</code></aside>
 
@@ -1411,7 +1419,85 @@ created_by | https://api.planningcenteronline.com/people/v2/lists/1/created_by
 owner | https://api.planningcenteronline.com/people/v2/lists/1/owner
 people | https://api.planningcenteronline.com/people/v2/lists/1/people
 rules | https://api.planningcenteronline.com/people/v2/lists/1/rules
+shares | https://api.planningcenteronline.com/people/v2/lists/1/shares
 updated_by | https://api.planningcenteronline.com/people/v2/lists/1/updated_by
+
+
+
+
+
+
+
+## ListShares
+
+A list share indicates who has access to edit a list.
+
+
+
+### List List Shares
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/lists/1/shares"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/people/v2/lists/1/shares`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+where[name] | __ | query on a specific name
+where[group] | _integer_ | query on a specific group
+where[created_at] | _datetime_ | query on a specific created_at
+include | person | include associated person
+after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+### Get a single List Share
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/lists/1/shares/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "ListShare",
+    "id": "1",
+    "attributes": {
+      "name": "unknown",
+      "group": 1,
+      "created_at": "2000-01-01T12:00:00Z"
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/people/v2/lists/1/shares/1`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+include | person | include associated person
+
+### Associations for a List Share
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL
+----------- | ---
+person | https://api.planningcenteronline.com/people/v2/lists/1/shares/1/person
 
 
 
@@ -1441,7 +1527,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/marital_
 
 Parameter | Value | Description
 --------- | ----- | -----------
-where[value] | _string_ | filter on a specific value
+where[value] | _string_ | query on a specific value
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
@@ -1551,20 +1637,20 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/messages
 
 Parameter | Value | Description
 --------- | ----- | -----------
-where[kind] | _integer_ | filter on a specific kind
-where[to_addresses] | _string_ | filter on a specific to_addresses
-where[subject] | _string_ | filter on a specific subject
-where[file] | _string_ | filter on a specific file
-where[app_name] | __ | filter on a specific app_name
-where[delivery_status] | _string_ | filter on a specific delivery_status
-where[reject_reason] | _string_ | filter on a specific reject_reason
-where[from_name] | __ | filter on a specific from_name
-where[from_address] | __ | filter on a specific from_address
-where[created_at] | _datetime_ | filter on a specific created_at
-where[sent_at] | _datetime_ | filter on a specific sent_at
-where[bounced_at] | _datetime_ | filter on a specific bounced_at
-where[rejection_notification_sent_at] | _datetime_ | filter on a specific rejection_notification_sent_at
-where[app_name] | __ | filter on a specific app_name
+where[kind] | _integer_ | query on a specific kind
+where[to_addresses] | _string_ | query on a specific to_addresses
+where[subject] | _string_ | query on a specific subject
+where[file] | _string_ | query on a specific file
+where[app_name] | __ | query on a specific app_name
+where[delivery_status] | _string_ | query on a specific delivery_status
+where[reject_reason] | _string_ | query on a specific reject_reason
+where[from_name] | __ | query on a specific from_name
+where[from_address] | __ | query on a specific from_address
+where[created_at] | _datetime_ | query on a specific created_at
+where[sent_at] | _datetime_ | query on a specific sent_at
+where[bounced_at] | _datetime_ | query on a specific bounced_at
+where[rejection_notification_sent_at] | _datetime_ | query on a specific rejection_notification_sent_at
+where[app_name] | __ | query on a specific app_name
 include | message_group | include associated message_group
 include | to | include associated to
 after | _id_ | get page after the specified id
@@ -1656,13 +1742,13 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/message_
 
 Parameter | Value | Description
 --------- | ----- | -----------
-where[uuid] | _string_ | filter on a specific uuid
-where[message_type] | _string_ | filter on a specific message_type
-where[from_address] | _string_ | filter on a specific from_address
-where[subject] | _string_ | filter on a specific subject
-where[message_count] | _integer_ | filter on a specific message_count
-where[system_message] | _boolean_ | filter on a specific system_message
-where[created_at] | _datetime_ | filter on a specific created_at
+where[uuid] | _string_ | query on a specific uuid
+where[message_type] | _string_ | query on a specific message_type
+where[from_address] | _string_ | query on a specific from_address
+where[subject] | _string_ | query on a specific subject
+where[message_count] | _integer_ | query on a specific message_count
+where[system_message] | _boolean_ | query on a specific system_message
+where[created_at] | _datetime_ | query on a specific created_at
 include | messages | include associated messages
 include | from | include associated from
 include | app | include associated app
@@ -1751,7 +1837,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/name_pre
 
 Parameter | Value | Description
 --------- | ----- | -----------
-where[value] | _string_ | filter on a specific value
+where[value] | _string_ | query on a specific value
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
@@ -1861,7 +1947,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/name_suf
 
 Parameter | Value | Description
 --------- | ----- | -----------
-where[value] | _string_ | filter on a specific value
+where[value] | _string_ | query on a specific value
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
@@ -2038,22 +2124,26 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people"
 
 Parameter | Value | Description
 --------- | ----- | -----------
-where[first_name] | _string_ | filter on a specific first_name
-where[middle_name] | _string_ | filter on a specific middle_name
-where[last_name] | _string_ | filter on a specific last_name
-where[birthdate] | _date_ | filter on a specific birthdate
-where[anniversary] | _date_ | filter on a specific anniversary
-where[gender] | _string_ | filter on a specific gender
-where[grade] | _integer_ | filter on a specific grade
-where[child] | _boolean_ | filter on a specific child
-where[status] | _string_ | filter on a specific status
-where[school_type] | _string_ | filter on a specific school_type
-where[graduation_year] | _integer_ | filter on a specific graduation_year
-where[site_administrator] | _boolean_ | filter on a specific site_administrator
-where[people_permissions] | _string_ | filter on a specific people_permissions
-where[membership] | _string_ | filter on a specific membership
-where[created_at] | _datetime_ | filter on a specific created_at
-where[updated_at] | _datetime_ | filter on a specific updated_at
+where[first_name] | _string_ | query on a specific first_name
+where[goes_by_name] | _string_ | query on a specific goes_by_name
+where[middle_name] | _string_ | query on a specific middle_name
+where[last_name] | _string_ | query on a specific last_name
+where[birthdate] | _date_ | query on a specific birthdate
+where[anniversary] | _date_ | query on a specific anniversary
+where[gender] | _string_ | query on a specific gender
+where[grade] | _integer_ | query on a specific grade
+where[child] | _boolean_ | query on a specific child
+where[status] | _string_ | query on a specific status
+where[school_type] | _string_ | query on a specific school_type
+where[graduation_year] | _integer_ | query on a specific graduation_year
+where[site_administrator] | _boolean_ | query on a specific site_administrator
+where[people_permissions] | _string_ | query on a specific people_permissions
+where[membership] | _string_ | query on a specific membership
+where[created_at] | _datetime_ | query on a specific created_at
+where[updated_at] | _datetime_ | query on a specific updated_at
+where[search_name] | __ | query on a specific search_name
+where[search_name_or_email] | __ | query on a specific search_name_or_email
+filter | created_since | filter people created in the last 24 hours; pass an additional `time` parameter in ISO 8601 format to specify your own timeframe
 include | emails | include associated emails
 include | addresses | include associated addresses
 include | phone_numbers | include associated phone_numbers
@@ -2087,6 +2177,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1
     "attributes": {
       "type": "Person",
       "first_name": "PiCO",
+      "goes_by_name": "P Riddy",
       "middle_name": "Ross",
       "last_name": "Das Robot",
       "birthdate": "1982-01-01",
@@ -2170,6 +2261,7 @@ curl -v -u token:secret -X POST -d '{"data":{"type":"Person","attributes":{...}}
 Attribute | Type | Note
 --------- | ---- | ----
 first_name | string
+goes_by_name | string
 middle_name | string
 last_name | string
 birthdate | date
@@ -2208,6 +2300,7 @@ curl -v -u token:secret -X PATCH -d '{"data":{"type":"Person","id":"1","attribut
 Attribute | Type | Note
 --------- | ---- | ----
 first_name | string
+goes_by_name | string
 middle_name | string
 last_name | string
 birthdate | date
@@ -2263,10 +2356,10 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1
 
 Parameter | Value | Description
 --------- | ----- | -----------
-where[number] | _string_ | filter on a specific number
-where[location] | _string_ | filter on a specific location
-where[created_at] | _datetime_ | filter on a specific created_at
-where[updated_at] | _datetime_ | filter on a specific updated_at
+where[number] | _string_ | query on a specific number
+where[location] | _string_ | query on a specific location
+where[created_at] | _datetime_ | query on a specific created_at
+where[updated_at] | _datetime_ | query on a specific updated_at
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
@@ -2381,10 +2474,10 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/reports"
 
 Parameter | Value | Description
 --------- | ----- | -----------
-where[name] | _string_ | filter on a specific name
-where[body] | _text_ | filter on a specific body
-where[created_at] | _datetime_ | filter on a specific created_at
-where[updated_at] | _datetime_ | filter on a specific updated_at
+where[name] | _string_ | query on a specific name
+where[body] | _text_ | query on a specific body
+where[created_at] | _datetime_ | query on a specific created_at
+where[updated_at] | _datetime_ | query on a specific updated_at
 include | created_by | include associated created_by
 include | updated_by | include associated updated_by
 after | _id_ | get page after the specified id
@@ -2517,8 +2610,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/lists/1/
 
 Parameter | Value | Description
 --------- | ----- | -----------
-where[created_at] | _datetime_ | filter on a specific created_at
-where[updated_at] | _datetime_ | filter on a specific updated_at
+where[created_at] | _datetime_ | query on a specific created_at
+where[updated_at] | _datetime_ | query on a specific updated_at
 include | conditions | include associated conditions
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
@@ -2592,10 +2685,10 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/school_o
 
 Parameter | Value | Description
 --------- | ----- | -----------
-where[value] | _string_ | filter on a specific value
-where[school_types] | __ | filter on a specific school_types
-where[beginning_grade] | __ | filter on a specific beginning_grade
-where[ending_grade] | __ | filter on a specific ending_grade
+where[value] | _string_ | query on a specific value
+where[school_types] | __ | query on a specific school_types
+where[beginning_grade] | __ | query on a specific beginning_grade
+where[ending_grade] | __ | query on a specific ending_grade
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
@@ -2725,11 +2818,11 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/social_p
 
 Parameter | Value | Description
 --------- | ----- | -----------
-where[site] | _string_ | filter on a specific site
-where[url] | _string_ | filter on a specific url
-where[verified] | _boolean_ | filter on a specific verified
-where[created_at] | _datetime_ | filter on a specific created_at
-where[updated_at] | _datetime_ | filter on a specific updated_at
+where[site] | _string_ | query on a specific site
+where[url] | _string_ | query on a specific url
+where[verified] | _boolean_ | query on a specific verified
+where[created_at] | _datetime_ | query on a specific created_at
+where[updated_at] | _datetime_ | query on a specific updated_at
 include | person | include associated person
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
@@ -2860,9 +2953,9 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/tabs"
 
 Parameter | Value | Description
 --------- | ----- | -----------
-where[name] | _string_ | filter on a specific name
-where[sequence] | _integer_ | filter on a specific sequence
-where[slug] | _string_ | filter on a specific slug
+where[name] | _string_ | query on a specific name
+where[sequence] | _integer_ | query on a specific sequence
+where[slug] | _string_ | query on a specific slug
 include | field_definitions | include associated field_definitions
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)

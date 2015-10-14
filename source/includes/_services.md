@@ -2,6 +2,37 @@
 
 Schedule your teams, manage your music, and revolutionize the way you plan your worship services. Note that PCO Services endpoints are read-only during this phase of the beta.
 
+## Activities
+
+An action made by a person
+
+
+
+### List Activities
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people/1/activities"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/services/v2/people/1/activities`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+
+
+
+
+
+
 ## AnnotationDrawings
 
 A single pen stroke, highlighter stroke, or text annotation a user has added to a PDF in Music Stand.
@@ -278,10 +309,10 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/songs/
 
 Parameter | Value | Description
 --------- | ----- | -----------
-where[created_by_id] | _integer_ | filter on a specific created_by_id
-where[updated_by_id] | _integer_ | filter on a specific updated_by_id
-where[created_at] | _datetime_ | filter on a specific created_at
-where[updated_at] | _datetime_ | filter on a specific updated_at
+where[created_by_id] | _integer_ | query on a specific created_by_id
+where[updated_by_id] | _integer_ | query on a specific updated_by_id
+where[created_at] | _datetime_ | query on a specific created_at
+where[updated_at] | _datetime_ | query on a specific updated_at
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
@@ -369,8 +400,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/songs/
 
 Parameter | Value | Description
 --------- | ----- | -----------
-where[created_at] | _datetime_ | filter on a specific created_at
-where[updated_at] | _datetime_ | filter on a specific updated_at
+where[created_at] | _datetime_ | query on a specific created_at
+where[updated_at] | _datetime_ | query on a specific updated_at
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
@@ -565,7 +596,7 @@ There are 4 possible values:
 
 - `item`: The default item type
 
-This value can only be set when a an item is created.  The only value that you can pass is `header`.  If no value is passed then `item` will be used.  To create a media item you'll attach a video media to the item, and to create a song item, you'll attach a song.
+This value can only be set when an item is created.  The only value that you can pass is `header`.  If no value is passed then `item` will be used.  To create a media item you'll attach a video media to the item, and to create a song item, you'll attach a song.
 
 
 <span class='attribute-info-name'>service_position</span>
@@ -597,7 +628,9 @@ Parameter | Value | Description
 --------- | ----- | -----------
 include | item_notes | include associated item_notes
 include | song | include associated song
-include | item_media | include associated item_media
+include | media | include associated media
+include | arrangement | include associated arrangement
+include | key | include associated key
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
@@ -627,6 +660,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/series
       "item_type": "unknown",
       "length": 1,
       "song_id": 1,
+      "arrangement_id": 1,
+      "key_id": 1,
       "description": "unknown"
     }
   }
@@ -643,7 +678,9 @@ Parameter | Value | Description
 --------- | ----- | -----------
 include | item_notes | include associated item_notes
 include | song | include associated song
-include | item_media | include associated item_media
+include | media | include associated media
+include | arrangement | include associated arrangement
+include | key | include associated key
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=item_notes,song</code></aside>
 
@@ -653,8 +690,10 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL
 ----------- | ---
+arrangement | https://api.planningcenteronline.com/services/v2/series/1/plans/1/items/1/arrangement
 attachments | https://api.planningcenteronline.com/services/v2/series/1/plans/1/items/1/attachments
 item_notes | https://api.planningcenteronline.com/services/v2/series/1/plans/1/items/1/item_notes
+key | https://api.planningcenteronline.com/services/v2/series/1/plans/1/items/1/key
 media | https://api.planningcenteronline.com/services/v2/series/1/plans/1/items/1/media
 song | https://api.planningcenteronline.com/services/v2/series/1/plans/1/items/1/song
 
@@ -679,6 +718,8 @@ description |
 title | string
 service_position | 
 song_id | integer
+key_id | integer
+arrangement_id | integer
 item_type | 
 
 ### Update an existing Item
@@ -702,6 +743,8 @@ description |
 title | string
 service_position | 
 song_id | integer
+key_id | integer
+arrangement_id | integer
 media_ids | 
 
 ### Delete an Item
@@ -738,10 +781,10 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/series
 
 Parameter | Value | Description
 --------- | ----- | -----------
-where[created_at] | _datetime_ | filter on a specific created_at
-where[updated_at] | _datetime_ | filter on a specific updated_at
-where[category_id] | _integer_ | filter on a specific category_id
-where[category_name] | __ | filter on a specific category_name
+where[created_at] | _datetime_ | query on a specific created_at
+where[updated_at] | _datetime_ | query on a specific updated_at
+where[category_id] | _integer_ | query on a specific category_id
+where[category_name] | __ | query on a specific category_name
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
@@ -1321,8 +1364,10 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL
 ----------- | ---
+activities | https://api.planningcenteronline.com/services/v2/people/1/activities
 person_team_position_assignments | https://api.planningcenteronline.com/services/v2/people/1/person_team_position_assignments
 plan_people | https://api.planningcenteronline.com/services/v2/people/1/plan_people
+schedules | https://api.planningcenteronline.com/services/v2/people/1/schedules
 tags | https://api.planningcenteronline.com/services/v2/people/1/tags
 team_leaders | https://api.planningcenteronline.com/services/v2/people/1/team_leaders
 
@@ -1452,20 +1497,22 @@ True if Public Access has been enabled.
 
 ```shell
 # to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/series/1/plans"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/service_types/1/plans"
 ```
 
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/series/1/plans`
+`GET https://api.planningcenteronline.com/services/v2/service_types/1/plans`
 
 #### URL Parameters
 
 Parameter | Value | Description
 --------- | ----- | -----------
-where[title] | _string_ | filter on a specific title
-where[last_time_at] | __ | filter on a specific last_time_at
+where[last_time_at] | __ | query on a specific last_time_at
+where[title] | _string_ | query on a specific title
+filter | future | filter using the named scope "future"
+filter | past | filter using the named scope "past"
 include | series | include associated series
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
@@ -1474,7 +1521,7 @@ per_page | _integer_ | how many records to return per page (min=1, max=100, defa
 
 ```shell
 # to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/series/1/plans/1"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/service_types/1/plans/1"
 ```
 
 
@@ -1507,7 +1554,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/series
       "dates": "unknown",
       "public": true,
       "needed_positions_count": "unknown",
-      "attachments_count": "unknown"
+      "attachments_count": "unknown",
+      "series_title": "string"
     }
   }
 }
@@ -1515,7 +1563,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/series
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/series/1/plans/1`
+`GET https://api.planningcenteronline.com/services/v2/service_types/1/plans/1`
 
 #### URL Parameters
 
@@ -1529,15 +1577,15 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL
 ----------- | ---
-attachments | https://api.planningcenteronline.com/services/v2/series/1/plans/1/attachments
-items | https://api.planningcenteronline.com/services/v2/series/1/plans/1/items
-needed_positions | https://api.planningcenteronline.com/services/v2/series/1/plans/1/needed_positions
-next_plan | https://api.planningcenteronline.com/services/v2/series/1/plans/1/next_plan
-notes | https://api.planningcenteronline.com/services/v2/series/1/plans/1/notes
-plan_times | https://api.planningcenteronline.com/services/v2/series/1/plans/1/plan_times
-previous_plan | https://api.planningcenteronline.com/services/v2/series/1/plans/1/previous_plan
-series | https://api.planningcenteronline.com/services/v2/series/1/plans/1/series
-team_member | https://api.planningcenteronline.com/services/v2/series/1/plans/1/team_member
+attachments | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/attachments
+items | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items
+needed_positions | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/needed_positions
+next_plan | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/next_plan
+notes | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/notes
+plan_times | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/plan_times
+previous_plan | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/previous_plan
+series | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/series
+team_member | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/team_member
 
 ### Create a new Plan
 
@@ -1563,13 +1611,13 @@ series_id | integer
 
 ```shell
 # to update a record...
-curl -v -u token:secret -X PATCH -d '{"data":{"type":"Plan","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/series/1/plans/1"
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"Plan","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/service_types/1/plans/1"
 ```
 
 
 #### HTTP Request
 
-`PATCH https://api.planningcenteronline.com/services/v2/series/1/plans/1`
+`PATCH https://api.planningcenteronline.com/services/v2/service_types/1/plans/1`
 
 #### Resource Attributes
 
@@ -1583,13 +1631,13 @@ series_id | integer
 
 ```shell
 # to delete a record...
-curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/services/v2/series/1/plans/1"
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/services/v2/service_types/1/plans/1"
 ```
 
 
 #### HTTP Request
 
-`DELETE https://api.planningcenteronline.com/services/v2/series/1/plans/1`
+`DELETE https://api.planningcenteronline.com/services/v2/service_types/1/plans/1`
 
 ## PlanNotes
 
@@ -1613,9 +1661,9 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/series
 
 Parameter | Value | Description
 --------- | ----- | -----------
-where[created_at] | _datetime_ | filter on a specific created_at
-where[updated_at] | _datetime_ | filter on a specific updated_at
-where[category_name] | __ | filter on a specific category_name
+where[created_at] | _datetime_ | query on a specific created_at
+where[updated_at] | _datetime_ | query on a specific updated_at
+where[category_name] | __ | query on a specific category_name
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
@@ -1783,12 +1831,13 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
     "type": "PlanPerson",
     "id": "1",
     "attributes": {
-      "position": "string",
+      "team_position_name": "unknown",
       "status": "string",
       "status_updated_at": "unknown",
       "created_at": "2000-01-01T12:00:00Z",
       "updated_at": "2000-01-01T12:00:00Z",
       "plan_id": "unknown",
+      "service_type_id": "unknown",
       "person_id": 1,
       "prepare_notification": "unknown",
       "photo_thumbnail": "unknown",
@@ -1797,7 +1846,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
       "decline_reason": "string",
       "can_accept_partial": "unknown",
       "responds_to_id": "unknown",
-      "excluded_times": "string"
+      "excluded_time_ids": "unknown"
     }
   }
 }
@@ -1947,9 +1996,43 @@ split_team_rehearsal_assignments | https://api.planningcenteronline.com/services
 
 
 
+## Schedules
+
+An instance of a PlanPerson with included data for displaying in a user's schedule
+
+
+
+### List Schedules
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people/1/schedules"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/services/v2/people/1/schedules`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+
+
+
+
+
+
 ## Series
 
 A Series can be specified for each plan to tie plans with similar messages together, even across Service Types.
+
+*Note*: A series is not created until artwork is added from the plan.  You can use `series_title` included in `Plan` attributes to get titles for series without artwork.
+
 
 
 
@@ -2221,7 +2304,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/songs"
 
 Parameter | Value | Description
 --------- | ----- | -----------
-where[title] | _string_ | filter on a specific title
+where[title] | _string_ | query on a specific title
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
@@ -2498,7 +2581,11 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/tag_gr
 
 Parameter | Value | Description
 --------- | ----- | -----------
-where[name] | _string_ | filter on a specific name
+where[name] | _string_ | query on a specific name
+filter | song | filter using the named scope "song"
+filter | arrangement | filter using the named scope "arrangement"
+filter | person | filter using the named scope "person"
+filter | media | filter using the named scope "media"
 include | tags | include associated tags
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
