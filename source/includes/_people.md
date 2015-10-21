@@ -349,6 +349,85 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/lists/1/
 
 _none_
 
+### Associations for a Condition
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL | Endpoint
+----------- | --- | --------
+results | https://api.planningcenteronline.com/people/v2/lists/1/rules/1/conditions/1/results | ConditionResult
+
+
+
+
+
+
+
+## ConditionResults
+
+A Condition Result represents a matched record for this Condition.
+
+
+
+### List Condition Results
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/lists/1/rules/1/conditions/1/results"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/people/v2/lists/1/rules/1/conditions/1/results`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+include | person | include associated person
+after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+### Get a single Condition Result
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/lists/1/rules/1/conditions/1/results/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "ConditionResult",
+    "id": "1",
+    "attributes": {
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/people/v2/lists/1/rules/1/conditions/1/results/1`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+include | person | include associated person
+
+### Associations for a Condition Result
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL | Endpoint
+----------- | --- | --------
+person | https://api.planningcenteronline.com/people/v2/lists/1/rules/1/conditions/1/results/1/person | Person
+
 
 
 
@@ -485,9 +564,9 @@ _none_
 
 You can append one of the following associations onto this resource URL to jump to an associated record.
 
-Association | URL
------------ | ---
-person | https://api.planningcenteronline.com/people/v2/emails/1/person
+Association | URL | Endpoint
+----------- | --- | --------
+person | https://api.planningcenteronline.com/people/v2/emails/1/person | Person
 
 ### Create a new Email
 
@@ -624,11 +703,11 @@ include | tab | include associated tab
 
 You can append one of the following associations onto this resource URL to jump to an associated record.
 
-Association | URL
------------ | ---
-field_definition | https://api.planningcenteronline.com/people/v2/people/1/field_data/1/field_definition
-field_option | https://api.planningcenteronline.com/people/v2/people/1/field_data/1/field_option
-tab | https://api.planningcenteronline.com/people/v2/people/1/field_data/1/tab
+Association | URL | Endpoint
+----------- | --- | --------
+field_option | https://api.planningcenteronline.com/people/v2/people/1/field_data/1/field_option | FieldOption
+field_definition | https://api.planningcenteronline.com/people/v2/people/1/field_data/1/field_definition | FieldDefinition
+tab | https://api.planningcenteronline.com/people/v2/people/1/field_data/1/tab | Tab
 
 ### Create a new Field Datum
 
@@ -766,10 +845,10 @@ include | tab | include associated tab
 
 You can append one of the following associations onto this resource URL to jump to an associated record.
 
-Association | URL
------------ | ---
-field_options | https://api.planningcenteronline.com/people/v2/field_definitions/1/field_options
-tab | https://api.planningcenteronline.com/people/v2/field_definitions/1/tab
+Association | URL | Endpoint
+----------- | --- | --------
+tab | https://api.planningcenteronline.com/people/v2/field_definitions/1/tab | Tab
+field_options | https://api.planningcenteronline.com/people/v2/field_definitions/1/field_options | FieldOption
 
 ### Create a new Field Definition
 
@@ -845,13 +924,13 @@ A field option represents an individual option for a custom field of type "selec
 
 ```shell
 # to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/field_definitions/1/field_options"
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1/field_data/1/field_options"
 ```
 
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/people/v2/field_definitions/1/field_options`
+`GET https://api.planningcenteronline.com/people/v2/people/1/field_data/1/field_options`
 
 #### URL Parameters
 
@@ -866,7 +945,7 @@ per_page | _integer_ | how many records to return per page (min=1, max=100, defa
 
 ```shell
 # to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/field_definitions/1/field_options/1"
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1/field_data/1/field_options/1"
 ```
 
 
@@ -887,7 +966,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/field_de
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/people/v2/field_definitions/1/field_options/1`
+`GET https://api.planningcenteronline.com/people/v2/people/1/field_data/1/field_options/1`
 
 #### URL Parameters
 
@@ -918,7 +997,7 @@ sequence | integer
 
 ```shell
 # to update a record...
-curl -v -u token:secret -X PATCH -d '{"data":{"type":"FieldOption","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/field_definitions/1/field_options/1"
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"FieldOption","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/people/1/field_data/1/field_options/1"
 ```
 
 
@@ -926,7 +1005,7 @@ curl -v -u token:secret -X PATCH -d '{"data":{"type":"FieldOption","id":"1","att
 
 #### HTTP Request
 
-`PATCH https://api.planningcenteronline.com/people/v2/field_definitions/1/field_options/1`
+`PATCH https://api.planningcenteronline.com/people/v2/people/1/field_data/1/field_options/1`
 
 #### Resource Attributes
 
@@ -939,7 +1018,7 @@ sequence | integer
 
 ```shell
 # to delete a record...
-curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v2/field_definitions/1/field_options/1"
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v2/people/1/field_data/1/field_options/1"
 ```
 
 
@@ -947,7 +1026,7 @@ curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v
 
 #### HTTP Request
 
-`DELETE https://api.planningcenteronline.com/people/v2/field_definitions/1/field_options/1`
+`DELETE https://api.planningcenteronline.com/people/v2/people/1/field_data/1/field_options/1`
 
 ## Households
 
@@ -1021,10 +1100,10 @@ include | people | include associated people
 
 You can append one of the following associations onto this resource URL to jump to an associated record.
 
-Association | URL
------------ | ---
-household_memberships | https://api.planningcenteronline.com/people/v2/households/1/household_memberships
-people | https://api.planningcenteronline.com/people/v2/households/1/people
+Association | URL | Endpoint
+----------- | --- | --------
+people | https://api.planningcenteronline.com/people/v2/households/1/people | Person
+household_memberships | https://api.planningcenteronline.com/people/v2/households/1/household_memberships | HouseholdMembership
 
 ### Create a new Household
 
@@ -1094,13 +1173,13 @@ A household membership is the linking record between a household and a person.
 
 ```shell
 # to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/households/1/household_memberships"
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1/household_memberships"
 ```
 
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/people/v2/households/1/household_memberships`
+`GET https://api.planningcenteronline.com/people/v2/people/1/household_memberships`
 
 #### URL Parameters
 
@@ -1119,7 +1198,7 @@ per_page | _integer_ | how many records to return per page (min=1, max=100, defa
 
 ```shell
 # to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1"
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1/household_memberships/1"
 ```
 
 
@@ -1140,7 +1219,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/househol
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1`
+`GET https://api.planningcenteronline.com/people/v2/people/1/household_memberships/1`
 
 #### URL Parameters
 
@@ -1155,10 +1234,10 @@ include | household | include associated household
 
 You can append one of the following associations onto this resource URL to jump to an associated record.
 
-Association | URL
------------ | ---
-household | https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1/household
-person | https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1/person
+Association | URL | Endpoint
+----------- | --- | --------
+person | https://api.planningcenteronline.com/people/v2/people/1/household_memberships/1/person | Person
+household | https://api.planningcenteronline.com/people/v2/people/1/household_memberships/1/household | Household
 
 ### Create a new Household Membership
 
@@ -1185,7 +1264,7 @@ pending | boolean
 
 ```shell
 # to update a record...
-curl -v -u token:secret -X PATCH -d '{"data":{"type":"HouseholdMembership","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1"
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"HouseholdMembership","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/people/1/household_memberships/1"
 ```
 
 
@@ -1193,7 +1272,7 @@ curl -v -u token:secret -X PATCH -d '{"data":{"type":"HouseholdMembership","id":
 
 #### HTTP Request
 
-`PATCH https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1`
+`PATCH https://api.planningcenteronline.com/people/v2/people/1/household_memberships/1`
 
 #### Resource Attributes
 
@@ -1206,7 +1285,7 @@ pending | boolean
 
 ```shell
 # to delete a record...
-curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1"
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v2/people/1/household_memberships/1"
 ```
 
 
@@ -1214,7 +1293,7 @@ curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v
 
 #### HTTP Request
 
-`DELETE https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1`
+`DELETE https://api.planningcenteronline.com/people/v2/people/1/household_memberships/1`
 
 ## InactiveReasons
 
@@ -1413,14 +1492,22 @@ include | shares | include associated shares
 
 You can append one of the following associations onto this resource URL to jump to an associated record.
 
-Association | URL
------------ | ---
-created_by | https://api.planningcenteronline.com/people/v2/lists/1/created_by
-owner | https://api.planningcenteronline.com/people/v2/lists/1/owner
-people | https://api.planningcenteronline.com/people/v2/lists/1/people
-rules | https://api.planningcenteronline.com/people/v2/lists/1/rules
-shares | https://api.planningcenteronline.com/people/v2/lists/1/shares
-updated_by | https://api.planningcenteronline.com/people/v2/lists/1/updated_by
+Association | URL | Endpoint
+----------- | --- | --------
+created_by | https://api.planningcenteronline.com/people/v2/lists/1/created_by | Person
+shares | https://api.planningcenteronline.com/people/v2/lists/1/shares | ListShare
+rules | https://api.planningcenteronline.com/people/v2/lists/1/rules | Rule
+updated_by | https://api.planningcenteronline.com/people/v2/lists/1/updated_by | Person
+people | https://api.planningcenteronline.com/people/v2/lists/1/people | Person
+owner | https://api.planningcenteronline.com/people/v2/lists/1/owner | Person
+
+### Actions for a List
+
+You can perform the following actions on a List by POSTing to the specified URL.
+
+Action | URL | Description
+------ | --- | -----------
+run | https://api.planningcenteronline.com/people/v2/lists/1/run | Run a List to update its results.
 
 
 
@@ -1495,9 +1582,9 @@ include | person | include associated person
 
 You can append one of the following associations onto this resource URL to jump to an associated record.
 
-Association | URL
------------ | ---
-person | https://api.planningcenteronline.com/people/v2/lists/1/shares/1/person
+Association | URL | Endpoint
+----------- | --- | --------
+person | https://api.planningcenteronline.com/people/v2/lists/1/shares/1/person | Person
 
 
 
@@ -1709,10 +1796,10 @@ include | to | include associated to
 
 You can append one of the following associations onto this resource URL to jump to an associated record.
 
-Association | URL
------------ | ---
-message_group | https://api.planningcenteronline.com/people/v2/messages/1/message_group
-to | https://api.planningcenteronline.com/people/v2/messages/1/to
+Association | URL | Endpoint
+----------- | --- | --------
+message_group | https://api.planningcenteronline.com/people/v2/messages/1/message_group | MessageGroup
+to | https://api.planningcenteronline.com/people/v2/messages/1/to | Person
 
 
 
@@ -1803,11 +1890,11 @@ include | app | include associated app
 
 You can append one of the following associations onto this resource URL to jump to an associated record.
 
-Association | URL
------------ | ---
-app | https://api.planningcenteronline.com/people/v2/message_groups/1/app
-from | https://api.planningcenteronline.com/people/v2/message_groups/1/from
-messages | https://api.planningcenteronline.com/people/v2/message_groups/1/messages
+Association | URL | Endpoint
+----------- | --- | --------
+messages | https://api.planningcenteronline.com/people/v2/message_groups/1/messages | Message
+app | https://api.planningcenteronline.com/people/v2/message_groups/1/app | App
+from | https://api.planningcenteronline.com/people/v2/message_groups/1/from | Person
 
 
 
@@ -2075,26 +2162,57 @@ _none_
 
 You can append one of the following associations onto this resource URL to jump to an associated record.
 
-Association | URL
------------ | ---
-apps | https://api.planningcenteronline.com/people/v2/apps
-campuses | https://api.planningcenteronline.com/people/v2/campuses
-emails | https://api.planningcenteronline.com/people/v2/emails
-field_definitions | https://api.planningcenteronline.com/people/v2/field_definitions
-households | https://api.planningcenteronline.com/people/v2/households
-inactive_reasons | https://api.planningcenteronline.com/people/v2/inactive_reasons
-lists | https://api.planningcenteronline.com/people/v2/lists
-marital_statuses | https://api.planningcenteronline.com/people/v2/marital_statuses
-message_groups | https://api.planningcenteronline.com/people/v2/message_groups
-messages | https://api.planningcenteronline.com/people/v2/messages
-name_prefixes | https://api.planningcenteronline.com/people/v2/name_prefixes
-name_suffixes | https://api.planningcenteronline.com/people/v2/name_suffixes
-people | https://api.planningcenteronline.com/people/v2/people
-reports | https://api.planningcenteronline.com/people/v2/reports
-school_options | https://api.planningcenteronline.com/people/v2/school_options
-social_profiles | https://api.planningcenteronline.com/people/v2/social_profiles
-stats | https://api.planningcenteronline.com/people/v2/stats
-tabs | https://api.planningcenteronline.com/people/v2/tabs
+Association | URL | Endpoint
+----------- | --- | --------
+social_profiles | https://api.planningcenteronline.com/people/v2/social_profiles | SocialProfile
+name_suffixes | https://api.planningcenteronline.com/people/v2/name_suffixes | NameSuffix
+message_groups | https://api.planningcenteronline.com/people/v2/message_groups | MessageGroup
+people | https://api.planningcenteronline.com/people/v2/people | Person
+name_prefixes | https://api.planningcenteronline.com/people/v2/name_prefixes | NamePrefix
+marital_statuses | https://api.planningcenteronline.com/people/v2/marital_statuses | MaritalStatus
+lists | https://api.planningcenteronline.com/people/v2/lists | List
+apps | https://api.planningcenteronline.com/people/v2/apps | App
+school_options | https://api.planningcenteronline.com/people/v2/school_options | SchoolOption
+stats | https://api.planningcenteronline.com/people/v2/stats | OrganizationStatistics
+field_definitions | https://api.planningcenteronline.com/people/v2/field_definitions | FieldDefinition
+inactive_reasons | https://api.planningcenteronline.com/people/v2/inactive_reasons | InactiveReason
+emails | https://api.planningcenteronline.com/people/v2/emails | Email
+tabs | https://api.planningcenteronline.com/people/v2/tabs | Tab
+messages | https://api.planningcenteronline.com/people/v2/messages | Message
+households | https://api.planningcenteronline.com/people/v2/households | Household
+reports | https://api.planningcenteronline.com/people/v2/reports | Report
+campuses | https://api.planningcenteronline.com/people/v2/campuses | Campus
+
+
+
+
+
+
+
+## OrganizationStatistics
+
+Returns statistics for the organization.
+
+
+
+### List Organization Statistics
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/stats"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/people/v2/stats`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 
 
@@ -2223,24 +2341,24 @@ include | field_data | include associated field_data
 
 You can append one of the following associations onto this resource URL to jump to an associated record.
 
-Association | URL
------------ | ---
-addresses | https://api.planningcenteronline.com/people/v2/people/1/addresses
-apps | https://api.planningcenteronline.com/people/v2/people/1/apps
-connected_people | https://api.planningcenteronline.com/people/v2/people/1/connected_people
-emails | https://api.planningcenteronline.com/people/v2/people/1/emails
-field_data | https://api.planningcenteronline.com/people/v2/people/1/field_data
-household_memberships | https://api.planningcenteronline.com/people/v2/people/1/household_memberships
-households | https://api.planningcenteronline.com/people/v2/people/1/households
-inactive_reason | https://api.planningcenteronline.com/people/v2/people/1/inactive_reason
-marital_status | https://api.planningcenteronline.com/people/v2/people/1/marital_status
-message_groups | https://api.planningcenteronline.com/people/v2/people/1/message_groups
-messages | https://api.planningcenteronline.com/people/v2/people/1/messages
-name_prefix | https://api.planningcenteronline.com/people/v2/people/1/name_prefix
-name_suffix | https://api.planningcenteronline.com/people/v2/people/1/name_suffix
-phone_numbers | https://api.planningcenteronline.com/people/v2/people/1/phone_numbers
-school | https://api.planningcenteronline.com/people/v2/people/1/school
-social_profiles | https://api.planningcenteronline.com/people/v2/people/1/social_profiles
+Association | URL | Endpoint
+----------- | --- | --------
+apps | https://api.planningcenteronline.com/people/v2/people/1/apps | App
+inactive_reason | https://api.planningcenteronline.com/people/v2/people/1/inactive_reason | InactiveReason
+emails | https://api.planningcenteronline.com/people/v2/people/1/emails | Email
+message_groups | https://api.planningcenteronline.com/people/v2/people/1/message_groups | MessageGroup
+addresses | https://api.planningcenteronline.com/people/v2/people/1/addresses | Address
+household_memberships | https://api.planningcenteronline.com/people/v2/people/1/household_memberships | HouseholdMembership
+social_profiles | https://api.planningcenteronline.com/people/v2/people/1/social_profiles | SocialProfile
+marital_status | https://api.planningcenteronline.com/people/v2/people/1/marital_status | MaritalStatus
+messages | https://api.planningcenteronline.com/people/v2/people/1/messages | Message
+name_suffix | https://api.planningcenteronline.com/people/v2/people/1/name_suffix | NameSuffix
+connected_people | https://api.planningcenteronline.com/people/v2/people/1/connected_people | ConnectedPerson
+field_data | https://api.planningcenteronline.com/people/v2/people/1/field_data | FieldDatum
+school | https://api.planningcenteronline.com/people/v2/people/1/school | SchoolOption
+phone_numbers | https://api.planningcenteronline.com/people/v2/people/1/phone_numbers | PhoneNumber
+name_prefix | https://api.planningcenteronline.com/people/v2/people/1/name_prefix | NamePrefix
+households | https://api.planningcenteronline.com/people/v2/people/1/households | Household
 
 ### Create a new Person
 
@@ -2527,10 +2645,10 @@ include | updated_by | include associated updated_by
 
 You can append one of the following associations onto this resource URL to jump to an associated record.
 
-Association | URL
------------ | ---
-created_by | https://api.planningcenteronline.com/people/v2/reports/1/created_by
-updated_by | https://api.planningcenteronline.com/people/v2/reports/1/updated_by
+Association | URL | Endpoint
+----------- | --- | --------
+updated_by | https://api.planningcenteronline.com/people/v2/reports/1/updated_by | Person
+created_by | https://api.planningcenteronline.com/people/v2/reports/1/created_by | Person
 
 ### Create a new Report
 
@@ -2610,6 +2728,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/lists/1/
 
 Parameter | Value | Description
 --------- | ----- | -----------
+where[subset] | _string_ | query on a specific subset
 where[created_at] | _datetime_ | query on a specific created_at
 where[updated_at] | _datetime_ | query on a specific updated_at
 include | conditions | include associated conditions
@@ -2632,6 +2751,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/lists/1/
     "type": "Rule",
     "id": "1",
     "attributes": {
+      "subset": "string",
       "created_at": "2000-01-01T12:00:00Z",
       "updated_at": "2000-01-01T12:00:00Z"
     }
@@ -2653,9 +2773,81 @@ include | conditions | include associated conditions
 
 You can append one of the following associations onto this resource URL to jump to an associated record.
 
-Association | URL
------------ | ---
-conditions | https://api.planningcenteronline.com/people/v2/lists/1/rules/1/conditions
+Association | URL | Endpoint
+----------- | --- | --------
+conditions | https://api.planningcenteronline.com/people/v2/lists/1/rules/1/conditions | Condition
+results | https://api.planningcenteronline.com/people/v2/lists/1/rules/1/results | RuleResult
+
+
+
+
+
+
+
+## RuleResults
+
+A Rule Result represents a matched record for any Condition belonging to this Rule.
+
+
+
+### List Rule Results
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/lists/1/rules/1/results"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/people/v2/lists/1/rules/1/results`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+include | person | include associated person
+after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+### Get a single Rule Result
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/lists/1/rules/1/results/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "RuleResult",
+    "id": "1",
+    "attributes": {
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/people/v2/lists/1/rules/1/results/1`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+include | person | include associated person
+
+### Associations for a Rule Result
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL | Endpoint
+----------- | --- | --------
+person | https://api.planningcenteronline.com/people/v2/lists/1/rules/1/results/1/person | Person
 
 
 
@@ -2732,9 +2924,9 @@ _none_
 
 You can append one of the following associations onto this resource URL to jump to an associated record.
 
-Association | URL
------------ | ---
-promotes_to_school | https://api.planningcenteronline.com/people/v2/school_options/1/promotes_to_school
+Association | URL | Endpoint
+----------- | --- | --------
+promotes_to_school | https://api.planningcenteronline.com/people/v2/school_options/1/promotes_to_school | SchoolOption
 
 ### Create a new School Option
 
@@ -2867,9 +3059,9 @@ include | person | include associated person
 
 You can append one of the following associations onto this resource URL to jump to an associated record.
 
-Association | URL
------------ | ---
-person | https://api.planningcenteronline.com/people/v2/social_profiles/1/person
+Association | URL | Endpoint
+----------- | --- | --------
+person | https://api.planningcenteronline.com/people/v2/social_profiles/1/person | Person
 
 ### Create a new Social Profile
 
@@ -2998,9 +3190,9 @@ include | field_definitions | include associated field_definitions
 
 You can append one of the following associations onto this resource URL to jump to an associated record.
 
-Association | URL
------------ | ---
-field_definitions | https://api.planningcenteronline.com/people/v2/tabs/1/field_definitions
+Association | URL | Endpoint
+----------- | --- | --------
+field_definitions | https://api.planningcenteronline.com/people/v2/tabs/1/field_definitions | FieldDefinition
 
 ### Create a new Tab
 

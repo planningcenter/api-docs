@@ -20,7 +20,7 @@ task :fetch do
   end
   APP_NAMES.each do |app|
     url = "#{base_url}/#{app}/v2/docs"
-    p "getting #{url}..."
+    puts "getting #{url}..."
     content = open(url).read
     path = "source/includes/_#{app}.md"
     File.open(File.expand_path("../#{path}", __FILE__), 'w') do |file|
