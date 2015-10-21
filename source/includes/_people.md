@@ -705,8 +705,8 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
-field_option | https://api.planningcenteronline.com/people/v2/people/1/field_data/1/field_option | FieldOption
 field_definition | https://api.planningcenteronline.com/people/v2/people/1/field_data/1/field_definition | FieldDefinition
+field_option | https://api.planningcenteronline.com/people/v2/people/1/field_data/1/field_option | FieldOption
 tab | https://api.planningcenteronline.com/people/v2/people/1/field_data/1/tab | Tab
 
 ### Create a new Field Datum
@@ -847,8 +847,8 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
-tab | https://api.planningcenteronline.com/people/v2/field_definitions/1/tab | Tab
 field_options | https://api.planningcenteronline.com/people/v2/field_definitions/1/field_options | FieldOption
+tab | https://api.planningcenteronline.com/people/v2/field_definitions/1/tab | Tab
 
 ### Create a new Field Definition
 
@@ -1102,8 +1102,8 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
-people | https://api.planningcenteronline.com/people/v2/households/1/people | Person
 household_memberships | https://api.planningcenteronline.com/people/v2/households/1/household_memberships | HouseholdMembership
+people | https://api.planningcenteronline.com/people/v2/households/1/people | Person
 
 ### Create a new Household
 
@@ -1236,8 +1236,8 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
-person | https://api.planningcenteronline.com/people/v2/people/1/household_memberships/1/person | Person
 household | https://api.planningcenteronline.com/people/v2/people/1/household_memberships/1/household | Household
+person | https://api.planningcenteronline.com/people/v2/people/1/household_memberships/1/person | Person
 
 ### Create a new Household Membership
 
@@ -1495,11 +1495,11 @@ You can append one of the following associations onto this resource URL to jump 
 Association | URL | Endpoint
 ----------- | --- | --------
 created_by | https://api.planningcenteronline.com/people/v2/lists/1/created_by | Person
-shares | https://api.planningcenteronline.com/people/v2/lists/1/shares | ListShare
-rules | https://api.planningcenteronline.com/people/v2/lists/1/rules | Rule
-updated_by | https://api.planningcenteronline.com/people/v2/lists/1/updated_by | Person
-people | https://api.planningcenteronline.com/people/v2/lists/1/people | Person
 owner | https://api.planningcenteronline.com/people/v2/lists/1/owner | Person
+people | https://api.planningcenteronline.com/people/v2/lists/1/people | Person
+rules | https://api.planningcenteronline.com/people/v2/lists/1/rules | Rule
+shares | https://api.planningcenteronline.com/people/v2/lists/1/shares | ListShare
+updated_by | https://api.planningcenteronline.com/people/v2/lists/1/updated_by | Person
 
 ### Actions for a List
 
@@ -1892,9 +1892,9 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
-messages | https://api.planningcenteronline.com/people/v2/message_groups/1/messages | Message
 app | https://api.planningcenteronline.com/people/v2/message_groups/1/app | App
 from | https://api.planningcenteronline.com/people/v2/message_groups/1/from | Person
+messages | https://api.planningcenteronline.com/people/v2/message_groups/1/messages | Message
 
 
 
@@ -2164,24 +2164,24 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
-social_profiles | https://api.planningcenteronline.com/people/v2/social_profiles | SocialProfile
-name_suffixes | https://api.planningcenteronline.com/people/v2/name_suffixes | NameSuffix
-message_groups | https://api.planningcenteronline.com/people/v2/message_groups | MessageGroup
-people | https://api.planningcenteronline.com/people/v2/people | Person
-name_prefixes | https://api.planningcenteronline.com/people/v2/name_prefixes | NamePrefix
-marital_statuses | https://api.planningcenteronline.com/people/v2/marital_statuses | MaritalStatus
-lists | https://api.planningcenteronline.com/people/v2/lists | List
 apps | https://api.planningcenteronline.com/people/v2/apps | App
-school_options | https://api.planningcenteronline.com/people/v2/school_options | SchoolOption
-stats | https://api.planningcenteronline.com/people/v2/stats | OrganizationStatistics
-field_definitions | https://api.planningcenteronline.com/people/v2/field_definitions | FieldDefinition
-inactive_reasons | https://api.planningcenteronline.com/people/v2/inactive_reasons | InactiveReason
-emails | https://api.planningcenteronline.com/people/v2/emails | Email
-tabs | https://api.planningcenteronline.com/people/v2/tabs | Tab
-messages | https://api.planningcenteronline.com/people/v2/messages | Message
-households | https://api.planningcenteronline.com/people/v2/households | Household
-reports | https://api.planningcenteronline.com/people/v2/reports | Report
 campuses | https://api.planningcenteronline.com/people/v2/campuses | Campus
+emails | https://api.planningcenteronline.com/people/v2/emails | Email
+field_definitions | https://api.planningcenteronline.com/people/v2/field_definitions | FieldDefinition
+households | https://api.planningcenteronline.com/people/v2/households | Household
+inactive_reasons | https://api.planningcenteronline.com/people/v2/inactive_reasons | InactiveReason
+lists | https://api.planningcenteronline.com/people/v2/lists | List
+marital_statuses | https://api.planningcenteronline.com/people/v2/marital_statuses | MaritalStatus
+message_groups | https://api.planningcenteronline.com/people/v2/message_groups | MessageGroup
+messages | https://api.planningcenteronline.com/people/v2/messages | Message
+name_prefixes | https://api.planningcenteronline.com/people/v2/name_prefixes | NamePrefix
+name_suffixes | https://api.planningcenteronline.com/people/v2/name_suffixes | NameSuffix
+people | https://api.planningcenteronline.com/people/v2/people | Person
+reports | https://api.planningcenteronline.com/people/v2/reports | Report
+school_options | https://api.planningcenteronline.com/people/v2/school_options | SchoolOption
+social_profiles | https://api.planningcenteronline.com/people/v2/social_profiles | SocialProfile
+stats | https://api.planningcenteronline.com/people/v2/stats | OrganizationStatistics
+tabs | https://api.planningcenteronline.com/people/v2/tabs | Tab
 
 
 
@@ -2343,22 +2343,22 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
-apps | https://api.planningcenteronline.com/people/v2/people/1/apps | App
-inactive_reason | https://api.planningcenteronline.com/people/v2/people/1/inactive_reason | InactiveReason
-emails | https://api.planningcenteronline.com/people/v2/people/1/emails | Email
-message_groups | https://api.planningcenteronline.com/people/v2/people/1/message_groups | MessageGroup
 addresses | https://api.planningcenteronline.com/people/v2/people/1/addresses | Address
-household_memberships | https://api.planningcenteronline.com/people/v2/people/1/household_memberships | HouseholdMembership
-social_profiles | https://api.planningcenteronline.com/people/v2/people/1/social_profiles | SocialProfile
-marital_status | https://api.planningcenteronline.com/people/v2/people/1/marital_status | MaritalStatus
-messages | https://api.planningcenteronline.com/people/v2/people/1/messages | Message
-name_suffix | https://api.planningcenteronline.com/people/v2/people/1/name_suffix | NameSuffix
+apps | https://api.planningcenteronline.com/people/v2/people/1/apps | App
 connected_people | https://api.planningcenteronline.com/people/v2/people/1/connected_people | ConnectedPerson
+emails | https://api.planningcenteronline.com/people/v2/people/1/emails | Email
 field_data | https://api.planningcenteronline.com/people/v2/people/1/field_data | FieldDatum
-school | https://api.planningcenteronline.com/people/v2/people/1/school | SchoolOption
-phone_numbers | https://api.planningcenteronline.com/people/v2/people/1/phone_numbers | PhoneNumber
-name_prefix | https://api.planningcenteronline.com/people/v2/people/1/name_prefix | NamePrefix
+household_memberships | https://api.planningcenteronline.com/people/v2/people/1/household_memberships | HouseholdMembership
 households | https://api.planningcenteronline.com/people/v2/people/1/households | Household
+inactive_reason | https://api.planningcenteronline.com/people/v2/people/1/inactive_reason | InactiveReason
+marital_status | https://api.planningcenteronline.com/people/v2/people/1/marital_status | MaritalStatus
+message_groups | https://api.planningcenteronline.com/people/v2/people/1/message_groups | MessageGroup
+messages | https://api.planningcenteronline.com/people/v2/people/1/messages | Message
+name_prefix | https://api.planningcenteronline.com/people/v2/people/1/name_prefix | NamePrefix
+name_suffix | https://api.planningcenteronline.com/people/v2/people/1/name_suffix | NameSuffix
+phone_numbers | https://api.planningcenteronline.com/people/v2/people/1/phone_numbers | PhoneNumber
+school | https://api.planningcenteronline.com/people/v2/people/1/school | SchoolOption
+social_profiles | https://api.planningcenteronline.com/people/v2/people/1/social_profiles | SocialProfile
 
 ### Create a new Person
 
@@ -2647,8 +2647,8 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
-updated_by | https://api.planningcenteronline.com/people/v2/reports/1/updated_by | Person
 created_by | https://api.planningcenteronline.com/people/v2/reports/1/created_by | Person
+updated_by | https://api.planningcenteronline.com/people/v2/reports/1/updated_by | Person
 
 ### Create a new Report
 
