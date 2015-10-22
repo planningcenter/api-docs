@@ -1052,7 +1052,17 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/medias
       "creator_name": "unknown",
       "media_type": "string",
       "themes": "string",
-      "title": "string"
+      "title": "string",
+      "thumbnail_file_name": "string",
+      "thumbnail_content_type": "string",
+      "thumbnail_file_size": 1,
+      "thumbnail_updated_at": "2000-01-01T12:00:00Z",
+      "thumbnail_url": "unknown",
+      "preview_url": "unknown",
+      "preview_file_name": "string",
+      "preview_content_type": "string",
+      "preview_file_size": 1,
+      "preview_updated_at": "2000-01-01T12:00:00Z"
     }
   }
 }

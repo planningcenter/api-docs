@@ -924,13 +924,13 @@ A field option represents an individual option for a custom field of type "selec
 
 ```shell
 # to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1/field_data/1/field_options"
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/field_definitions/1/field_options"
 ```
 
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/people/v2/people/1/field_data/1/field_options`
+`GET https://api.planningcenteronline.com/people/v2/field_definitions/1/field_options`
 
 #### URL Parameters
 
@@ -945,7 +945,7 @@ per_page | _integer_ | how many records to return per page (min=1, max=100, defa
 
 ```shell
 # to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1/field_data/1/field_options/1"
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/field_definitions/1/field_options/1"
 ```
 
 
@@ -966,7 +966,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/people/v2/people/1/field_data/1/field_options/1`
+`GET https://api.planningcenteronline.com/people/v2/field_definitions/1/field_options/1`
 
 #### URL Parameters
 
@@ -997,7 +997,7 @@ sequence | integer
 
 ```shell
 # to update a record...
-curl -v -u token:secret -X PATCH -d '{"data":{"type":"FieldOption","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/people/1/field_data/1/field_options/1"
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"FieldOption","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/field_definitions/1/field_options/1"
 ```
 
 
@@ -1005,7 +1005,7 @@ curl -v -u token:secret -X PATCH -d '{"data":{"type":"FieldOption","id":"1","att
 
 #### HTTP Request
 
-`PATCH https://api.planningcenteronline.com/people/v2/people/1/field_data/1/field_options/1`
+`PATCH https://api.planningcenteronline.com/people/v2/field_definitions/1/field_options/1`
 
 #### Resource Attributes
 
@@ -1018,7 +1018,7 @@ sequence | integer
 
 ```shell
 # to delete a record...
-curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v2/people/1/field_data/1/field_options/1"
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v2/field_definitions/1/field_options/1"
 ```
 
 
@@ -1026,7 +1026,7 @@ curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v
 
 #### HTTP Request
 
-`DELETE https://api.planningcenteronline.com/people/v2/people/1/field_data/1/field_options/1`
+`DELETE https://api.planningcenteronline.com/people/v2/field_definitions/1/field_options/1`
 
 ## Households
 
@@ -1173,13 +1173,13 @@ A household membership is the linking record between a household and a person.
 
 ```shell
 # to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1/household_memberships"
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/households/1/household_memberships"
 ```
 
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/people/v2/people/1/household_memberships`
+`GET https://api.planningcenteronline.com/people/v2/households/1/household_memberships`
 
 #### URL Parameters
 
@@ -1198,7 +1198,7 @@ per_page | _integer_ | how many records to return per page (min=1, max=100, defa
 
 ```shell
 # to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1/household_memberships/1"
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1"
 ```
 
 
@@ -1219,7 +1219,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/people/v2/people/1/household_memberships/1`
+`GET https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1`
 
 #### URL Parameters
 
@@ -1236,8 +1236,8 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
-household | https://api.planningcenteronline.com/people/v2/people/1/household_memberships/1/household | Household
-person | https://api.planningcenteronline.com/people/v2/people/1/household_memberships/1/person | Person
+household | https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1/household | Household
+person | https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1/person | Person
 
 ### Create a new Household Membership
 
@@ -1264,7 +1264,7 @@ pending | boolean
 
 ```shell
 # to update a record...
-curl -v -u token:secret -X PATCH -d '{"data":{"type":"HouseholdMembership","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/people/1/household_memberships/1"
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"HouseholdMembership","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1"
 ```
 
 
@@ -1272,7 +1272,7 @@ curl -v -u token:secret -X PATCH -d '{"data":{"type":"HouseholdMembership","id":
 
 #### HTTP Request
 
-`PATCH https://api.planningcenteronline.com/people/v2/people/1/household_memberships/1`
+`PATCH https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1`
 
 #### Resource Attributes
 
@@ -1285,7 +1285,7 @@ pending | boolean
 
 ```shell
 # to delete a record...
-curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v2/people/1/household_memberships/1"
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1"
 ```
 
 
@@ -1293,7 +1293,7 @@ curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v
 
 #### HTTP Request
 
-`DELETE https://api.planningcenteronline.com/people/v2/people/1/household_memberships/1`
+`DELETE https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1`
 
 ## InactiveReasons
 
