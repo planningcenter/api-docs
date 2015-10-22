@@ -1433,12 +1433,12 @@ curl -v -u token:secret -X DELETE <span class="s2">"https://api.planningcenteron
 
 <h3 id="list-field-options">List Field Options</h3>
 <pre><code class="highlight shell"><span class="c"># to list records...</span>
-curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v2/people/1/field_data/1/field_options"</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v2/field_definitions/1/field_options"</span>
 </code></pre>
 
 <h4 id="http-request">HTTP Request</h4>
 
-<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v2/people/1/field_data/1/field_options</code></p>
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v2/field_definitions/1/field_options</code></p>
 
 <h4 id="url-parameters">URL Parameters</h4>
 
@@ -1473,7 +1473,7 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 
 <h3 id="get-a-single-field-option">Get a single Field Option</h3>
 <pre><code class="highlight shell"><span class="c"># to show...</span>
-curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v2/people/1/field_data/1/field_options/1"</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v2/field_definitions/1/field_options/1"</span>
 </code></pre>
 
 <blockquote>
@@ -1493,7 +1493,7 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 
 <h4 id="http-request">HTTP Request</h4>
 
-<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v2/people/1/field_data/1/field_options/1</code></p>
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v2/field_definitions/1/field_options/1</code></p>
 
 <h4 id="url-parameters">URL Parameters</h4>
 
@@ -1530,14 +1530,14 @@ curl -v -u token:secret -X POST -d <span class="s1">'{"data":{"type":"FieldOptio
 
 <h3 id="update-an-existing-field-option">Update an existing Field Option</h3>
 <pre><code class="highlight shell"><span class="c"># to update a record...</span>
-curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{"type":"FieldOption","id":"1","attributes":{...}}}'</span> <span class="s2">"https://api.planningcenteronline.com/people/v2/people/1/field_data/1/field_options/1"</span>
+curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{"type":"FieldOption","id":"1","attributes":{...}}}'</span> <span class="s2">"https://api.planningcenteronline.com/people/v2/field_definitions/1/field_options/1"</span>
 </code></pre>
 
 <aside class='info'>Only users with the role <code>manager</code> can update this resource.</aside>
 
 <h4 id="http-request">HTTP Request</h4>
 
-<p><code class="prettyprint">PATCH https://api.planningcenteronline.com/people/v2/people/1/field_data/1/field_options/1</code></p>
+<p><code class="prettyprint">PATCH https://api.planningcenteronline.com/people/v2/field_definitions/1/field_options/1</code></p>
 
 <h4 id="resource-attributes">Resource Attributes</h4>
 
@@ -1559,14 +1559,14 @@ curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{"type":"FieldOpti
 
 <h3 id="delete-a-field-option">Delete a Field Option</h3>
 <pre><code class="highlight shell"><span class="c"># to delete a record...</span>
-curl -v -u token:secret -X DELETE <span class="s2">"https://api.planningcenteronline.com/people/v2/people/1/field_data/1/field_options/1"</span>
+curl -v -u token:secret -X DELETE <span class="s2">"https://api.planningcenteronline.com/people/v2/field_definitions/1/field_options/1"</span>
 </code></pre>
 
 <aside class='info'>Only users with the role <code>manager</code> can delete this resource.</aside>
 
 <h4 id="http-request">HTTP Request</h4>
 
-<p><code class="prettyprint">DELETE https://api.planningcenteronline.com/people/v2/people/1/field_data/1/field_options/1</code></p>
+<p><code class="prettyprint">DELETE https://api.planningcenteronline.com/people/v2/field_definitions/1/field_options/1</code></p>
 
 <h2 id="households">Households</h2>
 
@@ -1782,12 +1782,12 @@ curl -v -u token:secret -X DELETE <span class="s2">"https://api.planningcenteron
 
 <h3 id="list-household-memberships">List Household Memberships</h3>
 <pre><code class="highlight shell"><span class="c"># to list records...</span>
-curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v2/people/1/household_memberships"</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v2/households/1/household_memberships"</span>
 </code></pre>
 
 <h4 id="http-request">HTTP Request</h4>
 
-<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v2/people/1/household_memberships</code></p>
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v2/households/1/household_memberships</code></p>
 
 <h4 id="url-parameters">URL Parameters</h4>
 
@@ -1834,7 +1834,7 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 
 <h3 id="get-a-single-household-membership">Get a single Household Membership</h3>
 <pre><code class="highlight shell"><span class="c"># to show...</span>
-curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v2/people/1/household_memberships/1"</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1"</span>
 </code></pre>
 
 <blockquote>
@@ -1854,7 +1854,7 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 
 <h4 id="http-request">HTTP Request</h4>
 
-<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v2/people/1/household_memberships/1</code></p>
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1</code></p>
 
 <h4 id="url-parameters">URL Parameters</h4>
 
@@ -1892,12 +1892,12 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 </thead><tbody>
 <tr>
 <td>household</td>
-<td>https://api.planningcenteronline.com/people/v2/people/1/household_memberships/1/household</td>
+<td>https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1/household</td>
 <td>Household</td>
 </tr>
 <tr>
 <td>person</td>
-<td>https://api.planningcenteronline.com/people/v2/people/1/household_memberships/1/person</td>
+<td>https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1/person</td>
 <td>Person</td>
 </tr>
 </tbody></table>
@@ -1933,14 +1933,14 @@ curl -v -u token:secret -X POST -d <span class="s1">'{"data":{"type":"HouseholdM
 
 <h3 id="update-an-existing-household-membership">Update an existing Household Membership</h3>
 <pre><code class="highlight shell"><span class="c"># to update a record...</span>
-curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{"type":"HouseholdMembership","id":"1","attributes":{...}}}'</span> <span class="s2">"https://api.planningcenteronline.com/people/v2/people/1/household_memberships/1"</span>
+curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{"type":"HouseholdMembership","id":"1","attributes":{...}}}'</span> <span class="s2">"https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1"</span>
 </code></pre>
 
 <aside class='info'>Only users with the role <code>editor</code> can update this resource.</aside>
 
 <h4 id="http-request">HTTP Request</h4>
 
-<p><code class="prettyprint">PATCH https://api.planningcenteronline.com/people/v2/people/1/household_memberships/1</code></p>
+<p><code class="prettyprint">PATCH https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1</code></p>
 
 <h4 id="resource-attributes">Resource Attributes</h4>
 
@@ -1962,14 +1962,14 @@ curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{"type":"Household
 
 <h3 id="delete-a-household-membership">Delete a Household Membership</h3>
 <pre><code class="highlight shell"><span class="c"># to delete a record...</span>
-curl -v -u token:secret -X DELETE <span class="s2">"https://api.planningcenteronline.com/people/v2/people/1/household_memberships/1"</span>
+curl -v -u token:secret -X DELETE <span class="s2">"https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1"</span>
 </code></pre>
 
 <aside class='info'>Only users with the role <code>editor</code> can delete this resource.</aside>
 
 <h4 id="http-request">HTTP Request</h4>
 
-<p><code class="prettyprint">DELETE https://api.planningcenteronline.com/people/v2/people/1/household_memberships/1</code></p>
+<p><code class="prettyprint">DELETE https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1</code></p>
 
 <h2 id="inactivereasons">InactiveReasons</h2>
 
@@ -6587,7 +6587,17 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
       </span><span class="s2">"creator_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"media_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"themes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+      </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"thumbnail_file_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"thumbnail_content_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"thumbnail_file_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"thumbnail_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"thumbnail_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"preview_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"preview_file_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"preview_content_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"preview_file_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"preview_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
