@@ -43,13 +43,13 @@ A single pen stroke, highlighter stroke, or text annotation a user has added to 
 
 ```shell
 # to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/attachments/1/annotation_drawings"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/media/1/attachments/1/annotation_drawings"
 ```
 
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/attachments/1/annotation_drawings`
+`GET https://api.planningcenteronline.com/services/v2/media/1/attachments/1/annotation_drawings`
 
 #### URL Parameters
 
@@ -62,7 +62,7 @@ per_page | _integer_ | how many records to return per page (min=1, max=100, defa
 
 ```shell
 # to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/attachments/1/annotation_drawings/1"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/media/1/attachments/1/annotation_drawings/1"
 ```
 
 
@@ -83,7 +83,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/attachments/1/annotation_drawings/1`
+`GET https://api.planningcenteronline.com/services/v2/media/1/attachments/1/annotation_drawings/1`
 
 #### URL Parameters
 
@@ -216,10 +216,10 @@ _none_
 
 You can append one of the following associations onto this resource URL to jump to an associated record.
 
-Association | URL
------------ | ---
-attachments | https://api.planningcenteronline.com/services/v2/songs/1/arrangements/1/attachments
-keys | https://api.planningcenteronline.com/services/v2/songs/1/arrangements/1/keys
+Association | URL | Endpoint
+----------- | --- | --------
+attachments | https://api.planningcenteronline.com/services/v2/songs/1/arrangements/1/attachments | Attachment
+keys | https://api.planningcenteronline.com/services/v2/songs/1/arrangements/1/keys | Key
 
 ### Create a new Arrangement
 
@@ -297,13 +297,13 @@ A file, whether it's stored on Planning Center or linked from another location.
 
 ```shell
 # to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/attachments"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/media/1/attachments"
 ```
 
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/attachments`
+`GET https://api.planningcenteronline.com/services/v2/media/1/attachments`
 
 #### URL Parameters
 
@@ -320,7 +320,7 @@ per_page | _integer_ | how many records to return per page (min=1, max=100, defa
 
 ```shell
 # to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/attachments/1"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/media/1/attachments/1"
 ```
 
 
@@ -357,7 +357,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/attachments/1`
+`GET https://api.planningcenteronline.com/services/v2/media/1/attachments/1`
 
 #### URL Parameters
 
@@ -367,10 +367,10 @@ _none_
 
 You can append one of the following associations onto this resource URL to jump to an associated record.
 
-Association | URL
------------ | ---
-attachment_annotations | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/attachments/1/attachment_annotations
-annotation_drawings | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/attachments/1/annotation_drawings
+Association | URL | Endpoint
+----------- | --- | --------
+annotation_drawings | https://api.planningcenteronline.com/services/v2/media/1/attachments/1/annotation_drawings | AnnotationDrawing
+attachment_annotations | https://api.planningcenteronline.com/services/v2/media/1/attachments/1/attachment_annotations | AttachmentAnnotation
 
 
 
@@ -388,13 +388,13 @@ A set of annotation drawings that make up all annotations a user has added to a 
 
 ```shell
 # to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/attachments/1/attachment_annotations"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/media/1/attachments/1/attachment_annotations"
 ```
 
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/attachments/1/attachment_annotations`
+`GET https://api.planningcenteronline.com/services/v2/media/1/attachments/1/attachment_annotations`
 
 #### URL Parameters
 
@@ -409,7 +409,7 @@ per_page | _integer_ | how many records to return per page (min=1, max=100, defa
 
 ```shell
 # to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/attachments/1/attachment_annotations/1"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/media/1/attachments/1/attachment_annotations/1"
 ```
 
 
@@ -431,7 +431,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/attachments/1/attachment_annotations/1`
+`GET https://api.planningcenteronline.com/services/v2/media/1/attachments/1/attachment_annotations/1`
 
 #### URL Parameters
 
@@ -509,10 +509,10 @@ include | service_types | include associated service_types
 
 You can append one of the following associations onto this resource URL to jump to an associated record.
 
-Association | URL
------------ | ---
-service_types | https://api.planningcenteronline.com/services/v2/folders/1/service_types
-folders | https://api.planningcenteronline.com/services/v2/folders/1/folders
+Association | URL | Endpoint
+----------- | --- | --------
+folders | https://api.planningcenteronline.com/services/v2/folders/1/folders | Folder
+service_types | https://api.planningcenteronline.com/services/v2/folders/1/service_types | ServiceType
 
 ### Create a new Folder
 
@@ -688,14 +688,14 @@ include | key | include associated key
 
 You can append one of the following associations onto this resource URL to jump to an associated record.
 
-Association | URL
------------ | ---
-item_notes | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items/1/item_notes
-song | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items/1/song
-attachments | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items/1/attachments
-arrangement | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items/1/arrangement
-media | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items/1/media
-key | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items/1/key
+Association | URL | Endpoint
+----------- | --- | --------
+arrangement | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items/1/arrangement | Arrangement
+attachments | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items/1/attachments | Attachment
+item_notes | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items/1/item_notes | ItemNote
+key | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items/1/key | Key
+media | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items/1/media | Media
+song | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items/1/song | Song
 
 ### Create a new Item
 
@@ -1080,9 +1080,9 @@ _none_
 
 You can append one of the following associations onto this resource URL to jump to an associated record.
 
-Association | URL
------------ | ---
-attachments | https://api.planningcenteronline.com/services/v2/medias/1/attachments
+Association | URL | Endpoint
+----------- | --- | --------
+attachments | https://api.planningcenteronline.com/services/v2/medias/1/attachments | Attachment
 
 ### Create a new Media
 
@@ -1198,10 +1198,10 @@ _none_
 
 You can append one of the following associations onto this resource URL to jump to an associated record.
 
-Association | URL
------------ | ---
-time | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/needed_positions/1/time
-team | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/needed_positions/1/team
+Association | URL | Endpoint
+----------- | --- | --------
+team | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/needed_positions/1/team | Team
+time | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/needed_positions/1/time | PlanTime
 
 
 
@@ -1265,15 +1265,15 @@ _none_
 
 You can append one of the following associations onto this resource URL to jump to an associated record.
 
-Association | URL
------------ | ---
-songs | https://api.planningcenteronline.com/services/v2/songs
-people | https://api.planningcenteronline.com/services/v2/people
-media | https://api.planningcenteronline.com/services/v2/media
-series | https://api.planningcenteronline.com/services/v2/series
-service_types | https://api.planningcenteronline.com/services/v2/service_types
-folders | https://api.planningcenteronline.com/services/v2/folders
-tag_groups | https://api.planningcenteronline.com/services/v2/tag_groups
+Association | URL | Endpoint
+----------- | --- | --------
+folders | https://api.planningcenteronline.com/services/v2/folders | Folder
+media | https://api.planningcenteronline.com/services/v2/media | Media
+people | https://api.planningcenteronline.com/services/v2/people | Person
+series | https://api.planningcenteronline.com/services/v2/series | Series
+service_types | https://api.planningcenteronline.com/services/v2/service_types | ServiceType
+songs | https://api.planningcenteronline.com/services/v2/songs | Song
+tag_groups | https://api.planningcenteronline.com/services/v2/tag_groups | TagGroup
 
 
 
@@ -1307,15 +1307,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
 
 Parameter | Value | Description
 --------- | ----- | -----------
-include | addresses | include associated addresses
-include | email_addresses | include associated email_addresses
-include | team_leaders | include associated team_leaders
-include | phone_numbers | include associated phone_numbers
-include | properties | include associated properties
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
-
-<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=addresses,email_addresses</code></aside>
 
 ### Get a single Person
 
@@ -1369,28 +1362,20 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
 
 #### URL Parameters
 
-Parameter | Value | Description
---------- | ----- | -----------
-include | addresses | include associated addresses
-include | email_addresses | include associated email_addresses
-include | team_leaders | include associated team_leaders
-include | phone_numbers | include associated phone_numbers
-include | properties | include associated properties
-
-<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=addresses,email_addresses</code></aside>
+_none_
 
 ### Associations for a Person
 
 You can append one of the following associations onto this resource URL to jump to an associated record.
 
-Association | URL
------------ | ---
-activities | https://api.planningcenteronline.com/services/v2/people/1/activities
-person_team_position_assignments | https://api.planningcenteronline.com/services/v2/people/1/person_team_position_assignments
-schedules | https://api.planningcenteronline.com/services/v2/people/1/schedules
-team_leaders | https://api.planningcenteronline.com/services/v2/people/1/team_leaders
-tags | https://api.planningcenteronline.com/services/v2/people/1/tags
-plan_people | https://api.planningcenteronline.com/services/v2/people/1/plan_people
+Association | URL | Endpoint
+----------- | --- | --------
+activities | https://api.planningcenteronline.com/services/v2/people/1/activities | Activity
+person_team_position_assignments | https://api.planningcenteronline.com/services/v2/people/1/person_team_position_assignments | PersonTeamPositionAssignment
+plan_people | https://api.planningcenteronline.com/services/v2/people/1/plan_people | PlanPerson
+schedules | https://api.planningcenteronline.com/services/v2/people/1/schedules | Schedule
+tags | https://api.planningcenteronline.com/services/v2/people/1/tags | Tag
+team_leaders | https://api.planningcenteronline.com/services/v2/people/1/team_leaders | TeamLeader
 
 
 
@@ -1402,7 +1387,34 @@ plan_people | https://api.planningcenteronline.com/services/v2/people/1/plan_peo
 
 A person's assignment to a position within a team.
 
+### Attribute Info
 
+<span class='attribute-info-name'>schedule_preference</span>
+
+Possible Values:
+  "Every week"
+  "Every other week"
+  "Every 3rd week"
+  "Every 4th week"
+  "Every 5th week"
+  "Every 6th week"
+  "Once a month"
+  "Twice a month"
+  "Three times a month"
+  "Choose Weeks"
+
+
+<span class='attribute-info-name'>preferred_weeks</span>
+
+When `schedule_preference` is set to "Choose Weeks" then this
+indicates which weeks are preferred (checked).
+
+e.g. ['1', '3', '5'] to prefer odd numbered weeks.
+
+
+<span class='attribute-info-name'>time_preference_option_ids</span>
+
+Indicates which Time Preference Options are preferred (checked).
 
 ### List Person Team Position Assignments
 
@@ -1439,6 +1451,10 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
     "type": "PersonTeamPositionAssignment",
     "id": "1",
     "attributes": {
+      "person_id": 1,
+      "schedule_preference": "unknown",
+      "preferred_weeks": "unknown",
+      "time_preference_option_ids": "unknown",
       "created_at": "2000-01-01T12:00:00Z",
       "updated_at": "2000-01-01T12:00:00Z"
     }
@@ -1454,11 +1470,58 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
 
 _none_
 
+### Create a new Person Team Position Assignment
+
+```shell
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{"type":"PersonTeamPositionAssignment","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/service_types/1/teams/1/team_positions/1/person_team_position_assignments"
+```
 
 
+#### HTTP Request
+
+`POST https://api.planningcenteronline.com/services/v2/service_types/1/teams/1/team_positions/1/person_team_position_assignments`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+schedule_preference | 
+preferred_weeks | 
+time_preference_option_ids | 
+person_id | integer
+
+### Update an existing Person Team Position Assignment
+
+```shell
+# to update a record...
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"PersonTeamPositionAssignment","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/people/1/person_team_position_assignments/1"
+```
 
 
+#### HTTP Request
 
+`PATCH https://api.planningcenteronline.com/services/v2/people/1/person_team_position_assignments/1`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+schedule_preference | 
+preferred_weeks | 
+time_preference_option_ids | 
+
+### Delete a Person Team Position Assignment
+
+```shell
+# to delete a record...
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/services/v2/people/1/person_team_position_assignments/1"
+```
+
+
+#### HTTP Request
+
+`DELETE https://api.planningcenteronline.com/services/v2/people/1/person_team_position_assignments/1`
 
 ## Plans
 
@@ -1596,17 +1659,17 @@ include | series | include associated series
 
 You can append one of the following associations onto this resource URL to jump to an associated record.
 
-Association | URL
------------ | ---
-needed_positions | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/needed_positions
-attachments | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/attachments
-items | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items
-team_member | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/team_member
-previous_plan | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/previous_plan
-series | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/series
-plan_times | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/plan_times
-next_plan | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/next_plan
-notes | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/notes
+Association | URL | Endpoint
+----------- | --- | --------
+attachments | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/attachments | Attachment
+items | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items | Item
+needed_positions | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/needed_positions | NeededPosition
+next_plan | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/next_plan | Plan
+notes | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/notes | PlanNote
+plan_times | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/plan_times | PlanTime
+previous_plan | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/previous_plan | Plan
+series | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/series | Series
+team_member | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/team_member | PlanPerson
 
 ### Create a new Plan
 
@@ -1725,9 +1788,9 @@ _none_
 
 You can append one of the following associations onto this resource URL to jump to an associated record.
 
-Association | URL
------------ | ---
-plan_note_category | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/notes/1/plan_note_category
+Association | URL | Endpoint
+----------- | --- | --------
+plan_note_category | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/notes/1/plan_note_category | PlanNoteCategory
 
 
 
@@ -1816,13 +1879,13 @@ Scheduled people are assigned to all service, rehearsal, and other times, unless
 
 ```shell
 # to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/service_types/1/teams/1/plan_people"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people/1/plan_people"
 ```
 
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/service_types/1/teams/1/plan_people`
+`GET https://api.planningcenteronline.com/services/v2/people/1/plan_people`
 
 #### URL Parameters
 
@@ -1840,7 +1903,7 @@ per_page | _integer_ | how many records to return per page (min=1, max=100, defa
 
 ```shell
 # to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/service_types/1/teams/1/plan_people/1"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people/1/plan_people/1"
 ```
 
 
@@ -1875,7 +1938,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/service_types/1/teams/1/plan_people/1`
+`GET https://api.planningcenteronline.com/services/v2/people/1/plan_people/1`
 
 #### URL Parameters
 
@@ -1891,12 +1954,12 @@ include | plan | include associated plan
 
 You can append one of the following associations onto this resource URL to jump to an associated record.
 
-Association | URL
------------ | ---
-plan | https://api.planningcenteronline.com/services/v2/service_types/1/teams/1/plan_people/1/plan
-person | https://api.planningcenteronline.com/services/v2/service_types/1/teams/1/plan_people/1/person
-plan_times | https://api.planningcenteronline.com/services/v2/service_types/1/teams/1/plan_people/1/plan_times
-team | https://api.planningcenteronline.com/services/v2/service_types/1/teams/1/plan_people/1/team
+Association | URL | Endpoint
+----------- | --- | --------
+person | https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/person | Person
+plan | https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/plan | Plan
+plan_times | https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/plan_times | PlanTime
+team | https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/team | Team
 
 
 
@@ -1949,13 +2012,13 @@ There are 3 possible 'time_type' values:
 
 ```shell
 # to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/service_types/1/teams/1/plan_people/1/plan_times"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/plan_times"
 ```
 
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/service_types/1/teams/1/plan_people/1/plan_times`
+`GET https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/plan_times`
 
 #### URL Parameters
 
@@ -1968,7 +2031,7 @@ per_page | _integer_ | how many records to return per page (min=1, max=100, defa
 
 ```shell
 # to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/service_types/1/teams/1/plan_people/1/plan_times/1"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/plan_times/1"
 ```
 
 
@@ -1997,7 +2060,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/service_types/1/teams/1/plan_people/1/plan_times/1`
+`GET https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/plan_times/1`
 
 #### URL Parameters
 
@@ -2007,9 +2070,9 @@ _none_
 
 You can append one of the following associations onto this resource URL to jump to an associated record.
 
-Association | URL
------------ | ---
-split_team_rehearsal_assignments | https://api.planningcenteronline.com/services/v2/service_types/1/teams/1/plan_people/1/plan_times/1/split_team_rehearsal_assignments
+Association | URL | Endpoint
+----------- | --- | --------
+split_team_rehearsal_assignments | https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/plan_times/1/split_team_rehearsal_assignments | SplitTeamRehearsalAssignment
 
 
 
@@ -2041,6 +2104,50 @@ Parameter | Value | Description
 --------- | ----- | -----------
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+### Get a single Schedule
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people/1/schedules/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "Schedule",
+    "id": "1",
+    "attributes": {
+      "plan_person_id": "unknown",
+      "status": "string",
+      "plan_id": "unknown",
+      "sort_date": "unknown",
+      "service_type_id": "unknown",
+      "service_type_name": "unknown",
+      "person_id": 1,
+      "person_name": "unknown",
+      "team_name": "unknown",
+      "team_position_name": "unknown",
+      "short_dates": "unknown",
+      "organization_id": "unknown",
+      "organization_name": "unknown",
+      "excluded_time_ids": "unknown",
+      "can_accept_partial": "unknown"
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/services/v2/people/1/schedules/1`
+
+#### URL Parameters
+
+_none_
 
 
 
@@ -2118,9 +2225,9 @@ _none_
 
 You can append one of the following associations onto this resource URL to jump to an associated record.
 
-Association | URL
------------ | ---
-plans | https://api.planningcenteronline.com/services/v2/series/1/plans
+Association | URL | Endpoint
+----------- | --- | --------
+plans | https://api.planningcenteronline.com/services/v2/series/1/plans | Plan
 
 ### Create a new Series
 
@@ -2230,11 +2337,12 @@ _none_
 
 You can append one of the following associations onto this resource URL to jump to an associated record.
 
-Association | URL
------------ | ---
-plans | https://api.planningcenteronline.com/services/v2/service_types/1/plans
-teams | https://api.planningcenteronline.com/services/v2/service_types/1/teams
-plan_note_categories | https://api.planningcenteronline.com/services/v2/service_types/1/plan_note_categories
+Association | URL | Endpoint
+----------- | --- | --------
+plan_note_categories | https://api.planningcenteronline.com/services/v2/service_types/1/plan_note_categories | PlanNoteCategory
+plans | https://api.planningcenteronline.com/services/v2/service_types/1/plans | Plan
+teams | https://api.planningcenteronline.com/services/v2/service_types/1/teams | Team
+time_preference_options | https://api.planningcenteronline.com/services/v2/service_types/1/time_preference_options | TimePreferenceOption
 
 ### Create a new Service Type
 
@@ -2371,9 +2479,9 @@ _none_
 
 You can append one of the following associations onto this resource URL to jump to an associated record.
 
-Association | URL
------------ | ---
-arrangements | https://api.planningcenteronline.com/services/v2/songs/1/arrangements
+Association | URL | Endpoint
+----------- | --- | --------
+arrangements | https://api.planningcenteronline.com/services/v2/songs/1/arrangements | Arrangement
 
 ### Create a new Song
 
@@ -2453,13 +2561,13 @@ The IDs of the assigned time preference options.
 
 ```shell
 # to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/service_types/1/teams/1/plan_people/1/plan_times/1/split_team_rehearsal_assignments"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/plan_times/1/split_team_rehearsal_assignments"
 ```
 
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/service_types/1/teams/1/plan_people/1/plan_times/1/split_team_rehearsal_assignments`
+`GET https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/plan_times/1/split_team_rehearsal_assignments`
 
 #### URL Parameters
 
@@ -2472,7 +2580,7 @@ per_page | _integer_ | how many records to return per page (min=1, max=100, defa
 
 ```shell
 # to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/service_types/1/teams/1/plan_people/1/plan_times/1/split_team_rehearsal_assignments/1"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/plan_times/1/split_team_rehearsal_assignments/1"
 ```
 
 
@@ -2494,7 +2602,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/service_types/1/teams/1/plan_people/1/plan_times/1/split_team_rehearsal_assignments/1`
+`GET https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/plan_times/1/split_team_rehearsal_assignments/1`
 
 #### URL Parameters
 
@@ -2504,9 +2612,9 @@ _none_
 
 You can append one of the following associations onto this resource URL to jump to an associated record.
 
-Association | URL
------------ | ---
-team | https://api.planningcenteronline.com/services/v2/service_types/1/teams/1/plan_people/1/plan_times/1/split_team_rehearsal_assignments/1/team
+Association | URL | Endpoint
+----------- | --- | --------
+team | https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/plan_times/1/split_team_rehearsal_assignments/1/team | Team
 
 
 
@@ -2649,9 +2757,9 @@ include | tags | include associated tags
 
 You can append one of the following associations onto this resource URL to jump to an associated record.
 
-Association | URL
------------ | ---
-tags | https://api.planningcenteronline.com/services/v2/tag_groups/1/tags
+Association | URL | Endpoint
+----------- | --- | --------
+tags | https://api.planningcenteronline.com/services/v2/tag_groups/1/tags | Tag
 
 
 
@@ -2702,10 +2810,11 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
     "id": "1",
     "attributes": {
       "name": "string",
-      "created_at": "2000-01-01T12:00:00Z",
-      "updated_at": "2000-01-01T12:00:00Z",
       "sequence": 1,
-      "schedule_to": "string"
+      "schedule_to": "string",
+      "assigned_directly": "unknown",
+      "created_at": "2000-01-01T12:00:00Z",
+      "updated_at": "2000-01-01T12:00:00Z"
     }
   }
 }
@@ -2725,10 +2834,10 @@ include | team_positions | include associated team_positions
 
 You can append one of the following associations onto this resource URL to jump to an associated record.
 
-Association | URL
------------ | ---
-team_positions | https://api.planningcenteronline.com/services/v2/service_types/1/teams/1/team_positions
-plan_people | https://api.planningcenteronline.com/services/v2/service_types/1/teams/1/plan_people
+Association | URL | Endpoint
+----------- | --- | --------
+plan_people | https://api.planningcenteronline.com/services/v2/service_types/1/teams/1/plan_people | PlanPerson
+team_positions | https://api.planningcenteronline.com/services/v2/service_types/1/teams/1/team_positions | TeamPosition
 
 
 
@@ -2778,7 +2887,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
     "id": "1",
     "attributes": {
       "send_responses_for_accepts": true,
-      "send_responses_for_declines": true
+      "send_responses_for_declines": true,
+      "send_responses_for_blockouts": true
     }
   }
 }
@@ -2863,6 +2973,82 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
 #### HTTP Request
 
 `GET https://api.planningcenteronline.com/services/v2/service_types/1/teams/1/team_positions/1`
+
+#### URL Parameters
+
+_none_
+
+### Associations for a Team Position
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL | Endpoint
+----------- | --- | --------
+person_team_position_assignments | https://api.planningcenteronline.com/services/v2/service_types/1/teams/1/team_positions/1/person_team_position_assignments | PersonTeamPositionAssignment
+
+
+
+
+
+
+
+## TimePreferenceOptions
+
+A Service Time a person prefers to be scheduled to.
+
+### Attribute Info
+
+<span class='attribute-info-name'>minute_of_day</span>
+
+0 for 12:00 am, 1 for 12:01 am, 100 for 1:00 am, through 2359 for 11:59pm
+
+### List Time Preference Options
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/service_types/1/time_preference_options"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/services/v2/service_types/1/time_preference_options`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+### Get a single Time Preference Option
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/service_types/1/time_preference_options/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "TimePreferenceOption",
+    "id": "1",
+    "attributes": {
+      "day_of_week": 1,
+      "minute_of_day": "unknown",
+      "created_at": "2000-01-01T12:00:00Z",
+      "updated_at": "2000-01-01T12:00:00Z"
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/services/v2/service_types/1/time_preference_options/1`
 
 #### URL Parameters
 
