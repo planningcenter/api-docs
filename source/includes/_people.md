@@ -251,33 +251,9 @@ _none_
 
 
 
-### Update an existing Campus
-
-```shell
-# to update a record...
-curl -v -u token:secret -X PATCH -d '{"data":{"type":"Campus","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/campuses/1"
-```
 
 
-#### HTTP Request
 
-`PATCH https://api.planningcenteronline.com/people/v2/campuses/1`
-
-#### Resource Attributes
-
-_none_
-
-### Delete a Campus
-
-```shell
-# to delete a record...
-curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v2/campuses/1"
-```
-
-
-#### HTTP Request
-
-`DELETE https://api.planningcenteronline.com/people/v2/campuses/1`
 
 ## Conditions
 
@@ -728,7 +704,7 @@ curl -v -u token:secret -X POST -d '{"data":{"type":"FieldDatum","attributes":{.
 Attribute | Type
 --------- | ----
 value | string
-file | string
+field_definition_id | integer
 
 ### Update an existing Field Datum
 
@@ -749,7 +725,7 @@ curl -v -u token:secret -X PATCH -d '{"data":{"type":"FieldDatum","id":"1","attr
 Attribute | Type
 --------- | ----
 value | string
-file | string
+field_definition_id | integer
 
 ### Delete a Field Datum
 
@@ -1461,6 +1437,10 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/lists/1"
       "name": "string",
       "status": "string",
       "description": "unknown",
+      "has_inactive_results": true,
+      "include_inactive": true,
+      "returns": "string",
+      "return_original_if_none": true,
       "subset": "string",
       "total_people": "unknown",
       "batch_completed_at": "2000-01-01T12:00:00Z",
@@ -3120,8 +3100,6 @@ curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v
 #### HTTP Request
 
 `DELETE https://api.planningcenteronline.com/people/v2/social_profiles/1`
-
-
 
 ## Tabs
 

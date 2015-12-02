@@ -21,7 +21,7 @@ task :fetch do
   APP_NAMES.each do |app|
     url = "#{base_url}/#{app}/v2/docs"
     puts "getting #{url}..."
-    content = open(url).read
+    content = open(url, 'Accept' => 'text/html').read
     path = "source/includes/_#{app}.md"
     File.open(File.expand_path("../#{path}", __FILE__), 'w') do |file|
       file.write(content)

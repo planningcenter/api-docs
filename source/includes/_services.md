@@ -72,7 +72,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/media/
 {
   "data": {
     "type": "AnnotationDrawing",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
       "created_at": "2000-01-01T12:00:00Z",
       "updated_at": "2000-01-01T12:00:00Z"
@@ -181,24 +181,25 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/songs/
 {
   "data": {
     "type": "Arrangement",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
-      "name": "string",
-      "bpm": 1,
-      "has_chords": true,
+      "bpm": 1.42,
+      "chord_chart": "string",
+      "chord_chart_columns": 1,
+      "chord_chart_font": "string",
+      "chord_chart_font_size": 1,
+      "chord_chart_key": "string",
+      "created_at": "2000-01-01T12:00:00Z",
+      "created_by_id": 1,
       "has_chord_chart": "unknown",
+      "has_chords": true,
       "length": 1,
       "meter": "string",
-      "updated_by_id": "unknown",
-      "created_by_id": 1,
+      "name": "string",
       "notes": "string",
-      "chord_chart": "string",
-      "chord_chart_font": "string",
-      "chord_chart_key": "string",
-      "chord_chart_columns": 1,
-      "chord_chart_font_size": 1,
-      "created_at": "2000-01-01T12:00:00Z",
-      "updated_at": "2000-01-01T12:00:00Z"
+      "sequence": "string",
+      "updated_at": "2000-01-01T12:00:00Z",
+      "updated_by_id": "unknown"
     }
   }
 }
@@ -235,18 +236,18 @@ curl -v -u token:secret -X POST -d '{"data":{"type":"Arrangement","attributes":{
 
 #### Resource Attributes
 
-Attribute | Type | Note
---------- | ---- | ----
+Attribute | Type
+--------- | ----
 name | string
 bpm | float
 length | integer
-meter | string | Acceptable values are "2/2", "2/4", "3/4", "4/4", "5/4", "6/4", "3/8", "6/8", "7/8", "9/8", and "12/8".
-notes | text
-chord_chart | text
-chord_chart_font | string | Acceptable values are "Courier", "Helvetica", "Monaco", and "Times-Roman".
-chord_chart_key | string | Acceptable values are "Ab", "A", "A#", "Bb", "B", "C", "C#", "Db", "D", "D#", "Eb", "E", "F", "F#", "Gb", "G", "G#", "Abm", "Am", "A#m", "Bbm", "Bm", "Cm", "C#m", "Dbm", "Dm", "D#m", "Ebm", "Em", "Fm", "F#m", "Gbm", "Gm", and "G#m".
+meter | string
+notes | string
+chord_chart | string
+chord_chart_font | string
+chord_chart_key | string
 chord_chart_columns | integer
-chord_chart_font_size | integer | Acceptable values are 10, 11, 12, 13, 14, 15, 16, 18, 20, 24, 28, 32, 36, 42, and 48.
+chord_chart_font_size | integer
 
 ### Update an existing Arrangement
 
@@ -262,18 +263,18 @@ curl -v -u token:secret -X PATCH -d '{"data":{"type":"Arrangement","id":"1","att
 
 #### Resource Attributes
 
-Attribute | Type | Note
---------- | ---- | ----
+Attribute | Type
+--------- | ----
 name | string
 bpm | float
 length | integer
-meter | string | Acceptable values are "2/2", "2/4", "3/4", "4/4", "5/4", "6/4", "3/8", "6/8", "7/8", "9/8", and "12/8".
-notes | text
-chord_chart | text
-chord_chart_font | string | Acceptable values are "Courier", "Helvetica", "Monaco", and "Times-Roman".
-chord_chart_key | string | Acceptable values are "Ab", "A", "A#", "Bb", "B", "C", "C#", "Db", "D", "D#", "Eb", "E", "F", "F#", "Gb", "G", "G#", "Abm", "Am", "A#m", "Bbm", "Bm", "Cm", "C#m", "Dbm", "Dm", "D#m", "Ebm", "Em", "Fm", "F#m", "Gbm", "Gm", and "G#m".
+meter | string
+notes | string
+chord_chart | string
+chord_chart_font | string
+chord_chart_key | string
 chord_chart_columns | integer
-chord_chart_font_size | integer | Acceptable values are 10, 11, 12, 13, 14, 15, 16, 18, 20, 24, 28, 32, 36, 42, and 48.
+chord_chart_font_size | integer
 
 ### Delete an Arrangement
 
@@ -309,10 +310,6 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/media/
 
 Parameter | Value | Description
 --------- | ----- | -----------
-where[created_by_id] | _integer_ | query on a specific created_by_id
-where[updated_by_id] | _integer_ | query on a specific updated_by_id
-where[created_at] | _datetime_ | query on a specific created_at
-where[updated_at] | _datetime_ | query on a specific updated_at
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
@@ -330,26 +327,28 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/media/
 {
   "data": {
     "type": "Attachment",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
-      "remote_link": "string",
-      "transposable": "unknown",
-      "url": "unknown",
-      "attachable_type": "string",
       "allow_mp3_download": true,
+      "attachable_type": "string",
       "attachment_type_ids": "string",
       "content_type": "string",
       "created_at": "2000-01-01T12:00:00Z",
-      "downloadable": "unknown",
-      "linked_type": "unknown",
-      "linked_url": "unknown",
+      "created_by_id": "primary_key",
+      "downloadable": true,
+      "file_size": 1,
+      "filename": "string",
+      "linked_type": "string",
+      "linked_url": "string",
       "page_order": "string",
-      "pco_type": "unknown",
-      "streamable": "unknown",
+      "pco_type": "string",
+      "remote_link": "string",
+      "streamable": true,
+      "transposable": true,
       "updated_at": "2000-01-01T12:00:00Z",
-      "web_streamable": "unknown",
-      "created_by_id": 1,
-      "updated_by_id": 1
+      "updated_by_id": "primary_key",
+      "url": "string",
+      "web_streamable": true
     }
   }
 }
@@ -400,8 +399,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/media/
 
 Parameter | Value | Description
 --------- | ----- | -----------
-where[created_at] | _datetime_ | query on a specific created_at
-where[updated_at] | _datetime_ | query on a specific updated_at
+where[created_at] | _date_time_ | query on a specific created_at
+where[updated_at] | _date_time_ | query on a specific updated_at
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
@@ -419,7 +418,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/media/
 {
   "data": {
     "type": "AttachmentAnnotation",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
       "created_at": "2000-01-01T12:00:00Z",
       "updated_at": "2000-01-01T12:00:00Z",
@@ -483,11 +482,11 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/folder
 {
   "data": {
     "type": "Folder",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
-      "name": "string",
       "container": "unknown",
       "created_at": "2000-01-01T12:00:00Z",
+      "name": "string",
       "parent_id": 1,
       "updated_at": "2000-01-01T12:00:00Z"
     }
@@ -650,19 +649,19 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
 {
   "data": {
     "type": "Item",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
-      "title": "string",
+      "arrangement_id": 1,
+      "created_at": "2000-01-01T12:00:00Z",
+      "description": "unknown",
+      "item_type": "unknown",
+      "key_id": 1,
+      "length": 1,
       "sequence": 1,
       "service_position": "unknown",
-      "created_at": "2000-01-01T12:00:00Z",
-      "updated_at": "2000-01-01T12:00:00Z",
-      "item_type": "unknown",
-      "length": 1,
       "song_id": 1,
-      "arrangement_id": 1,
-      "key_id": 1,
-      "description": "unknown"
+      "title": "string",
+      "updated_at": "2000-01-01T12:00:00Z"
     }
   }
 }
@@ -714,13 +713,13 @@ curl -v -u token:secret -X POST -d '{"data":{"type":"Item","attributes":{...}}}'
 Attribute | Type
 --------- | ----
 length | integer
-description | 
+description | graph/type_annotation/unknown_type_annotation
 title | string
-service_position | 
+service_position | graph/type_annotation/unknown_type_annotation
 song_id | integer
 key_id | integer
 arrangement_id | integer
-item_type | 
+item_type | graph/type_annotation/unknown_type_annotation
 
 ### Update an existing Item
 
@@ -739,25 +738,14 @@ curl -v -u token:secret -X PATCH -d '{"data":{"type":"Item","id":"1","attributes
 Attribute | Type
 --------- | ----
 length | integer
-description | 
+description | graph/type_annotation/unknown_type_annotation
 title | string
-service_position | 
+service_position | graph/type_annotation/unknown_type_annotation
 song_id | integer
 key_id | integer
 arrangement_id | integer
-media_ids | 
-
-### Delete an Item
-
-```shell
-# to delete a record...
-curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items/1"
-```
 
 
-#### HTTP Request
-
-`DELETE https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items/1`
 
 ## ItemNotes
 
@@ -781,10 +769,9 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
 
 Parameter | Value | Description
 --------- | ----- | -----------
-where[created_at] | _datetime_ | query on a specific created_at
-where[updated_at] | _datetime_ | query on a specific updated_at
+where[created_at] | _date_time_ | query on a specific created_at
+where[updated_at] | _date_time_ | query on a specific updated_at
 where[category_id] | _integer_ | query on a specific category_id
-where[category_name] | __ | query on a specific category_name
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
@@ -802,13 +789,13 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
 {
   "data": {
     "type": "ItemNote",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
-      "created_at": "2000-01-01T12:00:00Z",
-      "updated_at": "2000-01-01T12:00:00Z",
       "category_id": 1,
       "category_name": "unknown",
-      "content": "unknown"
+      "content": "unknown",
+      "created_at": "2000-01-01T12:00:00Z",
+      "updated_at": "2000-01-01T12:00:00Z"
     }
   }
 }
@@ -893,14 +880,14 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/songs/
 {
   "data": {
     "type": "Key",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
+      "alternate_keys": "string",
       "created_at": "2000-01-01T12:00:00Z",
-      "updated_at": "2000-01-01T12:00:00Z",
+      "ending_key": "unknown",
       "name": "string",
       "starting_key": "unknown",
-      "ending_key": "unknown",
-      "alternate_keys": "string"
+      "updated_at": "2000-01-01T12:00:00Z"
     }
   }
 }
@@ -931,8 +918,8 @@ curl -v -u token:secret -X POST -d '{"data":{"type":"Key","attributes":{...}}}' 
 Attribute | Type
 --------- | ----
 name | string
-starting_key | 
-ending_key | 
+starting_key | graph/type_annotation/unknown_type_annotation
+ending_key | graph/type_annotation/unknown_type_annotation
 alternate_keys | string
 
 ### Update an existing Key
@@ -952,8 +939,8 @@ curl -v -u token:secret -X PATCH -d '{"data":{"type":"Key","id":"1","attributes"
 Attribute | Type
 --------- | ----
 name | string
-starting_key | 
-ending_key | 
+starting_key | graph/type_annotation/unknown_type_annotation
+ending_key | graph/type_annotation/unknown_type_annotation
 alternate_keys | string
 
 ### Delete a Key
@@ -1045,24 +1032,24 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/medias
 {
   "data": {
     "type": "Media",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
       "created_at": "2000-01-01T12:00:00Z",
-      "updated_at": "2000-01-01T12:00:00Z",
       "creator_name": "unknown",
       "media_type": "string",
+      "preview_content_type": "string",
+      "preview_file_name": "string",
+      "preview_file_size": 1,
+      "preview_updated_at": "2000-01-01T12:00:00Z",
+      "preview_url": "unknown",
       "themes": "string",
-      "title": "string",
-      "thumbnail_file_name": "string",
       "thumbnail_content_type": "string",
+      "thumbnail_file_name": "string",
       "thumbnail_file_size": 1,
       "thumbnail_updated_at": "2000-01-01T12:00:00Z",
       "thumbnail_url": "unknown",
-      "preview_url": "unknown",
-      "preview_file_name": "string",
-      "preview_content_type": "string",
-      "preview_file_size": 1,
-      "preview_updated_at": "2000-01-01T12:00:00Z"
+      "title": "string",
+      "updated_at": "2000-01-01T12:00:00Z"
     }
   }
 }
@@ -1098,11 +1085,11 @@ curl -v -u token:secret -X POST -d '{"data":{"type":"Media","attributes":{...}}}
 
 #### Resource Attributes
 
-Attribute | Type | Note
---------- | ---- | ----
-media_type | string | Acceptable values are "Audio", "Background Audio", "Background Image", "Background Video", "Countdown", "Document", "Drama", "Image", "Powerpoint", "Song Video", and "Video".
+Attribute | Type
+--------- | ----
+media_type | string
 title | string
-creator_name | 
+creator_name | graph/type_annotation/unknown_type_annotation
 themes | string
 
 ### Update an existing Media
@@ -1119,11 +1106,11 @@ curl -v -u token:secret -X PATCH -d '{"data":{"type":"Media","id":"1","attribute
 
 #### Resource Attributes
 
-Attribute | Type | Note
---------- | ---- | ----
-media_type | string | Acceptable values are "Audio", "Background Audio", "Background Image", "Background Video", "Countdown", "Document", "Drama", "Image", "Powerpoint", "Song Video", and "Video".
+Attribute | Type
+--------- | ----
+media_type | string
 title | string
-creator_name | 
+creator_name | graph/type_annotation/unknown_type_annotation
 themes | string
 
 ### Delete a Media
@@ -1177,7 +1164,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
 {
   "data": {
     "type": "NeededPosition",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
       "quantity": 1,
       "scheduled_to": "unknown"
@@ -1233,8 +1220,9 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2"
 {
   "data": {
     "type": "Organization",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
+      "beta": true,
       "ccli": "string",
       "ccli_connected": "unknown",
       "created_at": "2000-01-01T12:00:00Z",
@@ -1246,8 +1234,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2"
       "secret": "unknown",
       "time_zone": "string",
       "twenty_four_hour_time": true,
-      "updated_at": "2000-01-01T12:00:00Z",
-      "beta": true
+      "updated_at": "2000-01-01T12:00:00Z"
     }
   }
 }
@@ -1324,33 +1311,33 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
 {
   "data": {
     "type": "Person",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
-      "first_name": "string",
-      "middle_name": "string",
-      "last_name": "string",
+      "anniversary": "2000-01-01T12:00:00Z",
+      "birthdate": "2000-01-01T12:00:00Z",
       "created_at": "2000-01-01T12:00:00Z",
-      "updated_at": "2000-01-01T12:00:00Z",
+      "created_by_id": 1,
+      "facebook_id": 1,
+      "first_name": "string",
+      "ical_code": "string",
+      "last_name": "string",
+      "legacy_id": "unknown",
+      "logged_in_at": "2000-01-01T12:00:00Z",
+      "max_permissions": "unknown",
+      "me_tab": "unknown",
+      "media_tab": "unknown",
+      "middle_name": "string",
+      "notes": "string",
+      "people_tab": "unknown",
+      "permissions": "unknown",
       "photo_thumbnail_url": "unknown",
       "photo_url": "unknown",
-      "permissions": "unknown",
-      "status": "unknown",
-      "notes": "string",
-      "created_by_id": 1,
-      "updated_by_id": 1,
-      "facebook_id": 1,
-      "birthdate": "2000-01-01T12:00:00Z",
-      "anniversary": "2000-01-01T12:00:00Z",
-      "ical_code": "string",
-      "legacy_id": "unknown",
-      "site_administrator": true,
-      "max_permissions": "unknown",
-      "logged_in_at": "2000-01-01T12:00:00Z",
-      "me_tab": "unknown",
       "plans_tab": "unknown",
+      "site_administrator": true,
       "songs_tab": "unknown",
-      "media_tab": "unknown",
-      "people_tab": "unknown"
+      "status": "unknown",
+      "updated_at": "2000-01-01T12:00:00Z",
+      "updated_by_id": 1
     }
   }
 }
@@ -1449,13 +1436,13 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
 {
   "data": {
     "type": "PersonTeamPositionAssignment",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
-      "person_id": 1,
-      "schedule_preference": "unknown",
-      "preferred_weeks": "unknown",
-      "time_preference_option_ids": "unknown",
       "created_at": "2000-01-01T12:00:00Z",
+      "person_id": 1,
+      "preferred_weeks": "unknown",
+      "schedule_preference": "unknown",
+      "time_preference_option_ids": "unknown",
       "updated_at": "2000-01-01T12:00:00Z"
     }
   }
@@ -1486,9 +1473,9 @@ curl -v -u token:secret -X POST -d '{"data":{"type":"PersonTeamPositionAssignmen
 
 Attribute | Type
 --------- | ----
-schedule_preference | 
-preferred_weeks | 
-time_preference_option_ids | 
+schedule_preference | graph/type_annotation/unknown_type_annotation
+preferred_weeks | graph/type_annotation/unknown_type_annotation
+time_preference_option_ids | graph/type_annotation/unknown_type_annotation
 person_id | integer
 
 ### Update an existing Person Team Position Assignment
@@ -1507,21 +1494,11 @@ curl -v -u token:secret -X PATCH -d '{"data":{"type":"PersonTeamPositionAssignme
 
 Attribute | Type
 --------- | ----
-schedule_preference | 
-preferred_weeks | 
-time_preference_option_ids | 
-
-### Delete a Person Team Position Assignment
-
-```shell
-# to delete a record...
-curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/services/v2/people/1/person_team_position_assignments/1"
-```
+schedule_preference | graph/type_annotation/unknown_type_annotation
+preferred_weeks | graph/type_annotation/unknown_type_annotation
+time_preference_option_ids | graph/type_annotation/unknown_type_annotation
 
 
-#### HTTP Request
-
-`DELETE https://api.planningcenteronline.com/services/v2/people/1/person_team_position_assignments/1`
 
 ## Plans
 
@@ -1593,7 +1570,6 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
 
 Parameter | Value | Description
 --------- | ----- | -----------
-where[last_time_at] | __ | query on a specific last_time_at
 where[title] | _string_ | query on a specific title
 filter | future | filter using the named scope "future"
 filter | past | filter using the named scope "past"
@@ -1615,31 +1591,31 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
 {
   "data": {
     "type": "Plan",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
       "attachment_type_ids": "unknown",
+      "attachments_count": "unknown",
       "created_at": "2000-01-01T12:00:00Z",
+      "dates": "unknown",
       "files_expire_at": "unknown",
       "items_count": "unknown",
-      "title": "string",
+      "last_time_at": "unknown",
+      "needed_positions_count": "unknown",
       "next_plan_id": "unknown",
       "other_time_count": "unknown",
       "permissions": "unknown",
       "plan_notes_count": "unknown",
-      "previous_plan_id": "unknown",
-      "rehearsal_time_count": "unknown",
-      "service_time_count": "unknown",
       "plan_people_count": "unknown",
-      "total_length": "unknown",
+      "previous_plan_id": "unknown",
+      "public": true,
+      "rehearsal_time_count": "unknown",
+      "series_title": "string",
+      "service_time_count": "unknown",
       "short_dates": "unknown",
       "sort_date": "unknown",
-      "updated_at": "2000-01-01T12:00:00Z",
-      "last_time_at": "unknown",
-      "dates": "unknown",
-      "public": true,
-      "needed_positions_count": "unknown",
-      "attachments_count": "unknown",
-      "series_title": "string"
+      "title": "string",
+      "total_length": "unknown",
+      "updated_at": "2000-01-01T12:00:00Z"
     }
   }
 }
@@ -1688,8 +1664,7 @@ curl -v -u token:secret -X POST -d '{"data":{"type":"Plan","attributes":{...}}}'
 Attribute | Type
 --------- | ----
 title | string
-public | boolean
-series_id | integer
+public | graph/type_annotation/boolean_type_annotation
 
 ### Update an existing Plan
 
@@ -1708,8 +1683,7 @@ curl -v -u token:secret -X PATCH -d '{"data":{"type":"Plan","id":"1","attributes
 Attribute | Type
 --------- | ----
 title | string
-public | boolean
-series_id | integer
+public | graph/type_annotation/boolean_type_annotation
 
 ### Delete a Plan
 
@@ -1745,9 +1719,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
 
 Parameter | Value | Description
 --------- | ----- | -----------
-where[created_at] | _datetime_ | query on a specific created_at
-where[updated_at] | _datetime_ | query on a specific updated_at
-where[category_name] | __ | query on a specific category_name
+where[created_at] | _date_time_ | query on a specific created_at
+where[updated_at] | _date_time_ | query on a specific updated_at
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
@@ -1765,12 +1738,12 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
 {
   "data": {
     "type": "PlanNote",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
-      "created_at": "2000-01-01T12:00:00Z",
-      "updated_at": "2000-01-01T12:00:00Z",
       "category_name": "unknown",
-      "content": "unknown"
+      "content": "unknown",
+      "created_at": "2000-01-01T12:00:00Z",
+      "updated_at": "2000-01-01T12:00:00Z"
     }
   }
 }
@@ -1837,11 +1810,11 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
 {
   "data": {
     "type": "PlanNoteCategory",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
       "created_at": "2000-01-01T12:00:00Z",
-      "updated_at": "2000-01-01T12:00:00Z",
-      "name": "string"
+      "name": "string",
+      "updated_at": "2000-01-01T12:00:00Z"
     }
   }
 }
@@ -1913,24 +1886,24 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
 {
   "data": {
     "type": "PlanPerson",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
-      "team_position_name": "unknown",
-      "status": "string",
-      "status_updated_at": "unknown",
+      "can_accept_partial": "unknown",
       "created_at": "2000-01-01T12:00:00Z",
-      "updated_at": "2000-01-01T12:00:00Z",
-      "plan_id": "unknown",
-      "service_type_id": "unknown",
-      "person_id": 1,
-      "prepare_notification": "unknown",
-      "photo_thumbnail": "unknown",
+      "decline_reason": "string",
+      "excluded_time_ids": "unknown",
       "name": "unknown",
       "notes": "string",
-      "decline_reason": "string",
-      "can_accept_partial": "unknown",
+      "person_id": 1,
+      "photo_thumbnail": "unknown",
+      "plan_id": "unknown",
+      "prepare_notification": "unknown",
       "responds_to_id": "unknown",
-      "excluded_time_ids": "unknown"
+      "service_type_id": "unknown",
+      "status": "string",
+      "status_updated_at": "unknown",
+      "team_position_name": "unknown",
+      "updated_at": "2000-01-01T12:00:00Z"
     }
   }
 }
@@ -2012,18 +1985,19 @@ There are 3 possible 'time_type' values:
 
 ```shell
 # to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/plan_times"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people/1/schedules/1/plan_times"
 ```
 
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/plan_times`
+`GET https://api.planningcenteronline.com/services/v2/people/1/schedules/1/plan_times`
 
 #### URL Parameters
 
 Parameter | Value | Description
 --------- | ----- | -----------
+include | split_team_rehearsal_assignments | include associated split_team_rehearsal_assignments
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
@@ -2031,7 +2005,7 @@ per_page | _integer_ | how many records to return per page (min=1, max=100, defa
 
 ```shell
 # to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/plan_times/1"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people/1/schedules/1/plan_times/1"
 ```
 
 
@@ -2041,18 +2015,22 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
 {
   "data": {
     "type": "PlanTime",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
       "created_at": "2000-01-01T12:00:00Z",
-      "updated_at": "2000-01-01T12:00:00Z",
-      "name": "string",
-      "live_starts_at": "unknown",
-      "live_ends_at": "unknown",
-      "starts_at": "2000-01-01T12:00:00Z",
       "ends_at": "2000-01-01T12:00:00Z",
+      "included_category_ids": [
+
+      ],
+      "live_ends_at": "2000-01-01T12:00:00Z",
+      "live_starts_at": "2000-01-01T12:00:00Z",
+      "name": "string",
+      "starts_at": "2000-01-01T12:00:00Z",
+      "team_reminders": [
+
+      ],
       "time_type": 1,
-      "team_reminders": "unknown",
-      "included_category_ids": "unknown"
+      "updated_at": "2000-01-01T12:00:00Z"
     }
   }
 }
@@ -2060,11 +2038,13 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/plan_times/1`
+`GET https://api.planningcenteronline.com/services/v2/people/1/schedules/1/plan_times/1`
 
 #### URL Parameters
 
-_none_
+Parameter | Value | Description
+--------- | ----- | -----------
+include | split_team_rehearsal_assignments | include associated split_team_rehearsal_assignments
 
 ### Associations for a Plan Time
 
@@ -2072,7 +2052,7 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
-split_team_rehearsal_assignments | https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/plan_times/1/split_team_rehearsal_assignments | SplitTeamRehearsalAssignment
+split_team_rehearsal_assignments | https://api.planningcenteronline.com/services/v2/people/1/schedules/1/plan_times/1/split_team_rehearsal_assignments | SplitTeamRehearsalAssignment
 
 
 
@@ -2119,23 +2099,26 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
 {
   "data": {
     "type": "Schedule",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
-      "plan_person_id": "unknown",
-      "status": "string",
-      "plan_id": "unknown",
-      "sort_date": "unknown",
-      "service_type_id": "unknown",
-      "service_type_name": "unknown",
-      "person_id": 1,
-      "person_name": "unknown",
-      "team_name": "unknown",
-      "team_position_name": "unknown",
-      "short_dates": "unknown",
+      "can_accept_partial": "unknown",
+      "decline_reason": "string",
+      "excluded_time_ids": "unknown",
       "organization_id": "unknown",
       "organization_name": "unknown",
-      "excluded_time_ids": "unknown",
-      "can_accept_partial": "unknown"
+      "person_id": 1,
+      "person_name": "unknown",
+      "plan_id": "unknown",
+      "plan_person_id": "unknown",
+      "position_display_times": "unknown",
+      "responds_to_person_id": "unknown",
+      "service_type_id": "unknown",
+      "service_type_name": "unknown",
+      "short_dates": "unknown",
+      "sort_date": "unknown",
+      "status": "string",
+      "team_name": "unknown",
+      "team_position_name": "unknown"
     }
   }
 }
@@ -2148,6 +2131,16 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
 #### URL Parameters
 
 _none_
+
+### Associations for a Schedule
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL | Endpoint
+----------- | --- | --------
+plan_times | https://api.planningcenteronline.com/services/v2/people/1/schedules/1/plan_times | PlanTime
+respond_to | https://api.planningcenteronline.com/services/v2/people/1/schedules/1/respond_to | Person
+team | https://api.planningcenteronline.com/services/v2/people/1/schedules/1/team | Team
 
 
 
@@ -2197,17 +2190,17 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/series
 {
   "data": {
     "type": "Series",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
-      "created_at": "2000-01-01T12:00:00Z",
-      "updated_at": "2000-01-01T12:00:00Z",
-      "title": "unknown",
-      "artwork_file_name": "string",
       "artwork_content_type": "string",
+      "artwork_file_name": "string",
       "artwork_file_size": 1,
-      "artwork_for_plan": "unknown",
+      "artwork_for_dashboard": "unknown",
       "artwork_for_mobile": "unknown",
-      "artwork_for_dashboard": "unknown"
+      "artwork_for_plan": "unknown",
+      "created_at": "2000-01-01T12:00:00Z",
+      "title": "unknown",
+      "updated_at": "2000-01-01T12:00:00Z"
     }
   }
 }
@@ -2295,6 +2288,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
 
 Parameter | Value | Description
 --------- | ----- | -----------
+include | time_preference_options | include associated time_preference_options
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
@@ -2312,14 +2306,14 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
 {
   "data": {
     "type": "ServiceType",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
       "created_at": "2000-01-01T12:00:00Z",
       "name": "string",
-      "permissions": "unknown",
-      "updated_at": "2000-01-01T12:00:00Z",
       "parent_id": 1,
-      "sequence": 1
+      "permissions": "unknown",
+      "sequence": 1,
+      "updated_at": "2000-01-01T12:00:00Z"
     }
   }
 }
@@ -2331,7 +2325,9 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
 
 #### URL Parameters
 
-_none_
+Parameter | Value | Description
+--------- | ----- | -----------
+include | time_preference_options | include associated time_preference_options
 
 ### Associations for a Service Type
 
@@ -2451,17 +2447,17 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/songs/
 {
   "data": {
     "type": "Song",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
-      "title": "string",
-      "created_at": "2000-01-01T12:00:00Z",
-      "updated_at": "2000-01-01T12:00:00Z",
       "admin": "string",
       "author": "string",
-      "copyright": "string",
       "ccli_number": "unknown",
+      "copyright": "string",
+      "created_at": "2000-01-01T12:00:00Z",
       "hidden": true,
-      "themes": "string"
+      "themes": "string",
+      "title": "string",
+      "updated_at": "2000-01-01T12:00:00Z"
     }
   }
 }
@@ -2503,8 +2499,8 @@ title | string
 admin | string
 author | string
 copyright | string
-ccli_number | 
-hidden | boolean
+ccli_number | graph/type_annotation/unknown_type_annotation
+hidden | graph/type_annotation/boolean_type_annotation
 themes | string
 
 ### Update an existing Song
@@ -2527,8 +2523,8 @@ title | string
 admin | string
 author | string
 copyright | string
-ccli_number | 
-hidden | boolean
+ccli_number | graph/type_annotation/unknown_type_annotation
+hidden | graph/type_annotation/boolean_type_annotation
 themes | string
 
 ### Delete a Song
@@ -2561,13 +2557,13 @@ The IDs of the assigned time preference options.
 
 ```shell
 # to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/plan_times/1/split_team_rehearsal_assignments"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people/1/schedules/1/plan_times/1/split_team_rehearsal_assignments"
 ```
 
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/plan_times/1/split_team_rehearsal_assignments`
+`GET https://api.planningcenteronline.com/services/v2/people/1/schedules/1/plan_times/1/split_team_rehearsal_assignments`
 
 #### URL Parameters
 
@@ -2580,7 +2576,7 @@ per_page | _integer_ | how many records to return per page (min=1, max=100, defa
 
 ```shell
 # to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/plan_times/1/split_team_rehearsal_assignments/1"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people/1/schedules/1/plan_times/1/split_team_rehearsal_assignments/1"
 ```
 
 
@@ -2590,7 +2586,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
 {
   "data": {
     "type": "SplitTeamRehearsalAssignment",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
       "assigned_to": "unknown",
       "team_id": "unknown",
@@ -2602,7 +2598,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/plan_times/1/split_team_rehearsal_assignments/1`
+`GET https://api.planningcenteronline.com/services/v2/people/1/schedules/1/plan_times/1/split_team_rehearsal_assignments/1`
 
 #### URL Parameters
 
@@ -2614,7 +2610,7 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
-team | https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/plan_times/1/split_team_rehearsal_assignments/1/team | Team
+team | https://api.planningcenteronline.com/services/v2/people/1/schedules/1/plan_times/1/split_team_rehearsal_assignments/1/team | Team
 
 
 
@@ -2661,10 +2657,10 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
 {
   "data": {
     "type": "Tag",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
-      "name": "string",
-      "group_id": "unknown"
+      "group_id": "unknown",
+      "name": "string"
     }
   }
 }
@@ -2733,10 +2729,12 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/tag_gr
 {
   "data": {
     "type": "TagGroup",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
-      "name": "string",
       "allow_multiple_selections": true,
+      "name": "string",
+      "required": true,
+      "service_type_folder_name": "unknown",
       "tags_for": "unknown"
     }
   }
@@ -2807,13 +2805,13 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
 {
   "data": {
     "type": "Team",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
-      "name": "string",
-      "sequence": 1,
-      "schedule_to": "string",
       "assigned_directly": "unknown",
       "created_at": "2000-01-01T12:00:00Z",
+      "name": "string",
+      "schedule_to": "string",
+      "sequence": 1,
       "updated_at": "2000-01-01T12:00:00Z"
     }
   }
@@ -2884,11 +2882,11 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
 {
   "data": {
     "type": "TeamLeader",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
       "send_responses_for_accepts": true,
-      "send_responses_for_declines": true,
-      "send_responses_for_blockouts": true
+      "send_responses_for_blockouts": true,
+      "send_responses_for_declines": true
     }
   }
 }
@@ -2959,7 +2957,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
 {
   "data": {
     "type": "TeamPosition",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
       "name": "string",
       "negative_tag_groups": "unknown",
@@ -3035,11 +3033,13 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
 {
   "data": {
     "type": "TimePreferenceOption",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
-      "day_of_week": 1,
-      "minute_of_day": "unknown",
       "created_at": "2000-01-01T12:00:00Z",
+      "day_of_week": 1,
+      "description": "unknown",
+      "minute_of_day": "unknown",
+      "sort_index": "unknown",
       "updated_at": "2000-01-01T12:00:00Z"
     }
   }
