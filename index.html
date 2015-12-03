@@ -6231,6 +6231,69 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 
 <p><em>none</em></p>
 
+<h2 id="itemnotecategories">ItemNoteCategories</h2>
+
+<p>A category of plan item notes for an entire Service Type.</p>
+
+<h3 id="list-item-note-categories">List Item Note Categories</h3>
+<pre><code class="highlight shell"><span class="c"># to list records...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/services/v2/service_types/1/item_note_categories"</span>
+</code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/services/v2/service_types/1/item_note_categories</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>after</td>
+<td><em>id</em></td>
+<td>get page after the specified id</td>
+</tr>
+<tr>
+<td>per_page</td>
+<td><em>integer</em></td>
+<td>how many records to return per page (min=1, max=100, default=25)</td>
+</tr>
+</tbody></table>
+
+<h3 id="get-a-single-item-note-category">Get a single Item Note Category</h3>
+<pre><code class="highlight shell"><span class="c"># to show...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/services/v2/service_types/1/item_note_categories/1"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ItemNoteCategory"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"primary_key"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/services/v2/service_types/1/item_note_categories/1</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<p><em>none</em></p>
+
 <h2 id="keys">Keys</h2>
 
 <p>Each song arrangement can have multiple keys. A key is the pitch center of the song.</p>
@@ -6759,14 +6822,14 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
     </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"beta"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
       </span><span class="s2">"ccli"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"ccli_connected"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"ccli_connected"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
       </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"date_format"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
       </span><span class="s2">"music_stand_enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
       </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"owner_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"owner_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"projector_enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"secret"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"secret"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"time_zone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"twenty_four_hour_time"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
       </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="w">
@@ -7241,28 +7304,31 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
     </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Plan"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"primary_key"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"attachment_type_ids"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"attachments_count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"attachment_type_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"attachments_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
       </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"dates"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"files_expire_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"items_count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"last_time_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"needed_positions_count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"next_plan_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"other_time_count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"permissions"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"plan_notes_count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"plan_people_count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"previous_plan_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"dates"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"files_expire_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"items_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"last_time_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"needed_positions_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"next_plan_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"primary_key"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"other_time_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"permissions"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"plan_notes_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"plan_people_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"previous_plan_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"primary_key"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"public"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"rehearsal_time_count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"rehearsal_time_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
       </span><span class="s2">"series_title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"service_time_count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"short_dates"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"sort_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"service_time_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"service_type_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"primary_key"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"short_dates"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"sort_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"total_length"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"total_length"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
       </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
@@ -7639,21 +7705,23 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
     </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PlanPerson"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"primary_key"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"can_accept_partial"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"can_accept_partial"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
       </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"decline_reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"excluded_time_ids"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"excluded_time_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"person_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"photo_thumbnail"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"plan_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"prepare_notification"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"responds_to_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"service_type_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"photo_thumbnail"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"plan_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"primary_key"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"prepare_notification"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"responds_to_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"primary_key"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"service_type_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"primary_key"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"status_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"team_position_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"status_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"team_position_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
@@ -8194,6 +8262,11 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 <th>Endpoint</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>item_note_categories</td>
+<td>https://api.planningcenteronline.com/services/v2/service_types/1/item_note_categories</td>
+<td>ItemNoteCategory</td>
+</tr>
 <tr>
 <td>plan_note_categories</td>
 <td>https://api.planningcenteronline.com/services/v2/service_types/1/plan_note_categories</td>
