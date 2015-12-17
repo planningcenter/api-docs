@@ -12,6 +12,7 @@ includes:
   - people
   - services
   - check-ins
+  - giving
   - errors
 
 search: true
