@@ -7,6 +7,7 @@ APP_NAMES = %w(
   people
   services
   check-ins
+  registrations
 )
 
 task :fetch do
