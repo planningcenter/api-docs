@@ -69,6 +69,19 @@ We will honor refresh tokens for up to 1 year after the date its associated acce
 
 We have an example Ruby/Sinatra app showing how to obtain and use access tokens and refresh tokens at [github.com/planningcenter/pco_api_oauth_example](https://github.com/planningcenter/pco_api_oauth_example).
 
+### Scopes
+
+Each PCO app is a distinct [OAuth scope](http://tools.ietf.org/html/rfc6749#section-3.3).
+
+
+| App | Scope|
+|-----|------|
+| People | people |
+| Services | services |
+| Check-ins | check_ins |
+
+When authorizing, you can request scopes using the `scope` parameter. The value should be a space-separated list of scopes.
+
 # JSON API
 
 This API is built to conform to the [JSON API](http://jsonapi.org/) 1.0 specification.
