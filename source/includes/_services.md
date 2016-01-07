@@ -815,6 +815,69 @@ _none_
 
 
 
+## ItemNoteCategories
+
+A category of plan item notes for an entire Service Type.
+
+
+
+### List Item Note Categories
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/service_types/1/item_note_categories"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/services/v2/service_types/1/item_note_categories`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+### Get a single Item Note Category
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/service_types/1/item_note_categories/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "ItemNoteCategory",
+    "id": "primary_key",
+    "attributes": {
+      "created_at": "2000-01-01T12:00:00Z",
+      "name": "string",
+      "updated_at": "2000-01-01T12:00:00Z"
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/services/v2/service_types/1/item_note_categories/1`
+
+#### URL Parameters
+
+_none_
+
+
+
+
+
+
+
 ## Keys
 
 Each song arrangement can have multiple keys. A key is the pitch center of the song.
@@ -1224,14 +1287,15 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2"
     "attributes": {
       "beta": true,
       "ccli": "string",
-      "ccli_connected": "unknown",
+      "ccli_connected": true,
       "created_at": "2000-01-01T12:00:00Z",
       "date_format": 1,
+      "legacy_id": "primary_key",
       "music_stand_enabled": true,
       "name": "string",
-      "owner_name": "unknown",
+      "owner_name": "string",
       "projector_enabled": true,
-      "secret": "unknown",
+      "secret": "string",
       "time_zone": "string",
       "twenty_four_hour_time": true,
       "updated_at": "2000-01-01T12:00:00Z"
@@ -1593,28 +1657,31 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
     "type": "Plan",
     "id": "primary_key",
     "attributes": {
-      "attachment_type_ids": "unknown",
-      "attachments_count": "unknown",
+      "attachment_type_ids": [
+
+      ],
+      "attachments_count": 1,
       "created_at": "2000-01-01T12:00:00Z",
-      "dates": "unknown",
-      "files_expire_at": "unknown",
-      "items_count": "unknown",
-      "last_time_at": "unknown",
-      "needed_positions_count": "unknown",
-      "next_plan_id": "unknown",
-      "other_time_count": "unknown",
-      "permissions": "unknown",
-      "plan_notes_count": "unknown",
-      "plan_people_count": "unknown",
-      "previous_plan_id": "unknown",
+      "dates": "string",
+      "files_expire_at": "2000-01-01T12:00:00Z",
+      "items_count": 1,
+      "last_time_at": "2000-01-01T12:00:00Z",
+      "needed_positions_count": 1,
+      "next_plan_id": "primary_key",
+      "other_time_count": 1,
+      "permissions": "string",
+      "plan_notes_count": 1,
+      "plan_people_count": 1,
+      "previous_plan_id": "primary_key",
       "public": true,
-      "rehearsal_time_count": "unknown",
+      "rehearsal_time_count": 1,
       "series_title": "string",
-      "service_time_count": "unknown",
-      "short_dates": "unknown",
-      "sort_date": "unknown",
+      "service_time_count": 1,
+      "service_type_id": "primary_key",
+      "short_dates": "string",
+      "sort_date": "2000-01-01T12:00:00Z",
       "title": "string",
-      "total_length": "unknown",
+      "total_length": 1,
       "updated_at": "2000-01-01T12:00:00Z"
     }
   }
@@ -1888,21 +1955,23 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
     "type": "PlanPerson",
     "id": "primary_key",
     "attributes": {
-      "can_accept_partial": "unknown",
+      "can_accept_partial": true,
       "created_at": "2000-01-01T12:00:00Z",
       "decline_reason": "string",
-      "excluded_time_ids": "unknown",
-      "name": "unknown",
+      "excluded_time_ids": [
+
+      ],
+      "name": "string",
       "notes": "string",
       "person_id": 1,
-      "photo_thumbnail": "unknown",
-      "plan_id": "unknown",
-      "prepare_notification": "unknown",
-      "responds_to_id": "unknown",
-      "service_type_id": "unknown",
+      "photo_thumbnail": "string",
+      "plan_id": "primary_key",
+      "prepare_notification": true,
+      "responds_to_id": "primary_key",
+      "service_type_id": "primary_key",
       "status": "string",
-      "status_updated_at": "unknown",
-      "team_position_name": "unknown",
+      "status_updated_at": "2000-01-01T12:00:00Z",
+      "team_position_name": "string",
       "updated_at": "2000-01-01T12:00:00Z"
     }
   }
@@ -2101,24 +2170,21 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
     "type": "Schedule",
     "id": "primary_key",
     "attributes": {
-      "can_accept_partial": "unknown",
+      "can_accept_partial": true,
       "decline_reason": "string",
-      "excluded_time_ids": "unknown",
-      "organization_id": "unknown",
-      "organization_name": "unknown",
-      "person_id": 1,
-      "person_name": "unknown",
-      "plan_id": "unknown",
-      "plan_person_id": "unknown",
-      "position_display_times": "unknown",
-      "responds_to_person_id": "unknown",
-      "service_type_id": "unknown",
-      "service_type_name": "unknown",
-      "short_dates": "unknown",
-      "sort_date": "unknown",
+      "excluded_time_ids": [
+
+      ],
+      "organization_name": "string",
+      "organization_time_zone": "string",
+      "person_name": "string",
+      "position_display_times": "string",
+      "service_type_name": "string",
+      "short_dates": "string",
+      "sort_date": "2000-01-01T12:00:00Z",
       "status": "string",
-      "team_name": "unknown",
-      "team_position_name": "unknown"
+      "team_name": "string",
+      "team_position_name": "string"
     }
   }
 }
@@ -2335,6 +2401,7 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
+item_note_categories | https://api.planningcenteronline.com/services/v2/service_types/1/item_note_categories | ItemNoteCategory
 plan_note_categories | https://api.planningcenteronline.com/services/v2/service_types/1/plan_note_categories | PlanNoteCategory
 plans | https://api.planningcenteronline.com/services/v2/service_types/1/plans | Plan
 teams | https://api.planningcenteronline.com/services/v2/service_types/1/teams | Team

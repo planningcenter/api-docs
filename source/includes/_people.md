@@ -2252,6 +2252,7 @@ include | marital_status | include associated marital_status
 include | name_prefix | include associated name_prefix
 include | name_suffix | include associated name_suffix
 include | field_data | include associated field_data
+include | social_profiles | include associated social_profiles
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
@@ -2314,6 +2315,7 @@ include | marital_status | include associated marital_status
 include | name_prefix | include associated name_prefix
 include | name_suffix | include associated name_suffix
 include | field_data | include associated field_data
+include | social_profiles | include associated social_profiles
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=emails,addresses</code></aside>
 
@@ -2373,7 +2375,9 @@ graduation_year | integer
 site_administrator | boolean
 people_permissions | string | Acceptable values are "Viewer", "Editor", and "Manager".
 membership | string | Acceptable values are "member", "regular_attender", "visitor", "participant", and "in_progress".
+name_prefix | 
 name_prefix_id | integer
+name_suffix | 
 name_suffix_id | integer
 inactive_reason_id | integer
 school_id | integer
@@ -2412,7 +2416,9 @@ graduation_year | integer
 site_administrator | boolean
 people_permissions | string | Acceptable values are "Viewer", "Editor", and "Manager".
 membership | string | Acceptable values are "member", "regular_attender", "visitor", "participant", and "in_progress".
+name_prefix | 
 name_prefix_id | integer
+name_suffix | 
 name_suffix_id | integer
 inactive_reason_id | integer
 school_id | integer
