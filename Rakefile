@@ -6,7 +6,7 @@ task :default => [:fetch, :build]
 APP_NAMES = %w(
   people
   services
-  check-ins
+  check_ins
   giving
 )
 
