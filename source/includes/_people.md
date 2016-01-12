@@ -844,7 +844,7 @@ curl -v -u token:secret -X POST -d '{"data":{"type":"FieldDefinition","attribute
 
 Attribute | Type | Note
 --------- | ---- | ----
-data_type | string | Acceptable values are "string", "text", "date", "boolean", "select", "checkboxes", "header", and "file".
+data_type | string | Acceptable values are "string", "text", "date", "boolean", "select", "checkboxes", "number", "header", and "file".
 name | string
 sequence | integer
 slug | string
@@ -868,7 +868,7 @@ curl -v -u token:secret -X PATCH -d '{"data":{"type":"FieldDefinition","id":"1",
 
 Attribute | Type | Note
 --------- | ---- | ----
-data_type | string | Acceptable values are "string", "text", "date", "boolean", "select", "checkboxes", "header", and "file".
+data_type | string | Acceptable values are "string", "text", "date", "boolean", "select", "checkboxes", "number", "header", and "file".
 name | string
 sequence | integer
 slug | string

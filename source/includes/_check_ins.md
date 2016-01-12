@@ -33,6 +33,79 @@ per_page | _integer_ | how many records to return per page (min=1, max=100, defa
 
 
 
+## AttendanceTypes
+
+A kind of attendee which is tracked by _headcount_, not by check-in.
+
+
+
+
+### List Attendance Types
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/events/1/attendance_types"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/check_ins/v2/events/1/attendance_types`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+### Get a single Attendance Type
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/events/1/attendance_types/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "AttendanceType",
+    "id": "1",
+    "attributes": {
+      "name": "string",
+      "color": "string",
+      "created_at": "2000-01-01T12:00:00Z",
+      "updated_at": "2000-01-01T12:00:00Z"
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/check_ins/v2/events/1/attendance_types/1`
+
+#### URL Parameters
+
+_none_
+
+### Associations for an Attendance Type
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL | Endpoint
+----------- | --- | --------
+headcounts | https://api.planningcenteronline.com/check_ins/v2/events/1/attendance_types/1/headcounts | Headcount
+
+
+
+
+
+
+
 ## CheckIns
 
 An attendance record for an event.
@@ -224,6 +297,7 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
+attendance_types | https://api.planningcenteronline.com/check_ins/v2/events/1/attendance_types | AttendanceType
 check_ins | https://api.planningcenteronline.com/check_ins/v2/events/1/check_ins | CheckIn
 event_labels | https://api.planningcenteronline.com/check_ins/v2/events/1/event_labels | EventLabel
 event_periods | https://api.planningcenteronline.com/check_ins/v2/events/1/event_periods | EventPeriod
@@ -494,7 +568,89 @@ Association | URL | Endpoint
 check_ins | https://api.planningcenteronline.com/check_ins/v2/event_times/1/check_ins | CheckIn
 event | https://api.planningcenteronline.com/check_ins/v2/event_times/1/event | Event
 event_period | https://api.planningcenteronline.com/check_ins/v2/event_times/1/event_period | EventPeriod
+headcounts | https://api.planningcenteronline.com/check_ins/v2/event_times/1/headcounts | Headcount
 location_event_times | https://api.planningcenteronline.com/check_ins/v2/event_times/1/location_event_times | LocationEventTime
+
+
+
+
+
+
+
+## Headcounts
+
+A tally of attendees for a given event time and attendance type.
+If one does not exist, the count may have been zero.
+
+
+
+
+### List Headcounts
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/event_times/1/headcounts"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/check_ins/v2/event_times/1/headcounts`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+include | event_time | include associated event_time
+include | attendance_type | include associated attendance_type
+after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=event_time,attendance_type</code></aside>
+
+### Get a single Headcount
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/event_times/1/headcounts/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "Headcount",
+    "id": "1",
+    "attributes": {
+      "total": 1
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/check_ins/v2/event_times/1/headcounts/1`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+include | event_time | include associated event_time
+include | attendance_type | include associated attendance_type
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=event_time,attendance_type</code></aside>
+
+### Associations for a Headcount
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL | Endpoint
+----------- | --- | --------
+attendance_type | https://api.planningcenteronline.com/check_ins/v2/event_times/1/headcounts/1/attendance_type | AttendanceType
+event_time | https://api.planningcenteronline.com/check_ins/v2/event_times/1/headcounts/1/event_time | EventTime
 
 
 
