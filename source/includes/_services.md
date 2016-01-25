@@ -540,6 +540,67 @@ _none_
 
 
 
+## CheckIns
+
+
+
+### List Check Ins
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/check_ins"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/check_ins`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+### Get a single Check In
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/check_ins/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "CheckIn",
+    "id": "primary_key",
+    "attributes": {
+      "check_ins_event_id": "primary_key",
+      "check_ins_event_period_id": "primary_key",
+      "checked_in_at": "time"
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/check_ins/1`
+
+#### URL Parameters
+
+_none_
+
+
+
+
+
+
+
 ## Folders
 
 A folder is a container used to organize multiple Service Types or other Folders.
@@ -728,6 +789,7 @@ include | song | include associated song
 include | media | include associated media
 include | arrangement | include associated arrangement
 include | key | include associated key
+include | item_times | include associated item_times
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
@@ -776,6 +838,7 @@ include | song | include associated song
 include | media | include associated media
 include | arrangement | include associated arrangement
 include | key | include associated key
+include | item_times | include associated item_times
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=item_notes,song</code></aside>
 
@@ -788,6 +851,7 @@ Association | URL | Endpoint
 arrangement | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items/1/arrangement | Arrangement
 attachments | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items/1/attachments | Attachment
 item_notes | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items/1/item_notes | ItemNote
+item_times | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items/1/item_times | ItemTime
 key | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items/1/key | Key
 media | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items/1/media | Media
 song | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items/1/song | Song
@@ -975,6 +1039,68 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
 #### HTTP Request
 
 `GET https://api.planningcenteronline.com/services/v2/service_types/1/item_note_categories/1`
+
+#### URL Parameters
+
+_none_
+
+
+
+
+
+
+
+## ItemTimes
+
+
+
+### List Item Times
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items/1/item_times"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items/1/item_times`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+### Get a single Item Time
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items/1/item_times/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "ItemTime",
+    "id": "primary_key",
+    "attributes": {
+      "exclude": true,
+      "length_offset": 1,
+      "live_end_at": "2000-01-01T12:00:00Z",
+      "live_start_at": "2000-01-01T12:00:00Z"
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items/1/item_times/1`
 
 #### URL Parameters
 
@@ -1626,6 +1752,7 @@ plan_people | https://api.planningcenteronline.com/services/v2/people/1/plan_peo
 schedules | https://api.planningcenteronline.com/services/v2/people/1/schedules | Schedule
 tags | https://api.planningcenteronline.com/services/v2/people/1/tags | Tag
 team_leaders | https://api.planningcenteronline.com/services/v2/people/1/team_leaders | TeamLeader
+text_settings | https://api.planningcenteronline.com/services/v2/people/1/text_settings | TextSetting
 
 
 
@@ -2164,17 +2291,10 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
       "can_accept_partial": true,
       "created_at": "2000-01-01T12:00:00Z",
       "decline_reason": "string",
-      "excluded_time_ids": [
-
-      ],
       "name": "string",
       "notes": "string",
-      "person_id": 1,
       "photo_thumbnail": "string",
-      "plan_id": "primary_key",
       "prepare_notification": true,
-      "responds_to_id": "primary_key",
-      "service_type_id": "primary_key",
       "status": "string",
       "status_updated_at": "2000-01-01T12:00:00Z",
       "team_position_name": "string",
@@ -2204,10 +2324,73 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
+check_ins | https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/check_ins | CheckIn
 person | https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/person | Person
 plan | https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/plan | Plan
+plan_person_times | https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/plan_person_times | PlanPersonTime
 plan_times | https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/plan_times | PlanTime
 team | https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/team | Team
+
+
+
+
+
+
+
+## PlanPersonTimes
+
+
+
+### List Plan Person Times
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/plan_person_times"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/plan_person_times`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+### Get a single Plan Person Time
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/plan_person_times/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "PlanPersonTime",
+    "id": "primary_key",
+    "attributes": {
+      "created_at": "2000-01-01T12:00:00Z",
+      "status": "string",
+      "updated_at": "2000-01-01T12:00:00Z"
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/plan_person_times/1`
+
+#### URL Parameters
+
+_none_
 
 
 
@@ -3334,6 +3517,90 @@ person_team_position_assignments | https://api.planningcenteronline.com/services
 
 
 
+
+
+
+## TextSettings
+
+
+
+### List Text Settings
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people/1/text_settings"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/services/v2/people/1/text_settings`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+### Get a single Text Setting
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people/1/text_settings/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "TextSetting",
+    "id": "primary_key",
+    "attributes": {
+      "carrier": "string",
+      "display_number": "string",
+      "general_emails_enabled": true,
+      "normalized_number": "string",
+      "reminders_enabled": true,
+      "scheduling_replies_enabled": true,
+      "scheduling_requests_enabled": true
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/services/v2/people/1/text_settings/1`
+
+#### URL Parameters
+
+_none_
+
+
+
+### Update an existing Text Setting
+
+```shell
+# to update a record...
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"TextSetting","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/people/1/text_settings/1"
+```
+
+
+#### HTTP Request
+
+`PATCH https://api.planningcenteronline.com/services/v2/people/1/text_settings/1`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+general_emails_enabled | graph/type_annotation/boolean_type_annotation
+reminders_enabled | graph/type_annotation/boolean_type_annotation
+scheduling_replies_enabled | graph/type_annotation/boolean_type_annotation
+scheduling_requests_enabled | graph/type_annotation/boolean_type_annotation
 
 
 

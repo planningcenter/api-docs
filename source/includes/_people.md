@@ -46,13 +46,13 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1
 {
   "data": {
     "type": "Address",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
       "city": "string",
+      "location": "string",
       "state": "string",
-      "zip": "string",
       "street": "string",
-      "location": "string"
+      "zip": "string"
     }
   }
 }
@@ -169,7 +169,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/apps/1"
 {
   "data": {
     "type": "App",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
       "name": "string",
       "url": "string"
@@ -231,11 +231,11 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/campuses
 {
   "data": {
     "type": "Campus",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
-      "name": "string",
-      "latitude": 1.42,
-      "longitude": 1.42
+      "latitude": "unknown",
+      "longitude": "unknown",
+      "name": "string"
     }
   }
 }
@@ -248,6 +248,35 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/campuses
 #### URL Parameters
 
 _none_
+
+
+
+
+
+
+
+## Carriers
+
+
+
+### List Carriers
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/carriers"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/people/v2/carriers`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 
 
@@ -280,11 +309,11 @@ Parameter | Value | Description
 where[application] | _string_ | query on a specific application
 where[definition_class] | _string_ | query on a specific definition_class
 where[comparison] | _string_ | query on a specific comparison
-where[settings] | _text_ | query on a specific settings
+where[settings] | _string_ | query on a specific settings
 where[definition_identifier] | _string_ | query on a specific definition_identifier
 where[description] | _string_ | query on a specific description
-where[created_at] | _datetime_ | query on a specific created_at
-where[updated_at] | _datetime_ | query on a specific updated_at
+where[created_at] | _date_time_ | query on a specific created_at
+where[updated_at] | _date_time_ | query on a specific updated_at
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
@@ -302,15 +331,15 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/lists/1/
 {
   "data": {
     "type": "Condition",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
       "application": "string",
-      "definition_class": "string",
       "comparison": "string",
-      "settings": "string",
+      "created_at": "2000-01-01T12:00:00Z",
+      "definition_class": "string",
       "definition_identifier": "string",
       "description": "string",
-      "created_at": "2000-01-01T12:00:00Z",
+      "settings": "string",
       "updated_at": "2000-01-01T12:00:00Z"
     }
   }
@@ -379,7 +408,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/lists/1/
 {
   "data": {
     "type": "ConditionResult",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
     }
   }
@@ -451,14 +480,14 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1
     "type": "ConnectedPerson",
     "id": "1",
     "attributes": {
-      "type": "ConnectedPerson",
       "first_name": "PiCO",
-      "goes_by_name": "P Riddy",
-      "middle_name": "Ross",
-      "last_name": "Das Robot",
       "gender": "M",
+      "goes_by_name": "P Riddy",
+      "last_name": "Das Robot",
+      "middle_name": "Ross",
       "organization_id": 1,
-      "organization_name": "Ministry Centered Technologies"
+      "organization_name": "Ministry Centered Technologies",
+      "type": "ConnectedPerson"
     }
   }
 }
@@ -519,7 +548,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/emails/1
 {
   "data": {
     "type": "Email",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
       "address": "string",
       "location": "string"
@@ -626,7 +655,7 @@ where[value] | _string_ | query on a specific value
 where[file] | _string_ | query on a specific file
 where[file_size] | _integer_ | query on a specific file_size
 where[file_content_type] | _string_ | query on a specific file_content_type
-where[file_name] | __ | query on a specific file_name
+where[file_name] | _graph/type_annotation/unknown_type_annotation_ | query on a specific file_name
 include | field_definition | include associated field_definition
 include | field_option | include associated field_option
 include | tab | include associated tab
@@ -649,13 +678,13 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1
 {
   "data": {
     "type": "FieldDatum",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
-      "value": "string",
       "file": "string",
-      "file_size": 1,
       "file_content_type": "string",
-      "file_name": "unknown"
+      "file_name": "unknown",
+      "file_size": 1,
+      "value": "string"
     }
   }
 }
@@ -704,7 +733,6 @@ curl -v -u token:secret -X POST -d '{"data":{"type":"FieldDatum","attributes":{.
 Attribute | Type
 --------- | ----
 value | string
-field_definition_id | integer
 
 ### Update an existing Field Datum
 
@@ -725,7 +753,6 @@ curl -v -u token:secret -X PATCH -d '{"data":{"type":"FieldDatum","id":"1","attr
 Attribute | Type
 --------- | ----
 value | string
-field_definition_id | integer
 
 ### Delete a Field Datum
 
@@ -767,7 +794,7 @@ where[data_type] | _string_ | query on a specific data_type
 where[name] | _string_ | query on a specific name
 where[sequence] | _integer_ | query on a specific sequence
 where[slug] | _string_ | query on a specific slug
-where[deleted_at] | _datetime_ | query on a specific deleted_at
+where[deleted_at] | _date_time_ | query on a specific deleted_at
 filter | include_deleted | By default, deleted fields are not included. Pass filter=include_deleted to include them.
 include | field_options | include associated field_options
 include | tab | include associated tab
@@ -792,13 +819,13 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/field_de
 {
   "data": {
     "type": "FieldDefinition",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
       "data_type": "string",
+      "deleted_at": "2000-01-01T12:00:00Z",
       "name": "string",
       "sequence": 1,
-      "slug": "string",
-      "deleted_at": "2000-01-01T12:00:00Z"
+      "slug": "string"
     }
   }
 }
@@ -842,13 +869,13 @@ curl -v -u token:secret -X POST -d '{"data":{"type":"FieldDefinition","attribute
 
 #### Resource Attributes
 
-Attribute | Type | Note
---------- | ---- | ----
-data_type | string | Acceptable values are "string", "text", "date", "boolean", "select", "checkboxes", "number", "header", and "file".
+Attribute | Type
+--------- | ----
+data_type | string
 name | string
 sequence | integer
 slug | string
-deleted_at | datetime
+deleted_at | date_time
 
 ### Update an existing Field Definition
 
@@ -866,13 +893,13 @@ curl -v -u token:secret -X PATCH -d '{"data":{"type":"FieldDefinition","id":"1",
 
 #### Resource Attributes
 
-Attribute | Type | Note
---------- | ---- | ----
-data_type | string | Acceptable values are "string", "text", "date", "boolean", "select", "checkboxes", "number", "header", and "file".
+Attribute | Type
+--------- | ----
+data_type | string
 name | string
 sequence | integer
 slug | string
-deleted_at | datetime
+deleted_at | date_time
 
 ### Delete a Field Definition
 
@@ -931,10 +958,10 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/field_de
 {
   "data": {
     "type": "FieldOption",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
-      "value": "string",
-      "sequence": 1
+      "sequence": 1,
+      "value": "string"
     }
   }
 }
@@ -1029,8 +1056,8 @@ Parameter | Value | Description
 where[name] | _string_ | query on a specific name
 where[member_count] | _integer_ | query on a specific member_count
 where[primary_contact_name] | _string_ | query on a specific primary_contact_name
-where[created_at] | _datetime_ | query on a specific created_at
-where[updated_at] | _datetime_ | query on a specific updated_at
+where[created_at] | _date_time_ | query on a specific created_at
+where[updated_at] | _date_time_ | query on a specific updated_at
 include | people | include associated people
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
@@ -1049,14 +1076,14 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/househol
 {
   "data": {
     "type": "Household",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
-      "name": "string",
-      "member_count": 1,
-      "primary_contact_name": "string",
       "created_at": "2000-01-01T12:00:00Z",
-      "updated_at": "2000-01-01T12:00:00Z",
-      "primary_contact_id": 1
+      "member_count": 1,
+      "name": "string",
+      "primary_contact_id": 1,
+      "primary_contact_name": "string",
+      "updated_at": "2000-01-01T12:00:00Z"
     }
   }
 }
@@ -1102,6 +1129,8 @@ Attribute | Type
 name | string
 member_count | integer
 primary_contact_id | integer
+
+To create a new household, you must specify the primary contact and the people as relationships: `{"data":{"attributes":{"name":"Smith"},"relationships":{"people":{"data":[{"type":"Person","id":"1"},{"type":"Person","id":"2"}]},"primary_contact":{"data":{"type":"Person","id":"1"}}}}}`
 
 ### Update an existing Household
 
@@ -1162,7 +1191,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/househol
 Parameter | Value | Description
 --------- | ----- | -----------
 where[person_name] | _string_ | query on a specific person_name
-where[pending] | _boolean_ | query on a specific pending
+where[pending] | _graph/type_annotation/boolean_type_annotation_ | query on a specific pending
 include | person | include associated person
 include | household | include associated household
 after | _id_ | get page after the specified id
@@ -1184,10 +1213,10 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/househol
 {
   "data": {
     "type": "HouseholdMembership",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
-      "person_name": "string",
-      "pending": true
+      "pending": true,
+      "person_name": "string"
     }
   }
 }
@@ -1233,8 +1262,7 @@ curl -v -u token:secret -X POST -d '{"data":{"type":"HouseholdMembership","attri
 
 Attribute | Type
 --------- | ----
-person_id | integer
-pending | boolean
+pending | graph/type_annotation/boolean_type_annotation
 
 ### Update an existing Household Membership
 
@@ -1254,8 +1282,7 @@ curl -v -u token:secret -X PATCH -d '{"data":{"type":"HouseholdMembership","id":
 
 Attribute | Type
 --------- | ----
-person_id | integer
-pending | boolean
+pending | graph/type_annotation/boolean_type_annotation
 
 ### Delete a Household Membership
 
@@ -1311,7 +1338,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/inactive
 {
   "data": {
     "type": "InactiveReason",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
       "value": "string"
     }
@@ -1404,9 +1431,9 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/lists"
 Parameter | Value | Description
 --------- | ----- | -----------
 where[name] | _string_ | query on a specific name
-where[batch_completed_at] | _datetime_ | query on a specific batch_completed_at
-where[created_at] | _datetime_ | query on a specific created_at
-where[updated_at] | _datetime_ | query on a specific updated_at
+where[batch_completed_at] | _date_time_ | query on a specific batch_completed_at
+where[created_at] | _date_time_ | query on a specific created_at
+where[updated_at] | _date_time_ | query on a specific updated_at
 include | created_by | include associated created_by
 include | updated_by | include associated updated_by
 include | owner | include associated owner
@@ -1432,19 +1459,19 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/lists/1"
 {
   "data": {
     "type": "List",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
-      "name": "string",
-      "status": "string",
+      "batch_completed_at": "2000-01-01T12:00:00Z",
+      "created_at": "2000-01-01T12:00:00Z",
       "description": "unknown",
       "has_inactive_results": true,
       "include_inactive": true,
-      "returns": "string",
+      "name": "string",
       "return_original_if_none": true,
+      "returns": "string",
+      "status": "string",
       "subset": "string",
       "total_people": "unknown",
-      "batch_completed_at": "2000-01-01T12:00:00Z",
-      "created_at": "2000-01-01T12:00:00Z",
       "updated_at": "2000-01-01T12:00:00Z"
     }
   }
@@ -1517,9 +1544,9 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/lists/1/
 
 Parameter | Value | Description
 --------- | ----- | -----------
-where[name] | __ | query on a specific name
+where[name] | _graph/type_annotation/unknown_type_annotation_ | query on a specific name
 where[group] | _integer_ | query on a specific group
-where[created_at] | _datetime_ | query on a specific created_at
+where[created_at] | _date_time_ | query on a specific created_at
 include | person | include associated person
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
@@ -1538,11 +1565,11 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/lists/1/
 {
   "data": {
     "type": "ListShare",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
-      "name": "unknown",
+      "created_at": "2000-01-01T12:00:00Z",
       "group": 1,
-      "created_at": "2000-01-01T12:00:00Z"
+      "name": "unknown"
     }
   }
 }
@@ -1612,7 +1639,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/marital_
 {
   "data": {
     "type": "MaritalStatus",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
       "value": "string"
     }
@@ -1708,16 +1735,16 @@ where[kind] | _integer_ | query on a specific kind
 where[to_addresses] | _string_ | query on a specific to_addresses
 where[subject] | _string_ | query on a specific subject
 where[file] | _string_ | query on a specific file
-where[app_name] | __ | query on a specific app_name
+where[app_name] | _graph/type_annotation/unknown_type_annotation_ | query on a specific app_name
 where[delivery_status] | _string_ | query on a specific delivery_status
 where[reject_reason] | _string_ | query on a specific reject_reason
-where[from_name] | __ | query on a specific from_name
-where[from_address] | __ | query on a specific from_address
-where[created_at] | _datetime_ | query on a specific created_at
-where[sent_at] | _datetime_ | query on a specific sent_at
-where[bounced_at] | _datetime_ | query on a specific bounced_at
-where[rejection_notification_sent_at] | _datetime_ | query on a specific rejection_notification_sent_at
-where[app_name] | __ | query on a specific app_name
+where[from_name] | _graph/type_annotation/unknown_type_annotation_ | query on a specific from_name
+where[from_address] | _graph/type_annotation/unknown_type_annotation_ | query on a specific from_address
+where[created_at] | _date_time_ | query on a specific created_at
+where[sent_at] | _date_time_ | query on a specific sent_at
+where[bounced_at] | _date_time_ | query on a specific bounced_at
+where[rejection_notification_sent_at] | _date_time_ | query on a specific rejection_notification_sent_at
+where[app_name] | _graph/type_annotation/unknown_type_annotation_ | query on a specific app_name
 include | message_group | include associated message_group
 include | to | include associated to
 after | _id_ | get page after the specified id
@@ -1739,21 +1766,21 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/messages
 {
   "data": {
     "type": "Message",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
-      "kind": 1,
-      "to_addresses": "string",
-      "subject": "string",
-      "file": "string",
       "app_name": "unknown",
-      "delivery_status": "string",
-      "reject_reason": "string",
-      "from_name": "unknown",
-      "from_address": "unknown",
-      "created_at": "2000-01-01T12:00:00Z",
-      "sent_at": "2000-01-01T12:00:00Z",
       "bounced_at": "2000-01-01T12:00:00Z",
-      "rejection_notification_sent_at": "2000-01-01T12:00:00Z"
+      "created_at": "2000-01-01T12:00:00Z",
+      "delivery_status": "string",
+      "file": "string",
+      "from_address": "unknown",
+      "from_name": "unknown",
+      "kind": 1,
+      "reject_reason": "string",
+      "rejection_notification_sent_at": "2000-01-01T12:00:00Z",
+      "sent_at": "2000-01-01T12:00:00Z",
+      "subject": "string",
+      "to_addresses": "string"
     }
   }
 }
@@ -1814,8 +1841,8 @@ where[message_type] | _string_ | query on a specific message_type
 where[from_address] | _string_ | query on a specific from_address
 where[subject] | _string_ | query on a specific subject
 where[message_count] | _integer_ | query on a specific message_count
-where[system_message] | _boolean_ | query on a specific system_message
-where[created_at] | _datetime_ | query on a specific created_at
+where[system_message] | _graph/type_annotation/boolean_type_annotation_ | query on a specific system_message
+where[created_at] | _date_time_ | query on a specific created_at
 include | messages | include associated messages
 include | from | include associated from
 include | app | include associated app
@@ -1838,15 +1865,15 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/message_
 {
   "data": {
     "type": "MessageGroup",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
-      "uuid": "string",
-      "message_type": "string",
+      "created_at": "2000-01-01T12:00:00Z",
       "from_address": "string",
-      "subject": "string",
       "message_count": 1,
+      "message_type": "string",
+      "subject": "string",
       "system_message": true,
-      "created_at": "2000-01-01T12:00:00Z"
+      "uuid": "string"
     }
   }
 }
@@ -1922,7 +1949,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/name_pre
 {
   "data": {
     "type": "NamePrefix",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
       "value": "string"
     }
@@ -2032,7 +2059,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/name_suf
 {
   "data": {
     "type": "NameSuffix",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
       "value": "string"
     }
@@ -2122,7 +2149,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2"
 {
   "data": {
     "type": "Organization",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
       "name": "string"
     }
@@ -2146,6 +2173,7 @@ Association | URL | Endpoint
 ----------- | --- | --------
 apps | https://api.planningcenteronline.com/people/v2/apps | App
 campuses | https://api.planningcenteronline.com/people/v2/campuses | Campus
+carriers | https://api.planningcenteronline.com/people/v2/carriers | Carrier
 emails | https://api.planningcenteronline.com/people/v2/emails | Email
 field_definitions | https://api.planningcenteronline.com/people/v2/field_definitions | FieldDefinition
 households | https://api.planningcenteronline.com/people/v2/households | Household
@@ -2230,17 +2258,15 @@ where[birthdate] | _date_ | query on a specific birthdate
 where[anniversary] | _date_ | query on a specific anniversary
 where[gender] | _string_ | query on a specific gender
 where[grade] | _integer_ | query on a specific grade
-where[child] | _boolean_ | query on a specific child
+where[child] | _graph/type_annotation/boolean_type_annotation_ | query on a specific child
 where[status] | _string_ | query on a specific status
 where[school_type] | _string_ | query on a specific school_type
 where[graduation_year] | _integer_ | query on a specific graduation_year
-where[site_administrator] | _boolean_ | query on a specific site_administrator
+where[site_administrator] | _graph/type_annotation/boolean_type_annotation_ | query on a specific site_administrator
 where[people_permissions] | _string_ | query on a specific people_permissions
 where[membership] | _string_ | query on a specific membership
-where[created_at] | _datetime_ | query on a specific created_at
-where[updated_at] | _datetime_ | query on a specific updated_at
-where[search_name] | __ | query on a specific search_name
-where[search_name_or_email] | __ | query on a specific search_name_or_email
+where[created_at] | _date_time_ | query on a specific created_at
+where[updated_at] | _date_time_ | query on a specific updated_at
 filter | created_since | filter people created in the last 24 hours; pass an additional `time` parameter in ISO 8601 format to specify your own timeframe
 include | emails | include associated emails
 include | addresses | include associated addresses
@@ -2274,24 +2300,24 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1
     "type": "Person",
     "id": "1",
     "attributes": {
-      "type": "Person",
-      "first_name": "PiCO",
-      "goes_by_name": "P Riddy",
-      "middle_name": "Ross",
-      "last_name": "Das Robot",
-      "birthdate": "1982-01-01",
       "anniversary": "2012-04-01",
-      "gender": "M",
-      "grade": null,
+      "avatar": "https://account-center-production.s3.amazonaws.com/uploads/person/1-1426707114/avatar.4.png",
+      "birthdate": "1982-01-01",
       "child": false,
-      "status": "active",
-      "school_type": "elementary",
-      "graduation_year": 2000,
-      "site_administrator": true,
-      "people_permissions": "Viewer",
       "created_at": "2015-03-18T19:31:54Z",
-      "updated_at": "2015-04-21T22:52:53Z",
-      "avatar": "https://account-center-production.s3.amazonaws.com/uploads/person/1-1426707114/avatar.4.png"
+      "first_name": "PiCO",
+      "gender": "M",
+      "goes_by_name": "P Riddy",
+      "grade": null,
+      "graduation_year": 2000,
+      "last_name": "Das Robot",
+      "middle_name": "Ross",
+      "people_permissions": "Viewer",
+      "school_type": "elementary",
+      "site_administrator": true,
+      "status": "active",
+      "type": "Person",
+      "updated_at": "2015-04-21T22:52:53Z"
     }
   }
 }
@@ -2358,30 +2384,23 @@ curl -v -u token:secret -X POST -d '{"data":{"type":"Person","attributes":{...}}
 
 #### Resource Attributes
 
-Attribute | Type | Note
---------- | ---- | ----
+Attribute | Type
+--------- | ----
 first_name | string
 goes_by_name | string
 middle_name | string
 last_name | string
 birthdate | date
 anniversary | date
-gender | string | Acceptable values are "M" and "F".
+gender | string
 grade | integer
-child | boolean | Acceptable values are true and false.
-status | string | Acceptable values are "active", "pending", and "inactive".
-school_type | string | Acceptable values are "elementary", "middle_school", "high_school", "college", and "other".
+child | graph/type_annotation/boolean_type_annotation
+status | string
+school_type | string
 graduation_year | integer
-site_administrator | boolean
-people_permissions | string | Acceptable values are "Viewer", "Editor", and "Manager".
-membership | string | Acceptable values are "member", "regular_attender", "visitor", "participant", and "in_progress".
-name_prefix | 
-name_prefix_id | integer
-name_suffix | 
-name_suffix_id | integer
-inactive_reason_id | integer
-school_id | integer
-marital_status_id | integer
+site_administrator | graph/type_annotation/boolean_type_annotation
+people_permissions | string
+membership | string
 
 ### Update an existing Person
 
@@ -2399,30 +2418,23 @@ curl -v -u token:secret -X PATCH -d '{"data":{"type":"Person","id":"1","attribut
 
 #### Resource Attributes
 
-Attribute | Type | Note
---------- | ---- | ----
+Attribute | Type
+--------- | ----
 first_name | string
 goes_by_name | string
 middle_name | string
 last_name | string
 birthdate | date
 anniversary | date
-gender | string | Acceptable values are "M" and "F".
+gender | string
 grade | integer
-child | boolean | Acceptable values are true and false.
-status | string | Acceptable values are "active", "pending", and "inactive".
-school_type | string | Acceptable values are "elementary", "middle_school", "high_school", "college", and "other".
+child | graph/type_annotation/boolean_type_annotation
+status | string
+school_type | string
 graduation_year | integer
-site_administrator | boolean
-people_permissions | string | Acceptable values are "Viewer", "Editor", and "Manager".
-membership | string | Acceptable values are "member", "regular_attender", "visitor", "participant", and "in_progress".
-name_prefix | 
-name_prefix_id | integer
-name_suffix | 
-name_suffix_id | integer
-inactive_reason_id | integer
-school_id | integer
-marital_status_id | integer
+site_administrator | graph/type_annotation/boolean_type_annotation
+people_permissions | string
+membership | string
 
 ### Delete a Person
 
@@ -2462,8 +2474,8 @@ Parameter | Value | Description
 --------- | ----- | -----------
 where[number] | _string_ | query on a specific number
 where[location] | _string_ | query on a specific location
-where[created_at] | _datetime_ | query on a specific created_at
-where[updated_at] | _datetime_ | query on a specific updated_at
+where[created_at] | _date_time_ | query on a specific created_at
+where[updated_at] | _date_time_ | query on a specific updated_at
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
@@ -2481,11 +2493,11 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1
 {
   "data": {
     "type": "PhoneNumber",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
-      "number": "string",
-      "location": "string",
       "created_at": "2000-01-01T12:00:00Z",
+      "location": "string",
+      "number": "string",
       "updated_at": "2000-01-01T12:00:00Z"
     }
   }
@@ -2579,9 +2591,9 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/reports"
 Parameter | Value | Description
 --------- | ----- | -----------
 where[name] | _string_ | query on a specific name
-where[body] | _text_ | query on a specific body
-where[created_at] | _datetime_ | query on a specific created_at
-where[updated_at] | _datetime_ | query on a specific updated_at
+where[body] | _string_ | query on a specific body
+where[created_at] | _date_time_ | query on a specific created_at
+where[updated_at] | _date_time_ | query on a specific updated_at
 include | created_by | include associated created_by
 include | updated_by | include associated updated_by
 after | _id_ | get page after the specified id
@@ -2603,11 +2615,11 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/reports/
 {
   "data": {
     "type": "Report",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
-      "name": "string",
       "body": "string",
       "created_at": "2000-01-01T12:00:00Z",
+      "name": "string",
       "updated_at": "2000-01-01T12:00:00Z"
     }
   }
@@ -2655,7 +2667,7 @@ curl -v -u token:secret -X POST -d '{"data":{"type":"Report","attributes":{...}}
 Attribute | Type
 --------- | ----
 name | string
-body | text
+body | string
 
 ### Update an existing Report
 
@@ -2676,7 +2688,7 @@ curl -v -u token:secret -X PATCH -d '{"data":{"type":"Report","id":"1","attribut
 Attribute | Type
 --------- | ----
 name | string
-body | text
+body | string
 
 ### Delete a Report
 
@@ -2715,8 +2727,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/lists/1/
 Parameter | Value | Description
 --------- | ----- | -----------
 where[subset] | _string_ | query on a specific subset
-where[created_at] | _datetime_ | query on a specific created_at
-where[updated_at] | _datetime_ | query on a specific updated_at
+where[created_at] | _date_time_ | query on a specific created_at
+where[updated_at] | _date_time_ | query on a specific updated_at
 include | conditions | include associated conditions
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
@@ -2735,10 +2747,10 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/lists/1/
 {
   "data": {
     "type": "Rule",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
-      "subset": "string",
       "created_at": "2000-01-01T12:00:00Z",
+      "subset": "string",
       "updated_at": "2000-01-01T12:00:00Z"
     }
   }
@@ -2810,7 +2822,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/lists/1/
 {
   "data": {
     "type": "RuleResult",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
     }
   }
@@ -2864,9 +2876,9 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/school_o
 Parameter | Value | Description
 --------- | ----- | -----------
 where[value] | _string_ | query on a specific value
-where[school_types] | __ | query on a specific school_types
-where[beginning_grade] | __ | query on a specific beginning_grade
-where[ending_grade] | __ | query on a specific ending_grade
+where[school_types] | _graph/type_annotation/unknown_type_annotation_ | query on a specific school_types
+where[beginning_grade] | _graph/type_annotation/unknown_type_annotation_ | query on a specific beginning_grade
+where[ending_grade] | _graph/type_annotation/unknown_type_annotation_ | query on a specific ending_grade
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
@@ -2886,13 +2898,13 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/school_o
     "type": "SchoolOption",
     "id": "1",
     "attributes": {
-      "type": "SchoolOption",
-      "value": "Colcord Elementary",
+      "beginning_grade": "0",
+      "ending_grade": "5",
       "school_types": [
         "elementary"
       ],
-      "beginning_grade": "0",
-      "ending_grade": "5"
+      "type": "SchoolOption",
+      "value": "Colcord Elementary"
     }
   }
 }
@@ -2930,12 +2942,12 @@ curl -v -u token:secret -X POST -d '{"data":{"type":"SchoolOption","attributes":
 
 #### Resource Attributes
 
-Attribute | Type | Note
---------- | ---- | ----
+Attribute | Type
+--------- | ----
 value | string
-school_types | 
-beginning_grade |  | Acceptable values are "-1", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", and "12".
-ending_grade |  | Acceptable values are "-1", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", and "12".
+school_types | graph/type_annotation/unknown_type_annotation
+beginning_grade | graph/type_annotation/unknown_type_annotation
+ending_grade | graph/type_annotation/unknown_type_annotation
 
 ### Update an existing School Option
 
@@ -2953,12 +2965,12 @@ curl -v -u token:secret -X PATCH -d '{"data":{"type":"SchoolOption","id":"1","at
 
 #### Resource Attributes
 
-Attribute | Type | Note
---------- | ---- | ----
+Attribute | Type
+--------- | ----
 value | string
-school_types | 
-beginning_grade |  | Acceptable values are "-1", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", and "12".
-ending_grade |  | Acceptable values are "-1", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", and "12".
+school_types | graph/type_annotation/unknown_type_annotation
+beginning_grade | graph/type_annotation/unknown_type_annotation
+ending_grade | graph/type_annotation/unknown_type_annotation
 
 ### Delete a School Option
 
@@ -2998,9 +3010,9 @@ Parameter | Value | Description
 --------- | ----- | -----------
 where[site] | _string_ | query on a specific site
 where[url] | _string_ | query on a specific url
-where[verified] | _boolean_ | query on a specific verified
-where[created_at] | _datetime_ | query on a specific created_at
-where[updated_at] | _datetime_ | query on a specific updated_at
+where[verified] | _graph/type_annotation/boolean_type_annotation_ | query on a specific verified
+where[created_at] | _date_time_ | query on a specific created_at
+where[updated_at] | _date_time_ | query on a specific updated_at
 include | person | include associated person
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
@@ -3019,13 +3031,13 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/social_p
 {
   "data": {
     "type": "SocialProfile",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
-      "site": "string",
-      "url": "string",
-      "verified": true,
       "created_at": "2000-01-01T12:00:00Z",
-      "updated_at": "2000-01-01T12:00:00Z"
+      "site": "string",
+      "updated_at": "2000-01-01T12:00:00Z",
+      "url": "string",
+      "verified": true
     }
   }
 }
@@ -3069,7 +3081,7 @@ Attribute | Type
 --------- | ----
 site | string
 url | string
-verified | boolean
+verified | graph/type_annotation/boolean_type_annotation
 
 ### Update an existing Social Profile
 
@@ -3091,7 +3103,7 @@ Attribute | Type
 --------- | ----
 site | string
 url | string
-verified | boolean
+verified | graph/type_annotation/boolean_type_annotation
 
 ### Delete a Social Profile
 
@@ -3150,7 +3162,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/tabs/1"
 {
   "data": {
     "type": "Tab",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
       "name": "string",
       "sequence": 1,
