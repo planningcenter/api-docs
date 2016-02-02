@@ -2190,6 +2190,7 @@ school_options | https://api.planningcenteronline.com/people/v2/school_options |
 social_profiles | https://api.planningcenteronline.com/people/v2/social_profiles | SocialProfile
 stats | https://api.planningcenteronline.com/people/v2/stats | OrganizationStatistics
 tabs | https://api.planningcenteronline.com/people/v2/tabs | Tab
+workflows | https://api.planningcenteronline.com/people/v2/workflows | Workflow
 
 
 
@@ -3247,3 +3248,341 @@ curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v
 #### HTTP Request
 
 `DELETE https://api.planningcenteronline.com/people/v2/tabs/1`
+
+## Workflows
+
+A Workflow
+
+
+
+### List Workflows
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflows"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/people/v2/workflows`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+where[name] | _string_ | query on a specific name
+where[created_at] | _date_time_ | query on a specific created_at
+where[updated_at] | _date_time_ | query on a specific updated_at
+include | steps | include associated steps
+after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+### Get a single Workflow
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflows/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "Workflow",
+    "id": "primary_key",
+    "attributes": {
+      "created_at": "2000-01-01T12:00:00Z",
+      "my_ready_card_count": "unknown",
+      "name": "string",
+      "total_ready_card_count": "unknown",
+      "updated_at": "2000-01-01T12:00:00Z"
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/people/v2/workflows/1`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+include | steps | include associated steps
+
+### Associations for a Workflow
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL | Endpoint
+----------- | --- | --------
+cards | https://api.planningcenteronline.com/people/v2/workflows/1/cards | WorkflowCard
+steps | https://api.planningcenteronline.com/people/v2/workflows/1/steps | WorkflowStep
+
+
+
+
+
+
+
+## WorkflowCards
+
+A Card
+
+
+
+### List Workflow Cards
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflows/1/cards"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/people/v2/workflows/1/cards`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+where[created_at] | _date_time_ | query on a specific created_at
+where[updated_at] | _date_time_ | query on a specific updated_at
+where[completed_at] | _date_time_ | query on a specific completed_at
+where[snooze_until] | _date_time_ | query on a specific snooze_until
+include | person | include associated person
+include | assignee | include associated assignee
+include | tasks | include associated tasks
+after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=person,assignee</code></aside>
+
+### Get a single Workflow Card
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflows/1/cards/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "WorkflowCard",
+    "id": "primary_key",
+    "attributes": {
+      "completed_at": "2000-01-01T12:00:00Z",
+      "created_at": "2000-01-01T12:00:00Z",
+      "snooze_until": "2000-01-01T12:00:00Z",
+      "updated_at": "2000-01-01T12:00:00Z"
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/people/v2/workflows/1/cards/1`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+include | person | include associated person
+include | assignee | include associated assignee
+include | tasks | include associated tasks
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=person,assignee</code></aside>
+
+### Associations for a Workflow Card
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL | Endpoint
+----------- | --- | --------
+assignee | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/assignee | Person
+person | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/person | Person
+tasks | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/tasks | WorkflowTask
+
+### Actions for a Workflow Card
+
+You can perform the following actions on a Workflow Card by POSTing to the specified URL.
+
+Action | URL | Description
+------ | --- | -----------
+unsnooze | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/unsnooze | Unsnoozes a card
+promote | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/promote | Move a Workflow Card to the next step.
+snooze | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/snooze | Snoozes a card for a specific duration
+
+
+
+
+
+
+
+## WorkflowSteps
+
+A Step
+
+
+
+### List Workflow Steps
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflows/1/steps"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/people/v2/workflows/1/steps`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+where[name] | _string_ | query on a specific name
+where[created_at] | _date_time_ | query on a specific created_at
+where[updated_at] | _date_time_ | query on a specific updated_at
+include | default_assignee | include associated default_assignee
+after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+### Get a single Workflow Step
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflows/1/steps/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "WorkflowStep",
+    "id": "primary_key",
+    "attributes": {
+      "auto_snooze_days": 1,
+      "created_at": "2000-01-01T12:00:00Z",
+      "description": "string",
+      "my_ready_card_count": "unknown",
+      "name": "string",
+      "sequence": 1,
+      "total_ready_card_count": "unknown",
+      "updated_at": "2000-01-01T12:00:00Z"
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/people/v2/workflows/1/steps/1`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+include | default_assignee | include associated default_assignee
+
+### Associations for a Workflow Step
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL | Endpoint
+----------- | --- | --------
+cards | https://api.planningcenteronline.com/people/v2/workflows/1/steps/1/cards | WorkflowCard
+default_assignee | https://api.planningcenteronline.com/people/v2/workflows/1/steps/1/default_assignee | Person
+
+
+
+
+
+
+
+## WorkflowTasks
+
+A Task
+
+
+
+### List Workflow Tasks
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/tasks"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/tasks`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+where[created_at] | _date_time_ | query on a specific created_at
+where[updated_at] | _date_time_ | query on a specific updated_at
+where[completed_at] | _date_time_ | query on a specific completed_at
+include | card | include associated card
+include | step | include associated step
+include | completed_by | include associated completed_by
+after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=card,step</code></aside>
+
+### Get a single Workflow Task
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/tasks/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "WorkflowTask",
+    "id": "primary_key",
+    "attributes": {
+      "completed_at": "2000-01-01T12:00:00Z",
+      "created_at": "2000-01-01T12:00:00Z",
+      "updated_at": "2000-01-01T12:00:00Z"
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/tasks/1`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+include | card | include associated card
+include | step | include associated step
+include | completed_by | include associated completed_by
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=card,step</code></aside>
+
+
+
+
+

@@ -646,7 +646,6 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/folder
       "container": "string",
       "created_at": "2000-01-01T12:00:00Z",
       "name": "string",
-      "parent_id": 1,
       "updated_at": "2000-01-01T12:00:00Z"
     }
   }
@@ -1705,7 +1704,6 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
       "anniversary": "2000-01-01T12:00:00Z",
       "birthdate": "2000-01-01T12:00:00Z",
       "created_at": "2000-01-01T12:00:00Z",
-      "created_by_id": 1,
       "facebook_id": 1,
       "first_name": "string",
       "ical_code": "string",
@@ -1725,8 +1723,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
       "site_administrator": true,
       "songs_tab": "string",
       "status": "string",
-      "updated_at": "2000-01-01T12:00:00Z",
-      "updated_by_id": 1
+      "updated_at": "2000-01-01T12:00:00Z"
     }
   }
 }
@@ -1833,9 +1830,6 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
 
       ],
       "schedule_preference": "string",
-      "time_preference_option_ids": [
-
-      ],
       "updated_at": "2000-01-01T12:00:00Z"
     }
   }
@@ -1868,7 +1862,6 @@ Attribute | Type
 --------- | ----
 schedule_preference | string
 preferred_weeks | array
-time_preference_option_ids | array
 
 ### Update an existing Person Team Position Assignment
 
@@ -1888,7 +1881,6 @@ Attribute | Type
 --------- | ----
 schedule_preference | string
 preferred_weeks | array
-time_preference_option_ids | array
 
 
 
@@ -1985,27 +1977,22 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
     "type": "Plan",
     "id": "primary_key",
     "attributes": {
-      "attachment_type_ids": [
-
-      ],
       "attachments_count": 1,
       "created_at": "2000-01-01T12:00:00Z",
       "dates": "string",
       "files_expire_at": "2000-01-01T12:00:00Z",
       "items_count": 1,
       "last_time_at": "2000-01-01T12:00:00Z",
+      "multi_day": true,
       "needed_positions_count": 1,
-      "next_plan_id": "primary_key",
       "other_time_count": 1,
       "permissions": "string",
       "plan_notes_count": 1,
       "plan_people_count": 1,
-      "previous_plan_id": "primary_key",
       "public": true,
       "rehearsal_time_count": 1,
       "series_title": "string",
       "service_time_count": 1,
-      "service_type_id": "primary_key",
       "short_dates": "string",
       "sort_date": "2000-01-01T12:00:00Z",
       "title": "string",
@@ -2477,9 +2464,6 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
     "attributes": {
       "created_at": "2000-01-01T12:00:00Z",
       "ends_at": "2000-01-01T12:00:00Z",
-      "included_category_ids": [
-
-      ],
       "live_ends_at": "2000-01-01T12:00:00Z",
       "live_starts_at": "2000-01-01T12:00:00Z",
       "name": "string",
@@ -2561,9 +2545,6 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
     "attributes": {
       "can_accept_partial": true,
       "decline_reason": "string",
-      "excluded_time_ids": [
-
-      ],
       "organization_name": "string",
       "organization_time_zone": "string",
       "person_name": "string",
@@ -2763,9 +2744,9 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
     "type": "ServiceType",
     "id": "primary_key",
     "attributes": {
+      "attachment_types_enabled": true,
       "created_at": "2000-01-01T12:00:00Z",
       "name": "string",
-      "parent_id": 1,
       "permissions": "string",
       "sequence": 1,
       "updated_at": "2000-01-01T12:00:00Z"
@@ -3043,6 +3024,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/songs/
       "arrangement_name": "string",
       "key_name": "string",
       "plan_dates": "string",
+      "plan_sort_date": "string",
       "service_type_name": "string"
     }
   }
@@ -3112,10 +3094,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
     "type": "SplitTeamRehearsalAssignment",
     "id": "primary_key",
     "attributes": {
-      "assigned_to": "string",
-      "time_preference_ids": [
-
-      ]
+      "assigned_to": "string"
     }
   }
 }
