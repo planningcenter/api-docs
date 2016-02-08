@@ -601,6 +601,70 @@ _none_
 
 
 
+## Contributors
+
+A Contributor Resource
+
+
+
+### List Contributors
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/contributors"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/contributors`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+### Get a single Contributor
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/contributors/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "Contributor",
+    "id": "primary_key",
+    "attributes": {
+      "created_at": "2000-01-01T12:00:00Z",
+      "full_name": "string",
+      "photo_thumbnail_url": "string",
+      "updated_at": "2000-01-01T12:00:00Z"
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/contributors/1`
+
+#### URL Parameters
+
+_none_
+
+
+
+
+
+
+
 ## Folders
 
 A folder is a container used to organize multiple Service Types or other Folders.
@@ -675,13 +739,13 @@ service_types | https://api.planningcenteronline.com/services/v2/folders/1/servi
 
 ```shell
 # to create a record...
-curl -v -u token:secret -X POST -d '{"data":{"type":"Folder","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/folders"
+curl -v -u token:secret -X POST -d '{"data":{"type":"Folder","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/service_types"
 ```
 
 
 #### HTTP Request
 
-`POST https://api.planningcenteronline.com/services/v2/folders`
+`POST https://api.planningcenteronline.com/services/v2/service_types`
 
 #### Resource Attributes
 
@@ -691,13 +755,13 @@ name | string
 
 ```shell
 # to create a record...
-curl -v -u token:secret -X POST -d '{"data":{"type":"Folder","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/folders/1/folders"
+curl -v -u token:secret -X POST -d '{"data":{"type":"Folder","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/folders/1/service_types"
 ```
 
 
 #### HTTP Request
 
-`POST https://api.planningcenteronline.com/services/v2/folders/1/folders`
+`POST https://api.planningcenteronline.com/services/v2/folders/1/service_types`
 
 #### Resource Attributes
 
@@ -1751,6 +1815,17 @@ tags | https://api.planningcenteronline.com/services/v2/people/1/tags | Tag
 team_leaders | https://api.planningcenteronline.com/services/v2/people/1/team_leaders | TeamLeader
 text_settings | https://api.planningcenteronline.com/services/v2/people/1/text_settings | TextSetting
 
+### Actions for a Person
+
+You can perform the following actions on a Person by POSTing to the specified URL.
+
+Action | URL | Description
+------ | --- | -----------
+generate_identifier | https://api.planningcenteronline.com/services/v2/people/1/generate_identifier | Create an encrypted identifier for the current person.
+
+Can only run for the current user.
+
+
 
 
 
@@ -2021,6 +2096,7 @@ Association | URL | Endpoint
 ----------- | --- | --------
 all_attachments | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/all_attachments | Attachment
 attachments | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/attachments | Attachment
+contributors | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/contributors | Contributor
 items | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items | Item
 needed_positions | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/needed_positions | NeededPosition
 next_plan | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/next_plan | Plan
@@ -2028,7 +2104,7 @@ notes | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1
 plan_times | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/plan_times | PlanTime
 previous_plan | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/previous_plan | Plan
 series | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/series | Series
-team_member | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/team_member | PlanPerson
+team_members | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/team_members | PlanPerson
 
 ### Create a new Plan
 
@@ -2151,11 +2227,53 @@ Association | URL | Endpoint
 ----------- | --- | --------
 plan_note_category | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/notes/1/plan_note_category | PlanNoteCategory
 
+### Create a new Plan Note
+
+```shell
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{"type":"PlanNote","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/notes"
+```
 
 
+#### HTTP Request
+
+`POST https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/notes`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+content | string
+
+### Update an existing Plan Note
+
+```shell
+# to update a record...
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"PlanNote","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/notes/1"
+```
 
 
+#### HTTP Request
 
+`PATCH https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/notes/1`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+content | string
+
+### Delete a Plan Note
+
+```shell
+# to delete a record...
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/notes/1"
+```
+
+
+#### HTTP Request
+
+`DELETE https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/notes/1`
 
 ## PlanNoteCategories
 
@@ -2254,6 +2372,7 @@ Parameter | Value | Description
 include | team | include associated team
 include | person | include associated person
 include | plan | include associated plan
+include | declined_plan_times | include associated declined_plan_times
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
@@ -2302,6 +2421,7 @@ Parameter | Value | Description
 include | team | include associated team
 include | person | include associated person
 include | plan | include associated plan
+include | declined_plan_times | include associated declined_plan_times
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=team,person</code></aside>
 
@@ -2312,6 +2432,7 @@ You can append one of the following associations onto this resource URL to jump 
 Association | URL | Endpoint
 ----------- | --- | --------
 check_ins | https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/check_ins | CheckIn
+declined_plan_times | https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/declined_plan_times | PlanTime
 person | https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/person | Person
 plan | https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/plan | Plan
 plan_person_times | https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/plan_person_times | PlanPersonTime
@@ -2658,49 +2779,11 @@ Association | URL | Endpoint
 ----------- | --- | --------
 plans | https://api.planningcenteronline.com/services/v2/series/1/plans | Plan
 
-### Create a new Series
-
-```shell
-# to create a record...
-curl -v -u token:secret -X POST -d '{"data":{"type":"Series","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/series"
-```
 
 
-#### HTTP Request
-
-`POST https://api.planningcenteronline.com/services/v2/series`
-
-#### Resource Attributes
-
-_none_
-
-### Update an existing Series
-
-```shell
-# to update a record...
-curl -v -u token:secret -X PATCH -d '{"data":{"type":"Series","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/series/1"
-```
 
 
-#### HTTP Request
 
-`PATCH https://api.planningcenteronline.com/services/v2/series/1`
-
-#### Resource Attributes
-
-_none_
-
-### Delete a Series
-
-```shell
-# to delete a record...
-curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/services/v2/series/1"
-```
-
-
-#### HTTP Request
-
-`DELETE https://api.planningcenteronline.com/services/v2/series/1`
 
 ## ServiceTypes
 

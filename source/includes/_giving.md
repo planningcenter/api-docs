@@ -77,11 +77,11 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/batches/
     "type": "Batch",
     "id": "1",
     "attributes": {
-      "created_at": "2016-02-02T15:26:40Z",
+      "created_at": "2016-02-08T15:39:38Z",
       "status": "in_progress",
       "total_cents": 150000,
       "total_currency": "USD",
-      "updated_at": "2016-02-02T15:26:40Z"
+      "updated_at": "2016-02-08T15:39:38Z"
     }
   }
 }
@@ -153,10 +153,10 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/deposits
     "id": "1",
     "attributes": {
       "cleared": true,
-      "created_at": "2016-02-02T15:26:40Z",
+      "created_at": "2016-02-08T15:39:38Z",
       "total_cents": 350000,
       "total_currency": "USD",
-      "updated_at": "2016-02-02T15:26:40Z"
+      "updated_at": "2016-02-08T15:39:38Z"
     }
   }
 }
@@ -319,7 +319,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/donation
     "attributes": {
       "amount_cents": 2000,
       "amount_currency": "USD",
-      "created_at": "2016-02-02T15:26:40Z",
+      "created_at": "2016-02-08T15:39:38Z",
       "fee_cents": -88,
       "fee_currency": "USD",
       "payment_brand": "Visa",
@@ -328,7 +328,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/donation
       "payment_method": "card",
       "payment_method_sub": "debit",
       "payment_status": "succeeded",
-      "updated_at": "2016-02-02T15:26:40Z"
+      "updated_at": "2016-02-08T15:39:38Z"
     }
   }
 }
@@ -410,11 +410,11 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/funds/1"
     "id": "1",
     "attributes": {
       "color": "#9ccc79",
-      "created_at": "2016-02-02T15:26:40Z",
+      "created_at": "2016-02-08T15:39:38Z",
       "description": "These funds are used to support our missionary efforts here in the US.",
       "ledger_code": "dm-22314",
       "name": "Domestic Missions",
-      "updated_at": "2016-02-02T15:26:40Z",
+      "updated_at": "2016-02-08T15:39:38Z",
       "visibility": "everywhere"
     }
   }
@@ -574,12 +574,12 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/people/1
     "id": "1",
     "attributes": {
       "brand": "Visa",
-      "created_at": "2016-02-02T15:26:40Z",
+      "created_at": "2016-02-08T15:39:38Z",
       "expiration": "8/2018",
       "last4": "4242",
       "method_subtype": "credit",
       "method_type": "card",
-      "updated_at": "2016-02-02T15:26:40Z",
+      "updated_at": "2016-02-08T15:39:38Z",
       "verified": null
     }
   }
@@ -760,16 +760,16 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/recurrin
     "attributes": {
       "amount_cents": 15000,
       "amount_currency": "USD",
-      "created_at": "2016-02-02T15:26:40Z",
-      "last_processed_at": "2016-02-01T00:00:00Z",
-      "next_occurrence": "2016-03-01T00:00:00Z",
+      "created_at": "2016-02-08T15:39:38Z",
+      "last_processed_at": "2016-02-07T00:00:00Z",
+      "next_occurrence": "2016-03-07T00:00:00Z",
       "schedule": {
         "day_in_month": {
-          "day": 1
+          "day": 7
         }
       },
       "status": "active",
-      "updated_at": "2016-02-02T15:26:40Z"
+      "updated_at": "2016-02-08T15:39:38Z"
     }
   }
 }
