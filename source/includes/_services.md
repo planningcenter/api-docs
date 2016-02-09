@@ -976,7 +976,10 @@ curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/services
 
 ## ItemNotes
 
-A plan item note that belongs to a category
+A plan item note that belongs to a category.
+
+Note: You can only assign the category on create.  If you want to change category; delete the current note, and create a new one passing in the `category_id` then.
+
 
 
 
@@ -1043,11 +1046,53 @@ Association | URL | Endpoint
 ----------- | --- | --------
 item_note_category | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items/1/item_notes/1/item_note_category | ItemNoteCategory
 
+### Create a new Item Note
+
+```shell
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{"type":"ItemNote","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items/1/item_notes"
+```
 
 
+#### HTTP Request
+
+`POST https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items/1/item_notes`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+content | string
+
+### Update an existing Item Note
+
+```shell
+# to update a record...
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"ItemNote","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items/1/item_notes/1"
+```
 
 
+#### HTTP Request
 
+`PATCH https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items/1/item_notes/1`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+content | string
+
+### Delete an Item Note
+
+```shell
+# to delete a record...
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items/1/item_notes/1"
+```
+
+
+#### HTTP Request
+
+`DELETE https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items/1/item_notes/1`
 
 ## ItemNoteCategories
 
@@ -1713,6 +1758,7 @@ series | https://api.planningcenteronline.com/services/v2/series | Series
 service_types | https://api.planningcenteronline.com/services/v2/service_types | ServiceType
 songs | https://api.planningcenteronline.com/services/v2/songs | Song
 tag_groups | https://api.planningcenteronline.com/services/v2/tag_groups | TagGroup
+ |  | 
 
 
 
@@ -1821,10 +1867,7 @@ You can perform the following actions on a Person by POSTing to the specified UR
 
 Action | URL | Description
 ------ | --- | -----------
-generate_identifier | https://api.planningcenteronline.com/services/v2/people/1/generate_identifier | Create an encrypted identifier for the current person.
-
-Can only run for the current user.
-
+ |  | 
 
 
 
@@ -2538,13 +2581,13 @@ The IDs of each Team assigned to this time.
 
 <span class='attribute-info-name'>time_type</span>
 
-There are 3 possible 'time_type' values:
+Possible values are:
 
-- Service
+- rehearsal
 
-- Rehearsal
+- service
 
-- Other
+- other
 
 
 ### List Plan Times
@@ -2617,11 +2660,59 @@ Association | URL | Endpoint
 ----------- | --- | --------
 split_team_rehearsal_assignments | https://api.planningcenteronline.com/services/v2/people/1/schedules/1/plan_times/1/split_team_rehearsal_assignments | SplitTeamRehearsalAssignment
 
+### Create a new Plan Time
+
+```shell
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{"type":"PlanTime","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/plan_times"
+```
 
 
+#### HTTP Request
+
+`POST https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/plan_times`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+starts_at | graph/wall_clock_time
+ends_at | graph/wall_clock_time
+name | string
+time_type | integer
+
+### Update an existing Plan Time
+
+```shell
+# to update a record...
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"PlanTime","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/people/1/schedules/1/plan_times/1"
+```
 
 
+#### HTTP Request
 
+`PATCH https://api.planningcenteronline.com/services/v2/people/1/schedules/1/plan_times/1`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+starts_at | graph/wall_clock_time
+ends_at | graph/wall_clock_time
+name | string
+time_type | integer
+
+### Delete a Plan Time
+
+```shell
+# to delete a record...
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/services/v2/people/1/schedules/1/plan_times/1"
+```
+
+
+#### HTTP Request
+
+`DELETE https://api.planningcenteronline.com/services/v2/people/1/schedules/1/plan_times/1`
 
 ## Schedules
 
