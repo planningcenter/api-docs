@@ -20,13 +20,17 @@ task :fetch do
     'https://api.planningcenteronline.com'
   end
   APP_NAMES.each do |app|
-    url = "#{base_url}/#{app}/v2/docs"
-    puts "getting #{url}..."
-    content = open(url, 'Accept' => 'text/html').read
-    path = "source/includes/_#{app}.md"
-    File.open(File.expand_path("../#{path}", __FILE__), 'w') do |file|
-      file.write(content)
+    begin
+      url = "#{base_url}/#{app}/v2/docs"
+      puts "getting #{url}..."
+      content = open(url, 'Accept' => 'text/html').read
+      path = "source/includes/_#{app}.md"
+      File.open(File.expand_path("../#{path}", __FILE__), 'w') do |file|
+        file.write(content)
+      end
+      puts "  wrote #{path}"
+    rescue OpenURI::HTTPError => error
+      puts "  skipped: #{app} got #{error}"
     end
-    puts "  wrote #{path}"
   end
 end
