@@ -1685,11 +1685,53 @@ Association | URL | Endpoint
 team | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/needed_positions/1/team | Team
 time | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/needed_positions/1/time | PlanTime
 
+### Create a new Needed Position
+
+```shell
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{"type":"NeededPosition","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/needed_positions"
+```
 
 
+#### HTTP Request
+
+`POST https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/needed_positions`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+quantity | integer
+
+### Update an existing Needed Position
+
+```shell
+# to update a record...
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"NeededPosition","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/needed_positions/1"
+```
 
 
+#### HTTP Request
 
+`PATCH https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/needed_positions/1`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+quantity | integer
+
+### Delete a Needed Position
+
+```shell
+# to delete a record...
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/needed_positions/1"
+```
+
+
+#### HTTP Request
+
+`DELETE https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/needed_positions/1`
 
 ## Organizations
 
@@ -2166,7 +2208,7 @@ curl -v -u token:secret -X POST -d '{"data":{"type":"Plan","attributes":{...}}}'
 Attribute | Type
 --------- | ----
 title | string
-public | graph/type_annotation/boolean_type_annotation
+public | boolean
 
 ### Update an existing Plan
 
@@ -2185,7 +2227,7 @@ curl -v -u token:secret -X PATCH -d '{"data":{"type":"Plan","id":"1","attributes
 Attribute | Type
 --------- | ----
 title | string
-public | graph/type_annotation/boolean_type_annotation
+public | boolean
 
 ### Delete a Plan
 
@@ -2442,6 +2484,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
       "decline_reason": "string",
       "name": "string",
       "notes": "string",
+      "notification_sent_at": "2000-01-01T12:00:00Z",
       "photo_thumbnail": "string",
       "prepare_notification": true,
       "status": "string",
@@ -2482,11 +2525,60 @@ plan_person_times | https://api.planningcenteronline.com/services/v2/people/1/pl
 plan_times | https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/plan_times | PlanTime
 team | https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/team | Team
 
+### Create a new Plan Person
+
+```shell
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{"type":"PlanPerson","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/team_members"
+```
 
 
+#### HTTP Request
+
+`POST https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/team_members`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+status | string
+decline_reason | string
+notes | string
+team_position_name | string
+
+### Update an existing Plan Person
+
+```shell
+# to update a record...
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"PlanPerson","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/people/1/plan_people/1"
+```
 
 
+#### HTTP Request
 
+`PATCH https://api.planningcenteronline.com/services/v2/people/1/plan_people/1`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+status | string
+decline_reason | string
+notes | string
+team_position_name | string
+prepare_notification | boolean
+
+### Delete a Plan Person
+
+```shell
+# to delete a record...
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/services/v2/people/1/plan_people/1"
+```
+
+
+#### HTTP Request
+
+`DELETE https://api.planningcenteronline.com/services/v2/people/1/plan_people/1`
 
 ## PlanPersonTimes
 
@@ -2676,8 +2768,8 @@ curl -v -u token:secret -X POST -d '{"data":{"type":"PlanTime","attributes":{...
 
 Attribute | Type
 --------- | ----
-starts_at | graph/wall_clock_time
-ends_at | graph/wall_clock_time
+starts_at | date_time
+ends_at | date_time
 name | string
 time_type | integer
 
@@ -2697,8 +2789,8 @@ curl -v -u token:secret -X PATCH -d '{"data":{"type":"PlanTime","id":"1","attrib
 
 Attribute | Type
 --------- | ----
-starts_at | graph/wall_clock_time
-ends_at | graph/wall_clock_time
+starts_at | date_time
+ends_at | date_time
 name | string
 time_type | integer
 
@@ -3115,7 +3207,7 @@ admin | string
 author | string
 copyright | string
 ccli_number | integer
-hidden | graph/type_annotation/boolean_type_annotation
+hidden | boolean
 themes | string
 
 ### Update an existing Song
@@ -3139,7 +3231,7 @@ admin | string
 author | string
 copyright | string
 ccli_number | integer
-hidden | graph/type_annotation/boolean_type_annotation
+hidden | boolean
 themes | string
 
 ### Delete a Song
@@ -3750,10 +3842,10 @@ curl -v -u token:secret -X PATCH -d '{"data":{"type":"TextSetting","id":"1","att
 
 Attribute | Type
 --------- | ----
-general_emails_enabled | graph/type_annotation/boolean_type_annotation
-reminders_enabled | graph/type_annotation/boolean_type_annotation
-scheduling_replies_enabled | graph/type_annotation/boolean_type_annotation
-scheduling_requests_enabled | graph/type_annotation/boolean_type_annotation
+general_emails_enabled | boolean
+reminders_enabled | boolean
+scheduling_replies_enabled | boolean
+scheduling_requests_enabled | boolean
 
 
 
