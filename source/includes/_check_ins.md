@@ -220,6 +220,7 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
+check_in_group | https://api.planningcenteronline.com/check_ins/v2/check_ins/1/check_in_group | CheckInGroup
 checked_in_at | https://api.planningcenteronline.com/check_ins/v2/check_ins/1/checked_in_at | Station
 checked_in_by | https://api.planningcenteronline.com/check_ins/v2/check_ins/1/checked_in_by | Person
 checked_out_by | https://api.planningcenteronline.com/check_ins/v2/check_ins/1/checked_out_by | Person
@@ -229,6 +230,101 @@ event_times | https://api.planningcenteronline.com/check_ins/v2/check_ins/1/even
 location | https://api.planningcenteronline.com/check_ins/v2/check_ins/1/location | Location
 options | https://api.planningcenteronline.com/check_ins/v2/check_ins/1/options | Option
 person | https://api.planningcenteronline.com/check_ins/v2/check_ins/1/person | Person
+
+
+
+
+
+
+
+## CheckInGroups
+
+When one or more people check in, they're grouped in a `CheckInGroup`.
+These check-ins all have the same "checked-in by" person. `CheckInGroup` is also
+the basis for label printing.
+
+`print_status` may be:
+
+- `ready`: This group isn't printed or canceled yet
+- `printed`: This group was successfully printed at a station
+- `canceled`: This group was canceled at a station
+- `skipped`: This group had no labels to print, so it was never printed.
+
+
+
+
+### List Check In Groups
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/check_ins/1/check_in_group"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/check_ins/v2/check_ins/1/check_in_group`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+include | check_ins | include associated check_ins
+include | event_period | include associated event_period
+include | print_station | include associated print_station
+after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=check_ins,event_period</code></aside>
+
+### Get a single Check In Group
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/check_ins/1/check_in_group/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "CheckInGroup",
+    "id": "1",
+    "attributes": {
+      "name_labels_count": 1,
+      "security_labels_count": 1,
+      "check_ins_count": 1,
+      "print_status": 1
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/check_ins/v2/check_ins/1/check_in_group/1`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+include | check_ins | include associated check_ins
+include | event_period | include associated event_period
+include | print_station | include associated print_station
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=check_ins,event_period</code></aside>
+
+### Associations for a Check In Group
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL | Endpoint
+----------- | --- | --------
+check_ins | https://api.planningcenteronline.com/check_ins/v2/check_ins/1/check_in_group/1/check_ins | CheckIn
+event_period | https://api.planningcenteronline.com/check_ins/v2/check_ins/1/check_in_group/1/event_period | EventPeriod
+print_station | https://api.planningcenteronline.com/check_ins/v2/check_ins/1/check_in_group/1/print_station | Station
 
 
 
@@ -672,8 +768,8 @@ event_time | https://api.planningcenteronline.com/check_ins/v2/event_times/1/hea
 
 ## Labels
 
-Labels can be set to print for events _or_ locations
-using `EventLabel` or `LocationLabel` objects.
+Labels can be set to print for events (through `EventLabel`s),
+locations (through `LocationLabel`s) or options.
 Label type (security label / name label) is expressed with the
 `prints_for` attribute. `prints_for="Person"` is a name label,
 `prints_for="Group"` is a security label.
@@ -1132,12 +1228,12 @@ curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/check
 Parameter | Value | Description
 --------- | ----- | -----------
 include | location | include associated location
-include | check_in | include associated check_in
+include | check_ins | include associated check_ins
 include | label | include associated label
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
-<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=location,check_in</code></aside>
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=location,check_ins</code></aside>
 
 ### Get a single Option
 
@@ -1171,10 +1267,10 @@ curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/check
 Parameter | Value | Description
 --------- | ----- | -----------
 include | location | include associated location
-include | check_in | include associated check_in
+include | check_ins | include associated check_ins
 include | label | include associated label
 
-<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=location,check_in</code></aside>
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=location,check_ins</code></aside>
 
 ### Associations for an Option
 
@@ -1588,6 +1684,7 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
+check_in_groups | https://api.planningcenteronline.com/check_ins/v2/stations/1/check_in_groups | CheckInGroup
 checked_in_at_check_ins | https://api.planningcenteronline.com/check_ins/v2/stations/1/checked_in_at_check_ins | CheckIn
 event | https://api.planningcenteronline.com/check_ins/v2/stations/1/event | Event
 location | https://api.planningcenteronline.com/check_ins/v2/stations/1/location | Location

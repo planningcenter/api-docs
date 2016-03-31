@@ -2,6 +2,37 @@
 
 PCO People helps you manage contact data, membership info, and everything you need to know about your people with confidence.
 
+## Activities
+
+A change made to a Person's profile
+
+
+
+### List Activities
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1/activities"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/people/v2/people/1/activities`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+
+
+
+
+
+
 ## Addresses
 
 An address represents a physical and/or mailing address for a person.
@@ -53,6 +84,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1
       "state": "string",
       "street": "string",
       "zip": "string"
+    },
+    "relationships": {
     }
   }
 }
@@ -173,6 +206,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/apps/1"
     "attributes": {
       "name": "string",
       "url": "string"
+    },
+    "relationships": {
     }
   }
 }
@@ -236,6 +271,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/campuses
       "latitude": "unknown",
       "longitude": "unknown",
       "name": "string"
+    },
+    "relationships": {
     }
   }
 }
@@ -341,6 +378,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/lists/1/
       "description": "string",
       "settings": "string",
       "updated_at": "2000-01-01T12:00:00Z"
+    },
+    "relationships": {
     }
   }
 }
@@ -410,6 +449,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/lists/1/
     "type": "ConditionResult",
     "id": "primary_key",
     "attributes": {
+    },
+    "relationships": {
     }
   }
 }
@@ -488,6 +529,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1
       "organization_id": 1,
       "organization_name": "Ministry Centered Technologies",
       "type": "ConnectedPerson"
+    },
+    "relationships": {
     }
   }
 }
@@ -552,6 +595,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/emails/1
     "attributes": {
       "address": "string",
       "location": "string"
+    },
+    "relationships": {
     }
   }
 }
@@ -685,6 +730,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1
       "file_name": "unknown",
       "file_size": 1,
       "value": "string"
+    },
+    "relationships": {
     }
   }
 }
@@ -826,6 +873,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/field_de
       "name": "string",
       "sequence": 1,
       "slug": "string"
+    },
+    "relationships": {
     }
   }
 }
@@ -962,6 +1011,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/field_de
     "attributes": {
       "sequence": 1,
       "value": "string"
+    },
+    "relationships": {
     }
   }
 }
@@ -1084,6 +1135,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/househol
       "primary_contact_id": 1,
       "primary_contact_name": "string",
       "updated_at": "2000-01-01T12:00:00Z"
+    },
+    "relationships": {
     }
   }
 }
@@ -1191,7 +1244,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/househol
 Parameter | Value | Description
 --------- | ----- | -----------
 where[person_name] | _string_ | query on a specific person_name
-where[pending] | _graph/type_annotation/boolean_type_annotation_ | query on a specific pending
+where[pending] | _boolean_ | query on a specific pending
 include | person | include associated person
 include | household | include associated household
 after | _id_ | get page after the specified id
@@ -1217,6 +1270,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/househol
     "attributes": {
       "pending": true,
       "person_name": "string"
+    },
+    "relationships": {
     }
   }
 }
@@ -1262,7 +1317,7 @@ curl -v -u token:secret -X POST -d '{"data":{"type":"HouseholdMembership","attri
 
 Attribute | Type
 --------- | ----
-pending | graph/type_annotation/boolean_type_annotation
+pending | boolean
 
 ### Update an existing Household Membership
 
@@ -1282,7 +1337,7 @@ curl -v -u token:secret -X PATCH -d '{"data":{"type":"HouseholdMembership","id":
 
 Attribute | Type
 --------- | ----
-pending | graph/type_annotation/boolean_type_annotation
+pending | boolean
 
 ### Delete a Household Membership
 
@@ -1341,6 +1396,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/inactive
     "id": "primary_key",
     "attributes": {
       "value": "string"
+    },
+    "relationships": {
     }
   }
 }
@@ -1473,6 +1530,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/lists/1"
       "subset": "string",
       "total_people": "unknown",
       "updated_at": "2000-01-01T12:00:00Z"
+    },
+    "relationships": {
     }
   }
 }
@@ -1515,6 +1574,8 @@ You can perform the following actions on a List by POSTing to the specified URL.
 Action | URL | Description
 ------ | --- | -----------
 run | https://api.planningcenteronline.com/people/v2/lists/1/run | Run a List to update its results.
+
+
 
 
 
@@ -1570,6 +1631,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/lists/1/
       "created_at": "2000-01-01T12:00:00Z",
       "group": 1,
       "name": "unknown"
+    },
+    "relationships": {
     }
   }
 }
@@ -1642,6 +1705,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/marital_
     "id": "primary_key",
     "attributes": {
       "value": "string"
+    },
+    "relationships": {
     }
   }
 }
@@ -1781,6 +1846,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/messages
       "sent_at": "2000-01-01T12:00:00Z",
       "subject": "string",
       "to_addresses": "string"
+    },
+    "relationships": {
     }
   }
 }
@@ -1841,7 +1908,7 @@ where[message_type] | _string_ | query on a specific message_type
 where[from_address] | _string_ | query on a specific from_address
 where[subject] | _string_ | query on a specific subject
 where[message_count] | _integer_ | query on a specific message_count
-where[system_message] | _graph/type_annotation/boolean_type_annotation_ | query on a specific system_message
+where[system_message] | _boolean_ | query on a specific system_message
 where[created_at] | _date_time_ | query on a specific created_at
 include | messages | include associated messages
 include | from | include associated from
@@ -1874,6 +1941,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/message_
       "subject": "string",
       "system_message": true,
       "uuid": "string"
+    },
+    "relationships": {
     }
   }
 }
@@ -1952,6 +2021,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/name_pre
     "id": "primary_key",
     "attributes": {
       "value": "string"
+    },
+    "relationships": {
     }
   }
 }
@@ -2062,6 +2133,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/name_suf
     "id": "primary_key",
     "attributes": {
       "value": "string"
+    },
+    "relationships": {
     }
   }
 }
@@ -2152,6 +2225,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2"
     "id": "primary_key",
     "attributes": {
       "name": "string"
+    },
+    "relationships": {
     }
   }
 }
@@ -2259,16 +2334,19 @@ where[birthdate] | _date_ | query on a specific birthdate
 where[anniversary] | _date_ | query on a specific anniversary
 where[gender] | _string_ | query on a specific gender
 where[grade] | _integer_ | query on a specific grade
-where[child] | _graph/type_annotation/boolean_type_annotation_ | query on a specific child
+where[child] | _boolean_ | query on a specific child
 where[status] | _string_ | query on a specific status
 where[school_type] | _string_ | query on a specific school_type
 where[graduation_year] | _integer_ | query on a specific graduation_year
-where[site_administrator] | _graph/type_annotation/boolean_type_annotation_ | query on a specific site_administrator
+where[site_administrator] | _boolean_ | query on a specific site_administrator
 where[people_permissions] | _string_ | query on a specific people_permissions
 where[membership] | _string_ | query on a specific membership
+where[medical_notes] | _graph/type_annotation/unknown_type_annotation_ | query on a specific medical_notes
 where[created_at] | _date_time_ | query on a specific created_at
 where[updated_at] | _date_time_ | query on a specific updated_at
+where[id] | _primary_key_ | query on a specific id
 filter | created_since | filter people created in the last 24 hours; pass an additional `time` parameter in ISO 8601 format to specify your own timeframe
+filter | admins | filter using the named scope "admins"
 include | emails | include associated emails
 include | addresses | include associated addresses
 include | phone_numbers | include associated phone_numbers
@@ -2319,6 +2397,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1
       "status": "active",
       "type": "Person",
       "updated_at": "2015-04-21T22:52:53Z"
+    },
+    "relationships": {
     }
   }
 }
@@ -2352,6 +2432,7 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
+activities | https://api.planningcenteronline.com/people/v2/people/1/activities | Activity
 addresses | https://api.planningcenteronline.com/people/v2/people/1/addresses | Address
 apps | https://api.planningcenteronline.com/people/v2/people/1/apps | App
 connected_people | https://api.planningcenteronline.com/people/v2/people/1/connected_people | ConnectedPerson
@@ -2395,13 +2476,14 @@ birthdate | date
 anniversary | date
 gender | string
 grade | integer
-child | graph/type_annotation/boolean_type_annotation
+child | boolean
 status | string
 school_type | string
 graduation_year | integer
-site_administrator | graph/type_annotation/boolean_type_annotation
+site_administrator | boolean
 people_permissions | string
 membership | string
+medical_notes | graph/type_annotation/unknown_type_annotation
 
 ### Update an existing Person
 
@@ -2429,13 +2511,14 @@ birthdate | date
 anniversary | date
 gender | string
 grade | integer
-child | graph/type_annotation/boolean_type_annotation
+child | boolean
 status | string
 school_type | string
 graduation_year | integer
-site_administrator | graph/type_annotation/boolean_type_annotation
+site_administrator | boolean
 people_permissions | string
 membership | string
+medical_notes | graph/type_annotation/unknown_type_annotation
 
 ### Delete a Person
 
@@ -2500,6 +2583,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1
       "location": "string",
       "number": "string",
       "updated_at": "2000-01-01T12:00:00Z"
+    },
+    "relationships": {
     }
   }
 }
@@ -2622,6 +2707,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/reports/
       "created_at": "2000-01-01T12:00:00Z",
       "name": "string",
       "updated_at": "2000-01-01T12:00:00Z"
+    },
+    "relationships": {
     }
   }
 }
@@ -2753,6 +2840,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/lists/1/
       "created_at": "2000-01-01T12:00:00Z",
       "subset": "string",
       "updated_at": "2000-01-01T12:00:00Z"
+    },
+    "relationships": {
     }
   }
 }
@@ -2825,6 +2914,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/lists/1/
     "type": "RuleResult",
     "id": "primary_key",
     "attributes": {
+    },
+    "relationships": {
     }
   }
 }
@@ -2906,6 +2997,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/school_o
       ],
       "type": "SchoolOption",
       "value": "Colcord Elementary"
+    },
+    "relationships": {
     }
   }
 }
@@ -3011,7 +3104,7 @@ Parameter | Value | Description
 --------- | ----- | -----------
 where[site] | _string_ | query on a specific site
 where[url] | _string_ | query on a specific url
-where[verified] | _graph/type_annotation/boolean_type_annotation_ | query on a specific verified
+where[verified] | _boolean_ | query on a specific verified
 where[created_at] | _date_time_ | query on a specific created_at
 where[updated_at] | _date_time_ | query on a specific updated_at
 include | person | include associated person
@@ -3039,6 +3132,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/social_p
       "updated_at": "2000-01-01T12:00:00Z",
       "url": "string",
       "verified": true
+    },
+    "relationships": {
     }
   }
 }
@@ -3082,7 +3177,7 @@ Attribute | Type
 --------- | ----
 site | string
 url | string
-verified | graph/type_annotation/boolean_type_annotation
+verified | boolean
 
 ### Update an existing Social Profile
 
@@ -3104,7 +3199,7 @@ Attribute | Type
 --------- | ----
 site | string
 url | string
-verified | graph/type_annotation/boolean_type_annotation
+verified | boolean
 
 ### Delete a Social Profile
 
@@ -3168,6 +3263,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/tabs/1"
       "name": "string",
       "sequence": 1,
       "slug": "string"
+    },
+    "relationships": {
     }
   }
 }
@@ -3294,11 +3391,14 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflow
     "type": "Workflow",
     "id": "primary_key",
     "attributes": {
+      "completed_card_count": "unknown",
       "created_at": "2000-01-01T12:00:00Z",
       "my_ready_card_count": "unknown",
       "name": "string",
       "total_ready_card_count": "unknown",
       "updated_at": "2000-01-01T12:00:00Z"
+    },
+    "relationships": {
     }
   }
 }
@@ -3335,6 +3435,14 @@ A Card
 
 
 
+### Relationships
+
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+assignee | Assignee | _false_ | 
+current_step | CurrentStep | _false_ | 
+
 ### List Workflow Cards
 
 ```shell
@@ -3351,10 +3459,6 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflow
 
 Parameter | Value | Description
 --------- | ----- | -----------
-where[created_at] | _date_time_ | query on a specific created_at
-where[updated_at] | _date_time_ | query on a specific updated_at
-where[completed_at] | _date_time_ | query on a specific completed_at
-where[snooze_until] | _date_time_ | query on a specific snooze_until
 include | person | include associated person
 include | assignee | include associated assignee
 include | tasks | include associated tasks
@@ -3383,6 +3487,20 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflow
       "created_at": "2000-01-01T12:00:00Z",
       "snooze_until": "2000-01-01T12:00:00Z",
       "updated_at": "2000-01-01T12:00:00Z"
+    },
+    "relationships": {
+      "assignee": {
+        "data": {
+          "type": "Assignee",
+          "id": "123"
+        }
+      },
+      "current_step": {
+        "data": {
+          "type": "CurrentStep",
+          "id": "123"
+        }
+      }
     }
   }
 }
@@ -3408,7 +3526,10 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
+activities | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/activities | WorkflowCardActivity
 assignee | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/assignee | Person
+current_task | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/current_task | WorkflowTask
+notes | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/notes | WorkflowCardNote
 person | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/person | Person
 tasks | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/tasks | WorkflowTask
 
@@ -3418,13 +3539,242 @@ You can perform the following actions on a Workflow Card by POSTing to the speci
 
 Action | URL | Description
 ------ | --- | -----------
+go_back | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/go_back | Move a Workflow Card back to the previous step.
+restore | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/restore | Restore a card
+send_email | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/send_email | Sends an email to the subject of the card
+skip_step | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/skip_step | Move a Workflow Card to the next step without completing the current step.
 unsnooze | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/unsnooze | Unsnoozes a card
-promote | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/promote | Move a Workflow Card to the next step.
 snooze | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/snooze | Snoozes a card for a specific duration
+promote | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/promote | Move a Workflow Card to the next step.
+remove | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/remove | Removes a card
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+### Create a new Workflow Card
+
+```shell
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{"type":"WorkflowCard","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/workflows/1/cards"
+```
+
+
+<aside class='info'>Only users with the role <code>editor</code> can create this resource.</aside>
+
+#### HTTP Request
+
+`POST https://api.planningcenteronline.com/people/v2/workflows/1/cards`
+
+#### Resource Attributes
+
+_none_
+
+### Update an existing Workflow Card
+
+```shell
+# to update a record...
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"WorkflowCard","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/workflows/1/cards/1"
+```
+
+
+#### HTTP Request
+
+`PATCH https://api.planningcenteronline.com/people/v2/workflows/1/cards/1`
+
+#### Resource Attributes
+
+_none_
+
+
+
+## WorkflowCardActivities
+
+Workflow Card Activity is a record of an action performed on a card
+
+
+
+### List Workflow Card Activities
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/activities"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/activities`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+### Get a single Workflow Card Activity
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/activities/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "WorkflowCardActivity",
+    "id": "unknown",
+    "attributes": {
+      "comment": "unknown",
+      "content": "unknown",
+      "created_at": "unknown",
+      "person_avatar_url": "unknown",
+      "person_name": "unknown",
+      "reassigned_from_avatar_url": "unknown",
+      "reassigned_from_name": "unknown",
+      "reassigned_to_avatar_url": "unknown",
+      "reassigned_to_name": "unknown",
+      "subject": "unknown",
+      "type": "unknown"
+    },
+    "relationships": {
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/activities/1`
+
+#### URL Parameters
+
+_none_
+
+
+
+
+
+### Delete a Workflow Card Activity
+
+```shell
+# to delete a record...
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/activities/1"
+```
+
+
+#### HTTP Request
+
+`DELETE https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/activities/1`
+
+## WorkflowCardNotes
+
+Workflow Note is a note that has been made on a Workflow Card
+
+
+
+### List Workflow Card Notes
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/notes"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/notes`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+### Get a single Workflow Card Note
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/notes/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "WorkflowCardNote",
+    "id": "unknown",
+    "attributes": {
+      "note": "unknown"
+    },
+    "relationships": {
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/notes/1`
+
+#### URL Parameters
+
+_none_
+
+### Create a new Workflow Card Note
+
+```shell
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{"type":"WorkflowCardNote","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/notes"
+```
+
+
+#### HTTP Request
+
+`POST https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/notes`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+note | graph/type_annotation/unknown_type_annotation
+
+### Update an existing Workflow Card Note
+
+```shell
+# to update a record...
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"WorkflowCardNote","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/notes/1"
+```
+
+
+#### HTTP Request
+
+`PATCH https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/notes/1`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+note | graph/type_annotation/unknown_type_annotation
 
 
 
@@ -3480,7 +3830,10 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflow
       "name": "string",
       "sequence": 1,
       "total_ready_card_count": "unknown",
+      "total_snoozed_card_count": "unknown",
       "updated_at": "2000-01-01T12:00:00Z"
+    },
+    "relationships": {
     }
   }
 }
@@ -3502,7 +3855,6 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
-cards | https://api.planningcenteronline.com/people/v2/workflows/1/steps/1/cards | WorkflowCard
 default_assignee | https://api.planningcenteronline.com/people/v2/workflows/1/steps/1/default_assignee | Person
 
 
@@ -3517,17 +3869,24 @@ A Task
 
 
 
+### Relationships
+
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+step | Step | _false_ | 
+
 ### List Workflow Tasks
 
 ```shell
 # to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/tasks"
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/current_task"
 ```
 
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/tasks`
+`GET https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/current_task`
 
 #### URL Parameters
 
@@ -3548,7 +3907,7 @@ per_page | _integer_ | how many records to return per page (min=1, max=100, defa
 
 ```shell
 # to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/tasks/1"
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/current_task/1"
 ```
 
 
@@ -3563,6 +3922,14 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflow
       "completed_at": "2000-01-01T12:00:00Z",
       "created_at": "2000-01-01T12:00:00Z",
       "updated_at": "2000-01-01T12:00:00Z"
+    },
+    "relationships": {
+      "step": {
+        "data": {
+          "type": "Step",
+          "id": "123"
+        }
+      }
     }
   }
 }
@@ -3570,7 +3937,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflow
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/tasks/1`
+`GET https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/current_task/1`
 
 #### URL Parameters
 

@@ -76,6 +76,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
     "attributes": {
       "created_at": "2000-01-01T12:00:00Z",
       "updated_at": "2000-01-01T12:00:00Z"
+    },
+    "relationships": {
     }
   }
 }
@@ -148,6 +150,15 @@ Possible Values:
 - `12/8`
 
 
+### Relationships
+
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+updated_by | Person | _false_ | 
+created_by | Person | _false_ | 
+song | Song | _false_ | 
+
 ### List Arrangements
 
 ```shell
@@ -198,6 +209,26 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/songs/
       "notes": "string",
       "sequence": "string",
       "updated_at": "2000-01-01T12:00:00Z"
+    },
+    "relationships": {
+      "created_by": {
+        "data": {
+          "type": "Person",
+          "id": "123"
+        }
+      },
+      "song": {
+        "data": {
+          "type": "Song",
+          "id": "123"
+        }
+      },
+      "updated_by": {
+        "data": {
+          "type": "Person",
+          "id": "123"
+        }
+      }
     }
   }
 }
@@ -293,6 +324,16 @@ A file, whether it's stored on Planning Center or linked from another location.
 
 
 
+### Relationships
+
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+attachable | Plan | _false_ | 
+attachment_types | AttachmentType | _true_ | 
+created_by | Person | _false_ | 
+updated_by | Person | _false_ | 
+
 ### List Attachments
 
 ```shell
@@ -334,7 +375,6 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
       "downloadable": true,
       "file_size": 1,
       "filename": "string",
-      "linked_type": "string",
       "linked_url": "string",
       "page_order": "string",
       "pco_type": "string",
@@ -344,6 +384,34 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
       "updated_at": "2000-01-01T12:00:00Z",
       "url": "string",
       "web_streamable": true
+    },
+    "relationships": {
+      "attachable": {
+        "data": {
+          "type": "Plan",
+          "id": "123"
+        }
+      },
+      "attachment_types": {
+        "data": [
+          {
+            "type": "AttachmentType",
+            "id": "123"
+          }
+        ]
+      },
+      "created_by": {
+        "data": {
+          "type": "Person",
+          "id": "123"
+        }
+      },
+      "updated_by": {
+        "data": {
+          "type": "Person",
+          "id": "123"
+        }
+      }
     }
   }
 }
@@ -383,11 +451,20 @@ This will generate the URL and return it in the `attachment_url` attribute of th
 
 
 
+
+
 ## AttachmentActivities
 
 Returned from the `open` attachment action.
 
 
+
+### Relationships
+
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+attachment | Attachment | _false_ | 
 
 ### List Attachment Activities
 
@@ -454,6 +531,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
       "created_at": "2000-01-01T12:00:00Z",
       "updated_at": "2000-01-01T12:00:00Z",
       "user_name": "string"
+    },
+    "relationships": {
     }
   }
 }
@@ -521,6 +600,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/attach
       "name": "string",
       "number_charts": true,
       "numeral_charts": true
+    },
+    "relationships": {
     }
   }
 }
@@ -540,9 +621,118 @@ _none_
 
 
 
+## AvailableSignups
+
+Signups that are available.
+
+
+
+### Relationships
+
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+organization | Organization | _false_ | 
+person | Person | _false_ | 
+service_type | ServiceType | _false_ | 
+
+### List Available Signups
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people/1/available_signups"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/services/v2/people/1/available_signups`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+### Get a single Available Signup
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people/1/available_signups/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "AvailableSignup",
+    "id": "primary_key",
+    "attributes": {
+      "organization_name": "string",
+      "service_type_name": "string",
+      "signups_available": true
+    },
+    "relationships": {
+      "organization": {
+        "data": {
+          "type": "Organization",
+          "id": "123"
+        }
+      },
+      "person": {
+        "data": {
+          "type": "Person",
+          "id": "123"
+        }
+      },
+      "service_type": {
+        "data": {
+          "type": "ServiceType",
+          "id": "123"
+        }
+      }
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/services/v2/people/1/available_signups/1`
+
+#### URL Parameters
+
+_none_
+
+### Associations for an Available Signup
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL | Endpoint
+----------- | --- | --------
+signup_sheets | https://api.planningcenteronline.com/services/v2/people/1/available_signups/1/signup_sheets | SignupSheet
+
+
+
+
+
+
+
 ## CheckIns
 
 
+
+### Relationships
+
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+plan_time | PlanTime | _false_ | 
+plan | Plan | _false_ | 
+plan_person | PlanPerson | _false_ | 
 
 ### List Check Ins
 
@@ -582,6 +772,26 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
       "check_ins_event_id": "primary_key",
       "check_ins_event_period_id": "primary_key",
       "checked_in_at": "time"
+    },
+    "relationships": {
+      "plan": {
+        "data": {
+          "type": "Plan",
+          "id": "123"
+        }
+      },
+      "plan_person": {
+        "data": {
+          "type": "PlanPerson",
+          "id": "123"
+        }
+      },
+      "plan_time": {
+        "data": {
+          "type": "PlanTime",
+          "id": "123"
+        }
+      }
     }
   }
 }
@@ -606,6 +816,14 @@ _none_
 A Contributor Resource
 
 
+
+### Relationships
+
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+plan | Plan | _false_ | 
+person | Person | _false_ | 
 
 ### List Contributors
 
@@ -646,6 +864,20 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
       "full_name": "string",
       "photo_thumbnail_url": "string",
       "updated_at": "2000-01-01T12:00:00Z"
+    },
+    "relationships": {
+      "person": {
+        "data": {
+          "type": "Person",
+          "id": "123"
+        }
+      },
+      "plan": {
+        "data": {
+          "type": "Plan",
+          "id": "123"
+        }
+      }
     }
   }
 }
@@ -670,6 +902,13 @@ _none_
 A folder is a container used to organize multiple Service Types or other Folders.
 
 
+
+### Relationships
+
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+parent | Folder | _false_ | 
 
 ### List Folders
 
@@ -711,6 +950,14 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/folder
       "created_at": "2000-01-01T12:00:00Z",
       "name": "string",
       "updated_at": "2000-01-01T12:00:00Z"
+    },
+    "relationships": {
+      "parent": {
+        "data": {
+          "type": "Folder",
+          "id": "123"
+        }
+      }
     }
   }
 }
@@ -831,6 +1078,16 @@ There are 3 possible values:
 - `during`: the item happens during the service
 
 
+### Relationships
+
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+plan | Plan | _false_ | 
+song | Song | _false_ | 
+arrangement | Arrangement | _false_ | 
+key | Key | _false_ | 
+
 ### List Items
 
 ```shell
@@ -883,6 +1140,32 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
       "service_position": "string",
       "title": "string",
       "updated_at": "2000-01-01T12:00:00Z"
+    },
+    "relationships": {
+      "arrangement": {
+        "data": {
+          "type": "Arrangement",
+          "id": "123"
+        }
+      },
+      "key": {
+        "data": {
+          "type": "Key",
+          "id": "123"
+        }
+      },
+      "plan": {
+        "data": {
+          "type": "Plan",
+          "id": "123"
+        }
+      },
+      "song": {
+        "data": {
+          "type": "Song",
+          "id": "123"
+        }
+      }
     }
   }
 }
@@ -983,6 +1266,13 @@ Note: You can only assign the category on create.  If you want to change categor
 
 
 
+### Relationships
+
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+item_note_category | ItemNoteCategory | _false_ | 
+
 ### List Item Notes
 
 ```shell
@@ -1023,6 +1313,14 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
       "content": "string",
       "created_at": "2000-01-01T12:00:00Z",
       "updated_at": "2000-01-01T12:00:00Z"
+    },
+    "relationships": {
+      "item_note_category": {
+        "data": {
+          "type": "ItemNoteCategory",
+          "id": "123"
+        }
+      }
     }
   }
 }
@@ -1100,6 +1398,13 @@ A category of plan item notes for an entire Service Type.
 
 
 
+### Relationships
+
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+service_type | ServiceType | _false_ | 
+
 ### List Item Note Categories
 
 ```shell
@@ -1139,6 +1444,14 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
       "name": "string",
       "sequence": 1,
       "updated_at": "2000-01-01T12:00:00Z"
+    },
+    "relationships": {
+      "service_type": {
+        "data": {
+          "type": "ServiceType",
+          "id": "123"
+        }
+      }
     }
   }
 }
@@ -1161,6 +1474,15 @@ _none_
 ## ItemTimes
 
 
+
+### Relationships
+
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+item | Item | _false_ | 
+plan_time | PlanTime | _false_ | 
+plan | Plan | _false_ | 
 
 ### List Item Times
 
@@ -1201,6 +1523,26 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
       "length_offset": 1,
       "live_end_at": "2000-01-01T12:00:00Z",
       "live_start_at": "2000-01-01T12:00:00Z"
+    },
+    "relationships": {
+      "item": {
+        "data": {
+          "type": "Item",
+          "id": "123"
+        }
+      },
+      "plan": {
+        "data": {
+          "type": "Plan",
+          "id": "123"
+        }
+      },
+      "plan_time": {
+        "data": {
+          "type": "PlanTime",
+          "id": "123"
+        }
+      }
     }
   }
 }
@@ -1252,6 +1594,13 @@ An array of objects.
 `
 
 
+### Relationships
+
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+arrangement | Arrangement | _false_ | 
+
 ### List Keys
 
 ```shell
@@ -1295,6 +1644,14 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/songs/
       "starting_key": "string",
       "starting_minor": true,
       "updated_at": "2000-01-01T12:00:00Z"
+    },
+    "relationships": {
+      "arrangement": {
+        "data": {
+          "type": "Arrangement",
+          "id": "123"
+        }
+      }
     }
   }
 }
@@ -1469,6 +1826,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/medias
       "thumbnail_url": "string",
       "title": "string",
       "updated_at": "2000-01-01T12:00:00Z"
+    },
+    "relationships": {
     }
   }
 }
@@ -1552,6 +1911,14 @@ curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/services
 
 
 
+### Relationships
+
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+plan | Plan | _false_ | 
+service_type | ServiceType | _false_ | 
+
 ### List Media Schedules
 
 ```shell
@@ -1591,6 +1958,20 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/media/
       "plan_short_dates": "string",
       "plan_sort_date": "2000-01-01T12:00:00Z",
       "service_type_name": "string"
+    },
+    "relationships": {
+      "plan": {
+        "data": {
+          "type": "Plan",
+          "id": "123"
+        }
+      },
+      "service_type": {
+        "data": {
+          "type": "ServiceType",
+          "id": "123"
+        }
+      }
     }
   }
 }
@@ -1615,6 +1996,15 @@ _none_
 An amount of unfilled positions needed within a team in a plan.
 
 
+
+### Relationships
+
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+team | Team | _false_ | 
+time | PlanTime | _false_ | 
+plan | Plan | _false_ | 
 
 ### List Needed Positions
 
@@ -1658,6 +2048,26 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
       "quantity": 1,
       "scheduled_to": "string",
       "team_position_name": "string"
+    },
+    "relationships": {
+      "plan": {
+        "data": {
+          "type": "Plan",
+          "id": "123"
+        }
+      },
+      "team": {
+        "data": {
+          "type": "Team",
+          "id": "123"
+        }
+      },
+      "time": {
+        "data": {
+          "type": "PlanTime",
+          "id": "123"
+        }
+      }
     }
   }
 }
@@ -1773,6 +2183,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2"
       "time_zone": "string",
       "twenty_four_hour_time": true,
       "updated_at": "2000-01-01T12:00:00Z"
+    },
+    "relationships": {
     }
   }
 }
@@ -1817,6 +2229,14 @@ A person added to PCO Services.
 <span class='attribute-info-name'>legacy_id</span>
 
 If you've used Person.id from API v1 this attribute can be used to map from those old IDs to the new IDs used in API v2
+
+### Relationships
+
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+created_by | Person | _false_ | 
+updated_by | Person | _false_ | 
 
 ### List People
 
@@ -1876,6 +2296,20 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
       "songs_tab": "string",
       "status": "string",
       "updated_at": "2000-01-01T12:00:00Z"
+    },
+    "relationships": {
+      "created_by": {
+        "data": {
+          "type": "Person",
+          "id": "123"
+        }
+      },
+      "updated_by": {
+        "data": {
+          "type": "Person",
+          "id": "123"
+        }
+      }
     }
   }
 }
@@ -1896,6 +2330,7 @@ You can append one of the following associations onto this resource URL to jump 
 Association | URL | Endpoint
 ----------- | --- | --------
 activities | https://api.planningcenteronline.com/services/v2/people/1/activities | Activity
+available_signups | https://api.planningcenteronline.com/services/v2/people/1/available_signups | AvailableSignup
 person_team_position_assignments | https://api.planningcenteronline.com/services/v2/people/1/person_team_position_assignments | PersonTeamPositionAssignment
 plan_people | https://api.planningcenteronline.com/services/v2/people/1/plan_people | PlanPerson
 schedules | https://api.planningcenteronline.com/services/v2/people/1/schedules | Schedule
@@ -1910,6 +2345,8 @@ You can perform the following actions on a Person by POSTing to the specified UR
 Action | URL | Description
 ------ | --- | -----------
  |  | 
+
+
 
 
 
@@ -1949,6 +2386,14 @@ e.g. ['1', '3', '5'] to prefer odd numbered weeks.
 <span class='attribute-info-name'>time_preference_option_ids</span>
 
 Indicates which Time Preference Options are preferred (checked).
+
+### Relationships
+
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+person | Person | _false_ | 
+time_preference_options | TimePreferenceOption | _true_ | 
 
 ### List Person Team Position Assignments
 
@@ -1991,6 +2436,22 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
       ],
       "schedule_preference": "string",
       "updated_at": "2000-01-01T12:00:00Z"
+    },
+    "relationships": {
+      "person": {
+        "data": {
+          "type": "Person",
+          "id": "123"
+        }
+      },
+      "time_preference_options": {
+        "data": [
+          {
+            "type": "TimePreferenceOption",
+            "id": "123"
+          }
+        ]
+      }
     }
   }
 }
@@ -2098,6 +2559,17 @@ The full date string representing all Service Time dates.
 
 True if Public Access has been enabled.
 
+### Relationships
+
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+service_type | ServiceType | _false_ | 
+next_plan | Plan | _false_ | 
+previous_plan | Plan | _false_ | 
+attachment_types | AttachmentType | _true_ | 
+series | Series | _false_ | 
+
 ### List Plans
 
 ```shell
@@ -2158,6 +2630,40 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
       "title": "string",
       "total_length": 1,
       "updated_at": "2000-01-01T12:00:00Z"
+    },
+    "relationships": {
+      "attachment_types": {
+        "data": [
+          {
+            "type": "AttachmentType",
+            "id": "123"
+          }
+        ]
+      },
+      "next_plan": {
+        "data": {
+          "type": "Plan",
+          "id": "123"
+        }
+      },
+      "previous_plan": {
+        "data": {
+          "type": "Plan",
+          "id": "123"
+        }
+      },
+      "series": {
+        "data": {
+          "type": "Series",
+          "id": "123"
+        }
+      },
+      "service_type": {
+        "data": {
+          "type": "ServiceType",
+          "id": "123"
+        }
+      }
     }
   }
 }
@@ -2190,6 +2696,38 @@ plan_times | https://api.planningcenteronline.com/services/v2/service_types/1/pl
 previous_plan | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/previous_plan | Plan
 series | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/series | Series
 team_members | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/team_members | PlanPerson
+
+### Actions for a Plan
+
+You can perform the following actions on a Plan by POSTing to the specified URL.
+
+Action | URL | Description
+------ | --- | -----------
+item_reorder | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/item_reorder | Reorder plan items in one request.
+
+#### item_reorder
+
+This can be used to reorder all items in a plan in one request.
+
+It expects a `POST` body with a `sequence` of `Item` ids in order.  E.G.
+
+```json
+{
+  "data": {
+    "type": "PlanItemReorder",
+    "attributes": {
+      "sequence": [
+        "5",
+        "1",
+        "3"
+      ]
+    }
+  }
+}
+```
+
+On success you will get back a `204 No Content`.
+
 
 ### Create a new Plan
 
@@ -2247,6 +2785,13 @@ A specific plan note within a single plan.
 
 
 
+### Relationships
+
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+plan_note_category | PlanNoteCategory | _false_ | 
+
 ### List Plan Notes
 
 ```shell
@@ -2289,6 +2834,14 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
       "content": "string",
       "created_at": "2000-01-01T12:00:00Z",
       "updated_at": "2000-01-01T12:00:00Z"
+    },
+    "relationships": {
+      "plan_note_category": {
+        "data": {
+          "type": "PlanNoteCategory",
+          "id": "123"
+        }
+      }
     }
   }
 }
@@ -2366,6 +2919,13 @@ A category of plan notes for an entire Service Type.
 
 
 
+### Relationships
+
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+service_type | ServiceType | _false_ | 
+
 ### List Plan Note Categories
 
 ```shell
@@ -2405,6 +2965,14 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
       "name": "string",
       "sequence": 1,
       "updated_at": "2000-01-01T12:00:00Z"
+    },
+    "relationships": {
+      "service_type": {
+        "data": {
+          "type": "ServiceType",
+          "id": "123"
+        }
+      }
     }
   }
 }
@@ -2434,9 +3002,17 @@ A person scheduled within a specific plan.
 
 If the person is scheduled to a split team where they could potentially accept 1 time and decline another.
 
-<span class='attribute-info-name'>excluded_times</span>
+### Relationships
 
-Scheduled people are assigned to all service, rehearsal, and other times, unless you exclude them. Exclude any times the person is not assigned to for that plan.
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+person | Person | _false_ | 
+plan | Plan | _false_ | 
+service_type | ServiceType | _false_ | 
+team | Team | _false_ | 
+responds_to | Person | _false_ | 
+times | PlanTime | _true_ | 
 
 ### List Plan People
 
@@ -2491,6 +3067,46 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
       "status_updated_at": "2000-01-01T12:00:00Z",
       "team_position_name": "string",
       "updated_at": "2000-01-01T12:00:00Z"
+    },
+    "relationships": {
+      "person": {
+        "data": {
+          "type": "Person",
+          "id": "123"
+        }
+      },
+      "plan": {
+        "data": {
+          "type": "Plan",
+          "id": "123"
+        }
+      },
+      "responds_to": {
+        "data": {
+          "type": "Person",
+          "id": "123"
+        }
+      },
+      "service_type": {
+        "data": {
+          "type": "ServiceType",
+          "id": "123"
+        }
+      },
+      "team": {
+        "data": {
+          "type": "Team",
+          "id": "123"
+        }
+      },
+      "times": {
+        "data": [
+          {
+            "type": "PlanTime",
+            "id": "123"
+          }
+        ]
+      }
     }
   }
 }
@@ -2584,6 +3200,15 @@ curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/services
 
 
 
+### Relationships
+
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+plan_time | PlanTime | _false_ | 
+plan | Plan | _false_ | 
+plan_person | PlanPerson | _false_ | 
+
 ### List Plan Person Times
 
 ```shell
@@ -2622,6 +3247,26 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
       "created_at": "2000-01-01T12:00:00Z",
       "status": "string",
       "updated_at": "2000-01-01T12:00:00Z"
+    },
+    "relationships": {
+      "plan": {
+        "data": {
+          "type": "Plan",
+          "id": "123"
+        }
+      },
+      "plan_person": {
+        "data": {
+          "type": "PlanPerson",
+          "id": "123"
+        }
+      },
+      "plan_time": {
+        "data": {
+          "type": "PlanTime",
+          "id": "123"
+        }
+      }
     }
   }
 }
@@ -2682,17 +3327,24 @@ Possible values are:
 - other
 
 
+### Relationships
+
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+assigned_teams | Team | _true_ | 
+
 ### List Plan Times
 
 ```shell
 # to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people/1/schedules/1/plan_times"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people/1/schedules/1/declined_plan_times"
 ```
 
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/people/1/schedules/1/plan_times`
+`GET https://api.planningcenteronline.com/services/v2/people/1/schedules/1/declined_plan_times`
 
 #### URL Parameters
 
@@ -2706,7 +3358,7 @@ per_page | _integer_ | how many records to return per page (min=1, max=100, defa
 
 ```shell
 # to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people/1/schedules/1/plan_times/1"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people/1/schedules/1/declined_plan_times/1"
 ```
 
 
@@ -2729,6 +3381,16 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
       ],
       "time_type": 1,
       "updated_at": "2000-01-01T12:00:00Z"
+    },
+    "relationships": {
+      "assigned_teams": {
+        "data": [
+          {
+            "type": "Team",
+            "id": "123"
+          }
+        ]
+      }
     }
   }
 }
@@ -2736,7 +3398,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/people/1/schedules/1/plan_times/1`
+`GET https://api.planningcenteronline.com/services/v2/people/1/schedules/1/declined_plan_times/1`
 
 #### URL Parameters
 
@@ -2750,7 +3412,7 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
-split_team_rehearsal_assignments | https://api.planningcenteronline.com/services/v2/people/1/schedules/1/plan_times/1/split_team_rehearsal_assignments | SplitTeamRehearsalAssignment
+split_team_rehearsal_assignments | https://api.planningcenteronline.com/services/v2/people/1/schedules/1/declined_plan_times/1/split_team_rehearsal_assignments | SplitTeamRehearsalAssignment
 
 ### Create a new Plan Time
 
@@ -2777,13 +3439,13 @@ time_type | integer
 
 ```shell
 # to update a record...
-curl -v -u token:secret -X PATCH -d '{"data":{"type":"PlanTime","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/people/1/schedules/1/plan_times/1"
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"PlanTime","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/people/1/schedules/1/declined_plan_times/1"
 ```
 
 
 #### HTTP Request
 
-`PATCH https://api.planningcenteronline.com/services/v2/people/1/schedules/1/plan_times/1`
+`PATCH https://api.planningcenteronline.com/services/v2/people/1/schedules/1/declined_plan_times/1`
 
 #### Resource Attributes
 
@@ -2798,19 +3460,32 @@ time_type | integer
 
 ```shell
 # to delete a record...
-curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/services/v2/people/1/schedules/1/plan_times/1"
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/services/v2/people/1/schedules/1/declined_plan_times/1"
 ```
 
 
 #### HTTP Request
 
-`DELETE https://api.planningcenteronline.com/services/v2/people/1/schedules/1/plan_times/1`
+`DELETE https://api.planningcenteronline.com/services/v2/people/1/schedules/1/declined_plan_times/1`
 
 ## Schedules
 
 An instance of a PlanPerson with included data for displaying in a user's schedule
 
 
+
+### Relationships
+
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+person | Person | _false_ | 
+service_type | ServiceType | _false_ | 
+organization | Organization | _false_ | 
+plan_person | PlanPerson | _false_ | 
+plan | Plan | _false_ | 
+responds_to_person | Person | _false_ | 
+times | PlanTime | _true_ | 
 
 ### List Schedules
 
@@ -2859,6 +3534,52 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
       "status": "string",
       "team_name": "string",
       "team_position_name": "string"
+    },
+    "relationships": {
+      "organization": {
+        "data": {
+          "type": "Organization",
+          "id": "123"
+        }
+      },
+      "person": {
+        "data": {
+          "type": "Person",
+          "id": "123"
+        }
+      },
+      "plan": {
+        "data": {
+          "type": "Plan",
+          "id": "123"
+        }
+      },
+      "plan_person": {
+        "data": {
+          "type": "PlanPerson",
+          "id": "123"
+        }
+      },
+      "responds_to_person": {
+        "data": {
+          "type": "Person",
+          "id": "123"
+        }
+      },
+      "service_type": {
+        "data": {
+          "type": "ServiceType",
+          "id": "123"
+        }
+      },
+      "times": {
+        "data": [
+          {
+            "type": "PlanTime",
+            "id": "123"
+          }
+        ]
+      }
     }
   }
 }
@@ -2878,9 +3599,95 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
+declined_plan_times | https://api.planningcenteronline.com/services/v2/people/1/schedules/1/declined_plan_times | PlanTime
 plan_times | https://api.planningcenteronline.com/services/v2/people/1/schedules/1/plan_times | PlanTime
 respond_to | https://api.planningcenteronline.com/services/v2/people/1/schedules/1/respond_to | Person
 team | https://api.planningcenteronline.com/services/v2/people/1/schedules/1/team | Team
+
+
+
+
+
+
+
+## ScheduledPeople
+
+A person already scheduled to a SignupSheet
+
+
+
+### Relationships
+
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+person | Person | _false_ | 
+signup_sheet | SignupSheet | _false_ | 
+
+### List Scheduled People
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people/1/available_signups/1/signup_sheets/1/scheduled_people"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/services/v2/people/1/available_signups/1/signup_sheets/1/scheduled_people`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+### Get a single Scheduled Person
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people/1/available_signups/1/signup_sheets/1/scheduled_people/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "ScheduledPerson",
+    "id": "primary_key",
+    "attributes": {
+      "full_name": "string",
+      "status": "string",
+      "thumbnail": "string"
+    },
+    "relationships": {
+      "person": {
+        "data": {
+          "type": "Person",
+          "id": "123"
+        }
+      },
+      "signup_sheet": {
+        "data": {
+          "type": "SignupSheet",
+          "id": "123"
+        }
+      }
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/services/v2/people/1/available_signups/1/signup_sheets/1/scheduled_people/1`
+
+#### URL Parameters
+
+_none_
 
 
 
@@ -2941,6 +3748,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/series
       "created_at": "2000-01-01T12:00:00Z",
       "title": "string",
       "updated_at": "2000-01-01T12:00:00Z"
+    },
+    "relationships": {
     }
   }
 }
@@ -2973,6 +3782,13 @@ plans | https://api.planningcenteronline.com/services/v2/series/1/plans | Plan
 A Service Type is a container for plans.
 
 
+
+### Relationships
+
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+parent | Folder | _false_ | 
 
 ### List Service Types
 
@@ -3016,6 +3832,14 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
       "permissions": "string",
       "sequence": 1,
       "updated_at": "2000-01-01T12:00:00Z"
+    },
+    "relationships": {
+      "parent": {
+        "data": {
+          "type": "Folder",
+          "id": "123"
+        }
+      }
     }
   }
 }
@@ -3111,6 +3935,161 @@ curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/services
 
 `DELETE https://api.planningcenteronline.com/services/v2/service_types/1`
 
+## SignupSheets
+
+Available positions to sign up for
+
+
+
+### Relationships
+
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+plan | Plan | _false_ | 
+team_position | TeamPosition | _false_ | 
+team | Team | _false_ | 
+
+### List Signup Sheets
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people/1/available_signups/1/signup_sheets"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/services/v2/people/1/available_signups/1/signup_sheets`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+include | scheduled_people | include associated scheduled_people
+after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+### Get a single Signup Sheet
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people/1/available_signups/1/signup_sheets/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "SignupSheet",
+    "id": "primary_key",
+    "attributes": {
+      "display_times": "string",
+      "group_key": "string",
+      "name": "string",
+      "sort_date": "2000-01-01T12:00:00Z",
+      "team_name": "string",
+      "title": "string"
+    },
+    "relationships": {
+      "plan": {
+        "data": {
+          "type": "Plan",
+          "id": "123"
+        }
+      },
+      "team": {
+        "data": {
+          "type": "Team",
+          "id": "123"
+        }
+      },
+      "team_position": {
+        "data": {
+          "type": "TeamPosition",
+          "id": "123"
+        }
+      }
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/services/v2/people/1/available_signups/1/signup_sheets/1`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+include | scheduled_people | include associated scheduled_people
+
+### Associations for a Signup Sheet
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL | Endpoint
+----------- | --- | --------
+scheduled_people | https://api.planningcenteronline.com/services/v2/people/1/available_signups/1/signup_sheets/1/scheduled_people | ScheduledPerson
+signup_sheet_metadata | https://api.planningcenteronline.com/services/v2/people/1/available_signups/1/signup_sheets/1/signup_sheet_metadata | SignupSheetMetadata
+
+### Actions for a Signup Sheet
+
+You can perform the following actions on a Signup Sheet by POSTing to the specified URL.
+
+Action | URL | Description
+------ | --- | -----------
+accept | https://api.planningcenteronline.com/services/v2/people/1/available_signups/1/signup_sheets/1/accept | Accept a signup sheet
+
+
+
+
+
+
+
+
+
+## SignupSheetMetadata
+
+A SignupSheetMetadata Resource
+
+
+
+### Relationships
+
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+plan_time | PlanTime | _false_ | 
+
+### List Signup Sheet Metadata
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people/1/available_signups/1/signup_sheets/1/signup_sheet_metadata"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/services/v2/people/1/available_signups/1/signup_sheets/1/signup_sheet_metadata`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+
+
+
+
+
+
 ## Songs
 
 A song
@@ -3134,6 +4113,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/songs"
 Parameter | Value | Description
 --------- | ----- | -----------
 where[title] | _string_ | query on a specific title
+where[hidden] | _boolean_ | query on a specific hidden
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
@@ -3162,6 +4142,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/songs/
       "themes": "string",
       "title": "string",
       "updated_at": "2000-01-01T12:00:00Z"
+    },
+    "relationships": {
     }
   }
 }
@@ -3252,6 +4234,17 @@ A upcoming schedule for a song
 
 
 
+### Relationships
+
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+arrangement | Arrangement | _false_ | 
+key | Key | _false_ | 
+plan | Plan | _false_ | 
+service_type | ServiceType | _false_ | 
+item | Item | _false_ | 
+
 ### List Song Schedules
 
 ```shell
@@ -3292,6 +4285,38 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/songs/
       "plan_dates": "string",
       "plan_sort_date": "string",
       "service_type_name": "string"
+    },
+    "relationships": {
+      "arrangement": {
+        "data": {
+          "type": "Arrangement",
+          "id": "123"
+        }
+      },
+      "item": {
+        "data": {
+          "type": "Item",
+          "id": "123"
+        }
+      },
+      "key": {
+        "data": {
+          "type": "Key",
+          "id": "123"
+        }
+      },
+      "plan": {
+        "data": {
+          "type": "Plan",
+          "id": "123"
+        }
+      },
+      "service_type": {
+        "data": {
+          "type": "ServiceType",
+          "id": "123"
+        }
+      }
     }
   }
 }
@@ -3325,17 +4350,25 @@ Either 'team' or 'time_preferences'
 
 The IDs of the assigned time preference options.
 
+### Relationships
+
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+team | Team | _false_ | 
+time_preference_options | TimePreferenceOption | _true_ | 
+
 ### List Split Team Rehearsal Assignments
 
 ```shell
 # to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people/1/schedules/1/plan_times/1/split_team_rehearsal_assignments"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people/1/schedules/1/declined_plan_times/1/split_team_rehearsal_assignments"
 ```
 
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/people/1/schedules/1/plan_times/1/split_team_rehearsal_assignments`
+`GET https://api.planningcenteronline.com/services/v2/people/1/schedules/1/declined_plan_times/1/split_team_rehearsal_assignments`
 
 #### URL Parameters
 
@@ -3348,7 +4381,7 @@ per_page | _integer_ | how many records to return per page (min=1, max=100, defa
 
 ```shell
 # to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people/1/schedules/1/plan_times/1/split_team_rehearsal_assignments/1"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people/1/schedules/1/declined_plan_times/1/split_team_rehearsal_assignments/1"
 ```
 
 
@@ -3361,6 +4394,22 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
     "id": "primary_key",
     "attributes": {
       "assigned_to": "string"
+    },
+    "relationships": {
+      "team": {
+        "data": {
+          "type": "Team",
+          "id": "123"
+        }
+      },
+      "time_preference_options": {
+        "data": [
+          {
+            "type": "TimePreferenceOption",
+            "id": "123"
+          }
+        ]
+      }
     }
   }
 }
@@ -3368,7 +4417,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/people/1/schedules/1/plan_times/1/split_team_rehearsal_assignments/1`
+`GET https://api.planningcenteronline.com/services/v2/people/1/schedules/1/declined_plan_times/1/split_team_rehearsal_assignments/1`
 
 #### URL Parameters
 
@@ -3380,7 +4429,7 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
-team | https://api.planningcenteronline.com/services/v2/people/1/schedules/1/plan_times/1/split_team_rehearsal_assignments/1/team | Team
+team | https://api.planningcenteronline.com/services/v2/people/1/schedules/1/declined_plan_times/1/split_team_rehearsal_assignments/1/team | Team
 
 
 
@@ -3393,6 +4442,13 @@ team | https://api.planningcenteronline.com/services/v2/people/1/schedules/1/pla
 A tag belonging to a tag group.
 
 
+
+### Relationships
+
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+tag_group | TagGroup | _false_ | 
 
 ### List Tags
 
@@ -3430,6 +4486,14 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
     "id": "primary_key",
     "attributes": {
       "name": "string"
+    },
+    "relationships": {
+      "tag_group": {
+        "data": {
+          "type": "TagGroup",
+          "id": "123"
+        }
+      }
     }
   }
 }
@@ -3505,6 +4569,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/tag_gr
       "required": true,
       "service_type_folder_name": "string",
       "tags_for": "string"
+    },
+    "relationships": {
     }
   }
 }
@@ -3582,6 +4648,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
       "schedule_to": "string",
       "sequence": 1,
       "updated_at": "2000-01-01T12:00:00Z"
+    },
+    "relationships": {
     }
   }
 }
@@ -3656,6 +4724,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
       "send_responses_for_accepts": true,
       "send_responses_for_blockouts": true,
       "send_responses_for_declines": true
+    },
+    "relationships": {
     }
   }
 }
@@ -3738,6 +4808,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
       "tags": [
 
       ]
+    },
+    "relationships": {
     }
   }
 }
@@ -3811,6 +4883,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
       "reminders_enabled": true,
       "scheduling_replies_enabled": true,
       "scheduling_requests_enabled": true
+    },
+    "relationships": {
     }
   }
 }
@@ -3900,6 +4974,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
       "minute_of_day": 1,
       "sort_index": "string",
       "updated_at": "2000-01-01T12:00:00Z"
+    },
+    "relationships": {
     }
   }
 }
