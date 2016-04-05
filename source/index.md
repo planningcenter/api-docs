@@ -24,6 +24,21 @@ search: true
 
 The Planning Center Online API can be used to interact with all of your organization's data inside Planning Center. In this first iteration of the API the data inside PCO People is available; we are now working towards adding endpoints for some of our other apps (including an all new API for Services).
 
+# Rate limiting
+
+The API is rate limited to 100 requests per minute per user. You can see our count of your API rate limiting by inspecting the `X-PCO-API-Request-Rate-Count`, `X-PCO-API-Request-Rate-Limit` & `X-PCO-API-Request-Rate-Period` HTTP headers. Requests that exceed that limit will return a HTTP status 429 with this JSON:
+
+```
+{
+  errors: [
+    {
+      code: 429,
+      message: "Rate limit exceeded: 118 of 100 requests per 60 seconds"
+    }
+  ]
+}
+```
+
 # Authentication
 
 There are several ways to authenticate with the API.
