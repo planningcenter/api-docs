@@ -26,18 +26,20 @@ The Planning Center Online API can be used to interact with all of your organiza
 
 # Rate limiting
 
-The API is rate limited to 100 requests per minute per user. You can see our count of your API rate limiting by inspecting the `X-PCO-API-Request-Rate-Count`, `X-PCO-API-Request-Rate-Limit` & `X-PCO-API-Request-Rate-Period` HTTP headers. Requests that exceed that limit will return a HTTP status 429 with this JSON:
+> Requests that are rate limited will return an error like this:
 
 ```
 {
-  errors: [
+  "errors": [
     {
-      code: 429,
-      message: "Rate limit exceeded: 118 of 100 requests per 60 seconds"
+      "code": 429,
+      "message": "Rate limit exceeded: 118 of 100 requests per 60 seconds"
     }
   ]
 }
 ```
+
+The API is rate limited to 100 requests per minute per user. You can see our count of your API rate limiting by inspecting the `X-PCO-API-Request-Rate-Count`, `X-PCO-API-Request-Rate-Limit` & `X-PCO-API-Request-Rate-Period` HTTP headers. Requests that exceed that limit will return a HTTP status 429.
 
 # Authentication
 
@@ -58,17 +60,17 @@ Note: session auth won't work for building an application for users because of t
 
 ## Personal Access Token
 
+> You can pass your personal access token with `curl` like this:
+
+```
+curl -u app_id:secret https://api.planningcenteronline.com/people/v2/people
+```
+
 Create a Personal Access Token and use HTTP Basic Auth if you just need access to your own account:
 
 1. Visit [api.planningcenteronline.com/oauth/applications](https://api.planningcenteronline.com/oauth/applications).
 2. Create a new "HTTP Basic Application"
 3. Pass your token and secret in every request using [HTTP Basic Auth](https://en.wikipedia.org/wiki/Basic_access_authentication).
-
-This can be done via `curl` like so:
-
-```
-curl -u app_id:secret https://api.planningcenteronline.com/people/v2/people
-```
 
 ## OAuth 2.0
 
