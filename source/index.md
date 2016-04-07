@@ -32,8 +32,8 @@ The Planning Center Online API can be used to interact with all of your organiza
 {
   "errors": [
     {
-      "code": 429,
-      "message": "Rate limit exceeded: 118 of 100 requests per 60 seconds"
+      "code": "429",
+      "detail": "Rate limit exceeded: 118 of 100 requests per 60 seconds"
     }
   ]
 }
