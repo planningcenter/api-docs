@@ -3540,13 +3540,13 @@ You can perform the following actions on a Workflow Card by POSTing to the speci
 Action | URL | Description
 ------ | --- | -----------
 go_back | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/go_back | Move a Workflow Card back to the previous step.
+unsnooze | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/unsnooze | Unsnoozes a card
+remove | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/remove | Removes a card
 restore | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/restore | Restore a card
+promote | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/promote | Move a Workflow Card to the next step.
 send_email | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/send_email | Sends an email to the subject of the card
 skip_step | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/skip_step | Move a Workflow Card to the next step without completing the current step.
-unsnooze | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/unsnooze | Unsnoozes a card
 snooze | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/snooze | Snoozes a card for a specific duration
-promote | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/promote | Move a Workflow Card to the next step.
-remove | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/remove | Removes a card
 
 
 
@@ -3880,13 +3880,13 @@ step | Step | _false_ |
 
 ```shell
 # to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/current_task"
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/tasks"
 ```
 
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/current_task`
+`GET https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/tasks`
 
 #### URL Parameters
 
@@ -3907,7 +3907,7 @@ per_page | _integer_ | how many records to return per page (min=1, max=100, defa
 
 ```shell
 # to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/current_task/1"
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/tasks/1"
 ```
 
 
@@ -3937,7 +3937,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflow
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/current_task/1`
+`GET https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/tasks/1`
 
 #### URL Parameters
 

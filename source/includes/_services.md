@@ -3604,6 +3604,66 @@ plan_times | https://api.planningcenteronline.com/services/v2/people/1/schedules
 respond_to | https://api.planningcenteronline.com/services/v2/people/1/schedules/1/respond_to | Person
 team | https://api.planningcenteronline.com/services/v2/people/1/schedules/1/team | Team
 
+### Actions for a Schedule
+
+You can perform the following actions on a Schedule by POSTing to the specified URL.
+
+Action | URL | Description
+------ | --- | -----------
+accept | https://api.planningcenteronline.com/services/v2/people/1/schedules/1/accept | Accept a Schedule
+decline | https://api.planningcenteronline.com/services/v2/people/1/schedules/1/decline | Decline a Schedule
+
+#### accept
+
+If this isn't a split time schedule or you want to all accept all times no body is required.
+
+If the user wants to decline specific times you'll need to send the declined time IDs & a reason.
+
+A POST body should be formated...
+
+```json
+{
+	"data": {
+		"type": "ScheduleAccept",
+		"attributes": {
+			"reason": "Because reasons"
+		},
+		"relationships": {
+			"declined_plan_times": {
+				"data": [
+          {
+					  "type": "PlanTime",
+					  "id": "1"
+				  }
+        ]
+			}
+		}
+	}
+}
+```
+
+
+#### decline
+
+If this is a split time request, all times will be declined.
+
+If you want to decline specific times see ScheduleAcceptAction.
+
+A POST body should be formated...
+
+```json
+{
+	"data": {
+		"type": "ScheduleDecline",
+		"attributes": {
+			"reason": "A user supplied reason for declining the request or an empty string."
+		},
+		"relationships": null
+	}
+}
+```
+
+
 
 
 
