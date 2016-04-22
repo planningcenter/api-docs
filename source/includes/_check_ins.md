@@ -2,37 +2,6 @@
 
 Check kids & volunteers in to events and track attendance.
 
-## Activities
-
-An action made by a person
-
-
-
-### List Activities
-
-```shell
-# to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/people/1/activities"
-```
-
-
-#### HTTP Request
-
-`GET https://api.planningcenteronline.com/check_ins/v2/people/1/activities`
-
-#### URL Parameters
-
-Parameter | Value | Description
---------- | ----- | -----------
-after | _id_ | get page after the specified id
-per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
-
-
-
-
-
-
-
 ## AttendanceTypes
 
 A kind of attendee which is tracked by _headcount_, not by check-in.
@@ -73,12 +42,14 @@ curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/event
 {
   "data": {
     "type": "AttendanceType",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
-      "name": "string",
       "color": "string",
       "created_at": "2000-01-01T12:00:00Z",
+      "name": "string",
       "updated_at": "2000-01-01T12:00:00Z"
+    },
+    "relationships": {
     }
   }
 }
@@ -176,19 +147,21 @@ curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/check
 {
   "data": {
     "type": "CheckIn",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
+      "checked_out_at": "2000-01-01T12:00:00Z",
+      "created_at": "2000-01-01T12:00:00Z",
+      "emergency_contact_name": "string",
+      "emergency_contact_phone_number": "string",
       "first_name": "string",
+      "kind": "string",
       "last_name": "string",
       "medical_notes": "string",
-      "kind": "string",
       "number": 1,
       "security_code": "string",
-      "created_at": "2000-01-01T12:00:00Z",
-      "updated_at": "2000-01-01T12:00:00Z",
-      "checked_out_at": "2000-01-01T12:00:00Z",
-      "emergency_contact_name": "string",
-      "emergency_contact_phone_number": "string"
+      "updated_at": "2000-01-01T12:00:00Z"
+    },
+    "relationships": {
     }
   }
 }
@@ -291,12 +264,14 @@ curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/check
 {
   "data": {
     "type": "CheckInGroup",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
-      "name_labels_count": 1,
-      "security_labels_count": 1,
       "check_ins_count": 1,
-      "print_status": 1
+      "name_labels_count": 1,
+      "print_status": 1,
+      "security_labels_count": 1
+    },
+    "relationships": {
     }
   }
 }
@@ -378,14 +353,16 @@ curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/event
 {
   "data": {
     "type": "Event",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
-      "name": "string",
-      "frequency": "string",
-      "enable_services_integration": true,
+      "archived_at": "2000-01-01T12:00:00Z",
       "created_at": "2000-01-01T12:00:00Z",
-      "updated_at": "2000-01-01T12:00:00Z",
-      "archived_at": "2000-01-01T12:00:00Z"
+      "enable_services_integration": true,
+      "frequency": "string",
+      "name": "string",
+      "updated_at": "2000-01-01T12:00:00Z"
+    },
+    "relationships": {
     }
   }
 }
@@ -463,12 +440,14 @@ curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/label
 {
   "data": {
     "type": "EventLabel",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
-      "quantity": 1,
-      "for_regular": true,
       "for_guest": true,
-      "for_volunteer": true
+      "for_regular": true,
+      "for_volunteer": true,
+      "quantity": 1
+    },
+    "relationships": {
     }
   }
 }
@@ -517,13 +496,13 @@ are copied from one session to the next.
 
 ```shell
 # to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/events/1/event_periods"
+curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/check_ins/1/event_period"
 ```
 
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/check_ins/v2/events/1/event_periods`
+`GET https://api.planningcenteronline.com/check_ins/v2/check_ins/1/event_period`
 
 #### URL Parameters
 
@@ -540,7 +519,7 @@ per_page | _integer_ | how many records to return per page (min=1, max=100, defa
 
 ```shell
 # to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/events/1/event_periods/1"
+curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/check_ins/1/event_period/1"
 ```
 
 
@@ -550,15 +529,17 @@ curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/event
 {
   "data": {
     "type": "EventPeriod",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
-      "starts_at": "2000-01-01T12:00:00Z",
-      "ends_at": "2000-01-01T12:00:00Z",
-      "regular_count": 1,
-      "guest_count": 1,
-      "volunteer_count": 1,
       "created_at": "2000-01-01T12:00:00Z",
-      "updated_at": "2000-01-01T12:00:00Z"
+      "ends_at": "2000-01-01T12:00:00Z",
+      "guest_count": 1,
+      "regular_count": 1,
+      "starts_at": "2000-01-01T12:00:00Z",
+      "updated_at": "2000-01-01T12:00:00Z",
+      "volunteer_count": 1
+    },
+    "relationships": {
     }
   }
 }
@@ -566,7 +547,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/event
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/check_ins/v2/events/1/event_periods/1`
+`GET https://api.planningcenteronline.com/check_ins/v2/check_ins/1/event_period/1`
 
 #### URL Parameters
 
@@ -583,10 +564,10 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
-check_ins | https://api.planningcenteronline.com/check_ins/v2/events/1/event_periods/1/check_ins | CheckIn
-event | https://api.planningcenteronline.com/check_ins/v2/events/1/event_periods/1/event | Event
-event_times | https://api.planningcenteronline.com/check_ins/v2/events/1/event_periods/1/event_times | EventTime
-location_event_periods | https://api.planningcenteronline.com/check_ins/v2/events/1/event_periods/1/location_event_periods | LocationEventPeriod
+check_ins | https://api.planningcenteronline.com/check_ins/v2/check_ins/1/event_period/1/check_ins | CheckIn
+event | https://api.planningcenteronline.com/check_ins/v2/check_ins/1/event_period/1/event | Event
+event_times | https://api.planningcenteronline.com/check_ins/v2/check_ins/1/event_period/1/event_times | EventTime
+location_event_periods | https://api.planningcenteronline.com/check_ins/v2/check_ins/1/event_period/1/location_event_periods | LocationEventPeriod
 
 
 
@@ -638,17 +619,19 @@ curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/event
 {
   "data": {
     "type": "EventTime",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
-      "starts_at": "2000-01-01T12:00:00Z",
-      "shows_at": "2000-01-01T12:00:00Z",
+      "created_at": "2000-01-01T12:00:00Z",
+      "guest_count": 1,
       "hides_at": "2000-01-01T12:00:00Z",
       "regular_count": 1,
-      "guest_count": 1,
-      "volunteer_count": 1,
+      "shows_at": "2000-01-01T12:00:00Z",
+      "starts_at": "2000-01-01T12:00:00Z",
       "total_count": "unknown",
-      "created_at": "2000-01-01T12:00:00Z",
-      "updated_at": "2000-01-01T12:00:00Z"
+      "updated_at": "2000-01-01T12:00:00Z",
+      "volunteer_count": 1
+    },
+    "relationships": {
     }
   }
 }
@@ -730,9 +713,11 @@ curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/event
 {
   "data": {
     "type": "Headcount",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
       "total": 1
+    },
+    "relationships": {
     }
   }
 }
@@ -810,12 +795,14 @@ curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/label
 {
   "data": {
     "type": "Label",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
       "name": "string",
-      "xml": "string",
       "prints_for": "string",
-      "roll": "string"
+      "roll": "string",
+      "xml": "string"
+    },
+    "relationships": {
     }
   }
 }
@@ -860,13 +847,13 @@ You can get a location's parent folder from the `parent` attribute.
 
 ```shell
 # to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/events/1/locations"
+curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/check_ins/1/location"
 ```
 
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/check_ins/v2/events/1/locations`
+`GET https://api.planningcenteronline.com/check_ins/v2/check_ins/1/location`
 
 #### URL Parameters
 
@@ -885,7 +872,7 @@ per_page | _integer_ | how many records to return per page (min=1, max=100, defa
 
 ```shell
 # to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/events/1/locations/1"
+curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/check_ins/1/location/1"
 ```
 
 
@@ -895,21 +882,23 @@ curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/event
 {
   "data": {
     "type": "Location",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
-      "name": "string",
-      "kind": "string",
-      "opened": true,
-      "questions": "string",
       "age_min_in_months": 1,
-      "age_range_by": "string",
       "age_on": "2000-01-01",
-      "grade_min": 1,
+      "age_range_by": "string",
+      "created_at": "2000-01-01T12:00:00Z",
       "grade_max": 1,
+      "grade_min": 1,
+      "kind": "string",
       "max_occupancy": 1,
+      "name": "string",
+      "opened": true,
       "position": 1,
-      "updated_at": "2000-01-01T12:00:00Z",
-      "created_at": "2000-01-01T12:00:00Z"
+      "questions": "string",
+      "updated_at": "2000-01-01T12:00:00Z"
+    },
+    "relationships": {
     }
   }
 }
@@ -917,7 +906,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/event
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/check_ins/v2/events/1/locations/1`
+`GET https://api.planningcenteronline.com/check_ins/v2/check_ins/1/location/1`
 
 #### URL Parameters
 
@@ -936,14 +925,14 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
-check_ins | https://api.planningcenteronline.com/check_ins/v2/events/1/locations/1/check_ins | CheckIn
-event | https://api.planningcenteronline.com/check_ins/v2/events/1/locations/1/event | Event
-location_event_periods | https://api.planningcenteronline.com/check_ins/v2/events/1/locations/1/location_event_periods | LocationEventPeriod
-location_event_times | https://api.planningcenteronline.com/check_ins/v2/events/1/locations/1/location_event_times | LocationEventTime
-location_labels | https://api.planningcenteronline.com/check_ins/v2/events/1/locations/1/location_labels | LocationLabel
-locations | https://api.planningcenteronline.com/check_ins/v2/events/1/locations/1/locations | Location
-options | https://api.planningcenteronline.com/check_ins/v2/events/1/locations/1/options | Option
-parent | https://api.planningcenteronline.com/check_ins/v2/events/1/locations/1/parent | Location
+check_ins | https://api.planningcenteronline.com/check_ins/v2/check_ins/1/location/1/check_ins | CheckIn
+event | https://api.planningcenteronline.com/check_ins/v2/check_ins/1/location/1/event | Event
+location_event_periods | https://api.planningcenteronline.com/check_ins/v2/check_ins/1/location/1/location_event_periods | LocationEventPeriod
+location_event_times | https://api.planningcenteronline.com/check_ins/v2/check_ins/1/location/1/location_event_times | LocationEventTime
+location_labels | https://api.planningcenteronline.com/check_ins/v2/check_ins/1/location/1/location_labels | LocationLabel
+locations | https://api.planningcenteronline.com/check_ins/v2/check_ins/1/location/1/locations | Location
+options | https://api.planningcenteronline.com/check_ins/v2/check_ins/1/location/1/options | Option
+parent | https://api.planningcenteronline.com/check_ins/v2/check_ins/1/location/1/parent | Location
 
 
 
@@ -962,13 +951,13 @@ Counts check-ins for a location during a certain event period.
 
 ```shell
 # to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/events/1/locations/1/location_event_periods"
+curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/check_ins/1/location/1/location_event_periods"
 ```
 
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/check_ins/v2/events/1/locations/1/location_event_periods`
+`GET https://api.planningcenteronline.com/check_ins/v2/check_ins/1/location/1/location_event_periods`
 
 #### URL Parameters
 
@@ -985,7 +974,7 @@ per_page | _integer_ | how many records to return per page (min=1, max=100, defa
 
 ```shell
 # to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/events/1/locations/1/location_event_periods/1"
+curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/check_ins/1/location/1/location_event_periods/1"
 ```
 
 
@@ -995,11 +984,13 @@ curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/event
 {
   "data": {
     "type": "LocationEventPeriod",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
-      "regular_count": 1,
       "guest_count": 1,
+      "regular_count": 1,
       "volunteer_count": 1
+    },
+    "relationships": {
     }
   }
 }
@@ -1007,7 +998,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/event
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/check_ins/v2/events/1/locations/1/location_event_periods/1`
+`GET https://api.planningcenteronline.com/check_ins/v2/check_ins/1/location/1/location_event_periods/1`
 
 #### URL Parameters
 
@@ -1024,9 +1015,9 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
-check_ins | https://api.planningcenteronline.com/check_ins/v2/events/1/locations/1/location_event_periods/1/check_ins | CheckIn
-event_period | https://api.planningcenteronline.com/check_ins/v2/events/1/locations/1/location_event_periods/1/event_period | EventPeriod
-location | https://api.planningcenteronline.com/check_ins/v2/events/1/locations/1/location_event_periods/1/location | Location
+check_ins | https://api.planningcenteronline.com/check_ins/v2/check_ins/1/location/1/location_event_periods/1/check_ins | CheckIn
+event_period | https://api.planningcenteronline.com/check_ins/v2/check_ins/1/location/1/location_event_periods/1/event_period | EventPeriod
+location | https://api.planningcenteronline.com/check_ins/v2/check_ins/1/location/1/location_event_periods/1/location | Location
 
 
 
@@ -1079,11 +1070,13 @@ curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/event
 {
   "data": {
     "type": "LocationEventTime",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
-      "regular_count": 1,
       "guest_count": 1,
+      "regular_count": 1,
       "volunteer_count": 1
+    },
+    "relationships": {
     }
   }
 }
@@ -1163,12 +1156,14 @@ curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/label
 {
   "data": {
     "type": "LocationLabel",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
-      "quantity": 1,
-      "for_regular": true,
       "for_guest": true,
-      "for_volunteer": true
+      "for_regular": true,
+      "for_volunteer": true,
+      "quantity": 1
+    },
+    "relationships": {
     }
   }
 }
@@ -1249,10 +1244,12 @@ curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/check
 {
   "data": {
     "type": "Option",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
       "body": "string",
       "quantity": 1
+    },
+    "relationships": {
     }
   }
 }
@@ -1308,12 +1305,14 @@ curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2"
 {
   "data": {
     "type": "Organization",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
-      "name": "string",
       "daily_check_ins": 1,
       "date_format_pattern": "unknown",
+      "name": "string",
       "time_zone": "string"
+    },
+    "relationships": {
     }
   }
 }
@@ -1389,11 +1388,13 @@ curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/passe
 {
   "data": {
     "type": "Pass",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
       "code": "string",
       "created_at": "2000-01-01T12:00:00Z",
       "updated_at": "2000-01-01T12:00:00Z"
+    },
+    "relationships": {
     }
   }
 }
@@ -1468,24 +1469,26 @@ curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/peopl
 {
   "data": {
     "type": "Person",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
-      "avatar_url": "string",
-      "name_prefix": "string",
-      "first_name": "string",
-      "middle_name": "string",
-      "last_name": "string",
-      "name_suffix": "string",
-      "birthdate": "2000-01-01",
-      "grade": 1,
-      "gender": "string",
-      "medical_notes": "string",
-      "child": true,
       "addresses": "unknown",
-      "phone_numbers": "unknown",
+      "avatar_url": "string",
+      "birthdate": "2000-01-01",
+      "check_in_count": 1,
+      "child": true,
       "email_addresses": "unknown",
+      "first_name": "string",
+      "gender": "string",
+      "grade": 1,
+      "last_name": "string",
+      "medical_notes": "string",
+      "middle_name": "string",
+      "name_prefix": "string",
+      "name_suffix": "string",
       "permission": "string",
-      "check_in_count": 1
+      "phone_numbers": "unknown"
+    },
+    "relationships": {
     }
   }
 }
@@ -1505,7 +1508,7 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
-activities | https://api.planningcenteronline.com/check_ins/v2/people/1/activities | Activity
+ |  | 
 check_ins | https://api.planningcenteronline.com/check_ins/v2/people/1/check_ins | CheckIn
 passes | https://api.planningcenteronline.com/check_ins/v2/people/1/passes | Pass
 person_events | https://api.planningcenteronline.com/check_ins/v2/people/1/person_events | PersonEvent
@@ -1562,9 +1565,11 @@ curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/event
 {
   "data": {
     "type": "PersonEvent",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
       "check_in_count": 1
+    },
+    "relationships": {
     }
   }
 }
@@ -1650,14 +1655,16 @@ curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/stati
 {
   "data": {
     "type": "Station",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
+      "input_type": 1,
       "mode": 1,
       "name": "string",
-      "timeout_seconds": 1,
-      "input_type": 1,
+      "online": "unknown",
       "show_scanner": true,
-      "online": "unknown"
+      "timeout_seconds": 1
+    },
+    "relationships": {
     }
   }
 }
@@ -1737,13 +1744,15 @@ curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/theme
 {
   "data": {
     "type": "Theme",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
-      "name": "string",
       "color": "string",
-      "text_color": "string",
       "image": "string",
-      "image_thumbnail": "unknown"
+      "image_thumbnail": "unknown",
+      "name": "string",
+      "text_color": "string"
+    },
+    "relationships": {
     }
   }
 }

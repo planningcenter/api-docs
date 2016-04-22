@@ -2,37 +2,6 @@
 
 PCO People helps you manage contact data, membership info, and everything you need to know about your people with confidence.
 
-## Activities
-
-A change made to a Person's profile
-
-
-
-### List Activities
-
-```shell
-# to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1/activities"
-```
-
-
-#### HTTP Request
-
-`GET https://api.planningcenteronline.com/people/v2/people/1/activities`
-
-#### URL Parameters
-
-Parameter | Value | Description
---------- | ----- | -----------
-after | _id_ | get page after the specified id
-per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
-
-
-
-
-
-
-
 ## Addresses
 
 An address represents a physical and/or mailing address for a person.
@@ -2432,7 +2401,7 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
-activities | https://api.planningcenteronline.com/people/v2/people/1/activities | Activity
+ |  | 
 addresses | https://api.planningcenteronline.com/people/v2/people/1/addresses | Address
 apps | https://api.planningcenteronline.com/people/v2/people/1/apps | App
 connected_people | https://api.planningcenteronline.com/people/v2/people/1/connected_people | ConnectedPerson
