@@ -3608,15 +3608,13 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflow
 {
   "data": {
     "type": "WorkflowCardActivity",
-    "id": "unknown",
+    "id": "1",
     "attributes": {
       "comment": "unknown",
       "content": "unknown",
-      "created_at": "unknown",
+      "created_at": "2000-01-01T12:00:00Z",
       "person_avatar_url": "unknown",
       "person_name": "unknown",
-      "reassigned_from_avatar_url": "unknown",
-      "reassigned_from_name": "unknown",
       "reassigned_to_avatar_url": "unknown",
       "reassigned_to_name": "unknown",
       "subject": "unknown",
@@ -3691,9 +3689,9 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflow
 {
   "data": {
     "type": "WorkflowCardNote",
-    "id": "unknown",
+    "id": "1",
     "attributes": {
-      "note": "unknown"
+      "note": "string"
     },
     "relationships": {
     }
@@ -3725,7 +3723,7 @@ curl -v -u token:secret -X POST -d '{"data":{"type":"WorkflowCardNote","attribut
 
 Attribute | Type
 --------- | ----
-note | graph/type_annotation/unknown_type_annotation
+note | string
 
 ### Update an existing Workflow Card Note
 
@@ -3743,7 +3741,7 @@ curl -v -u token:secret -X PATCH -d '{"data":{"type":"WorkflowCardNote","id":"1"
 
 Attribute | Type
 --------- | ----
-note | graph/type_annotation/unknown_type_annotation
+note | string
 
 
 
