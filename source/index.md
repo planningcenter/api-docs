@@ -125,6 +125,53 @@ All dates and times conform to the [ISO 8601](https://en.wikipedia.org/wiki/ISO_
 
 <aside class='info'>Times are always returned in UTC.</aside>
 
+# File Uploads
+
+> Here's how to upload a file with curl:
+
+```
+curl -u app_id:secret -X POST -F 'file=@/path/to/file.png' https://upload.planningcenteronline.com/v2/files
+```
+
+> The response you receive will look like this:
+
+```
+{
+   "data": [
+      {
+         "type": "File",
+         "attributes": {
+            "source_ip":    "70.128.100.145",
+            "md5":          "e178604e5083cc23782f34650a49b025",
+            "content_type": "image\/png",
+            "file_size":    48341,
+            "name":         "file.png",
+            "expires_at":   "2016-05-23T23:13:32Z"
+         },
+         "id": "us1-16207df7-b6cc-4abe-ca1a-306c6f7e423d"
+      }
+   ]
+}
+```
+
+> To assign the file to an attribute, pass the UUID as a string. For example, here is how to update the Person avatar:
+
+```
+curl -u app_id:secret -X PATCH https://api.planningcenteronline.com/people/v2/people/1 -d '{"data":{"attributes":{"avatar":"us1-16207df7-b6cc-4abe-ca1a-306c6f7e423d"}}}'
+```
+
+Some endpoints accept file uploads. This is a two-step process:
+
+1.  Upload a file by making a `POST` request to `https://upload.planningcenteronline.com/v2/files`.
+
+    Your request should use `multipart/form-data` encoding and contain a `file` attribute with the file data. (See the sidebar for a `curl` example.)
+
+    The response you get will contain an `id` which is the file UUID.
+
+2.  Pass the UUID as the attribute value to an endpoint that accepts a file.
+
+    The UUID is a string that tells the endpoint which file to associate.
+
 # Libraries
 
 Since our API talks HTTP and JSON, you get to use off-the-shelf components for your language of choice.

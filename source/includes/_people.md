@@ -2310,7 +2310,7 @@ where[graduation_year] | _integer_ | query on a specific graduation_year
 where[site_administrator] | _boolean_ | query on a specific site_administrator
 where[people_permissions] | _string_ | query on a specific people_permissions
 where[membership] | _string_ | query on a specific membership
-where[medical_notes] | _graph/type_annotation/unknown_type_annotation_ | query on a specific medical_notes
+where[medical_notes] | _string_ | query on a specific medical_notes
 where[created_at] | _date_time_ | query on a specific created_at
 where[updated_at] | _date_time_ | query on a specific updated_at
 where[id] | _primary_key_ | query on a specific id
@@ -2435,8 +2435,8 @@ curl -v -u token:secret -X POST -d '{"data":{"type":"Person","attributes":{...}}
 
 #### Resource Attributes
 
-Attribute | Type
---------- | ----
+Attribute | Type | Note
+--------- | ---- | ----
 first_name | string
 goes_by_name | string
 middle_name | string
@@ -2452,7 +2452,8 @@ graduation_year | integer
 site_administrator | boolean
 people_permissions | string
 membership | string
-medical_notes | graph/type_annotation/unknown_type_annotation
+medical_notes | string
+avatar | string | File UUID (see [File Uploads](#file-uploads) section)
 
 ### Update an existing Person
 
@@ -2470,8 +2471,8 @@ curl -v -u token:secret -X PATCH -d '{"data":{"type":"Person","id":"1","attribut
 
 #### Resource Attributes
 
-Attribute | Type
---------- | ----
+Attribute | Type | Note
+--------- | ---- | ----
 first_name | string
 goes_by_name | string
 middle_name | string
@@ -2487,7 +2488,8 @@ graduation_year | integer
 site_administrator | boolean
 people_permissions | string
 membership | string
-medical_notes | graph/type_annotation/unknown_type_annotation
+medical_notes | string
+avatar | string | File UUID (see [File Uploads](#file-uploads) section)
 
 ### Delete a Person
 
