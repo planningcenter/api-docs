@@ -876,9 +876,10 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
     </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PiCO"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"M"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"goes_by_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"P Riddy"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"given_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Picardo"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Das Robot"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"middle_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ross"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"nickname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"P Riddy"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"organization_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
       </span><span class="s2">"organization_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ministry Centered Technologies"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ConnectedPerson"</span><span class="w">
@@ -1889,12 +1890,12 @@ curl -v -u token:secret -X DELETE <span class="s2">"https://api.planningcenteron
 
 <h3 id="list-household-memberships">List Household Memberships</h3>
 <pre><code class="highlight shell"><span class="c"># to list records...</span>
-curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v2/people/1/household_memberships"</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v2/households/1/household_memberships"</span>
 </code></pre>
 
 <h4 id="http-request">HTTP Request</h4>
 
-<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v2/people/1/household_memberships</code></p>
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v2/households/1/household_memberships</code></p>
 
 <h4 id="url-parameters">URL Parameters</h4>
 
@@ -1941,7 +1942,7 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 
 <h3 id="get-a-single-household-membership">Get a single Household Membership</h3>
 <pre><code class="highlight shell"><span class="c"># to show...</span>
-curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v2/people/1/household_memberships/1"</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1"</span>
 </code></pre>
 
 <blockquote>
@@ -1963,7 +1964,7 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 
 <h4 id="http-request">HTTP Request</h4>
 
-<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v2/people/1/household_memberships/1</code></p>
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1</code></p>
 
 <h4 id="url-parameters">URL Parameters</h4>
 
@@ -2001,12 +2002,12 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 </thead><tbody>
 <tr>
 <td>household</td>
-<td>https://api.planningcenteronline.com/people/v2/people/1/household_memberships/1/household</td>
+<td>https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1/household</td>
 <td>Household</td>
 </tr>
 <tr>
 <td>person</td>
-<td>https://api.planningcenteronline.com/people/v2/people/1/household_memberships/1/person</td>
+<td>https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1/person</td>
 <td>Person</td>
 </tr>
 </tbody></table>
@@ -2038,14 +2039,14 @@ curl -v -u token:secret -X POST -d <span class="s1">'{"data":{"type":"HouseholdM
 
 <h3 id="update-an-existing-household-membership">Update an existing Household Membership</h3>
 <pre><code class="highlight shell"><span class="c"># to update a record...</span>
-curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{"type":"HouseholdMembership","id":"1","attributes":{...}}}'</span> <span class="s2">"https://api.planningcenteronline.com/people/v2/people/1/household_memberships/1"</span>
+curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{"type":"HouseholdMembership","id":"1","attributes":{...}}}'</span> <span class="s2">"https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1"</span>
 </code></pre>
 
 <aside class='info'>Only users with the role <code>editor</code> can update this resource.</aside>
 
 <h4 id="http-request">HTTP Request</h4>
 
-<p><code class="prettyprint">PATCH https://api.planningcenteronline.com/people/v2/people/1/household_memberships/1</code></p>
+<p><code class="prettyprint">PATCH https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1</code></p>
 
 <h4 id="resource-attributes">Resource Attributes</h4>
 
@@ -2063,14 +2064,14 @@ curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{"type":"Household
 
 <h3 id="delete-a-household-membership">Delete a Household Membership</h3>
 <pre><code class="highlight shell"><span class="c"># to delete a record...</span>
-curl -v -u token:secret -X DELETE <span class="s2">"https://api.planningcenteronline.com/people/v2/people/1/household_memberships/1"</span>
+curl -v -u token:secret -X DELETE <span class="s2">"https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1"</span>
 </code></pre>
 
 <aside class='info'>Only users with the role <code>editor</code> can delete this resource.</aside>
 
 <h4 id="http-request">HTTP Request</h4>
 
-<p><code class="prettyprint">DELETE https://api.planningcenteronline.com/people/v2/people/1/household_memberships/1</code></p>
+<p><code class="prettyprint">DELETE https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1</code></p>
 
 <h2 id="inactivereasons">InactiveReasons</h2>
 
@@ -3416,11 +3417,6 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 <td>Person</td>
 </tr>
 <tr>
-<td>people_imports</td>
-<td>https://api.planningcenteronline.com/people/v2/people_imports</td>
-<td>PeopleImport</td>
-</tr>
-<tr>
 <td>reports</td>
 <td>https://api.planningcenteronline.com/people/v2/reports</td>
 <td>Report</td>
@@ -3486,178 +3482,6 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 </tr>
 </tbody></table>
 
-<h2 id="peopleimports">PeopleImports</h2>
-
-<p>A PeopleImport is a record of an ongoing or previous import from a CSV file.</p>
-
-<h3 id="list-people-imports">List People Imports</h3>
-<pre><code class="highlight shell"><span class="c"># to list records...</span>
-curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v2/people_imports"</span>
-</code></pre>
-
-<h4 id="http-request">HTTP Request</h4>
-
-<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v2/people_imports</code></p>
-
-<h4 id="url-parameters">URL Parameters</h4>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Value</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>where[status]</td>
-<td><em>integer</em></td>
-<td>query on a specific status</td>
-</tr>
-<tr>
-<td>after</td>
-<td><em>id</em></td>
-<td>get page after the specified id</td>
-</tr>
-<tr>
-<td>per_page</td>
-<td><em>integer</em></td>
-<td>how many records to return per page (min=1, max=100, default=25)</td>
-</tr>
-</tbody></table>
-
-<h3 id="get-a-single-people-import">Get a single People Import</h3>
-<pre><code class="highlight shell"><span class="c"># to show...</span>
-curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v2/people_imports/1"</span>
-</code></pre>
-
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre><code class="highlight json"><span class="p">{</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PeopleImport"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"primary_key"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"attribs"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"identical_people_ids"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"people_ids"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"processed_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"undone_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"relationships"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<h4 id="http-request">HTTP Request</h4>
-
-<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v2/people_imports/1</code></p>
-
-<h4 id="url-parameters">URL Parameters</h4>
-
-<p><em>none</em></p>
-
-<h3 id="associations-for-a-people-import">Associations for a People Import</h3>
-
-<p>You can append one of the following associations onto this resource URL to jump to an associated record.</p>
-
-<table><thead>
-<tr>
-<th>Association</th>
-<th>URL</th>
-<th>Endpoint</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>conflicts</td>
-<td>https://api.planningcenteronline.com/people/v2/people_imports/1/conflicts</td>
-<td>PeopleImportConflict</td>
-</tr>
-</tbody></table>
-
-<h2 id="peopleimportconflicts">PeopleImportConflicts</h2>
-
-<p>A PeopleImportConflict is a record of change that will occur if the parent PeopleImport is completed.</p>
-
-<h3 id="list-people-import-conflicts">List People Import Conflicts</h3>
-<pre><code class="highlight shell"><span class="c"># to list records...</span>
-curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v2/people_imports/1/conflicts"</span>
-</code></pre>
-
-<h4 id="http-request">HTTP Request</h4>
-
-<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v2/people_imports/1/conflicts</code></p>
-
-<h4 id="url-parameters">URL Parameters</h4>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Value</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>where[kind]</td>
-<td><em>string</em></td>
-<td>query on a specific kind</td>
-</tr>
-<tr>
-<td>where[name]</td>
-<td><em>string</em></td>
-<td>query on a specific name</td>
-</tr>
-<tr>
-<td>after</td>
-<td><em>id</em></td>
-<td>get page after the specified id</td>
-</tr>
-<tr>
-<td>per_page</td>
-<td><em>integer</em></td>
-<td>how many records to return per page (min=1, max=100, default=25)</td>
-</tr>
-</tbody></table>
-
-<h3 id="get-a-single-people-import-conflict">Get a single People Import Conflict</h3>
-<pre><code class="highlight shell"><span class="c"># to show...</span>
-curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v2/people_imports/1/conflicts/1"</span>
-</code></pre>
-
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre><code class="highlight json"><span class="p">{</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PeopleImportConflict"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"primary_key"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"conflicting_changes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"ignore"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"relationships"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<h4 id="http-request">HTTP Request</h4>
-
-<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v2/people_imports/1/conflicts/1</code></p>
-
-<h4 id="url-parameters">URL Parameters</h4>
-
-<p><em>none</em></p>
-
 <h2 id="people">People</h2>
 
 <p>A person record represents a single member/user of the application. Each person has different permissions that determine how the user can use this app (if at all).</p>
@@ -3681,9 +3505,19 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 </tr>
 </thead><tbody>
 <tr>
+<td>where[given_name]</td>
+<td><em>string</em></td>
+<td>query on a specific given_name</td>
+</tr>
+<tr>
 <td>where[first_name]</td>
 <td><em>string</em></td>
 <td>query on a specific first_name</td>
+</tr>
+<tr>
+<td>where[nickname]</td>
+<td><em>string</em></td>
+<td>query on a specific nickname</td>
 </tr>
 <tr>
 <td>where[goes_by_name]</td>
@@ -3874,11 +3708,12 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
       </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-03-18T19:31:54Z"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PiCO"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"M"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"goes_by_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"P Riddy"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"given_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Picardo"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"grade"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="s2">"graduation_year"</span><span class="p">:</span><span class="w"> </span><span class="mi">2000</span><span class="p">,</span><span class="w">
       </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Das Robot"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"middle_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ross"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"nickname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"P Riddy"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"people_permissions"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Viewer"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"school_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"elementary"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"site_administrator"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
@@ -4083,7 +3918,17 @@ curl -v -u token:secret -X POST -d <span class="s1">'{"data":{"type":"Person","a
 </tr>
 </thead><tbody>
 <tr>
+<td>given_name</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
 <td>first_name</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>nickname</td>
 <td>string</td>
 <td></td>
 </tr>
@@ -4190,7 +4035,17 @@ curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{"type":"Person","
 </tr>
 </thead><tbody>
 <tr>
+<td>given_name</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
 <td>first_name</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>nickname</td>
 <td>string</td>
 <td></td>
 </tr>
@@ -5782,9 +5637,9 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 <td>Move a Workflow Card back to the previous step.</td>
 </tr>
 <tr>
-<td>promote</td>
-<td>https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/promote</td>
-<td>Move a Workflow Card to the next step.</td>
+<td>unsnooze</td>
+<td>https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/unsnooze</td>
+<td>Unsnoozes a card</td>
 </tr>
 <tr>
 <td>remove</td>
@@ -5795,6 +5650,11 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 <td>restore</td>
 <td>https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/restore</td>
 <td>Restore a card</td>
+</tr>
+<tr>
+<td>promote</td>
+<td>https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/promote</td>
+<td>Move a Workflow Card to the next step.</td>
 </tr>
 <tr>
 <td>send_email</td>
@@ -5810,11 +5670,6 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 <td>snooze</td>
 <td>https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/snooze</td>
 <td>Snoozes a card for a specific duration</td>
-</tr>
-<tr>
-<td>unsnooze</td>
-<td>https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/unsnooze</td>
-<td>Unsnoozes a card</td>
 </tr>
 </tbody></table>
 
@@ -6180,12 +6035,12 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 
 <h3 id="list-workflow-tasks">List Workflow Tasks</h3>
 <pre><code class="highlight shell"><span class="c"># to list records...</span>
-curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/current_task"</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/tasks"</span>
 </code></pre>
 
 <h4 id="http-request">HTTP Request</h4>
 
-<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/current_task</code></p>
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/tasks</code></p>
 
 <h4 id="url-parameters">URL Parameters</h4>
 
@@ -6242,7 +6097,7 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 
 <h3 id="get-a-single-workflow-task">Get a single Workflow Task</h3>
 <pre><code class="highlight shell"><span class="c"># to show...</span>
-curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/current_task/1"</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/tasks/1"</span>
 </code></pre>
 
 <blockquote>
@@ -6271,7 +6126,7 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 
 <h4 id="http-request">HTTP Request</h4>
 
-<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/current_task/1</code></p>
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/tasks/1</code></p>
 
 <h4 id="url-parameters">URL Parameters</h4>
 
@@ -6311,12 +6166,12 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 
 <h3 id="list-annotation-drawings">List Annotation Drawings</h3>
 <pre><code class="highlight shell"><span class="c"># to list records...</span>
-curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/services/v2/media/1/attachments/1/annotation_drawings"</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/services/v2/service_types/1/attachments/1/annotation_drawings"</span>
 </code></pre>
 
 <h4 id="http-request">HTTP Request</h4>
 
-<p><code class="prettyprint">GET https://api.planningcenteronline.com/services/v2/media/1/attachments/1/annotation_drawings</code></p>
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/services/v2/service_types/1/attachments/1/annotation_drawings</code></p>
 
 <h4 id="url-parameters">URL Parameters</h4>
 
@@ -6341,7 +6196,7 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 
 <h3 id="get-a-single-annotation-drawing">Get a single Annotation Drawing</h3>
 <pre><code class="highlight shell"><span class="c"># to show...</span>
-curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/services/v2/media/1/attachments/1/annotation_drawings/1"</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/services/v2/service_types/1/attachments/1/annotation_drawings/1"</span>
 </code></pre>
 
 <blockquote>
@@ -6363,7 +6218,7 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 
 <h4 id="http-request">HTTP Request</h4>
 
-<p><code class="prettyprint">GET https://api.planningcenteronline.com/services/v2/media/1/attachments/1/annotation_drawings/1</code></p>
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/services/v2/service_types/1/attachments/1/annotation_drawings/1</code></p>
 
 <h4 id="url-parameters">URL Parameters</h4>
 
@@ -6771,12 +6626,12 @@ curl -v -u token:secret -X DELETE <span class="s2">"https://api.planningcenteron
 
 <h3 id="list-attachments">List Attachments</h3>
 <pre><code class="highlight shell"><span class="c"># to list records...</span>
-curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/services/v2/media/1/attachments"</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/services/v2/service_types/1/attachments"</span>
 </code></pre>
 
 <h4 id="http-request">HTTP Request</h4>
 
-<p><code class="prettyprint">GET https://api.planningcenteronline.com/services/v2/media/1/attachments</code></p>
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/services/v2/service_types/1/attachments</code></p>
 
 <h4 id="url-parameters">URL Parameters</h4>
 
@@ -6801,7 +6656,7 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 
 <h3 id="get-a-single-attachment">Get a single Attachment</h3>
 <pre><code class="highlight shell"><span class="c"># to show...</span>
-curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/services/v2/media/1/attachments/1"</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/services/v2/service_types/1/attachments/1"</span>
 </code></pre>
 
 <blockquote>
@@ -6862,7 +6717,7 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 
 <h4 id="http-request">HTTP Request</h4>
 
-<p><code class="prettyprint">GET https://api.planningcenteronline.com/services/v2/media/1/attachments/1</code></p>
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/services/v2/service_types/1/attachments/1</code></p>
 
 <h4 id="url-parameters">URL Parameters</h4>
 
@@ -6881,12 +6736,12 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 </thead><tbody>
 <tr>
 <td>annotation_drawings</td>
-<td>https://api.planningcenteronline.com/services/v2/media/1/attachments/1/annotation_drawings</td>
+<td>https://api.planningcenteronline.com/services/v2/service_types/1/attachments/1/annotation_drawings</td>
 <td>AnnotationDrawing</td>
 </tr>
 <tr>
 <td>attachment_annotations</td>
-<td>https://api.planningcenteronline.com/services/v2/media/1/attachments/1/attachment_annotations</td>
+<td>https://api.planningcenteronline.com/services/v2/service_types/1/attachments/1/attachment_annotations</td>
 <td>AttachmentAnnotation</td>
 </tr>
 </tbody></table>
@@ -6904,7 +6759,7 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 </thead><tbody>
 <tr>
 <td>open</td>
-<td>https://api.planningcenteronline.com/services/v2/media/1/attachments/1/open</td>
+<td>https://api.planningcenteronline.com/services/v2/service_types/1/attachments/1/open</td>
 <td>This action is used to get the attachment file URL.  It is accessed by <code class="prettyprint">POST</code>ing to <code class="prettyprint">.../attachments/1/open</code></td>
 </tr>
 </tbody></table>
@@ -6966,12 +6821,12 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 
 <h3 id="list-attachment-annotations">List Attachment Annotations</h3>
 <pre><code class="highlight shell"><span class="c"># to list records...</span>
-curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/services/v2/media/1/attachments/1/attachment_annotations"</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/services/v2/service_types/1/attachments/1/attachment_annotations"</span>
 </code></pre>
 
 <h4 id="http-request">HTTP Request</h4>
 
-<p><code class="prettyprint">GET https://api.planningcenteronline.com/services/v2/media/1/attachments/1/attachment_annotations</code></p>
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/services/v2/service_types/1/attachments/1/attachment_annotations</code></p>
 
 <h4 id="url-parameters">URL Parameters</h4>
 
@@ -7006,7 +6861,7 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 
 <h3 id="get-a-single-attachment-annotation">Get a single Attachment Annotation</h3>
 <pre><code class="highlight shell"><span class="c"># to show...</span>
-curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/services/v2/media/1/attachments/1/attachment_annotations/1"</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/services/v2/service_types/1/attachments/1/attachment_annotations/1"</span>
 </code></pre>
 
 <blockquote>
@@ -7029,7 +6884,7 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 
 <h4 id="http-request">HTTP Request</h4>
 
-<p><code class="prettyprint">GET https://api.planningcenteronline.com/services/v2/media/1/attachments/1/attachment_annotations/1</code></p>
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/services/v2/service_types/1/attachments/1/attachment_annotations/1</code></p>
 
 <h4 id="url-parameters">URL Parameters</h4>
 
@@ -9165,11 +9020,15 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 
 <p><code class="prettyprint">Ab</code>, <code class="prettyprint">A</code>, <code class="prettyprint">A#</code>, <code class="prettyprint">Bb</code>, <code class="prettyprint">B</code>, <code class="prettyprint">C</code>, <code class="prettyprint">C#</code>, <code class="prettyprint">Db</code>, <code class="prettyprint">D</code>, <code class="prettyprint">D#</code>, <code class="prettyprint">Eb</code>, <code class="prettyprint">E</code>, <code class="prettyprint">F</code>, <code class="prettyprint">F#</code>, <code class="prettyprint">Gb</code>, <code class="prettyprint">G</code>, <code class="prettyprint">G#</code>, <code class="prettyprint">Abm</code>, <code class="prettyprint">Am</code>, <code class="prettyprint">A#m</code>, <code class="prettyprint">Bbm</code>, <code class="prettyprint">Bm</code>, <code class="prettyprint">Cm</code>, <code class="prettyprint">C#m</code>, <code class="prettyprint">Dbm</code>, <code class="prettyprint">Dm</code>, <code class="prettyprint">D#m</code>, <code class="prettyprint">Ebm</code>, <code class="prettyprint">Em</code>, <code class="prettyprint">Fm</code>, <code class="prettyprint">F#m</code>, <code class="prettyprint">Gbm</code>, <code class="prettyprint">Gm</code>, <code class="prettyprint">G#m</code></p>
 
+<p>To set the key to minor append <code class="prettyprint">m</code> to the key. e.g. <code class="prettyprint">Cm</code></p>
+
 <p><span class='attribute-info-name'>ending_key</span></p>
 
 <p>Possible Values:</p>
 
 <p><code class="prettyprint">Ab</code>, <code class="prettyprint">A</code>, <code class="prettyprint">A#</code>, <code class="prettyprint">Bb</code>, <code class="prettyprint">B</code>, <code class="prettyprint">C</code>, <code class="prettyprint">C#</code>, <code class="prettyprint">Db</code>, <code class="prettyprint">D</code>, <code class="prettyprint">D#</code>, <code class="prettyprint">Eb</code>, <code class="prettyprint">E</code>, <code class="prettyprint">F</code>, <code class="prettyprint">F#</code>, <code class="prettyprint">Gb</code>, <code class="prettyprint">G</code>, <code class="prettyprint">G#</code>, <code class="prettyprint">Abm</code>, <code class="prettyprint">Am</code>, <code class="prettyprint">A#m</code>, <code class="prettyprint">Bbm</code>, <code class="prettyprint">Bm</code>, <code class="prettyprint">Cm</code>, <code class="prettyprint">C#m</code>, <code class="prettyprint">Dbm</code>, <code class="prettyprint">Dm</code>, <code class="prettyprint">D#m</code>, <code class="prettyprint">Ebm</code>, <code class="prettyprint">Em</code>, <code class="prettyprint">Fm</code>, <code class="prettyprint">F#m</code>, <code class="prettyprint">Gbm</code>, <code class="prettyprint">Gm</code>, <code class="prettyprint">G#m</code></p>
+
+<p>To set the key to minor append <code class="prettyprint">m</code> to the key. e.g. <code class="prettyprint">Cm</code></p>
 
 <p><span class='attribute-info-name'>alternate_keys</span></p>
 
@@ -10103,6 +9962,11 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 <td>Person</td>
 </tr>
 <tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
 <td>series</td>
 <td>https://api.planningcenteronline.com/services/v2/series</td>
 <td>Series</td>
@@ -10122,6 +9986,24 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 <td>https://api.planningcenteronline.com/services/v2/tag_groups</td>
 <td>TagGroup</td>
 </tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<h3 id="actions-for-an-organization">Actions for an Organization</h3>
+
+<p>You can perform the following actions on an Organization by POSTing to the specified URL.</p>
+
+<table><thead>
+<tr>
+<th>Action</th>
+<th>URL</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
 <tr>
 <td></td>
 <td></td>
@@ -11756,12 +11638,12 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 
 <h3 id="list-plan-times">List Plan Times</h3>
 <pre><code class="highlight shell"><span class="c"># to list records...</span>
-curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/declined_plan_times"</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/services/v2/people/1/schedules/1/declined_plan_times"</span>
 </code></pre>
 
 <h4 id="http-request">HTTP Request</h4>
 
-<p><code class="prettyprint">GET https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/declined_plan_times</code></p>
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/services/v2/people/1/schedules/1/declined_plan_times</code></p>
 
 <h4 id="url-parameters">URL Parameters</h4>
 
@@ -11791,7 +11673,7 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 
 <h3 id="get-a-single-plan-time">Get a single Plan Time</h3>
 <pre><code class="highlight shell"><span class="c"># to show...</span>
-curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/declined_plan_times/1"</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/services/v2/people/1/schedules/1/declined_plan_times/1"</span>
 </code></pre>
 
 <blockquote>
@@ -11830,7 +11712,7 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 
 <h4 id="http-request">HTTP Request</h4>
 
-<p><code class="prettyprint">GET https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/declined_plan_times/1</code></p>
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/services/v2/people/1/schedules/1/declined_plan_times/1</code></p>
 
 <h4 id="url-parameters">URL Parameters</h4>
 
@@ -11861,7 +11743,7 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 </thead><tbody>
 <tr>
 <td>split_team_rehearsal_assignments</td>
-<td>https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/declined_plan_times/1/split_team_rehearsal_assignments</td>
+<td>https://api.planningcenteronline.com/services/v2/people/1/schedules/1/declined_plan_times/1/split_team_rehearsal_assignments</td>
 <td>SplitTeamRehearsalAssignment</td>
 </tr>
 </tbody></table>
@@ -11899,16 +11781,20 @@ curl -v -u token:secret -X POST -d <span class="s1">'{"data":{"type":"PlanTime",
 <td>time_type</td>
 <td>integer</td>
 </tr>
+<tr>
+<td>team_reminders</td>
+<td>array</td>
+</tr>
 </tbody></table>
 
 <h3 id="update-an-existing-plan-time">Update an existing Plan Time</h3>
 <pre><code class="highlight shell"><span class="c"># to update a record...</span>
-curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{"type":"PlanTime","id":"1","attributes":{...}}}'</span> <span class="s2">"https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/declined_plan_times/1"</span>
+curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{"type":"PlanTime","id":"1","attributes":{...}}}'</span> <span class="s2">"https://api.planningcenteronline.com/services/v2/people/1/schedules/1/declined_plan_times/1"</span>
 </code></pre>
 
 <h4 id="http-request">HTTP Request</h4>
 
-<p><code class="prettyprint">PATCH https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/declined_plan_times/1</code></p>
+<p><code class="prettyprint">PATCH https://api.planningcenteronline.com/services/v2/people/1/schedules/1/declined_plan_times/1</code></p>
 
 <h4 id="resource-attributes">Resource Attributes</h4>
 
@@ -11934,16 +11820,20 @@ curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{"type":"PlanTime"
 <td>time_type</td>
 <td>integer</td>
 </tr>
+<tr>
+<td>team_reminders</td>
+<td>array</td>
+</tr>
 </tbody></table>
 
 <h3 id="delete-a-plan-time">Delete a Plan Time</h3>
 <pre><code class="highlight shell"><span class="c"># to delete a record...</span>
-curl -v -u token:secret -X DELETE <span class="s2">"https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/declined_plan_times/1"</span>
+curl -v -u token:secret -X DELETE <span class="s2">"https://api.planningcenteronline.com/services/v2/people/1/schedules/1/declined_plan_times/1"</span>
 </code></pre>
 
 <h4 id="http-request">HTTP Request</h4>
 
-<p><code class="prettyprint">DELETE https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/declined_plan_times/1</code></p>
+<p><code class="prettyprint">DELETE https://api.planningcenteronline.com/services/v2/people/1/schedules/1/declined_plan_times/1</code></p>
 
 <h2 id="schedules">Schedules</h2>
 
@@ -12880,6 +12770,14 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 
 <p>A song</p>
 
+<h3 id="attribute-info">Attribute Info</h3>
+
+<p><span class='attribute-info-name'>title</span></p>
+
+<p>The name of the song.</p>
+
+<p>When setting this value on a create you can pass a CCLI number and Services will fetch the song metadata for you.</p>
+
 <h3 id="list-songs">List Songs</h3>
 <pre><code class="highlight shell"><span class="c"># to list records...</span>
 curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/services/v2/songs"</span>
@@ -12899,14 +12797,24 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 </tr>
 </thead><tbody>
 <tr>
-<td>where[title]</td>
+<td>where[author]</td>
 <td><em>string</em></td>
-<td>query on a specific title</td>
+<td>query on a specific author</td>
 </tr>
 <tr>
 <td>where[hidden]</td>
 <td><em>boolean</em></td>
 <td>query on a specific hidden</td>
+</tr>
+<tr>
+<td>where[themes]</td>
+<td><em>string</em></td>
+<td>query on a specific themes</td>
+</tr>
+<tr>
+<td>where[title]</td>
+<td><em>string</em></td>
+<td>query on a specific title</td>
 </tr>
 <tr>
 <td>after</td>
@@ -13315,12 +13223,12 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 
 <h3 id="list-split-team-rehearsal-assignments">List Split Team Rehearsal Assignments</h3>
 <pre><code class="highlight shell"><span class="c"># to list records...</span>
-curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/declined_plan_times/1/split_team_rehearsal_assignments"</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/services/v2/people/1/schedules/1/declined_plan_times/1/split_team_rehearsal_assignments"</span>
 </code></pre>
 
 <h4 id="http-request">HTTP Request</h4>
 
-<p><code class="prettyprint">GET https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/declined_plan_times/1/split_team_rehearsal_assignments</code></p>
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/services/v2/people/1/schedules/1/declined_plan_times/1/split_team_rehearsal_assignments</code></p>
 
 <h4 id="url-parameters">URL Parameters</h4>
 
@@ -13345,7 +13253,7 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 
 <h3 id="get-a-single-split-team-rehearsal-assignment">Get a single Split Team Rehearsal Assignment</h3>
 <pre><code class="highlight shell"><span class="c"># to show...</span>
-curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/declined_plan_times/1/split_team_rehearsal_assignments/1"</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/services/v2/people/1/schedules/1/declined_plan_times/1/split_team_rehearsal_assignments/1"</span>
 </code></pre>
 
 <blockquote>
@@ -13380,7 +13288,7 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 
 <h4 id="http-request">HTTP Request</h4>
 
-<p><code class="prettyprint">GET https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/declined_plan_times/1/split_team_rehearsal_assignments/1</code></p>
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/services/v2/people/1/schedules/1/declined_plan_times/1/split_team_rehearsal_assignments/1</code></p>
 
 <h4 id="url-parameters">URL Parameters</h4>
 
@@ -13399,7 +13307,7 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 </thead><tbody>
 <tr>
 <td>team</td>
-<td>https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/declined_plan_times/1/split_team_rehearsal_assignments/1/team</td>
+<td>https://api.planningcenteronline.com/services/v2/people/1/schedules/1/declined_plan_times/1/split_team_rehearsal_assignments/1/team</td>
 <td>Team</td>
 </tr>
 </tbody></table>
@@ -14513,12 +14421,12 @@ the basis for label printing.</p>
 
 <h3 id="list-check-in-groups">List Check In Groups</h3>
 <pre><code class="highlight shell"><span class="c"># to list records...</span>
-curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/check_ins/v2/stations/1/check_in_groups"</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/check_ins/v2/check_ins/1/check_in_group"</span>
 </code></pre>
 
 <h4 id="http-request">HTTP Request</h4>
 
-<p><code class="prettyprint">GET https://api.planningcenteronline.com/check_ins/v2/stations/1/check_in_groups</code></p>
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/check_ins/v2/check_ins/1/check_in_group</code></p>
 
 <h4 id="url-parameters">URL Parameters</h4>
 
@@ -14560,7 +14468,7 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/c
 
 <h3 id="get-a-single-check-in-group">Get a single Check In Group</h3>
 <pre><code class="highlight shell"><span class="c"># to show...</span>
-curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/check_ins/v2/stations/1/check_in_groups/1"</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/check_ins/v2/check_ins/1/check_in_group/1"</span>
 </code></pre>
 
 <blockquote>
@@ -14584,7 +14492,7 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/c
 
 <h4 id="http-request">HTTP Request</h4>
 
-<p><code class="prettyprint">GET https://api.planningcenteronline.com/check_ins/v2/stations/1/check_in_groups/1</code></p>
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/check_ins/v2/check_ins/1/check_in_group/1</code></p>
 
 <h4 id="url-parameters">URL Parameters</h4>
 
@@ -14627,17 +14535,17 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/c
 </thead><tbody>
 <tr>
 <td>check_ins</td>
-<td>https://api.planningcenteronline.com/check_ins/v2/stations/1/check_in_groups/1/check_ins</td>
+<td>https://api.planningcenteronline.com/check_ins/v2/check_ins/1/check_in_group/1/check_ins</td>
 <td>CheckIn</td>
 </tr>
 <tr>
 <td>event_period</td>
-<td>https://api.planningcenteronline.com/check_ins/v2/stations/1/check_in_groups/1/event_period</td>
+<td>https://api.planningcenteronline.com/check_ins/v2/check_ins/1/check_in_group/1/event_period</td>
 <td>EventPeriod</td>
 </tr>
 <tr>
 <td>print_station</td>
-<td>https://api.planningcenteronline.com/check_ins/v2/stations/1/check_in_groups/1/print_station</td>
+<td>https://api.planningcenteronline.com/check_ins/v2/check_ins/1/check_in_group/1/print_station</td>
 <td>Station</td>
 </tr>
 </tbody></table>
@@ -14774,12 +14682,12 @@ whether to print it for regulars, guests, and/or volunteers.</p>
 
 <h3 id="list-event-labels">List Event Labels</h3>
 <pre><code class="highlight shell"><span class="c"># to list records...</span>
-curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/check_ins/v2/events/1/event_labels"</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/check_ins/v2/labels/1/event_labels"</span>
 </code></pre>
 
 <h4 id="http-request">HTTP Request</h4>
 
-<p><code class="prettyprint">GET https://api.planningcenteronline.com/check_ins/v2/events/1/event_labels</code></p>
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/check_ins/v2/labels/1/event_labels</code></p>
 
 <h4 id="url-parameters">URL Parameters</h4>
 
@@ -14816,7 +14724,7 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/c
 
 <h3 id="get-a-single-event-label">Get a single Event Label</h3>
 <pre><code class="highlight shell"><span class="c"># to show...</span>
-curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/check_ins/v2/events/1/event_labels/1"</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/check_ins/v2/labels/1/event_labels/1"</span>
 </code></pre>
 
 <blockquote>
@@ -14840,7 +14748,7 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/c
 
 <h4 id="http-request">HTTP Request</h4>
 
-<p><code class="prettyprint">GET https://api.planningcenteronline.com/check_ins/v2/events/1/event_labels/1</code></p>
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/check_ins/v2/labels/1/event_labels/1</code></p>
 
 <h4 id="url-parameters">URL Parameters</h4>
 
@@ -14878,12 +14786,12 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/c
 </thead><tbody>
 <tr>
 <td>event</td>
-<td>https://api.planningcenteronline.com/check_ins/v2/events/1/event_labels/1/event</td>
+<td>https://api.planningcenteronline.com/check_ins/v2/labels/1/event_labels/1/event</td>
 <td>Event</td>
 </tr>
 <tr>
 <td>label</td>
-<td>https://api.planningcenteronline.com/check_ins/v2/events/1/event_labels/1/label</td>
+<td>https://api.planningcenteronline.com/check_ins/v2/labels/1/event_labels/1/label</td>
 <td>Label</td>
 </tr>
 </tbody></table>
@@ -14898,12 +14806,12 @@ are copied from one session to the next.</p>
 
 <h3 id="list-event-periods">List Event Periods</h3>
 <pre><code class="highlight shell"><span class="c"># to list records...</span>
-curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/check_ins/v2/events/1/event_periods"</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/check_ins/v2/check_ins/1/event_period"</span>
 </code></pre>
 
 <h4 id="http-request">HTTP Request</h4>
 
-<p><code class="prettyprint">GET https://api.planningcenteronline.com/check_ins/v2/events/1/event_periods</code></p>
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/check_ins/v2/check_ins/1/event_period</code></p>
 
 <h4 id="url-parameters">URL Parameters</h4>
 
@@ -14940,7 +14848,7 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/c
 
 <h3 id="get-a-single-event-period">Get a single Event Period</h3>
 <pre><code class="highlight shell"><span class="c"># to show...</span>
-curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/check_ins/v2/events/1/event_periods/1"</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/check_ins/v2/check_ins/1/event_period/1"</span>
 </code></pre>
 
 <blockquote>
@@ -14967,7 +14875,7 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/c
 
 <h4 id="http-request">HTTP Request</h4>
 
-<p><code class="prettyprint">GET https://api.planningcenteronline.com/check_ins/v2/events/1/event_periods/1</code></p>
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/check_ins/v2/check_ins/1/event_period/1</code></p>
 
 <h4 id="url-parameters">URL Parameters</h4>
 
@@ -15005,22 +14913,22 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/c
 </thead><tbody>
 <tr>
 <td>check_ins</td>
-<td>https://api.planningcenteronline.com/check_ins/v2/events/1/event_periods/1/check_ins</td>
+<td>https://api.planningcenteronline.com/check_ins/v2/check_ins/1/event_period/1/check_ins</td>
 <td>CheckIn</td>
 </tr>
 <tr>
 <td>event</td>
-<td>https://api.planningcenteronline.com/check_ins/v2/events/1/event_periods/1/event</td>
+<td>https://api.planningcenteronline.com/check_ins/v2/check_ins/1/event_period/1/event</td>
 <td>Event</td>
 </tr>
 <tr>
 <td>event_times</td>
-<td>https://api.planningcenteronline.com/check_ins/v2/events/1/event_periods/1/event_times</td>
+<td>https://api.planningcenteronline.com/check_ins/v2/check_ins/1/event_period/1/event_times</td>
 <td>EventTime</td>
 </tr>
 <tr>
 <td>location_event_periods</td>
-<td>https://api.planningcenteronline.com/check_ins/v2/events/1/event_periods/1/location_event_periods</td>
+<td>https://api.planningcenteronline.com/check_ins/v2/check_ins/1/event_period/1/location_event_periods</td>
 <td>LocationEventPeriod</td>
 </tr>
 </tbody></table>
@@ -15387,12 +15295,12 @@ You can get a location&rsquo;s parent folder from the <code class="prettyprint">
 
 <h3 id="list-locations">List Locations</h3>
 <pre><code class="highlight shell"><span class="c"># to list records...</span>
-curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/check_ins/v2/stations/1/location"</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/check_ins/v2/check_ins/1/location"</span>
 </code></pre>
 
 <h4 id="http-request">HTTP Request</h4>
 
-<p><code class="prettyprint">GET https://api.planningcenteronline.com/check_ins/v2/stations/1/location</code></p>
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/check_ins/v2/check_ins/1/location</code></p>
 
 <h4 id="url-parameters">URL Parameters</h4>
 
@@ -15439,7 +15347,7 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/c
 
 <h3 id="get-a-single-location">Get a single Location</h3>
 <pre><code class="highlight shell"><span class="c"># to show...</span>
-curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/check_ins/v2/stations/1/location/1"</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/check_ins/v2/check_ins/1/location/1"</span>
 </code></pre>
 
 <blockquote>
@@ -15472,7 +15380,7 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/c
 
 <h4 id="http-request">HTTP Request</h4>
 
-<p><code class="prettyprint">GET https://api.planningcenteronline.com/check_ins/v2/stations/1/location/1</code></p>
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/check_ins/v2/check_ins/1/location/1</code></p>
 
 <h4 id="url-parameters">URL Parameters</h4>
 
@@ -15520,42 +15428,42 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/c
 </thead><tbody>
 <tr>
 <td>check_ins</td>
-<td>https://api.planningcenteronline.com/check_ins/v2/stations/1/location/1/check_ins</td>
+<td>https://api.planningcenteronline.com/check_ins/v2/check_ins/1/location/1/check_ins</td>
 <td>CheckIn</td>
 </tr>
 <tr>
 <td>event</td>
-<td>https://api.planningcenteronline.com/check_ins/v2/stations/1/location/1/event</td>
+<td>https://api.planningcenteronline.com/check_ins/v2/check_ins/1/location/1/event</td>
 <td>Event</td>
 </tr>
 <tr>
 <td>location_event_periods</td>
-<td>https://api.planningcenteronline.com/check_ins/v2/stations/1/location/1/location_event_periods</td>
+<td>https://api.planningcenteronline.com/check_ins/v2/check_ins/1/location/1/location_event_periods</td>
 <td>LocationEventPeriod</td>
 </tr>
 <tr>
 <td>location_event_times</td>
-<td>https://api.planningcenteronline.com/check_ins/v2/stations/1/location/1/location_event_times</td>
+<td>https://api.planningcenteronline.com/check_ins/v2/check_ins/1/location/1/location_event_times</td>
 <td>LocationEventTime</td>
 </tr>
 <tr>
 <td>location_labels</td>
-<td>https://api.planningcenteronline.com/check_ins/v2/stations/1/location/1/location_labels</td>
+<td>https://api.planningcenteronline.com/check_ins/v2/check_ins/1/location/1/location_labels</td>
 <td>LocationLabel</td>
 </tr>
 <tr>
 <td>locations</td>
-<td>https://api.planningcenteronline.com/check_ins/v2/stations/1/location/1/locations</td>
+<td>https://api.planningcenteronline.com/check_ins/v2/check_ins/1/location/1/locations</td>
 <td>Location</td>
 </tr>
 <tr>
 <td>options</td>
-<td>https://api.planningcenteronline.com/check_ins/v2/stations/1/location/1/options</td>
+<td>https://api.planningcenteronline.com/check_ins/v2/check_ins/1/location/1/options</td>
 <td>Option</td>
 </tr>
 <tr>
 <td>parent</td>
-<td>https://api.planningcenteronline.com/check_ins/v2/stations/1/location/1/parent</td>
+<td>https://api.planningcenteronline.com/check_ins/v2/check_ins/1/location/1/parent</td>
 <td>Location</td>
 </tr>
 </tbody></table>
@@ -15566,12 +15474,12 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/c
 
 <h3 id="list-location-event-periods">List Location Event Periods</h3>
 <pre><code class="highlight shell"><span class="c"># to list records...</span>
-curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/check_ins/v2/events/1/event_periods/1/location_event_periods"</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/check_ins/v2/check_ins/1/location/1/location_event_periods"</span>
 </code></pre>
 
 <h4 id="http-request">HTTP Request</h4>
 
-<p><code class="prettyprint">GET https://api.planningcenteronline.com/check_ins/v2/events/1/event_periods/1/location_event_periods</code></p>
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/check_ins/v2/check_ins/1/location/1/location_event_periods</code></p>
 
 <h4 id="url-parameters">URL Parameters</h4>
 
@@ -15608,7 +15516,7 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/c
 
 <h3 id="get-a-single-location-event-period">Get a single Location Event Period</h3>
 <pre><code class="highlight shell"><span class="c"># to show...</span>
-curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/check_ins/v2/events/1/event_periods/1/location_event_periods/1"</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/check_ins/v2/check_ins/1/location/1/location_event_periods/1"</span>
 </code></pre>
 
 <blockquote>
@@ -15631,7 +15539,7 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/c
 
 <h4 id="http-request">HTTP Request</h4>
 
-<p><code class="prettyprint">GET https://api.planningcenteronline.com/check_ins/v2/events/1/event_periods/1/location_event_periods/1</code></p>
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/check_ins/v2/check_ins/1/location/1/location_event_periods/1</code></p>
 
 <h4 id="url-parameters">URL Parameters</h4>
 
@@ -15669,17 +15577,17 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/c
 </thead><tbody>
 <tr>
 <td>check_ins</td>
-<td>https://api.planningcenteronline.com/check_ins/v2/events/1/event_periods/1/location_event_periods/1/check_ins</td>
+<td>https://api.planningcenteronline.com/check_ins/v2/check_ins/1/location/1/location_event_periods/1/check_ins</td>
 <td>CheckIn</td>
 </tr>
 <tr>
 <td>event_period</td>
-<td>https://api.planningcenteronline.com/check_ins/v2/events/1/event_periods/1/location_event_periods/1/event_period</td>
+<td>https://api.planningcenteronline.com/check_ins/v2/check_ins/1/location/1/location_event_periods/1/event_period</td>
 <td>EventPeriod</td>
 </tr>
 <tr>
 <td>location</td>
-<td>https://api.planningcenteronline.com/check_ins/v2/events/1/event_periods/1/location_event_periods/1/location</td>
+<td>https://api.planningcenteronline.com/check_ins/v2/check_ins/1/location/1/location_event_periods/1/location</td>
 <td>Location</td>
 </tr>
 </tbody></table>
@@ -16149,6 +16057,14 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/c
 
 <p>Enables quick lookup of a person via barcode reader.</p>
 
+<h3 id="attribute-info">Attribute Info</h3>
+
+<p><span class='attribute-info-name'>kind</span></p>
+
+<p>Possible values: <code class="prettyprint">barcode</code> or <code class="prettyprint">pkpass</code>.</p>
+
+<p>Using the <code class="prettyprint">pkpass</code> value creates a mobile pass and sends an email to the associated person.</p>
+
 <h3 id="list-passes">List Passes</h3>
 <pre><code class="highlight shell"><span class="c"># to list records...</span>
 curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/check_ins/v2/passes"</span>
@@ -16167,6 +16083,11 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/c
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>where[code]</td>
+<td><em>string</em></td>
+<td>query on a specific code</td>
+</tr>
 <tr>
 <td>include</td>
 <td>person</td>
@@ -16199,6 +16120,7 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/c
     </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"kind"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
       </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"relationships"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -16244,6 +16166,46 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/c
 <td>Person</td>
 </tr>
 </tbody></table>
+
+<h3 id="create-a-new-pass">Create a new Pass</h3>
+<pre><code class="highlight shell"><span class="c"># to create a record...</span>
+curl -v -u token:secret -X POST -d <span class="s1">'{"data":{"type":"Pass","attributes":{...}}}'</span> <span class="s2">"https://api.planningcenteronline.com/check_ins/v2/people/1/passes"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>editor</code> can create this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">POST https://api.planningcenteronline.com/check_ins/v2/people/1/passes</code></p>
+
+<h4 id="resource-attributes">Resource Attributes</h4>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>string</td>
+</tr>
+<tr>
+<td>kind</td>
+<td>integer</td>
+</tr>
+</tbody></table>
+
+<h3 id="delete-a-pass">Delete a Pass</h3>
+<pre><code class="highlight shell"><span class="c"># to delete a record...</span>
+curl -v -u token:secret -X DELETE <span class="s2">"https://api.planningcenteronline.com/check_ins/v2/passes/1"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>editor</code> can delete this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">DELETE https://api.planningcenteronline.com/check_ins/v2/passes/1</code></p>
 
 <h2 id="people">People</h2>
 
@@ -16366,12 +16328,12 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/c
 
 <h3 id="list-person-events">List Person Events</h3>
 <pre><code class="highlight shell"><span class="c"># to list records...</span>
-curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/check_ins/v2/people/1/person_events"</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/check_ins/v2/events/1/person_events"</span>
 </code></pre>
 
 <h4 id="http-request">HTTP Request</h4>
 
-<p><code class="prettyprint">GET https://api.planningcenteronline.com/check_ins/v2/people/1/person_events</code></p>
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/check_ins/v2/events/1/person_events</code></p>
 
 <h4 id="url-parameters">URL Parameters</h4>
 
@@ -16418,7 +16380,7 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/c
 
 <h3 id="get-a-single-person-event">Get a single Person Event</h3>
 <pre><code class="highlight shell"><span class="c"># to show...</span>
-curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/check_ins/v2/people/1/person_events/1"</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/check_ins/v2/events/1/person_events/1"</span>
 </code></pre>
 
 <blockquote>
@@ -16439,7 +16401,7 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/c
 
 <h4 id="http-request">HTTP Request</h4>
 
-<p><code class="prettyprint">GET https://api.planningcenteronline.com/check_ins/v2/people/1/person_events/1</code></p>
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/check_ins/v2/events/1/person_events/1</code></p>
 
 <h4 id="url-parameters">URL Parameters</h4>
 
@@ -16487,22 +16449,22 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/c
 </thead><tbody>
 <tr>
 <td>event</td>
-<td>https://api.planningcenteronline.com/check_ins/v2/people/1/person_events/1/event</td>
+<td>https://api.planningcenteronline.com/check_ins/v2/events/1/person_events/1/event</td>
 <td>Event</td>
 </tr>
 <tr>
 <td>first_check_in</td>
-<td>https://api.planningcenteronline.com/check_ins/v2/people/1/person_events/1/first_check_in</td>
+<td>https://api.planningcenteronline.com/check_ins/v2/events/1/person_events/1/first_check_in</td>
 <td>CheckIn</td>
 </tr>
 <tr>
 <td>last_check_in</td>
-<td>https://api.planningcenteronline.com/check_ins/v2/people/1/person_events/1/last_check_in</td>
+<td>https://api.planningcenteronline.com/check_ins/v2/events/1/person_events/1/last_check_in</td>
 <td>CheckIn</td>
 </tr>
 <tr>
 <td>person</td>
-<td>https://api.planningcenteronline.com/check_ins/v2/people/1/person_events/1/person</td>
+<td>https://api.planningcenteronline.com/check_ins/v2/events/1/person_events/1/person</td>
 <td>Person</td>
 </tr>
 </tbody></table>
@@ -16798,11 +16760,11 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/g
     </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Batch"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-05-23T22:29:37Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-05-26T20:44:38Z"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"in_progress"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"total_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">150000</span><span class="p">,</span><span class="w">
       </span><span class="s2">"total_currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-05-23T22:29:37Z"</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-05-26T20:44:38Z"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"relationships"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="p">}</span><span class="w">
@@ -16904,10 +16866,10 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/g
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"cleared"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-05-23T22:29:37Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-05-26T20:44:38Z"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"total_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">350000</span><span class="p">,</span><span class="w">
       </span><span class="s2">"total_currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-05-23T22:29:37Z"</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-05-26T20:44:38Z"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"relationships"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="p">}</span><span class="w">
@@ -17132,7 +17094,7 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/g
     </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">2000</span><span class="p">,</span><span class="w">
       </span><span class="s2">"amount_currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-05-23T22:29:37Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-05-26T20:44:38Z"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"fee_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">-88</span><span class="p">,</span><span class="w">
       </span><span class="s2">"fee_currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"payment_brand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Visa"</span><span class="p">,</span><span class="w">
@@ -17141,7 +17103,7 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/g
       </span><span class="s2">"payment_method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"card"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"payment_method_sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"debit"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"payment_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"succeeded"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-05-23T22:29:37Z"</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-05-26T20:44:38Z"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"relationships"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="p">}</span><span class="w">
@@ -17255,11 +17217,11 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/g
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#9ccc79"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-05-23T22:29:37Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-05-26T20:44:38Z"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"These funds are used to support our missionary efforts here in the US."</span><span class="p">,</span><span class="w">
       </span><span class="s2">"ledger_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dm-22314"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Domestic Missions"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-05-23T22:29:37Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-05-26T20:44:38Z"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"visibility"</span><span class="p">:</span><span class="w"> </span><span class="s2">"everywhere"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"relationships"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -17451,12 +17413,12 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/g
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"brand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Visa"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-05-23T22:29:37Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-05-26T20:44:38Z"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"expiration"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8/2018"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"last4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4242"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"method_subtype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"credit"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"method_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"card"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-05-23T22:29:37Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-05-26T20:44:38Z"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"relationships"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -17697,16 +17659,16 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/g
     </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">15000</span><span class="p">,</span><span class="w">
       </span><span class="s2">"amount_currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-05-23T22:29:37Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"last_processed_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-05-22T00:00:00Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"next_occurrence"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-22T00:00:00Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-05-26T20:44:38Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"last_processed_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-05-25T00:00:00Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"next_occurrence"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-25T00:00:00Z"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"schedule"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"day_in_month"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"day"</span><span class="p">:</span><span class="w"> </span><span class="mi">22</span><span class="w">
+          </span><span class="s2">"day"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="w">
         </span><span class="p">}</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"active"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-05-23T22:29:37Z"</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-05-26T20:44:38Z"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"relationships"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="p">}</span><span class="w">
