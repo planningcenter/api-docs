@@ -492,9 +492,10 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1
     "attributes": {
       "first_name": "PiCO",
       "gender": "M",
-      "goes_by_name": "P Riddy",
+      "given_name": "Picardo",
       "last_name": "Das Robot",
       "middle_name": "Ross",
+      "nickname": "P Riddy",
       "organization_id": 1,
       "organization_name": "Ministry Centered Technologies",
       "type": "ConnectedPerson"
@@ -2295,7 +2296,9 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people"
 
 Parameter | Value | Description
 --------- | ----- | -----------
+where[given_name] | _string_ | query on a specific given_name
 where[first_name] | _string_ | query on a specific first_name
+where[nickname] | _string_ | query on a specific nickname
 where[goes_by_name] | _string_ | query on a specific goes_by_name
 where[middle_name] | _string_ | query on a specific middle_name
 where[last_name] | _string_ | query on a specific last_name
@@ -2355,11 +2358,12 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1
       "created_at": "2015-03-18T19:31:54Z",
       "first_name": "PiCO",
       "gender": "M",
-      "goes_by_name": "P Riddy",
+      "given_name": "Picardo",
       "grade": null,
       "graduation_year": 2000,
       "last_name": "Das Robot",
       "middle_name": "Ross",
+      "nickname": "P Riddy",
       "people_permissions": "Viewer",
       "school_type": "elementary",
       "site_administrator": true,
@@ -2437,7 +2441,9 @@ curl -v -u token:secret -X POST -d '{"data":{"type":"Person","attributes":{...}}
 
 Attribute | Type | Note
 --------- | ---- | ----
+given_name | string
 first_name | string
+nickname | string
 goes_by_name | string
 middle_name | string
 last_name | string
@@ -2473,7 +2479,9 @@ curl -v -u token:secret -X PATCH -d '{"data":{"type":"Person","id":"1","attribut
 
 Attribute | Type | Note
 --------- | ---- | ----
+given_name | string
 first_name | string
+nickname | string
 goes_by_name | string
 middle_name | string
 last_name | string
