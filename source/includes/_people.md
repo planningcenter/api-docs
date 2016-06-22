@@ -811,6 +811,7 @@ where[data_type] | _string_ | query on a specific data_type
 where[name] | _string_ | query on a specific name
 where[sequence] | _integer_ | query on a specific sequence
 where[slug] | _string_ | query on a specific slug
+where[config] | _string_ | query on a specific config
 where[deleted_at] | _date_time_ | query on a specific deleted_at
 filter | include_deleted | By default, deleted fields are not included. Pass filter=include_deleted to include them.
 include | field_options | include associated field_options
@@ -838,6 +839,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/field_de
     "type": "FieldDefinition",
     "id": "primary_key",
     "attributes": {
+      "config": "string",
       "data_type": "string",
       "deleted_at": "2000-01-01T12:00:00Z",
       "name": "string",
@@ -894,6 +896,7 @@ data_type | string
 name | string
 sequence | integer
 slug | string
+config | string
 deleted_at | date_time
 
 ### Update an existing Field Definition
@@ -918,6 +921,7 @@ data_type | string
 name | string
 sequence | integer
 slug | string
+config | string
 deleted_at | date_time
 
 ### Delete a Field Definition
@@ -2230,6 +2234,7 @@ messages | https://api.planningcenteronline.com/people/v2/messages | Message
 name_prefixes | https://api.planningcenteronline.com/people/v2/name_prefixes | NamePrefix
 name_suffixes | https://api.planningcenteronline.com/people/v2/name_suffixes | NameSuffix
 people | https://api.planningcenteronline.com/people/v2/people | Person
+people_imports | https://api.planningcenteronline.com/people/v2/people_imports | PeopleImport
 reports | https://api.planningcenteronline.com/people/v2/reports | Report
 school_options | https://api.planningcenteronline.com/people/v2/school_options | SchoolOption
 social_profiles | https://api.planningcenteronline.com/people/v2/social_profiles | SocialProfile
@@ -2267,6 +2272,157 @@ Parameter | Value | Description
 --------- | ----- | -----------
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+
+
+
+
+
+
+## PeopleImports
+
+A PeopleImport is a record of an ongoing or previous import from a CSV file.
+
+
+
+### List People Imports
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people_imports"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/people/v2/people_imports`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+where[status] | _integer_ | query on a specific status
+after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+### Get a single People Import
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people_imports/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "PeopleImport",
+    "id": "primary_key",
+    "attributes": {
+      "attribs": "string",
+      "created_at": "2000-01-01T12:00:00Z",
+      "identical_people_ids": "string",
+      "people_ids": "string",
+      "processed_at": "2000-01-01T12:00:00Z",
+      "status": 1,
+      "undone_at": "2000-01-01T12:00:00Z",
+      "updated_at": "2000-01-01T12:00:00Z"
+    },
+    "relationships": {
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/people/v2/people_imports/1`
+
+#### URL Parameters
+
+_none_
+
+### Associations for a People Import
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL | Endpoint
+----------- | --- | --------
+conflicts | https://api.planningcenteronline.com/people/v2/people_imports/1/conflicts | PeopleImportConflict
+
+
+
+
+
+
+
+## PeopleImportConflicts
+
+A PeopleImportConflict is a record of change that will occur if the parent PeopleImport is completed.
+
+
+
+### List People Import Conflicts
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people_imports/1/conflicts"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/people/v2/people_imports/1/conflicts`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+where[kind] | _string_ | query on a specific kind
+where[name] | _string_ | query on a specific name
+after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+### Get a single People Import Conflict
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people_imports/1/conflicts/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "PeopleImportConflict",
+    "id": "primary_key",
+    "attributes": {
+      "conflicting_changes": "string",
+      "created_at": "2000-01-01T12:00:00Z",
+      "data": "string",
+      "ignore": true,
+      "kind": "string",
+      "message": "string",
+      "name": "string",
+      "updated_at": "2000-01-01T12:00:00Z"
+    },
+    "relationships": {
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/people/v2/people_imports/1/conflicts/1`
+
+#### URL Parameters
+
+_none_
 
 
 
@@ -2319,21 +2475,22 @@ where[updated_at] | _date_time_ | query on a specific updated_at
 where[id] | _primary_key_ | query on a specific id
 filter | created_since | filter people created in the last 24 hours; pass an additional `time` parameter in ISO 8601 format to specify your own timeframe
 filter | admins | filter using the named scope "admins"
-include | emails | include associated emails
 include | addresses | include associated addresses
-include | phone_numbers | include associated phone_numbers
+include | emails | include associated emails
+include | field_data | include associated field_data
 include | households | include associated households
-include | school | include associated school
 include | inactive_reason | include associated inactive_reason
 include | marital_status | include associated marital_status
 include | name_prefix | include associated name_prefix
 include | name_suffix | include associated name_suffix
-include | field_data | include associated field_data
+include | person_apps | include associated person_apps
+include | phone_numbers | include associated phone_numbers
+include | school | include associated school
 include | social_profiles | include associated social_profiles
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
-<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=emails,addresses</code></aside>
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=addresses,emails</code></aside>
 
 ### Get a single Person
 
@@ -2385,19 +2542,20 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1
 
 Parameter | Value | Description
 --------- | ----- | -----------
-include | emails | include associated emails
 include | addresses | include associated addresses
-include | phone_numbers | include associated phone_numbers
+include | emails | include associated emails
+include | field_data | include associated field_data
 include | households | include associated households
-include | school | include associated school
 include | inactive_reason | include associated inactive_reason
 include | marital_status | include associated marital_status
 include | name_prefix | include associated name_prefix
 include | name_suffix | include associated name_suffix
-include | field_data | include associated field_data
+include | person_apps | include associated person_apps
+include | phone_numbers | include associated phone_numbers
+include | school | include associated school
 include | social_profiles | include associated social_profiles
 
-<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=emails,addresses</code></aside>
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=addresses,emails</code></aside>
 
 ### Associations for a Person
 
@@ -2419,6 +2577,7 @@ message_groups | https://api.planningcenteronline.com/people/v2/people/1/message
 messages | https://api.planningcenteronline.com/people/v2/people/1/messages | Message
 name_prefix | https://api.planningcenteronline.com/people/v2/people/1/name_prefix | NamePrefix
 name_suffix | https://api.planningcenteronline.com/people/v2/people/1/name_suffix | NameSuffix
+person_apps | https://api.planningcenteronline.com/people/v2/people/1/person_apps | PersonApp
 phone_numbers | https://api.planningcenteronline.com/people/v2/people/1/phone_numbers | PhoneNumber
 school | https://api.planningcenteronline.com/people/v2/people/1/school | SchoolOption
 social_profiles | https://api.planningcenteronline.com/people/v2/people/1/social_profiles | SocialProfile
@@ -2469,8 +2628,6 @@ curl -v -u token:secret -X PATCH -d '{"data":{"type":"Person","id":"1","attribut
 ```
 
 
-<aside class='info'>Only users with the role <code>editor</code> can update this resource.</aside>
-
 #### HTTP Request
 
 `PATCH https://api.planningcenteronline.com/people/v2/people/1`
@@ -2513,6 +2670,81 @@ curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v
 
 `DELETE https://api.planningcenteronline.com/people/v2/people/1`
 
+## PersonApps
+
+A Person App is the relationship between a Person and an App.
+
+
+
+### List Person Apps
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1/person_apps"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/people/v2/people/1/person_apps`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+include | app | include associated app
+after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+### Get a single Person App
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1/person_apps/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "PersonApp",
+    "id": "primary_key",
+    "attributes": {
+      "allow_pco_login": true,
+      "people_permissions": 1
+    },
+    "relationships": {
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/people/v2/people/1/person_apps/1`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+include | app | include associated app
+
+### Associations for a Person App
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL | Endpoint
+----------- | --- | --------
+app | https://api.planningcenteronline.com/people/v2/people/1/person_apps/1/app | App
+
+
+
+
+
+
+
 ## PhoneNumbers
 
 A phone number represents a single telephone number and location.
@@ -2536,6 +2768,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1
 Parameter | Value | Description
 --------- | ----- | -----------
 where[number] | _string_ | query on a specific number
+where[carrier] | _string_ | query on a specific carrier
 where[location] | _string_ | query on a specific location
 where[created_at] | _date_time_ | query on a specific created_at
 where[updated_at] | _date_time_ | query on a specific updated_at
@@ -2558,6 +2791,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1
     "type": "PhoneNumber",
     "id": "primary_key",
     "attributes": {
+      "carrier": "string",
       "created_at": "2000-01-01T12:00:00Z",
       "location": "string",
       "number": "string",
@@ -2596,6 +2830,7 @@ curl -v -u token:secret -X POST -d '{"data":{"type":"PhoneNumber","attributes":{
 Attribute | Type
 --------- | ----
 number | string
+carrier | string
 location | string
 
 ### Update an existing Phone Number
@@ -2617,6 +2852,7 @@ curl -v -u token:secret -X PATCH -d '{"data":{"type":"PhoneNumber","id":"1","att
 Attribute | Type
 --------- | ----
 number | string
+carrier | string
 location | string
 
 ### Delete a Phone Number
@@ -3440,7 +3676,6 @@ Parameter | Value | Description
 --------- | ----- | -----------
 include | person | include associated person
 include | assignee | include associated assignee
-include | tasks | include associated tasks
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
@@ -3495,7 +3730,6 @@ Parameter | Value | Description
 --------- | ----- | -----------
 include | person | include associated person
 include | assignee | include associated assignee
-include | tasks | include associated tasks
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=person,assignee</code></aside>
 
@@ -3507,10 +3741,8 @@ Association | URL | Endpoint
 ----------- | --- | --------
 activities | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/activities | WorkflowCardActivity
 assignee | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/assignee | Person
-current_task | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/current_task | WorkflowTask
 notes | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/notes | WorkflowCardNote
 person | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/person | Person
-tasks | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/tasks | WorkflowTask
 
 ### Actions for a Workflow Card
 
@@ -3518,14 +3750,14 @@ You can perform the following actions on a Workflow Card by POSTing to the speci
 
 Action | URL | Description
 ------ | --- | -----------
-go_back | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/go_back | Move a Workflow Card back to the previous step.
+restore | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/restore | Restore a card
 unsnooze | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/unsnooze | Unsnoozes a card
 remove | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/remove | Removes a card
-restore | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/restore | Restore a card
-promote | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/promote | Move a Workflow Card to the next step.
+go_back | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/go_back | Move a Workflow Card back to the previous step.
 send_email | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/send_email | Sends an email to the subject of the card
-skip_step | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/skip_step | Move a Workflow Card to the next step without completing the current step.
+promote | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/promote | Move a Workflow Card to the next step.
 snooze | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/snooze | Snoozes a card for a specific duration
+skip_step | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/skip_step | Move a Workflow Card to the next step without completing the current step.
 
 
 
@@ -3833,98 +4065,6 @@ You can append one of the following associations onto this resource URL to jump 
 Association | URL | Endpoint
 ----------- | --- | --------
 default_assignee | https://api.planningcenteronline.com/people/v2/workflows/1/steps/1/default_assignee | Person
-
-
-
-
-
-
-
-## WorkflowTasks
-
-A Task
-
-
-
-### Relationships
-
-
-Name | Type | To Many | Description
----- | ---- | ------- | -----------
-step | Step | _false_ | 
-
-### List Workflow Tasks
-
-```shell
-# to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/tasks"
-```
-
-
-#### HTTP Request
-
-`GET https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/tasks`
-
-#### URL Parameters
-
-Parameter | Value | Description
---------- | ----- | -----------
-where[created_at] | _date_time_ | query on a specific created_at
-where[updated_at] | _date_time_ | query on a specific updated_at
-where[completed_at] | _date_time_ | query on a specific completed_at
-include | card | include associated card
-include | step | include associated step
-include | completed_by | include associated completed_by
-after | _id_ | get page after the specified id
-per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
-
-<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=card,step</code></aside>
-
-### Get a single Workflow Task
-
-```shell
-# to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/tasks/1"
-```
-
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "data": {
-    "type": "WorkflowTask",
-    "id": "primary_key",
-    "attributes": {
-      "completed_at": "2000-01-01T12:00:00Z",
-      "created_at": "2000-01-01T12:00:00Z",
-      "updated_at": "2000-01-01T12:00:00Z"
-    },
-    "relationships": {
-      "step": {
-        "data": {
-          "type": "Step",
-          "id": "123"
-        }
-      }
-    }
-  }
-}
-```
-
-#### HTTP Request
-
-`GET https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/tasks/1`
-
-#### URL Parameters
-
-Parameter | Value | Description
---------- | ----- | -----------
-include | card | include associated card
-include | step | include associated step
-include | completed_by | include associated completed_by
-
-<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=card,step</code></aside>
 
 
 

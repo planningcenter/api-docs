@@ -12,13 +12,13 @@ A single pen stroke, highlighter stroke, or text annotation a user has added to 
 
 ```shell
 # to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/service_types/1/attachments/1/annotation_drawings"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/songs/1/attachments/1/annotation_drawings"
 ```
 
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/service_types/1/attachments/1/annotation_drawings`
+`GET https://api.planningcenteronline.com/services/v2/songs/1/attachments/1/annotation_drawings`
 
 #### URL Parameters
 
@@ -31,7 +31,7 @@ per_page | _integer_ | how many records to return per page (min=1, max=100, defa
 
 ```shell
 # to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/service_types/1/attachments/1/annotation_drawings/1"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/songs/1/attachments/1/annotation_drawings/1"
 ```
 
 
@@ -54,7 +54,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/service_types/1/attachments/1/annotation_drawings/1`
+`GET https://api.planningcenteronline.com/services/v2/songs/1/attachments/1/annotation_drawings/1`
 
 #### URL Parameters
 
@@ -343,13 +343,13 @@ updated_by | Person | _false_ |
 
 ```shell
 # to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/service_types/1/attachments"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/songs/1/attachments"
 ```
 
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/service_types/1/attachments`
+`GET https://api.planningcenteronline.com/services/v2/songs/1/attachments`
 
 #### URL Parameters
 
@@ -362,7 +362,7 @@ per_page | _integer_ | how many records to return per page (min=1, max=100, defa
 
 ```shell
 # to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/service_types/1/attachments/1"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/songs/1/attachments/1"
 ```
 
 
@@ -424,7 +424,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/service_types/1/attachments/1`
+`GET https://api.planningcenteronline.com/services/v2/songs/1/attachments/1`
 
 #### URL Parameters
 
@@ -436,8 +436,8 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
-annotation_drawings | https://api.planningcenteronline.com/services/v2/service_types/1/attachments/1/annotation_drawings | AnnotationDrawing
-attachment_annotations | https://api.planningcenteronline.com/services/v2/service_types/1/attachments/1/attachment_annotations | AttachmentAnnotation
+annotation_drawings | https://api.planningcenteronline.com/services/v2/songs/1/attachments/1/annotation_drawings | AnnotationDrawing
+attachment_annotations | https://api.planningcenteronline.com/services/v2/songs/1/attachments/1/attachment_annotations | AttachmentAnnotation
 
 ### Actions for an Attachment
 
@@ -445,7 +445,7 @@ You can perform the following actions on an Attachment by POSTing to the specifi
 
 Action | URL | Description
 ------ | --- | -----------
-open | https://api.planningcenteronline.com/services/v2/service_types/1/attachments/1/open | This action is used to get the attachment file URL.  It is accessed by `POST`ing to `.../attachments/1/open`
+open | https://api.planningcenteronline.com/services/v2/songs/1/attachments/1/open | This action is used to get the attachment file URL.  It is accessed by `POST`ing to `.../attachments/1/open`
 
 This will generate the URL and return it in the `attachment_url` attribute of the `AttachmentActivity`.
 
@@ -500,13 +500,13 @@ A set of annotation drawings that make up all annotations a user has added to a 
 
 ```shell
 # to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/service_types/1/attachments/1/attachment_annotations"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/songs/1/attachments/1/attachment_annotations"
 ```
 
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/service_types/1/attachments/1/attachment_annotations`
+`GET https://api.planningcenteronline.com/services/v2/songs/1/attachments/1/attachment_annotations`
 
 #### URL Parameters
 
@@ -521,7 +521,7 @@ per_page | _integer_ | how many records to return per page (min=1, max=100, defa
 
 ```shell
 # to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/service_types/1/attachments/1/attachment_annotations/1"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/songs/1/attachments/1/attachment_annotations/1"
 ```
 
 
@@ -545,7 +545,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/service_types/1/attachments/1/attachment_annotations/1`
+`GET https://api.planningcenteronline.com/services/v2/songs/1/attachments/1/attachment_annotations/1`
 
 #### URL Parameters
 
@@ -2831,10 +2831,12 @@ You can append one of the following associations onto this resource URL to jump 
 Association | URL | Endpoint
 ----------- | --- | --------
 attachment_types | https://api.planningcenteronline.com/services/v2/attachment_types | AttachmentType
+ |  | 
 email_templates | https://api.planningcenteronline.com/services/v2/email_templates | EmailTemplate
 folders | https://api.planningcenteronline.com/services/v2/folders | Folder
 media | https://api.planningcenteronline.com/services/v2/media | Media
 people | https://api.planningcenteronline.com/services/v2/people | Person
+ |  | 
  |  | 
 series | https://api.planningcenteronline.com/services/v2/series | Series
 service_types | https://api.planningcenteronline.com/services/v2/service_types | ServiceType
@@ -2848,7 +2850,37 @@ You can perform the following actions on an Organization by POSTing to the speci
 
 Action | URL | Description
 ------ | --- | -----------
+create_person | https://api.planningcenteronline.com/services/v2/create_person | By POSTing to this action with a Person relationship it will add that person into Services.
+
+You can use the People API to get a list of people you can import into Services.
+
+An EmailTemplate can be specified in relationships to send a welcome email to the Person.
+
+```json
+{
+  "data": {
+    "attributes": {},
+    "relationships": {
+      "person": {
+        "data": {
+          "type": "Person",
+          "id": "123"
+        }
+      },
+      "email_template": {
+        "data": {
+          "type": "EmailTemplate",
+          "id": "1"
+        }
+      }
+    }
+  }
+}
+```
+
  |  | 
+
+
 
 
 
@@ -3018,7 +3050,23 @@ On success you will get back a `204 No Content`.
 
 
 
+### Update an existing Person
 
+```shell
+# to update a record...
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"Person","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/people/1"
+```
+
+
+#### HTTP Request
+
+`PATCH https://api.planningcenteronline.com/services/v2/people/1`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+permissions | string
 
 
 
@@ -3079,6 +3127,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
 
 Parameter | Value | Description
 --------- | ----- | -----------
+include | person | include associated person
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
@@ -3131,7 +3180,17 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
 
 #### URL Parameters
 
-_none_
+Parameter | Value | Description
+--------- | ----- | -----------
+include | person | include associated person
+
+### Associations for a Person Team Position Assignment
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL | Endpoint
+----------- | --- | --------
+person | https://api.planningcenteronline.com/services/v2/people/1/person_team_position_assignments/1/person | Person
 
 ### Create a new Person Team Position Assignment
 
@@ -3371,6 +3430,7 @@ You can perform the following actions on a Plan by POSTing to the specified URL.
 Action | URL | Description
 ------ | --- | -----------
 item_reorder | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/item_reorder | Reorder plan items in one request.
+ |  | 
 
 #### item_reorder
 
@@ -3394,6 +3454,8 @@ It expects a `POST` body with a `sequence` of `Item` ids in order.  E.G.
 ```
 
 On success you will get back a `204 No Content`.
+
+
 
 
 ### Create a new Plan
@@ -3808,6 +3870,16 @@ plan_person_times | https://api.planningcenteronline.com/services/v2/people/1/pl
 plan_times | https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/plan_times | PlanTime
 team | https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/team | Team
 
+### Actions for a Plan Person
+
+You can perform the following actions on a Plan Person by POSTing to the specified URL.
+
+Action | URL | Description
+------ | --- | -----------
+ |  | 
+
+
+
 ### Create a new Plan Person
 
 ```shell
@@ -3953,6 +4025,98 @@ _none_
 
 
 
+## PlanTemplates
+
+A PlanTemplate Resource
+
+
+
+### Relationships
+
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+service_type | ServiceType | _false_ | 
+created_by | Person | _false_ | 
+updated_by | Person | _false_ | 
+
+### List Plan Templates
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/service_types/1/plan_templates"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/services/v2/service_types/1/plan_templates`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+after | _id_ | get page after the specified id
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+### Get a single Plan Template
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/service_types/1/plan_templates/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "PlanTemplate",
+    "id": "primary_key",
+    "attributes": {
+      "created_at": "2000-01-01T12:00:00Z",
+      "name": "string",
+      "updated_at": "2000-01-01T12:00:00Z"
+    },
+    "relationships": {
+      "created_by": {
+        "data": {
+          "type": "Person",
+          "id": "123"
+        }
+      },
+      "service_type": {
+        "data": {
+          "type": "ServiceType",
+          "id": "123"
+        }
+      },
+      "updated_by": {
+        "data": {
+          "type": "Person",
+          "id": "123"
+        }
+      }
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/services/v2/service_types/1/plan_templates/1`
+
+#### URL Parameters
+
+_none_
+
+
+
+
+
+
+
 ## PlanTimes
 
 A time in a plan.
@@ -4005,13 +4169,13 @@ assigned_teams | Team | _true_ |
 
 ```shell
 # to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people/1/schedules/1/declined_plan_times"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/declined_plan_times"
 ```
 
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/people/1/schedules/1/declined_plan_times`
+`GET https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/declined_plan_times`
 
 #### URL Parameters
 
@@ -4025,7 +4189,7 @@ per_page | _integer_ | how many records to return per page (min=1, max=100, defa
 
 ```shell
 # to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people/1/schedules/1/declined_plan_times/1"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/declined_plan_times/1"
 ```
 
 
@@ -4065,7 +4229,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/people/1/schedules/1/declined_plan_times/1`
+`GET https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/declined_plan_times/1`
 
 #### URL Parameters
 
@@ -4079,7 +4243,7 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
-split_team_rehearsal_assignments | https://api.planningcenteronline.com/services/v2/people/1/schedules/1/declined_plan_times/1/split_team_rehearsal_assignments | SplitTeamRehearsalAssignment
+split_team_rehearsal_assignments | https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/declined_plan_times/1/split_team_rehearsal_assignments | SplitTeamRehearsalAssignment
 
 ### Create a new Plan Time
 
@@ -4107,13 +4271,13 @@ team_reminders | array
 
 ```shell
 # to update a record...
-curl -v -u token:secret -X PATCH -d '{"data":{"type":"PlanTime","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/people/1/schedules/1/declined_plan_times/1"
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"PlanTime","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/declined_plan_times/1"
 ```
 
 
 #### HTTP Request
 
-`PATCH https://api.planningcenteronline.com/services/v2/people/1/schedules/1/declined_plan_times/1`
+`PATCH https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/declined_plan_times/1`
 
 #### Resource Attributes
 
@@ -4129,13 +4293,13 @@ team_reminders | array
 
 ```shell
 # to delete a record...
-curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/services/v2/people/1/schedules/1/declined_plan_times/1"
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/declined_plan_times/1"
 ```
 
 
 #### HTTP Request
 
-`DELETE https://api.planningcenteronline.com/services/v2/people/1/schedules/1/declined_plan_times/1`
+`DELETE https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/declined_plan_times/1`
 
 ## Schedules
 
@@ -4593,9 +4757,20 @@ Association | URL | Endpoint
 attachments | https://api.planningcenteronline.com/services/v2/service_types/1/attachments | Attachment
 item_note_categories | https://api.planningcenteronline.com/services/v2/service_types/1/item_note_categories | ItemNoteCategory
 plan_note_categories | https://api.planningcenteronline.com/services/v2/service_types/1/plan_note_categories | PlanNoteCategory
+plan_templates | https://api.planningcenteronline.com/services/v2/service_types/1/plan_templates | PlanTemplate
 plans | https://api.planningcenteronline.com/services/v2/service_types/1/plans | Plan
 teams | https://api.planningcenteronline.com/services/v2/service_types/1/teams | Team
 time_preference_options | https://api.planningcenteronline.com/services/v2/service_types/1/time_preference_options | TimePreferenceOption
+
+### Actions for a Service Type
+
+You can perform the following actions on a Service Type by POSTing to the specified URL.
+
+Action | URL | Description
+------ | --- | -----------
+ |  | 
+
+
 
 ### Create a new Service Type
 
@@ -5136,13 +5311,13 @@ time_preference_options | TimePreferenceOption | _true_ |
 
 ```shell
 # to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people/1/schedules/1/declined_plan_times/1/split_team_rehearsal_assignments"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/declined_plan_times/1/split_team_rehearsal_assignments"
 ```
 
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/people/1/schedules/1/declined_plan_times/1/split_team_rehearsal_assignments`
+`GET https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/declined_plan_times/1/split_team_rehearsal_assignments`
 
 #### URL Parameters
 
@@ -5155,7 +5330,7 @@ per_page | _integer_ | how many records to return per page (min=1, max=100, defa
 
 ```shell
 # to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people/1/schedules/1/declined_plan_times/1/split_team_rehearsal_assignments/1"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/declined_plan_times/1/split_team_rehearsal_assignments/1"
 ```
 
 
@@ -5191,7 +5366,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/people/1/schedules/1/declined_plan_times/1/split_team_rehearsal_assignments/1`
+`GET https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/declined_plan_times/1/split_team_rehearsal_assignments/1`
 
 #### URL Parameters
 
@@ -5203,7 +5378,7 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
-team | https://api.planningcenteronline.com/services/v2/people/1/schedules/1/declined_plan_times/1/split_team_rehearsal_assignments/1/team | Team
+team | https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/declined_plan_times/1/split_team_rehearsal_assignments/1/team | Team
 
 
 
@@ -5228,13 +5403,13 @@ tag_group | TagGroup | _false_ |
 
 ```shell
 # to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people/1/tags"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/tag_groups/1/tags"
 ```
 
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/people/1/tags`
+`GET https://api.planningcenteronline.com/services/v2/tag_groups/1/tags`
 
 #### URL Parameters
 
@@ -5247,7 +5422,7 @@ per_page | _integer_ | how many records to return per page (min=1, max=100, defa
 
 ```shell
 # to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people/1/tags/1"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/tag_groups/1/tags/1"
 ```
 
 
@@ -5275,7 +5450,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/people/1/tags/1`
+`GET https://api.planningcenteronline.com/services/v2/tag_groups/1/tags/1`
 
 #### URL Parameters
 
