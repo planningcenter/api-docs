@@ -2850,34 +2850,7 @@ You can perform the following actions on an Organization by POSTing to the speci
 
 Action | URL | Description
 ------ | --- | -----------
-create_person | https://api.planningcenteronline.com/services/v2/create_person | By POSTing to this action with a Person relationship it will add that person into Services.
-
-You can use the People API to get a list of people you can import into Services.
-
-An EmailTemplate can be specified in relationships to send a welcome email to the Person.
-
-```json
-{
-  "data": {
-    "attributes": {},
-    "relationships": {
-      "person": {
-        "data": {
-          "type": "Person",
-          "id": "123"
-        }
-      },
-      "email_template": {
-        "data": {
-          "type": "EmailTemplate",
-          "id": "1"
-        }
-      }
-    }
-  }
-}
-```
-
+ |  | 
  |  | 
 
 
@@ -3017,6 +2990,7 @@ Action | URL | Description
 ------ | --- | -----------
 assign_tags | https://api.planningcenteronline.com/services/v2/people/1/assign_tags | Used to assign tags to a person.
  |  | 
+ |  | 
 
 #### assign_tags
 
@@ -3044,6 +3018,8 @@ It expects a body that looks like:
 ```
 
 On success you will get back a `204 No Content`.
+
+
 
 
 
@@ -3900,6 +3876,7 @@ status | string
 decline_reason | string
 notes | string
 team_position_name | string
+prepare_notification | boolean
 
 ### Update an existing Plan Person
 
@@ -4768,7 +4745,31 @@ You can perform the following actions on a Service Type by POSTing to the specif
 
 Action | URL | Description
 ------ | --- | -----------
+create_plans | https://api.planningcenteronline.com/services/v2/service_types/1/create_plans | Create multiple plans
  |  | 
+
+#### create_plans
+
+This action provides the abillity to create multiple plans with a single API request.
+
+Accepted attributes:
+
+- `count` (Integer) The number of plans to create. (max 10, default 1)
+
+- `copy_items` (Boolean) Copy Items from another plan. (default false)
+
+- `copy_people` (Boolean) Copy People from another plan. (default false)
+
+- `copy_notes` (Boolean) Copy Notes from another plan. (default false)
+
+- `as_template` (Boolean) Create the new plans as templates (default false)
+
+- `base_date` (ISO 8601 Date) The date to start buiding the plans from. (default false)
+
+Accepted Relationships
+
+- `plan` The plan to copy items, people and notes from.  (These items will only be copied if you supply a valid plan relationship)
+
 
 
 
@@ -5380,11 +5381,53 @@ Association | URL | Endpoint
 ----------- | --- | --------
 team | https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/declined_plan_times/1/split_team_rehearsal_assignments/1/team | Team
 
+### Create a new Split Team Rehearsal Assignment
+
+```shell
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{"type":"SplitTeamRehearsalAssignment","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/declined_plan_times/1/split_team_rehearsal_assignments"
+```
 
 
+#### HTTP Request
+
+`POST https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/declined_plan_times/1/split_team_rehearsal_assignments`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+assigned_to | string
+
+### Update an existing Split Team Rehearsal Assignment
+
+```shell
+# to update a record...
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"SplitTeamRehearsalAssignment","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/declined_plan_times/1/split_team_rehearsal_assignments/1"
+```
 
 
+#### HTTP Request
 
+`PATCH https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/declined_plan_times/1/split_team_rehearsal_assignments/1`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+assigned_to | string
+
+### Delete a Split Team Rehearsal Assignment
+
+```shell
+# to delete a record...
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/declined_plan_times/1/split_team_rehearsal_assignments/1"
+```
+
+
+#### HTTP Request
+
+`DELETE https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/declined_plan_times/1/split_team_rehearsal_assignments/1`
 
 ## Tags
 

@@ -745,9 +745,45 @@ Association | URL | Endpoint
 attendance_type | https://api.planningcenteronline.com/check_ins/v2/event_times/1/headcounts/1/attendance_type | AttendanceType
 event_time | https://api.planningcenteronline.com/check_ins/v2/event_times/1/headcounts/1/event_time | EventTime
 
+### Create a new Headcount
+
+```shell
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{"type":"Headcount","attributes":{...}}}' "https://api.planningcenteronline.com/check_ins/v2/event_times/1/headcounts"
+```
 
 
+<aside class='info'>Only users with the role <code>editor</code> can create this resource.</aside>
 
+#### HTTP Request
+
+`POST https://api.planningcenteronline.com/check_ins/v2/event_times/1/headcounts`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+total | integer
+
+### Update an existing Headcount
+
+```shell
+# to update a record...
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"Headcount","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/check_ins/v2/event_times/1/headcounts/1"
+```
+
+
+<aside class='info'>Only users with the role <code>editor</code> can update this resource.</aside>
+
+#### HTTP Request
+
+`PATCH https://api.planningcenteronline.com/check_ins/v2/event_times/1/headcounts/1`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+total | integer
 
 
 
