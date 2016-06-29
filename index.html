@@ -10168,37 +10168,16 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 </tr>
 </thead><tbody>
 <tr>
-<td>create_person</td>
-<td>https://api.planningcenteronline.com/services/v2/create_person</td>
-<td>By POSTing to this action with a Person relationship it will add that person into Services.</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 </tbody></table>
-
-<p>You can use the People API to get a list of people you can import into Services.</p>
-
-<p>An EmailTemplate can be specified in relationships to send a welcome email to the Person.</p>
-<pre><code class="highlight json"><span class="p">{</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
-    </span><span class="s2">"relationships"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"person"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Person"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123"</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="s2">"email_template"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EmailTemplate"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<p>|  | </p>
 
 <h2 id="people">People</h2>
 
@@ -10400,6 +10379,11 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 <td>assign_tags</td>
 <td>https://api.planningcenteronline.com/services/v2/people/1/assign_tags</td>
 <td>Used to assign tags to a person.</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td></td>
@@ -11687,6 +11671,10 @@ curl -v -u token:secret -X POST -d <span class="s1">'{"data":{"type":"PlanPerson
 <td>team_position_name</td>
 <td>string</td>
 </tr>
+<tr>
+<td>prepare_notification</td>
+<td>boolean</td>
+</tr>
 </tbody></table>
 
 <h3 id="update-an-existing-plan-person">Update an existing Plan Person</h3>
@@ -12852,11 +12840,37 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 </tr>
 </thead><tbody>
 <tr>
+<td>create_plans</td>
+<td>https://api.planningcenteronline.com/services/v2/service_types/1/create_plans</td>
+<td>Create multiple plans</td>
+</tr>
+<tr>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 </tbody></table>
+
+<h4 id="create_plans">create_plans</h4>
+
+<p>This action provides the abillity to create multiple plans with a single API request.</p>
+
+<p>Accepted attributes:</p>
+
+<ul>
+<li><p><code class="prettyprint">count</code> (Integer) The number of plans to create. (max 10, default 1)</p></li>
+<li><p><code class="prettyprint">copy_items</code> (Boolean) Copy Items from another plan. (default false)</p></li>
+<li><p><code class="prettyprint">copy_people</code> (Boolean) Copy People from another plan. (default false)</p></li>
+<li><p><code class="prettyprint">copy_notes</code> (Boolean) Copy Notes from another plan. (default false)</p></li>
+<li><p><code class="prettyprint">as_template</code> (Boolean) Create the new plans as templates (default false)</p></li>
+<li><p><code class="prettyprint">base_date</code> (ISO 8601 Date) The date to start buiding the plans from. (default false)</p></li>
+</ul>
+
+<p>Accepted Relationships</p>
+
+<ul>
+<li><code class="prettyprint">plan</code> The plan to copy items, people and notes from.  (These items will only be copied if you supply a valid plan relationship)</li>
+</ul>
 
 <h3 id="create-a-new-service-type">Create a new Service Type</h3>
 <pre><code class="highlight shell"><span class="c"># to create a record...</span>
@@ -13717,6 +13731,61 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 <td>Team</td>
 </tr>
 </tbody></table>
+
+<h3 id="create-a-new-split-team-rehearsal-assignment">Create a new Split Team Rehearsal Assignment</h3>
+<pre><code class="highlight shell"><span class="c"># to create a record...</span>
+curl -v -u token:secret -X POST -d <span class="s1">'{"data":{"type":"SplitTeamRehearsalAssignment","attributes":{...}}}'</span> <span class="s2">"https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/declined_plan_times/1/split_team_rehearsal_assignments"</span>
+</code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">POST https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/declined_plan_times/1/split_team_rehearsal_assignments</code></p>
+
+<h4 id="resource-attributes">Resource Attributes</h4>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>assigned_to</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<h3 id="update-an-existing-split-team-rehearsal-assignment">Update an existing Split Team Rehearsal Assignment</h3>
+<pre><code class="highlight shell"><span class="c"># to update a record...</span>
+curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{"type":"SplitTeamRehearsalAssignment","id":"1","attributes":{...}}}'</span> <span class="s2">"https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/declined_plan_times/1/split_team_rehearsal_assignments/1"</span>
+</code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">PATCH https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/declined_plan_times/1/split_team_rehearsal_assignments/1</code></p>
+
+<h4 id="resource-attributes">Resource Attributes</h4>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>assigned_to</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<h3 id="delete-a-split-team-rehearsal-assignment">Delete a Split Team Rehearsal Assignment</h3>
+<pre><code class="highlight shell"><span class="c"># to delete a record...</span>
+curl -v -u token:secret -X DELETE <span class="s2">"https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/declined_plan_times/1/split_team_rehearsal_assignments/1"</span>
+</code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">DELETE https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/declined_plan_times/1/split_team_rehearsal_assignments/1</code></p>
 
 <h2 id="tags">Tags</h2>
 
@@ -15597,6 +15666,56 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/c
 </tr>
 </tbody></table>
 
+<h3 id="create-a-new-headcount">Create a new Headcount</h3>
+<pre><code class="highlight shell"><span class="c"># to create a record...</span>
+curl -v -u token:secret -X POST -d <span class="s1">'{"data":{"type":"Headcount","attributes":{...}}}'</span> <span class="s2">"https://api.planningcenteronline.com/check_ins/v2/event_times/1/headcounts"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>editor</code> can create this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">POST https://api.planningcenteronline.com/check_ins/v2/event_times/1/headcounts</code></p>
+
+<h4 id="resource-attributes">Resource Attributes</h4>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>total</td>
+<td>integer</td>
+</tr>
+</tbody></table>
+
+<h3 id="update-an-existing-headcount">Update an existing Headcount</h3>
+<pre><code class="highlight shell"><span class="c"># to update a record...</span>
+curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{"type":"Headcount","id":"1","attributes":{...}}}'</span> <span class="s2">"https://api.planningcenteronline.com/check_ins/v2/event_times/1/headcounts/1"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>editor</code> can update this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">PATCH https://api.planningcenteronline.com/check_ins/v2/event_times/1/headcounts/1</code></p>
+
+<h4 id="resource-attributes">Resource Attributes</h4>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>total</td>
+<td>integer</td>
+</tr>
+</tbody></table>
+
 <h2 id="labels">Labels</h2>
 
 <p>Labels can be set to print for events (through <code class="prettyprint">EventLabel</code>s),
@@ -17166,11 +17285,11 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/g
     </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Batch"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-22T12:38:01Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-29T09:19:21Z"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"in_progress"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"total_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">150000</span><span class="p">,</span><span class="w">
       </span><span class="s2">"total_currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-22T12:38:01Z"</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-29T09:19:21Z"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"relationships"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="p">}</span><span class="w">
@@ -17272,10 +17391,10 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/g
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"cleared"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-22T12:38:01Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-29T09:19:21Z"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"total_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">350000</span><span class="p">,</span><span class="w">
       </span><span class="s2">"total_currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-22T12:38:01Z"</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-29T09:19:21Z"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"relationships"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="p">}</span><span class="w">
@@ -17500,7 +17619,7 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/g
     </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">2000</span><span class="p">,</span><span class="w">
       </span><span class="s2">"amount_currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-22T12:38:01Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-29T09:19:21Z"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"fee_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">-88</span><span class="p">,</span><span class="w">
       </span><span class="s2">"fee_currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"payment_brand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Visa"</span><span class="p">,</span><span class="w">
@@ -17509,7 +17628,7 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/g
       </span><span class="s2">"payment_method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"card"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"payment_method_sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"debit"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"payment_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"succeeded"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-22T12:38:01Z"</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-29T09:19:21Z"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"relationships"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="p">}</span><span class="w">
@@ -17623,11 +17742,11 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/g
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#9ccc79"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-22T12:38:01Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-29T09:19:21Z"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"These funds are used to support our missionary efforts here in the US."</span><span class="p">,</span><span class="w">
       </span><span class="s2">"ledger_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dm-22314"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Domestic Missions"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-22T12:38:01Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-29T09:19:21Z"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"visibility"</span><span class="p">:</span><span class="w"> </span><span class="s2">"everywhere"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"relationships"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -17819,12 +17938,12 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/g
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"brand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Visa"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-22T12:38:01Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-29T09:19:21Z"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"expiration"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8/2018"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"last4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4242"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"method_subtype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"credit"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"method_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"card"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-22T12:38:01Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-29T09:19:21Z"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"relationships"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -18065,16 +18184,16 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/g
     </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">15000</span><span class="p">,</span><span class="w">
       </span><span class="s2">"amount_currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-22T12:38:01Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"last_processed_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-21T00:00:00Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"next_occurrence"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-07-21T00:00:00Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-29T09:19:21Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"last_processed_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-28T00:00:00Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"next_occurrence"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-07-28T00:00:00Z"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"schedule"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"day_in_month"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"day"</span><span class="p">:</span><span class="w"> </span><span class="mi">21</span><span class="w">
+          </span><span class="s2">"day"</span><span class="p">:</span><span class="w"> </span><span class="mi">28</span><span class="w">
         </span><span class="p">}</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"active"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-22T12:38:01Z"</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-29T09:19:21Z"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"relationships"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="p">}</span><span class="w">
