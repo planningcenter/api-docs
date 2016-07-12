@@ -2582,6 +2582,16 @@ phone_numbers | https://api.planningcenteronline.com/people/v2/people/1/phone_nu
 school | https://api.planningcenteronline.com/people/v2/people/1/school | SchoolOption
 social_profiles | https://api.planningcenteronline.com/people/v2/people/1/social_profiles | SocialProfile
 
+### Actions for a Person
+
+You can perform the following actions on a Person by POSTing to the specified URL.
+
+Action | URL | Description
+------ | --- | -----------
+ |  | 
+
+
+
 ### Create a new Person
 
 ```shell
@@ -2676,6 +2686,13 @@ A Person App is the relationship between a Person and an App.
 
 
 
+### Relationships
+
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+app | App | _false_ | 
+
 ### List Person Apps
 
 ```shell
@@ -2716,6 +2733,12 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1
       "people_permissions": 1
     },
     "relationships": {
+      "app": {
+        "data": {
+          "type": "App",
+          "id": "123"
+        }
+      }
     }
   }
 }
@@ -2739,11 +2762,55 @@ Association | URL | Endpoint
 ----------- | --- | --------
 app | https://api.planningcenteronline.com/people/v2/people/1/person_apps/1/app | App
 
+### Create a new Person App
+
+```shell
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{"type":"PersonApp","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/people/1/person_apps"
+```
 
 
+#### HTTP Request
+
+`POST https://api.planningcenteronline.com/people/v2/people/1/person_apps`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+allow_pco_login | boolean
+people_permissions | integer
+
+### Update an existing Person App
+
+```shell
+# to update a record...
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"PersonApp","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/people/1/person_apps/1"
+```
 
 
+#### HTTP Request
 
+`PATCH https://api.planningcenteronline.com/people/v2/people/1/person_apps/1`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+allow_pco_login | boolean
+people_permissions | integer
+
+### Delete a Person App
+
+```shell
+# to delete a record...
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v2/people/1/person_apps/1"
+```
+
+
+#### HTTP Request
+
+`DELETE https://api.planningcenteronline.com/people/v2/people/1/person_apps/1`
 
 ## PhoneNumbers
 
@@ -3162,7 +3229,7 @@ person | https://api.planningcenteronline.com/people/v2/lists/1/rules/1/results/
 
 ## SchoolOptions
 
-A school option represents a school name, school type, grades, etc. and can be added to a person.
+A school option represents a school name, school type, grades, etc. and can be selected for a person.
 
 
 
@@ -3186,6 +3253,7 @@ where[value] | _string_ | query on a specific value
 where[school_types] | _graph/type_annotation/unknown_type_annotation_ | query on a specific school_types
 where[beginning_grade] | _graph/type_annotation/unknown_type_annotation_ | query on a specific beginning_grade
 where[ending_grade] | _graph/type_annotation/unknown_type_annotation_ | query on a specific ending_grade
+where[sequence] | _integer_ | query on a specific sequence
 after | _id_ | get page after the specified id
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
@@ -3210,6 +3278,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/school_o
       "school_types": [
         "elementary"
       ],
+      "sequence": 1,
       "type": "SchoolOption",
       "value": "Colcord Elementary"
     },
@@ -3257,6 +3326,7 @@ value | string
 school_types | graph/type_annotation/unknown_type_annotation
 beginning_grade | graph/type_annotation/unknown_type_annotation
 ending_grade | graph/type_annotation/unknown_type_annotation
+sequence | integer
 
 ### Update an existing School Option
 
@@ -3280,6 +3350,7 @@ value | string
 school_types | graph/type_annotation/unknown_type_annotation
 beginning_grade | graph/type_annotation/unknown_type_annotation
 ending_grade | graph/type_annotation/unknown_type_annotation
+sequence | integer
 
 ### Delete a School Option
 
