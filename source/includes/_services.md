@@ -2851,9 +2851,6 @@ You can perform the following actions on an Organization by POSTing to the speci
 Action | URL | Description
 ------ | --- | -----------
  |  | 
- |  | 
-
-
 
 
 
