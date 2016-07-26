@@ -10,6 +10,7 @@ APP_NAMES = %w(
   giving
 )
 
+desc 'Fetch newest docs from the API'
 task :fetch do
   base_url = case ENV['DEPLOY_ENV']
   when 'development'
