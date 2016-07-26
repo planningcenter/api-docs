@@ -445,9 +445,12 @@ You can perform the following actions on an Attachment by POSTing to the specifi
 
 Action | URL | Description
 ------ | --- | -----------
+ |  | 
 open | https://api.planningcenteronline.com/services/v2/songs/1/attachments/1/open | This action is used to get the attachment file URL.  It is accessed by `POST`ing to `.../attachments/1/open`
 
 This will generate the URL and return it in the `attachment_url` attribute of the `AttachmentActivity`.
+
+
 
 
 

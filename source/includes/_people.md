@@ -29,7 +29,7 @@ where[state] | _string_ | query on a specific state
 where[zip] | _string_ | query on a specific zip
 where[street] | _string_ | query on a specific street
 where[location] | _string_ | query on a specific location
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Address
@@ -154,7 +154,7 @@ Parameter | Value | Description
 --------- | ----- | -----------
 where[name] | _string_ | query on a specific name
 where[url] | _string_ | query on a specific url
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single App
@@ -218,7 +218,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/campuses
 
 Parameter | Value | Description
 --------- | ----- | -----------
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Campus
@@ -281,7 +281,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/carriers
 
 Parameter | Value | Description
 --------- | ----- | -----------
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 
@@ -320,7 +320,7 @@ where[definition_identifier] | _string_ | query on a specific definition_identif
 where[description] | _string_ | query on a specific description
 where[created_at] | _date_time_ | query on a specific created_at
 where[updated_at] | _date_time_ | query on a specific updated_at
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Condition
@@ -399,7 +399,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/lists/1/
 Parameter | Value | Description
 --------- | ----- | -----------
 include | person | include associated person
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Condition Result
@@ -471,7 +471,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1
 
 Parameter | Value | Description
 --------- | ----- | -----------
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Connected Person
@@ -544,7 +544,7 @@ Parameter | Value | Description
 --------- | ----- | -----------
 where[address] | _string_ | query on a specific address
 where[location] | _string_ | query on a specific location
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Email
@@ -674,7 +674,7 @@ where[file_name] | _graph/type_annotation/unknown_type_annotation_ | query on a 
 include | field_definition | include associated field_definition
 include | field_option | include associated field_option
 include | tab | include associated tab
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=field_definition,field_option</code></aside>
@@ -816,7 +816,7 @@ where[deleted_at] | _date_time_ | query on a specific deleted_at
 filter | include_deleted | By default, deleted fields are not included. Pass filter=include_deleted to include them.
 include | field_options | include associated field_options
 include | tab | include associated tab
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=field_options,tab</code></aside>
@@ -964,7 +964,7 @@ Parameter | Value | Description
 --------- | ----- | -----------
 where[value] | _string_ | query on a specific value
 where[sequence] | _integer_ | query on a specific sequence
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Field Option
@@ -1084,7 +1084,7 @@ where[primary_contact_name] | _string_ | query on a specific primary_contact_nam
 where[created_at] | _date_time_ | query on a specific created_at
 where[updated_at] | _date_time_ | query on a specific updated_at
 include | people | include associated people
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Household
@@ -1221,7 +1221,7 @@ where[person_name] | _string_ | query on a specific person_name
 where[pending] | _boolean_ | query on a specific pending
 include | person | include associated person
 include | household | include associated household
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=person,household</code></aside>
@@ -1350,7 +1350,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/inactive
 Parameter | Value | Description
 --------- | ----- | -----------
 where[value] | _string_ | query on a specific value
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Inactive Reason
@@ -1471,7 +1471,7 @@ include | owner | include associated owner
 include | people | include associated people
 include | rules | include associated rules
 include | shares | include associated shares
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=created_by,updated_by</code></aside>
@@ -1583,7 +1583,7 @@ where[name] | _graph/type_annotation/unknown_type_annotation_ | query on a speci
 where[group] | _integer_ | query on a specific group
 where[created_at] | _date_time_ | query on a specific created_at
 include | person | include associated person
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single List Share
@@ -1659,7 +1659,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/marital_
 Parameter | Value | Description
 --------- | ----- | -----------
 where[value] | _string_ | query on a specific value
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Marital Status
@@ -1786,7 +1786,7 @@ where[rejection_notification_sent_at] | _date_time_ | query on a specific reject
 where[app_name] | _graph/type_annotation/unknown_type_annotation_ | query on a specific app_name
 include | message_group | include associated message_group
 include | to | include associated to
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=message_group,to</code></aside>
@@ -1887,7 +1887,7 @@ where[created_at] | _date_time_ | query on a specific created_at
 include | messages | include associated messages
 include | from | include associated from
 include | app | include associated app
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=messages,from</code></aside>
@@ -1975,7 +1975,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/name_pre
 Parameter | Value | Description
 --------- | ----- | -----------
 where[value] | _string_ | query on a specific value
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Name Prefix
@@ -2087,7 +2087,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/name_suf
 Parameter | Value | Description
 --------- | ----- | -----------
 where[value] | _string_ | query on a specific value
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Name Suffix
@@ -2270,7 +2270,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/stats"
 
 Parameter | Value | Description
 --------- | ----- | -----------
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 
@@ -2302,7 +2302,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people_i
 Parameter | Value | Description
 --------- | ----- | -----------
 where[status] | _integer_ | query on a specific status
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single People Import
@@ -2382,7 +2382,7 @@ Parameter | Value | Description
 --------- | ----- | -----------
 where[kind] | _string_ | query on a specific kind
 where[name] | _string_ | query on a specific name
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single People Import Conflict
@@ -2487,7 +2487,7 @@ include | person_apps | include associated person_apps
 include | phone_numbers | include associated phone_numbers
 include | school | include associated school
 include | social_profiles | include associated social_profiles
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=addresses,emails</code></aside>
@@ -2710,7 +2710,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1
 Parameter | Value | Description
 --------- | ----- | -----------
 include | app | include associated app
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Person App
@@ -2839,7 +2839,7 @@ where[carrier] | _string_ | query on a specific carrier
 where[location] | _string_ | query on a specific location
 where[created_at] | _date_time_ | query on a specific created_at
 where[updated_at] | _date_time_ | query on a specific updated_at
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Phone Number
@@ -2964,7 +2964,7 @@ where[created_at] | _date_time_ | query on a specific created_at
 where[updated_at] | _date_time_ | query on a specific updated_at
 include | created_by | include associated created_by
 include | updated_by | include associated updated_by
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=created_by,updated_by</code></aside>
@@ -3100,7 +3100,7 @@ where[subset] | _string_ | query on a specific subset
 where[created_at] | _date_time_ | query on a specific created_at
 where[updated_at] | _date_time_ | query on a specific updated_at
 include | conditions | include associated conditions
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Rule
@@ -3177,7 +3177,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/lists/1/
 Parameter | Value | Description
 --------- | ----- | -----------
 include | person | include associated person
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Rule Result
@@ -3254,7 +3254,7 @@ where[school_types] | _graph/type_annotation/unknown_type_annotation_ | query on
 where[beginning_grade] | _graph/type_annotation/unknown_type_annotation_ | query on a specific beginning_grade
 where[ending_grade] | _graph/type_annotation/unknown_type_annotation_ | query on a specific ending_grade
 where[sequence] | _integer_ | query on a specific sequence
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single School Option
@@ -3394,7 +3394,7 @@ where[verified] | _boolean_ | query on a specific verified
 where[created_at] | _date_time_ | query on a specific created_at
 where[updated_at] | _date_time_ | query on a specific updated_at
 include | person | include associated person
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Social Profile
@@ -3527,7 +3527,7 @@ where[name] | _string_ | query on a specific name
 where[sequence] | _integer_ | query on a specific sequence
 where[slug] | _string_ | query on a specific slug
 include | field_definitions | include associated field_definitions
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Tab
@@ -3658,7 +3658,7 @@ where[name] | _string_ | query on a specific name
 where[created_at] | _date_time_ | query on a specific created_at
 where[updated_at] | _date_time_ | query on a specific updated_at
 include | steps | include associated steps
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Workflow
@@ -3747,7 +3747,7 @@ Parameter | Value | Description
 --------- | ----- | -----------
 include | person | include associated person
 include | assignee | include associated assignee
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=person,assignee</code></aside>
@@ -3904,7 +3904,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflow
 
 Parameter | Value | Description
 --------- | ----- | -----------
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Workflow Card Activity
@@ -3985,7 +3985,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflow
 
 Parameter | Value | Description
 --------- | ----- | -----------
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Workflow Card Note
@@ -4084,7 +4084,7 @@ where[name] | _string_ | query on a specific name
 where[created_at] | _date_time_ | query on a specific created_at
 where[updated_at] | _date_time_ | query on a specific updated_at
 include | default_assignee | include associated default_assignee
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Workflow Step
