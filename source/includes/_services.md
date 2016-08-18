@@ -783,6 +783,8 @@ Possible values:
 
 - monthly
 
+- yearly
+
 ### Relationships
 
 
@@ -4333,6 +4335,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
     "id": "primary_key",
     "attributes": {
       "can_accept_partial": true,
+      "dates": "string",
       "decline_reason": "string",
       "organization_name": "string",
       "organization_time_zone": "string",
