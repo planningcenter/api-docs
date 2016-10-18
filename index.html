@@ -4185,6 +4185,11 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 <td>query on a specific location</td>
 </tr>
 <tr>
+<td>where[primary]</td>
+<td><em>boolean</em></td>
+<td>query on a specific primary</td>
+</tr>
+<tr>
 <td>offset</td>
 <td><em>integer</em></td>
 <td>get results from given offset</td>
@@ -4211,6 +4216,7 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
     </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"primary"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
       </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"street"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
@@ -4268,6 +4274,10 @@ curl -v -u token:secret -X POST -d <span class="s1">'{"data":{"type":"Address","
 <td>location</td>
 <td>string</td>
 </tr>
+<tr>
+<td>primary</td>
+<td>boolean</td>
+</tr>
 </tbody></table>
 
 <h3 id="update-an-existing-address">Update an existing Address</h3>
@@ -4308,6 +4318,10 @@ curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{"type":"Address",
 <tr>
 <td>location</td>
 <td>string</td>
+</tr>
+<tr>
+<td>primary</td>
+<td>boolean</td>
 </tr>
 </tbody></table>
 
@@ -4822,6 +4836,11 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 <td>query on a specific location</td>
 </tr>
 <tr>
+<td>where[primary]</td>
+<td><em>boolean</em></td>
+<td>query on a specific primary</td>
+</tr>
+<tr>
 <td>offset</td>
 <td><em>integer</em></td>
 <td>get results from given offset</td>
@@ -4847,7 +4866,8 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"primary_key"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+      </span><span class="s2">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"primary"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"relationships"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="p">}</span><span class="w">
@@ -4908,6 +4928,10 @@ curl -v -u token:secret -X POST -d <span class="s1">'{"data":{"type":"Email","at
 <td>location</td>
 <td>string</td>
 </tr>
+<tr>
+<td>primary</td>
+<td>boolean</td>
+</tr>
 </tbody></table>
 
 <h3 id="update-an-existing-email">Update an existing Email</h3>
@@ -4936,6 +4960,10 @@ curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{"type":"Email","i
 <tr>
 <td>location</td>
 <td>string</td>
+</tr>
+<tr>
+<td>primary</td>
+<td>boolean</td>
 </tr>
 </tbody></table>
 
@@ -5795,12 +5823,12 @@ curl -v -u token:secret -X DELETE <span class="s2">"https://api.planningcenteron
 
 <h3 id="list-household-memberships">List Household Memberships</h3>
 <pre><code class="highlight shell"><span class="c"># to list records...</span>
-curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v2/households/1/household_memberships"</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v2/people/1/household_memberships"</span>
 </code></pre>
 
 <h4 id="http-request">HTTP Request</h4>
 
-<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v2/households/1/household_memberships</code></p>
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v2/people/1/household_memberships</code></p>
 
 <h4 id="url-parameters">URL Parameters</h4>
 
@@ -5847,7 +5875,7 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 
 <h3 id="get-a-single-household-membership">Get a single Household Membership</h3>
 <pre><code class="highlight shell"><span class="c"># to show...</span>
-curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1"</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/people/v2/people/1/household_memberships/1"</span>
 </code></pre>
 
 <blockquote>
@@ -5869,7 +5897,7 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 
 <h4 id="http-request">HTTP Request</h4>
 
-<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1</code></p>
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/people/v2/people/1/household_memberships/1</code></p>
 
 <h4 id="url-parameters">URL Parameters</h4>
 
@@ -5907,12 +5935,12 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 </thead><tbody>
 <tr>
 <td>household</td>
-<td>https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1/household</td>
+<td>https://api.planningcenteronline.com/people/v2/people/1/household_memberships/1/household</td>
 <td>Household</td>
 </tr>
 <tr>
 <td>person</td>
-<td>https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1/person</td>
+<td>https://api.planningcenteronline.com/people/v2/people/1/household_memberships/1/person</td>
 <td>Person</td>
 </tr>
 </tbody></table>
@@ -5944,14 +5972,14 @@ curl -v -u token:secret -X POST -d <span class="s1">'{"data":{"type":"HouseholdM
 
 <h3 id="update-an-existing-household-membership">Update an existing Household Membership</h3>
 <pre><code class="highlight shell"><span class="c"># to update a record...</span>
-curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{"type":"HouseholdMembership","id":"1","attributes":{...}}}'</span> <span class="s2">"https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1"</span>
+curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{"type":"HouseholdMembership","id":"1","attributes":{...}}}'</span> <span class="s2">"https://api.planningcenteronline.com/people/v2/people/1/household_memberships/1"</span>
 </code></pre>
 
 <aside class='info'>Only users with the role <code>editor</code> can update this resource.</aside>
 
 <h4 id="http-request">HTTP Request</h4>
 
-<p><code class="prettyprint">PATCH https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1</code></p>
+<p><code class="prettyprint">PATCH https://api.planningcenteronline.com/people/v2/people/1/household_memberships/1</code></p>
 
 <h4 id="resource-attributes">Resource Attributes</h4>
 
@@ -5969,14 +5997,14 @@ curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{"type":"Household
 
 <h3 id="delete-a-household-membership">Delete a Household Membership</h3>
 <pre><code class="highlight shell"><span class="c"># to delete a record...</span>
-curl -v -u token:secret -X DELETE <span class="s2">"https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1"</span>
+curl -v -u token:secret -X DELETE <span class="s2">"https://api.planningcenteronline.com/people/v2/people/1/household_memberships/1"</span>
 </code></pre>
 
 <aside class='info'>Only users with the role <code>editor</code> can delete this resource.</aside>
 
 <h4 id="http-request">HTTP Request</h4>
 
-<p><code class="prettyprint">DELETE https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1</code></p>
+<p><code class="prettyprint">DELETE https://api.planningcenteronline.com/people/v2/people/1/household_memberships/1</code></p>
 
 <h2 id="inactivereasons">InactiveReasons</h2>
 
@@ -7804,6 +7832,11 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 <td>query on a specific membership</td>
 </tr>
 <tr>
+<td>where[remote_id]</td>
+<td><em>integer</em></td>
+<td>query on a specific remote_id</td>
+</tr>
+<tr>
 <td>where[medical_notes]</td>
 <td><em>string</em></td>
 <td>query on a specific medical_notes</td>
@@ -8248,6 +8281,11 @@ curl -v -u token:secret -X POST -d <span class="s1">'{"data":{"type":"Person","a
 <td></td>
 </tr>
 <tr>
+<td>remote_id</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
 <td>medical_notes</td>
 <td>string</td>
 <td></td>
@@ -8360,6 +8398,11 @@ curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{"type":"Person","
 <tr>
 <td>membership</td>
 <td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>remote_id</td>
+<td>integer</td>
 <td></td>
 </tr>
 <tr>
@@ -8609,6 +8652,11 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 <td>query on a specific location</td>
 </tr>
 <tr>
+<td>where[primary]</td>
+<td><em>boolean</em></td>
+<td>query on a specific primary</td>
+</tr>
+<tr>
 <td>where[created_at]</td>
 <td><em>date_time</em></td>
 <td>query on a specific created_at</td>
@@ -8647,6 +8695,7 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
       </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"primary"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
       </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"relationships"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -8694,6 +8743,10 @@ curl -v -u token:secret -X POST -d <span class="s1">'{"data":{"type":"PhoneNumbe
 <td>location</td>
 <td>string</td>
 </tr>
+<tr>
+<td>primary</td>
+<td>boolean</td>
+</tr>
 </tbody></table>
 
 <h3 id="update-an-existing-phone-number">Update an existing Phone Number</h3>
@@ -8726,6 +8779,10 @@ curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{"type":"PhoneNumb
 <tr>
 <td>location</td>
 <td>string</td>
+</tr>
+<tr>
+<td>primary</td>
+<td>boolean</td>
 </tr>
 </tbody></table>
 
@@ -10069,29 +10126,9 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 </tr>
 </thead><tbody>
 <tr>
-<td>restore</td>
-<td>https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/restore</td>
-<td>Restore a card</td>
-</tr>
-<tr>
-<td>unsnooze</td>
-<td>https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/unsnooze</td>
-<td>Unsnoozes a card</td>
-</tr>
-<tr>
-<td>remove</td>
-<td>https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/remove</td>
-<td>Removes a card</td>
-</tr>
-<tr>
 <td>go_back</td>
 <td>https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/go_back</td>
 <td>Move a Workflow Card back to the previous step.</td>
-</tr>
-<tr>
-<td>send_email</td>
-<td>https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/send_email</td>
-<td>Sends an email to the subject of the card</td>
 </tr>
 <tr>
 <td>promote</td>
@@ -10099,14 +10136,34 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 <td>Move a Workflow Card to the next step.</td>
 </tr>
 <tr>
-<td>snooze</td>
-<td>https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/snooze</td>
-<td>Snoozes a card for a specific duration</td>
+<td>remove</td>
+<td>https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/remove</td>
+<td>Removes a card</td>
+</tr>
+<tr>
+<td>restore</td>
+<td>https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/restore</td>
+<td>Restore a card</td>
+</tr>
+<tr>
+<td>send_email</td>
+<td>https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/send_email</td>
+<td>Sends an email to the subject of the card</td>
 </tr>
 <tr>
 <td>skip_step</td>
 <td>https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/skip_step</td>
 <td>Move a Workflow Card to the next step without completing the current step.</td>
+</tr>
+<tr>
+<td>snooze</td>
+<td>https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/snooze</td>
+<td>Snoozes a card for a specific duration</td>
+</tr>
+<tr>
+<td>unsnooze</td>
+<td>https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/unsnooze</td>
+<td>Unsnoozes a card</td>
 </tr>
 </tbody></table>
 
@@ -10458,12 +10515,12 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 
 <h3 id="list-annotation-drawings">List Annotation Drawings</h3>
 <pre><code class="highlight shell"><span class="c"># to list records...</span>
-curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/services/v2/songs/1/attachments/1/annotation_drawings"</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/services/v2/media/1/attachments/1/annotation_drawings"</span>
 </code></pre>
 
 <h4 id="http-request">HTTP Request</h4>
 
-<p><code class="prettyprint">GET https://api.planningcenteronline.com/services/v2/songs/1/attachments/1/annotation_drawings</code></p>
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/services/v2/media/1/attachments/1/annotation_drawings</code></p>
 
 <h4 id="url-parameters">URL Parameters</h4>
 
@@ -10475,9 +10532,9 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 </tr>
 </thead><tbody>
 <tr>
-<td>after</td>
-<td><em>id</em></td>
-<td>get page after the specified id</td>
+<td>offset</td>
+<td><em>integer</em></td>
+<td>get results from given offset</td>
 </tr>
 <tr>
 <td>per_page</td>
@@ -10488,7 +10545,7 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 
 <h3 id="get-a-single-annotation-drawing">Get a single Annotation Drawing</h3>
 <pre><code class="highlight shell"><span class="c"># to show...</span>
-curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/services/v2/songs/1/attachments/1/annotation_drawings/1"</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/services/v2/media/1/attachments/1/annotation_drawings/1"</span>
 </code></pre>
 
 <blockquote>
@@ -10510,7 +10567,7 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 
 <h4 id="http-request">HTTP Request</h4>
 
-<p><code class="prettyprint">GET https://api.planningcenteronline.com/services/v2/songs/1/attachments/1/annotation_drawings/1</code></p>
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/services/v2/media/1/attachments/1/annotation_drawings/1</code></p>
 
 <h4 id="url-parameters">URL Parameters</h4>
 
@@ -10606,9 +10663,9 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 </tr>
 </thead><tbody>
 <tr>
-<td>after</td>
-<td><em>id</em></td>
-<td>get page after the specified id</td>
+<td>offset</td>
+<td><em>integer</em></td>
+<td>get results from given offset</td>
 </tr>
 <tr>
 <td>per_page</td>
@@ -10644,6 +10701,9 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
       </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"sequence"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"sequence_short"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+
+      </span><span class="p">],</span><span class="w">
       </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"relationships"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -10918,12 +10978,12 @@ curl -v -u token:secret -X DELETE <span class="s2">"https://api.planningcenteron
 
 <h3 id="list-attachments">List Attachments</h3>
 <pre><code class="highlight shell"><span class="c"># to list records...</span>
-curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/services/v2/songs/1/attachments"</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/services/v2/media/1/attachments"</span>
 </code></pre>
 
 <h4 id="http-request">HTTP Request</h4>
 
-<p><code class="prettyprint">GET https://api.planningcenteronline.com/services/v2/songs/1/attachments</code></p>
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/services/v2/media/1/attachments</code></p>
 
 <h4 id="url-parameters">URL Parameters</h4>
 
@@ -10935,9 +10995,9 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 </tr>
 </thead><tbody>
 <tr>
-<td>after</td>
-<td><em>id</em></td>
-<td>get page after the specified id</td>
+<td>offset</td>
+<td><em>integer</em></td>
+<td>get results from given offset</td>
 </tr>
 <tr>
 <td>per_page</td>
@@ -10948,7 +11008,7 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 
 <h3 id="get-a-single-attachment">Get a single Attachment</h3>
 <pre><code class="highlight shell"><span class="c"># to show...</span>
-curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/services/v2/songs/1/attachments/1"</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/services/v2/media/1/attachments/1"</span>
 </code></pre>
 
 <blockquote>
@@ -11009,7 +11069,7 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 
 <h4 id="http-request">HTTP Request</h4>
 
-<p><code class="prettyprint">GET https://api.planningcenteronline.com/services/v2/songs/1/attachments/1</code></p>
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/services/v2/media/1/attachments/1</code></p>
 
 <h4 id="url-parameters">URL Parameters</h4>
 
@@ -11028,12 +11088,12 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 </thead><tbody>
 <tr>
 <td>annotation_drawings</td>
-<td>https://api.planningcenteronline.com/services/v2/songs/1/attachments/1/annotation_drawings</td>
+<td>https://api.planningcenteronline.com/services/v2/media/1/attachments/1/annotation_drawings</td>
 <td>AnnotationDrawing</td>
 </tr>
 <tr>
 <td>attachment_annotations</td>
-<td>https://api.planningcenteronline.com/services/v2/songs/1/attachments/1/attachment_annotations</td>
+<td>https://api.planningcenteronline.com/services/v2/media/1/attachments/1/attachment_annotations</td>
 <td>AttachmentAnnotation</td>
 </tr>
 </tbody></table>
@@ -11055,18 +11115,15 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 <td></td>
 </tr>
 <tr>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
 <td>open</td>
-<td>https://api.planningcenteronline.com/services/v2/songs/1/attachments/1/open</td>
+<td>https://api.planningcenteronline.com/services/v2/media/1/attachments/1/open</td>
 <td>This action is used to get the attachment file URL.  It is accessed by <code class="prettyprint">POST</code>ing to <code class="prettyprint">.../attachments/1/open</code></td>
 </tr>
 </tbody></table>
 
 <p>This will generate the URL and return it in the <code class="prettyprint">attachment_url</code> attribute of the <code class="prettyprint">AttachmentActivity</code>.</p>
+
+<p>|  | </p>
 
 <h2 id="attachmentactivities">AttachmentActivities</h2>
 
@@ -11106,9 +11163,9 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 </tr>
 </thead><tbody>
 <tr>
-<td>after</td>
-<td><em>id</em></td>
-<td>get page after the specified id</td>
+<td>offset</td>
+<td><em>integer</em></td>
+<td>get results from given offset</td>
 </tr>
 <tr>
 <td>per_page</td>
@@ -11123,12 +11180,12 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 
 <h3 id="list-attachment-annotations">List Attachment Annotations</h3>
 <pre><code class="highlight shell"><span class="c"># to list records...</span>
-curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/services/v2/songs/1/attachments/1/attachment_annotations"</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/services/v2/media/1/attachments/1/attachment_annotations"</span>
 </code></pre>
 
 <h4 id="http-request">HTTP Request</h4>
 
-<p><code class="prettyprint">GET https://api.planningcenteronline.com/services/v2/songs/1/attachments/1/attachment_annotations</code></p>
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/services/v2/media/1/attachments/1/attachment_annotations</code></p>
 
 <h4 id="url-parameters">URL Parameters</h4>
 
@@ -11150,9 +11207,9 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 <td>query on a specific updated_at</td>
 </tr>
 <tr>
-<td>after</td>
-<td><em>id</em></td>
-<td>get page after the specified id</td>
+<td>offset</td>
+<td><em>integer</em></td>
+<td>get results from given offset</td>
 </tr>
 <tr>
 <td>per_page</td>
@@ -11163,7 +11220,7 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 
 <h3 id="get-a-single-attachment-annotation">Get a single Attachment Annotation</h3>
 <pre><code class="highlight shell"><span class="c"># to show...</span>
-curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/services/v2/songs/1/attachments/1/attachment_annotations/1"</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/services/v2/media/1/attachments/1/attachment_annotations/1"</span>
 </code></pre>
 
 <blockquote>
@@ -11186,7 +11243,7 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 
 <h4 id="http-request">HTTP Request</h4>
 
-<p><code class="prettyprint">GET https://api.planningcenteronline.com/services/v2/songs/1/attachments/1/attachment_annotations/1</code></p>
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/services/v2/media/1/attachments/1/attachment_annotations/1</code></p>
 
 <h4 id="url-parameters">URL Parameters</h4>
 
@@ -11215,9 +11272,9 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 </tr>
 </thead><tbody>
 <tr>
-<td>after</td>
-<td><em>id</em></td>
-<td>get page after the specified id</td>
+<td>offset</td>
+<td><em>integer</em></td>
+<td>get results from given offset</td>
 </tr>
 <tr>
 <td>per_page</td>
@@ -11314,9 +11371,9 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 </tr>
 </thead><tbody>
 <tr>
-<td>after</td>
-<td><em>id</em></td>
-<td>get page after the specified id</td>
+<td>offset</td>
+<td><em>integer</em></td>
+<td>get results from given offset</td>
 </tr>
 <tr>
 <td>per_page</td>
@@ -11481,9 +11538,9 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 </tr>
 </thead><tbody>
 <tr>
-<td>after</td>
-<td><em>id</em></td>
-<td>get page after the specified id</td>
+<td>offset</td>
+<td><em>integer</em></td>
+<td>get results from given offset</td>
 </tr>
 <tr>
 <td>per_page</td>
@@ -11726,9 +11783,9 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 </tr>
 </thead><tbody>
 <tr>
-<td>after</td>
-<td><em>id</em></td>
-<td>get page after the specified id</td>
+<td>offset</td>
+<td><em>integer</em></td>
+<td>get results from given offset</td>
 </tr>
 <tr>
 <td>per_page</td>
@@ -11822,9 +11879,9 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 </tr>
 </thead><tbody>
 <tr>
-<td>after</td>
-<td><em>id</em></td>
-<td>get page after the specified id</td>
+<td>offset</td>
+<td><em>integer</em></td>
+<td>get results from given offset</td>
 </tr>
 <tr>
 <td>per_page</td>
@@ -11944,9 +12001,9 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 </tr>
 </thead><tbody>
 <tr>
-<td>after</td>
-<td><em>id</em></td>
-<td>get page after the specified id</td>
+<td>offset</td>
+<td><em>integer</em></td>
+<td>get results from given offset</td>
 </tr>
 <tr>
 <td>per_page</td>
@@ -12051,9 +12108,9 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 </tr>
 </thead><tbody>
 <tr>
-<td>after</td>
-<td><em>id</em></td>
-<td>get page after the specified id</td>
+<td>offset</td>
+<td><em>integer</em></td>
+<td>get results from given offset</td>
 </tr>
 <tr>
 <td>per_page</td>
@@ -12153,9 +12210,9 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 </tr>
 </thead><tbody>
 <tr>
-<td>after</td>
-<td><em>id</em></td>
-<td>get page after the specified id</td>
+<td>offset</td>
+<td><em>integer</em></td>
+<td>get results from given offset</td>
 </tr>
 <tr>
 <td>per_page</td>
@@ -12352,9 +12409,9 @@ curl -v -u token:secret -X DELETE <span class="s2">"https://api.planningcenteron
 </tr>
 </thead><tbody>
 <tr>
-<td>after</td>
-<td><em>id</em></td>
-<td>get page after the specified id</td>
+<td>offset</td>
+<td><em>integer</em></td>
+<td>get results from given offset</td>
 </tr>
 <tr>
 <td>per_page</td>
@@ -12409,9 +12466,9 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 <td>include associated service_types</td>
 </tr>
 <tr>
-<td>after</td>
-<td><em>id</em></td>
-<td>get page after the specified id</td>
+<td>offset</td>
+<td><em>integer</em></td>
+<td>get results from given offset</td>
 </tr>
 <tr>
 <td>per_page</td>
@@ -12683,9 +12740,9 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 <td>include associated item_times</td>
 </tr>
 <tr>
-<td>after</td>
-<td><em>id</em></td>
-<td>get page after the specified id</td>
+<td>offset</td>
+<td><em>integer</em></td>
+<td>get results from given offset</td>
 </tr>
 <tr>
 <td>per_page</td>
@@ -12975,9 +13032,9 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 <td>include associated item_note_category</td>
 </tr>
 <tr>
-<td>after</td>
-<td><em>id</em></td>
-<td>get page after the specified id</td>
+<td>offset</td>
+<td><em>integer</em></td>
+<td>get results from given offset</td>
 </tr>
 <tr>
 <td>per_page</td>
@@ -13150,9 +13207,9 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 </tr>
 </thead><tbody>
 <tr>
-<td>after</td>
-<td><em>id</em></td>
-<td>get page after the specified id</td>
+<td>offset</td>
+<td><em>integer</em></td>
+<td>get results from given offset</td>
 </tr>
 <tr>
 <td>per_page</td>
@@ -13250,9 +13307,9 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 </tr>
 </thead><tbody>
 <tr>
-<td>after</td>
-<td><em>id</em></td>
-<td>get page after the specified id</td>
+<td>offset</td>
+<td><em>integer</em></td>
+<td>get results from given offset</td>
 </tr>
 <tr>
 <td>per_page</td>
@@ -13381,9 +13438,9 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 </tr>
 </thead><tbody>
 <tr>
-<td>after</td>
-<td><em>id</em></td>
-<td>get page after the specified id</td>
+<td>offset</td>
+<td><em>integer</em></td>
+<td>get results from given offset</td>
 </tr>
 <tr>
 <td>per_page</td>
@@ -13634,9 +13691,9 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 <td>include associated attachments</td>
 </tr>
 <tr>
-<td>after</td>
-<td><em>id</em></td>
-<td>get page after the specified id</td>
+<td>offset</td>
+<td><em>integer</em></td>
+<td>get results from given offset</td>
 </tr>
 <tr>
 <td>per_page</td>
@@ -13899,9 +13956,9 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 </tr>
 </thead><tbody>
 <tr>
-<td>after</td>
-<td><em>id</em></td>
-<td>get page after the specified id</td>
+<td>offset</td>
+<td><em>integer</em></td>
+<td>get results from given offset</td>
 </tr>
 <tr>
 <td>per_page</td>
@@ -14017,9 +14074,9 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 <td>include associated time</td>
 </tr>
 <tr>
-<td>after</td>
-<td><em>id</em></td>
-<td>get page after the specified id</td>
+<td>offset</td>
+<td><em>integer</em></td>
+<td>get results from given offset</td>
 </tr>
 <tr>
 <td>per_page</td>
@@ -14322,6 +14379,21 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 <td></td>
 <td></td>
 </tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
 </tbody></table>
 
 <h2 id="people">People</h2>
@@ -14377,9 +14449,9 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 </tr>
 </thead><tbody>
 <tr>
-<td>after</td>
-<td><em>id</em></td>
-<td>get page after the specified id</td>
+<td>offset</td>
+<td><em>integer</em></td>
+<td>get results from given offset</td>
 </tr>
 <tr>
 <td>per_page</td>
@@ -14674,9 +14746,9 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 <td>include associated person</td>
 </tr>
 <tr>
-<td>after</td>
-<td><em>id</em></td>
-<td>get page after the specified id</td>
+<td>offset</td>
+<td><em>integer</em></td>
+<td>get results from given offset</td>
 </tr>
 <tr>
 <td>per_page</td>
@@ -14952,9 +15024,9 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 <td>include associated series</td>
 </tr>
 <tr>
-<td>after</td>
-<td><em>id</em></td>
-<td>get page after the specified id</td>
+<td>offset</td>
+<td><em>integer</em></td>
+<td>get results from given offset</td>
 </tr>
 <tr>
 <td>per_page</td>
@@ -15286,9 +15358,9 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 <td>include associated plan_note_category</td>
 </tr>
 <tr>
-<td>after</td>
-<td><em>id</em></td>
-<td>get page after the specified id</td>
+<td>offset</td>
+<td><em>integer</em></td>
+<td>get results from given offset</td>
 </tr>
 <tr>
 <td>per_page</td>
@@ -15461,9 +15533,9 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 </tr>
 </thead><tbody>
 <tr>
-<td>after</td>
-<td><em>id</em></td>
-<td>get page after the specified id</td>
+<td>offset</td>
+<td><em>integer</em></td>
+<td>get results from given offset</td>
 </tr>
 <tr>
 <td>per_page</td>
@@ -15607,9 +15679,9 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 <td>include associated declined_plan_times</td>
 </tr>
 <tr>
-<td>after</td>
-<td><em>id</em></td>
-<td>get page after the specified id</td>
+<td>offset</td>
+<td><em>integer</em></td>
+<td>get results from given offset</td>
 </tr>
 <tr>
 <td>per_page</td>
@@ -15931,9 +16003,9 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 </tr>
 </thead><tbody>
 <tr>
-<td>after</td>
-<td><em>id</em></td>
-<td>get page after the specified id</td>
+<td>offset</td>
+<td><em>integer</em></td>
+<td>get results from given offset</td>
 </tr>
 <tr>
 <td>per_page</td>
@@ -16044,9 +16116,9 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 </tr>
 </thead><tbody>
 <tr>
-<td>after</td>
-<td><em>id</em></td>
-<td>get page after the specified id</td>
+<td>offset</td>
+<td><em>integer</em></td>
+<td>get results from given offset</td>
 </tr>
 <tr>
 <td>per_page</td>
@@ -16186,9 +16258,9 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 <td>include associated split_team_rehearsal_assignments</td>
 </tr>
 <tr>
-<td>after</td>
-<td><em>id</em></td>
-<td>get page after the specified id</td>
+<td>offset</td>
+<td><em>integer</em></td>
+<td>get results from given offset</td>
 </tr>
 <tr>
 <td>per_page</td>
@@ -16438,9 +16510,9 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 </tr>
 </thead><tbody>
 <tr>
-<td>after</td>
-<td><em>id</em></td>
-<td>get page after the specified id</td>
+<td>offset</td>
+<td><em>integer</em></td>
+<td>get results from given offset</td>
 </tr>
 <tr>
 <td>per_page</td>
@@ -16592,7 +16664,7 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 
 <h4 id="accept">accept</h4>
 
-<p>If this isn&rsquo;t a split time schedule or you want to all accept all times no body is required.</p>
+<p>If this isn&rsquo;t a split time schedule or you want to all accept all times an empty JSON body is accepted.</p>
 
 <p>If the user wants to decline specific times you&rsquo;ll need to send the declined time IDs &amp; a reason.</p>
 
@@ -16682,9 +16754,9 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 </tr>
 </thead><tbody>
 <tr>
-<td>after</td>
-<td><em>id</em></td>
-<td>get page after the specified id</td>
+<td>offset</td>
+<td><em>integer</em></td>
+<td>get results from given offset</td>
 </tr>
 <tr>
 <td>per_page</td>
@@ -16761,9 +16833,9 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 </tr>
 </thead><tbody>
 <tr>
-<td>after</td>
-<td><em>id</em></td>
-<td>get page after the specified id</td>
+<td>offset</td>
+<td><em>integer</em></td>
+<td>get results from given offset</td>
 </tr>
 <tr>
 <td>per_page</td>
@@ -16873,9 +16945,9 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 <td>include associated time_preference_options</td>
 </tr>
 <tr>
-<td>after</td>
-<td><em>id</em></td>
-<td>get page after the specified id</td>
+<td>offset</td>
+<td><em>integer</em></td>
+<td>get results from given offset</td>
 </tr>
 <tr>
 <td>per_page</td>
@@ -16996,14 +17068,14 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 </tr>
 </thead><tbody>
 <tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
 <td>create_plans</td>
 <td>https://api.planningcenteronline.com/services/v2/service_types/1/create_plans</td>
 <td>Create multiple plans</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
 </tr>
 </tbody></table>
 
@@ -17174,9 +17246,9 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 <td>include associated scheduled_people</td>
 </tr>
 <tr>
-<td>after</td>
-<td><em>id</em></td>
-<td>get page after the specified id</td>
+<td>offset</td>
+<td><em>integer</em></td>
+<td>get results from given offset</td>
 </tr>
 <tr>
 <td>per_page</td>
@@ -17202,6 +17274,7 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
       </span><span class="s2">"group_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"position_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"sort_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"sort_index"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
       </span><span class="s2">"team_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
     </span><span class="p">},</span><span class="w">
@@ -17331,9 +17404,9 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 </tr>
 </thead><tbody>
 <tr>
-<td>after</td>
-<td><em>id</em></td>
-<td>get page after the specified id</td>
+<td>offset</td>
+<td><em>integer</em></td>
+<td>get results from given offset</td>
 </tr>
 <tr>
 <td>per_page</td>
@@ -17386,9 +17459,9 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 </tr>
 </thead><tbody>
 <tr>
-<td>after</td>
-<td><em>id</em></td>
-<td>get page after the specified id</td>
+<td>offset</td>
+<td><em>integer</em></td>
+<td>get results from given offset</td>
 </tr>
 <tr>
 <td>per_page</td>
@@ -17486,9 +17559,9 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 <td>query on a specific title</td>
 </tr>
 <tr>
-<td>after</td>
-<td><em>id</em></td>
-<td>get page after the specified id</td>
+<td>offset</td>
+<td><em>integer</em></td>
+<td>get results from given offset</td>
 </tr>
 <tr>
 <td>per_page</td>
@@ -17778,9 +17851,9 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 </tr>
 </thead><tbody>
 <tr>
-<td>after</td>
-<td><em>id</em></td>
-<td>get page after the specified id</td>
+<td>offset</td>
+<td><em>integer</em></td>
+<td>get results from given offset</td>
 </tr>
 <tr>
 <td>per_page</td>
@@ -17909,9 +17982,9 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 </tr>
 </thead><tbody>
 <tr>
-<td>after</td>
-<td><em>id</em></td>
-<td>get page after the specified id</td>
+<td>offset</td>
+<td><em>integer</em></td>
+<td>get results from given offset</td>
 </tr>
 <tr>
 <td>per_page</td>
@@ -18060,12 +18133,12 @@ curl -v -u token:secret -X DELETE <span class="s2">"https://api.planningcenteron
 
 <h3 id="list-tags">List Tags</h3>
 <pre><code class="highlight shell"><span class="c"># to list records...</span>
-curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/services/v2/tag_groups/1/tags"</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/services/v2/people/1/tags"</span>
 </code></pre>
 
 <h4 id="http-request">HTTP Request</h4>
 
-<p><code class="prettyprint">GET https://api.planningcenteronline.com/services/v2/tag_groups/1/tags</code></p>
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/services/v2/people/1/tags</code></p>
 
 <h4 id="url-parameters">URL Parameters</h4>
 
@@ -18077,9 +18150,9 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 </tr>
 </thead><tbody>
 <tr>
-<td>after</td>
-<td><em>id</em></td>
-<td>get page after the specified id</td>
+<td>offset</td>
+<td><em>integer</em></td>
+<td>get results from given offset</td>
 </tr>
 <tr>
 <td>per_page</td>
@@ -18090,7 +18163,7 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 
 <h3 id="get-a-single-tag">Get a single Tag</h3>
 <pre><code class="highlight shell"><span class="c"># to show...</span>
-curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/services/v2/tag_groups/1/tags/1"</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/services/v2/people/1/tags/1"</span>
 </code></pre>
 
 <blockquote>
@@ -18117,7 +18190,7 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 
 <h4 id="http-request">HTTP Request</h4>
 
-<p><code class="prettyprint">GET https://api.planningcenteronline.com/services/v2/tag_groups/1/tags/1</code></p>
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/services/v2/people/1/tags/1</code></p>
 
 <h4 id="url-parameters">URL Parameters</h4>
 
@@ -18182,9 +18255,9 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 <td>include associated tags</td>
 </tr>
 <tr>
-<td>after</td>
-<td><em>id</em></td>
-<td>get page after the specified id</td>
+<td>offset</td>
+<td><em>integer</em></td>
+<td>get results from given offset</td>
 </tr>
 <tr>
 <td>per_page</td>
@@ -18302,9 +18375,9 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 <td>include associated team_positions</td>
 </tr>
 <tr>
-<td>after</td>
-<td><em>id</em></td>
-<td>get page after the specified id</td>
+<td>offset</td>
+<td><em>integer</em></td>
+<td>get results from given offset</td>
 </tr>
 <tr>
 <td>per_page</td>
@@ -18440,9 +18513,9 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 </tr>
 </thead><tbody>
 <tr>
-<td>after</td>
-<td><em>id</em></td>
-<td>get page after the specified id</td>
+<td>offset</td>
+<td><em>integer</em></td>
+<td>get results from given offset</td>
 </tr>
 <tr>
 <td>per_page</td>
@@ -18531,9 +18604,9 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 </tr>
 </thead><tbody>
 <tr>
-<td>after</td>
-<td><em>id</em></td>
-<td>get page after the specified id</td>
+<td>offset</td>
+<td><em>integer</em></td>
+<td>get results from given offset</td>
 </tr>
 <tr>
 <td>per_page</td>
@@ -18619,9 +18692,9 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 </tr>
 </thead><tbody>
 <tr>
-<td>after</td>
-<td><em>id</em></td>
-<td>get page after the specified id</td>
+<td>offset</td>
+<td><em>integer</em></td>
+<td>get results from given offset</td>
 </tr>
 <tr>
 <td>per_page</td>
@@ -18729,9 +18802,9 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 </tr>
 </thead><tbody>
 <tr>
-<td>after</td>
-<td><em>id</em></td>
-<td>get page after the specified id</td>
+<td>offset</td>
+<td><em>integer</em></td>
+<td>get results from given offset</td>
 </tr>
 <tr>
 <td>per_page</td>
