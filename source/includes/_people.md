@@ -29,6 +29,7 @@ where[state] | _string_ | query on a specific state
 where[zip] | _string_ | query on a specific zip
 where[street] | _string_ | query on a specific street
 where[location] | _string_ | query on a specific location
+where[primary] | _boolean_ | query on a specific primary
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
@@ -50,6 +51,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1
     "attributes": {
       "city": "string",
       "location": "string",
+      "primary": true,
       "state": "string",
       "street": "string",
       "zip": "string"
@@ -91,6 +93,7 @@ state | string
 zip | string
 street | string
 location | string
+primary | boolean
 
 ### Update an existing Address
 
@@ -115,6 +118,7 @@ state | string
 zip | string
 street | string
 location | string
+primary | boolean
 
 ### Delete an Address
 
@@ -544,6 +548,7 @@ Parameter | Value | Description
 --------- | ----- | -----------
 where[address] | _string_ | query on a specific address
 where[location] | _string_ | query on a specific location
+where[primary] | _boolean_ | query on a specific primary
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
@@ -564,7 +569,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/emails/1
     "id": "primary_key",
     "attributes": {
       "address": "string",
-      "location": "string"
+      "location": "string",
+      "primary": true
     },
     "relationships": {
     }
@@ -608,6 +614,7 @@ Attribute | Type
 --------- | ----
 address | string
 location | string
+primary | boolean
 
 ### Update an existing Email
 
@@ -629,6 +636,7 @@ Attribute | Type
 --------- | ----
 address | string
 location | string
+primary | boolean
 
 ### Delete an Email
 
@@ -2556,6 +2564,7 @@ where[graduation_year] | _integer_ | query on a specific graduation_year
 where[site_administrator] | _boolean_ | query on a specific site_administrator
 where[people_permissions] | _string_ | query on a specific people_permissions
 where[membership] | _string_ | query on a specific membership
+where[remote_id] | _integer_ | query on a specific remote_id
 where[medical_notes] | _string_ | query on a specific medical_notes
 where[created_at] | _date_time_ | query on a specific created_at
 where[updated_at] | _date_time_ | query on a specific updated_at
@@ -2712,6 +2721,7 @@ graduation_year | integer
 site_administrator | boolean
 people_permissions | string
 membership | string
+remote_id | integer
 medical_notes | string
 avatar | string | File UUID (see [File Uploads](#file-uploads) section)
 
@@ -2748,6 +2758,7 @@ graduation_year | integer
 site_administrator | boolean
 people_permissions | string
 membership | string
+remote_id | integer
 medical_notes | string
 avatar | string | File UUID (see [File Uploads](#file-uploads) section)
 
@@ -2922,6 +2933,7 @@ Parameter | Value | Description
 where[number] | _string_ | query on a specific number
 where[carrier] | _string_ | query on a specific carrier
 where[location] | _string_ | query on a specific location
+where[primary] | _boolean_ | query on a specific primary
 where[created_at] | _date_time_ | query on a specific created_at
 where[updated_at] | _date_time_ | query on a specific updated_at
 offset | _integer_ | get results from given offset
@@ -2947,6 +2959,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1
       "created_at": "2000-01-01T12:00:00Z",
       "location": "string",
       "number": "string",
+      "primary": true,
       "updated_at": "2000-01-01T12:00:00Z"
     },
     "relationships": {
@@ -2984,6 +2997,7 @@ Attribute | Type
 number | string
 carrier | string
 location | string
+primary | boolean
 
 ### Update an existing Phone Number
 
@@ -3006,6 +3020,7 @@ Attribute | Type
 number | string
 carrier | string
 location | string
+primary | boolean
 
 ### Delete a Phone Number
 
