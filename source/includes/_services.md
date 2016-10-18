@@ -461,11 +461,89 @@ This will generate the URL and return it in the `attachment_url` attribute of th
 
 
 
+### Create a new Attachment
+
+```shell
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{"type":"Attachment","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/songs/1/attachments"
+```
 
 
+#### HTTP Request
+
+`POST https://api.planningcenteronline.com/services/v2/songs/1/attachments`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+filename | string
+remote_link | string
+
+```shell
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{"type":"Attachment","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/songs/1/arrangements/1/attachments"
+```
 
 
+#### HTTP Request
 
+`POST https://api.planningcenteronline.com/services/v2/songs/1/arrangements/1/attachments`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+filename | string
+remote_link | string
+
+```shell
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{"type":"Attachment","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/songs/1/arrangements/1/keys/1/attachments"
+```
+
+
+#### HTTP Request
+
+`POST https://api.planningcenteronline.com/services/v2/songs/1/arrangements/1/keys/1/attachments`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+filename | string
+remote_link | string
+
+### Update an existing Attachment
+
+```shell
+# to update a record...
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"Attachment","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/songs/1/attachments/1"
+```
+
+
+#### HTTP Request
+
+`PATCH https://api.planningcenteronline.com/services/v2/songs/1/attachments/1`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+filename | string
+remote_link | string
+
+### Delete an Attachment
+
+```shell
+# to delete a record...
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/services/v2/songs/1/attachments/1"
+```
+
+
+#### HTTP Request
+
+`DELETE https://api.planningcenteronline.com/services/v2/songs/1/attachments/1`
 
 ## AttachmentActivities
 

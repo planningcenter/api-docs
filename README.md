@@ -2,17 +2,20 @@
 
 Source for [PCO API docs](http://planningcenter.github.io/api-docs/) in the branch `gh-pages`.
 
-## How to Build
+## How to Build (Do this before publishing)
 
 ```
 cd ~/Code
 git clone git@github.com:planningcenter/api-docs.git
 cd api-docs
 bundle install
-DEPLOY_ENV=development rake
+DEPLOY_ENV=production rake
+git add .
+git commit -m "Updated Docs"
+git push
 ```
 
-## Publishing Docs
+## Publishing Docs (Do this after building and pushing)
 
 ```
 cd ~/Code
@@ -21,7 +24,7 @@ cd api-docs-gh-pages
 git checkout gh-pages
 ./update
 git add .
-git commit -m "commit message"
+git commit -m "Updated Docs"
 git push
 ```
 
