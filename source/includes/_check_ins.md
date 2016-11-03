@@ -25,7 +25,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/event
 
 Parameter | Value | Description
 --------- | ----- | -----------
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Attendance Type
@@ -128,7 +128,7 @@ include | checked_in_at | include associated checked_in_at
 include | checked_in_by | include associated checked_in_by
 include | checked_out_by | include associated checked_out_by
 include | options | include associated options
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=location,event</code></aside>
@@ -245,7 +245,7 @@ Parameter | Value | Description
 include | check_ins | include associated check_ins
 include | event_period | include associated event_period
 include | print_station | include associated print_station
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=check_ins,event_period</code></aside>
@@ -336,7 +336,7 @@ Parameter | Value | Description
 --------- | ----- | -----------
 filter | archived | filter using the named scope "archived"
 filter | not_archived | filter using the named scope "not_archived"
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Event
@@ -421,7 +421,7 @@ Parameter | Value | Description
 --------- | ----- | -----------
 include | event | include associated event
 include | label | include associated label
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=event,label</code></aside>
@@ -510,7 +510,7 @@ Parameter | Value | Description
 --------- | ----- | -----------
 include | event | include associated event
 include | event_times | include associated event_times
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=event,event_times</code></aside>
@@ -600,7 +600,7 @@ Parameter | Value | Description
 --------- | ----- | -----------
 include | event_period | include associated event_period
 include | event | include associated event
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=event_period,event</code></aside>
@@ -694,7 +694,7 @@ Parameter | Value | Description
 --------- | ----- | -----------
 include | event_time | include associated event_time
 include | attendance_type | include associated attendance_type
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=event_time,attendance_type</code></aside>
@@ -814,7 +814,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/label
 
 Parameter | Value | Description
 --------- | ----- | -----------
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Label
@@ -899,7 +899,7 @@ include | parent | include associated parent
 include | event | include associated event
 include | locations | include associated locations
 include | options | include associated options
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=parent,event</code></aside>
@@ -1001,7 +1001,7 @@ Parameter | Value | Description
 --------- | ----- | -----------
 include | location | include associated location
 include | event_period | include associated event_period
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=location,event_period</code></aside>
@@ -1087,7 +1087,7 @@ Parameter | Value | Description
 --------- | ----- | -----------
 include | location | include associated location
 include | event_time | include associated event_time
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=location,event_time</code></aside>
@@ -1173,7 +1173,7 @@ Parameter | Value | Description
 --------- | ----- | -----------
 include | location | include associated location
 include | label | include associated label
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=location,label</code></aside>
@@ -1261,7 +1261,7 @@ Parameter | Value | Description
 include | location | include associated location
 include | check_ins | include associated check_ins
 include | label | include associated label
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=location,check_ins</code></aside>
@@ -1415,7 +1415,7 @@ Parameter | Value | Description
 --------- | ----- | -----------
 where[code] | _string_ | query on a specific code
 include | person | include associated person
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Pass
@@ -1528,7 +1528,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/peopl
 
 Parameter | Value | Description
 --------- | ----- | -----------
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Person
@@ -1622,7 +1622,7 @@ include | person | include associated person
 include | event | include associated event
 include | first_check_in | include associated first_check_in
 include | last_check_in | include associated last_check_in
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=person,event</code></aside>
@@ -1712,7 +1712,7 @@ include | theme | include associated theme
 include | event | include associated event
 include | location | include associated location
 include | print_station | include associated print_station
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=theme,event</code></aside>
@@ -1803,7 +1803,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/theme
 
 Parameter | Value | Description
 --------- | ----- | -----------
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Theme

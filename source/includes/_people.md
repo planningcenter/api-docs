@@ -29,6 +29,7 @@ where[state] | _string_ | query on a specific state
 where[zip] | _string_ | query on a specific zip
 where[street] | _string_ | query on a specific street
 where[location] | _string_ | query on a specific location
+where[primary] | _boolean_ | query on a specific primary
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
@@ -50,6 +51,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1
     "attributes": {
       "city": "string",
       "location": "string",
+      "primary": true,
       "state": "string",
       "street": "string",
       "zip": "string"
@@ -91,6 +93,7 @@ state | string
 zip | string
 street | string
 location | string
+primary | boolean
 
 ### Update an existing Address
 
@@ -115,6 +118,7 @@ state | string
 zip | string
 street | string
 location | string
+primary | boolean
 
 ### Delete an Address
 
@@ -544,6 +548,7 @@ Parameter | Value | Description
 --------- | ----- | -----------
 where[address] | _string_ | query on a specific address
 where[location] | _string_ | query on a specific location
+where[primary] | _boolean_ | query on a specific primary
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
@@ -564,7 +569,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/emails/1
     "id": "primary_key",
     "attributes": {
       "address": "string",
-      "location": "string"
+      "location": "string",
+      "primary": true
     },
     "relationships": {
     }
@@ -608,6 +614,7 @@ Attribute | Type
 --------- | ----
 address | string
 location | string
+primary | boolean
 
 ### Update an existing Email
 
@@ -629,6 +636,7 @@ Attribute | Type
 --------- | ----
 address | string
 location | string
+primary | boolean
 
 ### Delete an Email
 
@@ -1857,7 +1865,7 @@ to | https://api.planningcenteronline.com/people/v2/messages/1/to | Person
 
 ## MessageGroups
 
-A message group represents one or more emails or text messages sent from one of the PCO apps. The message group indicates the from person, app, etc.
+A message group represents one or more emails or text messages sent from one of the Planning Center apps. The message group indicates the from person, app, etc.
 
 
 
@@ -2351,6 +2359,7 @@ You can append one of the following associations onto this resource URL to jump 
 Association | URL | Endpoint
 ----------- | --- | --------
 conflicts | https://api.planningcenteronline.com/people/v2/people_imports/1/conflicts | PeopleImportConflict
+histories | https://api.planningcenteronline.com/people/v2/people_imports/1/histories | PeopleImportHistory
 
 
 
@@ -2430,6 +2439,92 @@ _none_
 
 
 
+## PeopleImportHistories
+
+A PeopleImportHistory is a record of change that occurred when the parent PeopleImport was completed.
+
+
+
+### List People Import Histories
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people_imports/1/histories"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/people/v2/people_imports/1/histories`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+where[name] | _string_ | query on a specific name
+include | person | include associated person
+include | household | include associated household
+offset | _integer_ | get results from given offset
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=person,household</code></aside>
+
+### Get a single People Import History
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people_imports/1/histories/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "PeopleImportHistory",
+    "id": "primary_key",
+    "attributes": {
+      "conflicting_changes": "unknown",
+      "created_at": "2000-01-01T12:00:00Z",
+      "kind": "unknown",
+      "name": "string",
+      "updated_at": "2000-01-01T12:00:00Z"
+    },
+    "relationships": {
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/people/v2/people_imports/1/histories/1`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+include | person | include associated person
+include | household | include associated household
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=person,household</code></aside>
+
+### Associations for a People Import History
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL | Endpoint
+----------- | --- | --------
+household | https://api.planningcenteronline.com/people/v2/people_imports/1/histories/1/household | Household
+person | https://api.planningcenteronline.com/people/v2/people_imports/1/histories/1/person | Person
+
+
+
+
+
+
+
 ## People
 
 A person record represents a single member/user of the application. Each person has different permissions that determine how the user can use this app (if at all).
@@ -2469,6 +2564,7 @@ where[graduation_year] | _integer_ | query on a specific graduation_year
 where[site_administrator] | _boolean_ | query on a specific site_administrator
 where[people_permissions] | _string_ | query on a specific people_permissions
 where[membership] | _string_ | query on a specific membership
+where[remote_id] | _integer_ | query on a specific remote_id
 where[medical_notes] | _string_ | query on a specific medical_notes
 where[created_at] | _date_time_ | query on a specific created_at
 where[updated_at] | _date_time_ | query on a specific updated_at
@@ -2600,8 +2696,6 @@ curl -v -u token:secret -X POST -d '{"data":{"type":"Person","attributes":{...}}
 ```
 
 
-<aside class='info'>Only users with the role <code>editor</code> can create this resource.</aside>
-
 #### HTTP Request
 
 `POST https://api.planningcenteronline.com/people/v2/people`
@@ -2627,6 +2721,7 @@ graduation_year | integer
 site_administrator | boolean
 people_permissions | string
 membership | string
+remote_id | integer
 medical_notes | string
 avatar | string | File UUID (see [File Uploads](#file-uploads) section)
 
@@ -2663,6 +2758,7 @@ graduation_year | integer
 site_administrator | boolean
 people_permissions | string
 membership | string
+remote_id | integer
 medical_notes | string
 avatar | string | File UUID (see [File Uploads](#file-uploads) section)
 
@@ -2674,7 +2770,7 @@ curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v
 ```
 
 
-<aside class='info'>Only users with the role <code>editor</code> can delete this resource.</aside>
+<aside class='info'>Only users with the role <code>site_administrator</code> can delete this resource.</aside>
 
 #### HTTP Request
 
@@ -2837,6 +2933,7 @@ Parameter | Value | Description
 where[number] | _string_ | query on a specific number
 where[carrier] | _string_ | query on a specific carrier
 where[location] | _string_ | query on a specific location
+where[primary] | _boolean_ | query on a specific primary
 where[created_at] | _date_time_ | query on a specific created_at
 where[updated_at] | _date_time_ | query on a specific updated_at
 offset | _integer_ | get results from given offset
@@ -2862,6 +2959,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1
       "created_at": "2000-01-01T12:00:00Z",
       "location": "string",
       "number": "string",
+      "primary": true,
       "updated_at": "2000-01-01T12:00:00Z"
     },
     "relationships": {
@@ -2899,6 +2997,7 @@ Attribute | Type
 number | string
 carrier | string
 location | string
+primary | boolean
 
 ### Update an existing Phone Number
 
@@ -2921,6 +3020,7 @@ Attribute | Type
 number | string
 carrier | string
 location | string
+primary | boolean
 
 ### Delete a Phone Number
 

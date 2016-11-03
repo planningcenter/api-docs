@@ -1,6 +1,6 @@
 # PCO Services (BETA)
 
-Schedule your teams, manage your music, and revolutionize the way you plan your worship services. Note that PCO Services endpoints are read-only during this phase of the beta.
+Schedule your teams, manage your music, and revolutionize the way you plan your worship services.
 
 ## AnnotationDrawings
 
@@ -24,7 +24,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/songs/
 
 Parameter | Value | Description
 --------- | ----- | -----------
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Annotation Drawing
@@ -144,7 +144,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/songs/
 
 Parameter | Value | Description
 --------- | ----- | -----------
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Arrangement
@@ -177,6 +177,9 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/songs/
       "name": "string",
       "notes": "string",
       "sequence": "string",
+      "sequence_short": [
+
+      ],
       "updated_at": "2000-01-01T12:00:00Z"
     },
     "relationships": {
@@ -355,7 +358,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/songs/
 
 Parameter | Value | Description
 --------- | ----- | -----------
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Attachment
@@ -446,6 +449,7 @@ You can perform the following actions on an Attachment by POSTing to the specifi
 Action | URL | Description
 ------ | --- | -----------
  |  | 
+ |  | 
 open | https://api.planningcenteronline.com/services/v2/songs/1/attachments/1/open | This action is used to get the attachment file URL.  It is accessed by `POST`ing to `.../attachments/1/open`
 
 This will generate the URL and return it in the `attachment_url` attribute of the `AttachmentActivity`.
@@ -457,9 +461,89 @@ This will generate the URL and return it in the `attachment_url` attribute of th
 
 
 
+### Create a new Attachment
+
+```shell
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{"type":"Attachment","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/songs/1/attachments"
+```
 
 
+#### HTTP Request
 
+`POST https://api.planningcenteronline.com/services/v2/songs/1/attachments`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+filename | string
+remote_link | string
+
+```shell
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{"type":"Attachment","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/songs/1/arrangements/1/attachments"
+```
+
+
+#### HTTP Request
+
+`POST https://api.planningcenteronline.com/services/v2/songs/1/arrangements/1/attachments`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+filename | string
+remote_link | string
+
+```shell
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{"type":"Attachment","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/songs/1/arrangements/1/keys/1/attachments"
+```
+
+
+#### HTTP Request
+
+`POST https://api.planningcenteronline.com/services/v2/songs/1/arrangements/1/keys/1/attachments`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+filename | string
+remote_link | string
+
+### Update an existing Attachment
+
+```shell
+# to update a record...
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"Attachment","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/songs/1/attachments/1"
+```
+
+
+#### HTTP Request
+
+`PATCH https://api.planningcenteronline.com/services/v2/songs/1/attachments/1`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+filename | string
+remote_link | string
+
+### Delete an Attachment
+
+```shell
+# to delete a record...
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/services/v2/songs/1/attachments/1"
+```
+
+
+#### HTTP Request
+
+`DELETE https://api.planningcenteronline.com/services/v2/songs/1/attachments/1`
 
 ## AttachmentActivities
 
@@ -484,7 +568,7 @@ attachment | Attachment | _false_ |
 
 Parameter | Value | Description
 --------- | ----- | -----------
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 
@@ -517,7 +601,7 @@ Parameter | Value | Description
 --------- | ----- | -----------
 where[created_at] | _date_time_ | query on a specific created_at
 where[updated_at] | _date_time_ | query on a specific updated_at
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Attachment Annotation
@@ -582,7 +666,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/attach
 
 Parameter | Value | Description
 --------- | ----- | -----------
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Attachment Type
@@ -660,7 +744,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
 
 Parameter | Value | Description
 --------- | ----- | -----------
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Available Signup
@@ -783,6 +867,8 @@ Possible values:
 
 - monthly
 
+- yearly
+
 ### Relationships
 
 
@@ -807,7 +893,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
 
 Parameter | Value | Description
 --------- | ----- | -----------
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Blockout
@@ -891,14 +977,14 @@ curl -v -u token:secret -X POST -d '{"data":{"type":"Blockout","attributes":{...
 
 Attribute | Type
 --------- | ----
-ends_at | date_time
 reason | string
 repeat_frequency | string
 repeat_interval | string
 repeat_period | string
 share | boolean
-starts_at | date_time
 repeat_until | date
+starts_at | date_time
+ends_at | date_time
 
 ### Update an existing Blockout
 
@@ -916,14 +1002,14 @@ curl -v -u token:secret -X PATCH -d '{"data":{"type":"Blockout","id":"1","attrib
 
 Attribute | Type
 --------- | ----
-ends_at | date_time
 reason | string
 repeat_frequency | string
 repeat_interval | string
 repeat_period | string
 share | boolean
-starts_at | date_time
 repeat_until | date
+starts_at | date_time
+ends_at | date_time
 
 ### Delete a Blockout
 
@@ -967,7 +1053,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
 
 Parameter | Value | Description
 --------- | ----- | -----------
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Blockout Date
@@ -1052,7 +1138,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
 
 Parameter | Value | Description
 --------- | ----- | -----------
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Blockout Exception
@@ -1146,7 +1232,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
 
 Parameter | Value | Description
 --------- | ----- | -----------
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Check In
@@ -1237,7 +1323,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
 
 Parameter | Value | Description
 --------- | ----- | -----------
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Contributor
@@ -1326,7 +1412,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/email_
 
 Parameter | Value | Description
 --------- | ----- | -----------
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Email Template
@@ -1477,7 +1563,7 @@ email_template | EmailTemplate | _false_ |
 
 Parameter | Value | Description
 --------- | ----- | -----------
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 
@@ -1516,7 +1602,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/folder
 Parameter | Value | Description
 --------- | ----- | -----------
 include | service_types | include associated service_types
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Folder
@@ -1699,7 +1785,7 @@ include | media | include associated media
 include | arrangement | include associated arrangement
 include | key | include associated key
 include | item_times | include associated item_times
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=item_notes,song</code></aside>
@@ -1879,7 +1965,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
 Parameter | Value | Description
 --------- | ----- | -----------
 include | item_note_category | include associated item_note_category
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Item Note
@@ -2010,7 +2096,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
 
 Parameter | Value | Description
 --------- | ----- | -----------
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Item Note Category
@@ -2089,7 +2175,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
 
 Parameter | Value | Description
 --------- | ----- | -----------
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Item Time
@@ -2210,7 +2296,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/songs/
 
 Parameter | Value | Description
 --------- | ----- | -----------
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Key
@@ -2381,7 +2467,7 @@ filter | powerpoint | filter using the named scope "powerpoint"
 filter | song_video | filter using the named scope "song_video"
 filter | video | filter using the named scope "video"
 include | attachments | include associated attachments
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Media
@@ -2564,7 +2650,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/media/
 
 Parameter | Value | Description
 --------- | ----- | -----------
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Media Schedule
@@ -2653,7 +2739,7 @@ Parameter | Value | Description
 --------- | ----- | -----------
 include | team | include associated team
 include | time | include associated time
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=team,time</code></aside>
@@ -2897,7 +2983,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
 
 Parameter | Value | Description
 --------- | ----- | -----------
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Person
@@ -2980,6 +3066,7 @@ plan_people | https://api.planningcenteronline.com/services/v2/people/1/plan_peo
 schedules | https://api.planningcenteronline.com/services/v2/people/1/schedules | Schedule
 tags | https://api.planningcenteronline.com/services/v2/people/1/tags | Tag
 team_leaders | https://api.planningcenteronline.com/services/v2/people/1/team_leaders | TeamLeader
+ |  | 
 text_settings | https://api.planningcenteronline.com/services/v2/people/1/text_settings | TextSetting
 
 ### Actions for a Person
@@ -2989,6 +3076,7 @@ You can perform the following actions on a Person by POSTing to the specified UR
 Action | URL | Description
 ------ | --- | -----------
 assign_tags | https://api.planningcenteronline.com/services/v2/people/1/assign_tags | Used to assign tags to a person.
+ |  | 
  |  | 
  |  | 
 
@@ -3018,6 +3106,8 @@ It expects a body that looks like:
 ```
 
 On success you will get back a `204 No Content`.
+
+
 
 
 
@@ -3104,7 +3194,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
 Parameter | Value | Description
 --------- | ----- | -----------
 include | person | include associated person
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Person Team Position Assignment
@@ -3172,13 +3262,13 @@ person | https://api.planningcenteronline.com/services/v2/people/1/person_team_p
 
 ```shell
 # to create a record...
-curl -v -u token:secret -X POST -d '{"data":{"type":"PersonTeamPositionAssignment","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/service_types/1/teams/1/team_positions/1/person_team_position_assignments"
+curl -v -u token:secret -X POST -d '{"data":{"type":"PersonTeamPositionAssignment","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/people/1/teams/1/team_positions/1/person_team_position_assignments"
 ```
 
 
 #### HTTP Request
 
-`POST https://api.planningcenteronline.com/services/v2/service_types/1/teams/1/team_positions/1/person_team_position_assignments`
+`POST https://api.planningcenteronline.com/services/v2/people/1/teams/1/team_positions/1/person_team_position_assignments`
 
 #### Resource Attributes
 
@@ -3293,7 +3383,7 @@ where[title] | _string_ | query on a specific title
 filter | future | filter using the named scope "future"
 filter | past | filter using the named scope "past"
 include | series | include associated series
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Plan
@@ -3407,6 +3497,8 @@ Action | URL | Description
 ------ | --- | -----------
 item_reorder | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/item_reorder | Reorder plan items in one request.
  |  | 
+ |  | 
+ |  | 
 
 #### item_reorder
 
@@ -3430,6 +3522,10 @@ It expects a `POST` body with a `sequence` of `Item` ids in order.  E.G.
 ```
 
 On success you will get back a `204 No Content`.
+
+
+
+
 
 
 
@@ -3516,7 +3612,7 @@ Parameter | Value | Description
 where[created_at] | _date_time_ | query on a specific created_at
 where[updated_at] | _date_time_ | query on a specific updated_at
 include | plan_note_category | include associated plan_note_category
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Plan Note
@@ -3647,7 +3743,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
 
 Parameter | Value | Description
 --------- | ----- | -----------
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Plan Note Category
@@ -3739,7 +3835,7 @@ include | team | include associated team
 include | person | include associated person
 include | plan | include associated plan
 include | declined_plan_times | include associated declined_plan_times
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=team,person</code></aside>
@@ -3941,7 +4037,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
 
 Parameter | Value | Description
 --------- | ----- | -----------
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Plan Person Time
@@ -4033,7 +4129,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
 
 Parameter | Value | Description
 --------- | ----- | -----------
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Plan Template
@@ -4159,7 +4255,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
 Parameter | Value | Description
 --------- | ----- | -----------
 include | split_team_rehearsal_assignments | include associated split_team_rehearsal_assignments
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Plan Time
@@ -4313,7 +4409,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
 
 Parameter | Value | Description
 --------- | ----- | -----------
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Schedule
@@ -4333,6 +4429,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
     "id": "primary_key",
     "attributes": {
       "can_accept_partial": true,
+      "dates": "string",
       "decline_reason": "string",
       "organization_name": "string",
       "organization_time_zone": "string",
@@ -4425,7 +4522,7 @@ decline | https://api.planningcenteronline.com/services/v2/people/1/schedules/1/
 
 #### accept
 
-If this isn't a split time schedule or you want to all accept all times no body is required.
+If this isn't a split time schedule, or you want to accept all times, an empty JSON body is accepted.
 
 If the user wants to decline specific times you'll need to send the declined time IDs & a reason.
 
@@ -4510,7 +4607,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
 
 Parameter | Value | Description
 --------- | ----- | -----------
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Scheduled Person
@@ -4590,7 +4687,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/series
 
 Parameter | Value | Description
 --------- | ----- | -----------
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Series
@@ -4677,7 +4774,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
 Parameter | Value | Description
 --------- | ----- | -----------
 include | time_preference_options | include associated time_preference_options
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Service Type
@@ -4872,7 +4969,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
 Parameter | Value | Description
 --------- | ----- | -----------
 include | scheduled_people | include associated scheduled_people
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Signup Sheet
@@ -4895,6 +4992,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
       "group_key": "string",
       "position_name": "string",
       "sort_date": "2000-01-01T12:00:00Z",
+      "sort_index": 1,
       "team_name": "string",
       "title": "string"
     },
@@ -4986,8 +5084,79 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
 
 Parameter | Value | Description
 --------- | ----- | -----------
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+
+
+
+
+
+
+## SkippedAttachments
+
+a skipped attachment
+
+
+
+### Relationships
+
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+person | Person | _false_ | 
+attachment | Attachment | _false_ | 
+
+### List Skipped Attachments
+
+#### HTTP Request
+
+`GET `
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+offset | _integer_ | get results from given offset
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+### Get a single Skipped Attachment
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "SkippedAttachment",
+    "id": "primary_key",
+    "attributes": {
+      "skipped": true
+    },
+    "relationships": {
+      "attachment": {
+        "data": {
+          "type": "Attachment",
+          "id": "123"
+        }
+      },
+      "person": {
+        "data": {
+          "type": "Person",
+          "id": "123"
+        }
+      }
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET `
+
+#### URL Parameters
+
+_none_
 
 
 
@@ -5028,7 +5197,7 @@ where[author] | _string_ | query on a specific author
 where[hidden] | _boolean_ | query on a specific hidden
 where[themes] | _string_ | query on a specific themes
 where[title] | _string_ | query on a specific title
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Song
@@ -5211,7 +5380,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/songs/
 
 Parameter | Value | Description
 --------- | ----- | -----------
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Song Schedule
@@ -5324,7 +5493,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
 
 Parameter | Value | Description
 --------- | ----- | -----------
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Split Team Rehearsal Assignment
@@ -5458,7 +5627,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/tag_gr
 
 Parameter | Value | Description
 --------- | ----- | -----------
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Tag
@@ -5537,7 +5706,7 @@ filter | arrangement | filter using the named scope "arrangement"
 filter | person | filter using the named scope "person"
 filter | media | filter using the named scope "media"
 include | tags | include associated tags
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Tag Group
@@ -5598,31 +5767,38 @@ A Team within a Service Type.
 
 
 
+### Relationships
+
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+service_type | ServiceType | _false_ | 
+
 ### List Teams
 
 ```shell
 # to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/service_types/1/teams"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people/1/teams"
 ```
 
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/service_types/1/teams`
+`GET https://api.planningcenteronline.com/services/v2/people/1/teams`
 
 #### URL Parameters
 
 Parameter | Value | Description
 --------- | ----- | -----------
 include | team_positions | include associated team_positions
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Team
 
 ```shell
 # to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/service_types/1/teams/1"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people/1/teams/1"
 ```
 
 
@@ -5642,6 +5818,12 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
       "updated_at": "2000-01-01T12:00:00Z"
     },
     "relationships": {
+      "service_type": {
+        "data": {
+          "type": "ServiceType",
+          "id": "123"
+        }
+      }
     }
   }
 }
@@ -5649,7 +5831,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/service_types/1/teams/1`
+`GET https://api.planningcenteronline.com/services/v2/people/1/teams/1`
 
 #### URL Parameters
 
@@ -5663,9 +5845,9 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
-plan_people | https://api.planningcenteronline.com/services/v2/service_types/1/teams/1/plan_people | PlanPerson
-team_leaders | https://api.planningcenteronline.com/services/v2/service_types/1/teams/1/team_leaders | TeamLeader
-team_positions | https://api.planningcenteronline.com/services/v2/service_types/1/teams/1/team_positions | TeamPosition
+plan_people | https://api.planningcenteronline.com/services/v2/people/1/teams/1/plan_people | PlanPerson
+team_leaders | https://api.planningcenteronline.com/services/v2/people/1/teams/1/team_leaders | TeamLeader
+team_positions | https://api.planningcenteronline.com/services/v2/people/1/teams/1/team_positions | TeamPosition
 
 
 
@@ -5703,7 +5885,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
 
 Parameter | Value | Description
 --------- | ----- | -----------
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Team Leader
@@ -5780,26 +5962,26 @@ If the Team is assigned via tags, these are specific Tags that are specified.
 
 ```shell
 # to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/service_types/1/teams/1/team_positions"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people/1/teams/1/team_positions"
 ```
 
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/service_types/1/teams/1/team_positions`
+`GET https://api.planningcenteronline.com/services/v2/people/1/teams/1/team_positions`
 
 #### URL Parameters
 
 Parameter | Value | Description
 --------- | ----- | -----------
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Team Position
 
 ```shell
 # to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/service_types/1/teams/1/team_positions/1"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people/1/teams/1/team_positions/1"
 ```
 
 
@@ -5830,7 +6012,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/service_types/1/teams/1/team_positions/1`
+`GET https://api.planningcenteronline.com/services/v2/people/1/teams/1/team_positions/1`
 
 #### URL Parameters
 
@@ -5842,7 +6024,7 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
-person_team_position_assignments | https://api.planningcenteronline.com/services/v2/service_types/1/teams/1/team_positions/1/person_team_position_assignments | PersonTeamPositionAssignment
+person_team_position_assignments | https://api.planningcenteronline.com/services/v2/people/1/teams/1/team_positions/1/person_team_position_assignments | PersonTeamPositionAssignment
 
 
 
@@ -5870,7 +6052,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
 
 Parameter | Value | Description
 --------- | ----- | -----------
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Text Setting
@@ -5962,7 +6144,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/servic
 
 Parameter | Value | Description
 --------- | ----- | -----------
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Time Preference Option
