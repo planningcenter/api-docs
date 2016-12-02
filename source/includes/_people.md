@@ -78,7 +78,7 @@ curl -v -u token:secret -X POST -d '{"data":{"type":"Address","attributes":{...}
 ```
 
 
-<aside class='info'>Only users with the role <code>editor</code> can create this resource.</aside>
+<aside class='info'>Only users with the role <code>editor_in_any_app</code> can create this resource.</aside>
 
 #### HTTP Request
 
@@ -103,7 +103,7 @@ curl -v -u token:secret -X PATCH -d '{"data":{"type":"Address","id":"1","attribu
 ```
 
 
-<aside class='info'>Only users with the role <code>editor</code> can update this resource.</aside>
+<aside class='info'>Only users with the role <code>editor_in_any_app</code> can update this resource.</aside>
 
 #### HTTP Request
 
@@ -128,7 +128,7 @@ curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v
 ```
 
 
-<aside class='info'>Only users with the role <code>editor</code> can delete this resource.</aside>
+<aside class='info'>Only users with the role <code>editor_in_any_app</code> can delete this resource.</aside>
 
 #### HTTP Request
 
@@ -602,8 +602,6 @@ curl -v -u token:secret -X POST -d '{"data":{"type":"Email","attributes":{...}}}
 ```
 
 
-<aside class='info'>Only users with the role <code>editor</code> can create this resource.</aside>
-
 #### HTTP Request
 
 `POST https://api.planningcenteronline.com/people/v2/people/1/emails`
@@ -624,8 +622,6 @@ curl -v -u token:secret -X PATCH -d '{"data":{"type":"Email","id":"1","attribute
 ```
 
 
-<aside class='info'>Only users with the role <code>editor</code> can update this resource.</aside>
-
 #### HTTP Request
 
 `PATCH https://api.planningcenteronline.com/people/v2/emails/1`
@@ -645,8 +641,6 @@ primary | boolean
 curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v2/emails/1"
 ```
 
-
-<aside class='info'>Only users with the role <code>editor</code> can delete this resource.</aside>
 
 #### HTTP Request
 
@@ -1066,7 +1060,7 @@ curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v
 
 ## Households
 
-A household links people together and can have a primary contaact.
+A household links people together and can have a primary contact.
 
 
 
@@ -1213,13 +1207,13 @@ A household membership is the linking record between a household and a person.
 
 ```shell
 # to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/households/1/household_memberships"
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1/household_memberships"
 ```
 
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/people/v2/households/1/household_memberships`
+`GET https://api.planningcenteronline.com/people/v2/people/1/household_memberships`
 
 #### URL Parameters
 
@@ -1238,7 +1232,7 @@ per_page | _integer_ | how many records to return per page (min=1, max=100, defa
 
 ```shell
 # to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1"
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1/household_memberships/1"
 ```
 
 
@@ -1261,7 +1255,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/househol
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1`
+`GET https://api.planningcenteronline.com/people/v2/people/1/household_memberships/1`
 
 #### URL Parameters
 
@@ -1278,8 +1272,8 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
-household | https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1/household | Household
-person | https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1/person | Person
+household | https://api.planningcenteronline.com/people/v2/people/1/household_memberships/1/household | Household
+person | https://api.planningcenteronline.com/people/v2/people/1/household_memberships/1/person | Person
 
 ### Create a new Household Membership
 
@@ -1305,7 +1299,7 @@ pending | boolean
 
 ```shell
 # to update a record...
-curl -v -u token:secret -X PATCH -d '{"data":{"type":"HouseholdMembership","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1"
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"HouseholdMembership","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/people/1/household_memberships/1"
 ```
 
 
@@ -1313,7 +1307,7 @@ curl -v -u token:secret -X PATCH -d '{"data":{"type":"HouseholdMembership","id":
 
 #### HTTP Request
 
-`PATCH https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1`
+`PATCH https://api.planningcenteronline.com/people/v2/people/1/household_memberships/1`
 
 #### Resource Attributes
 
@@ -1325,7 +1319,7 @@ pending | boolean
 
 ```shell
 # to delete a record...
-curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1"
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v2/people/1/household_memberships/1"
 ```
 
 
@@ -1333,7 +1327,7 @@ curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v
 
 #### HTTP Request
 
-`DELETE https://api.planningcenteronline.com/people/v2/households/1/household_memberships/1`
+`DELETE https://api.planningcenteronline.com/people/v2/people/1/household_memberships/1`
 
 ## InactiveReasons
 
@@ -2984,8 +2978,6 @@ curl -v -u token:secret -X POST -d '{"data":{"type":"PhoneNumber","attributes":{
 ```
 
 
-<aside class='info'>Only users with the role <code>editor</code> can create this resource.</aside>
-
 #### HTTP Request
 
 `POST https://api.planningcenteronline.com/people/v2/people/1/phone_numbers`
@@ -3007,8 +2999,6 @@ curl -v -u token:secret -X PATCH -d '{"data":{"type":"PhoneNumber","id":"1","att
 ```
 
 
-<aside class='info'>Only users with the role <code>editor</code> can update this resource.</aside>
-
 #### HTTP Request
 
 `PATCH https://api.planningcenteronline.com/people/v2/people/1/phone_numbers/1`
@@ -3029,8 +3019,6 @@ primary | boolean
 curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v2/people/1/phone_numbers/1"
 ```
 
-
-<aside class='info'>Only users with the role <code>editor</code> can delete this resource.</aside>
 
 #### HTTP Request
 
@@ -3921,14 +3909,14 @@ You can perform the following actions on a Workflow Card by POSTing to the speci
 
 Action | URL | Description
 ------ | --- | -----------
+skip_step | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/skip_step | Move a Workflow Card to the next step without completing the current step.
+snooze | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/snooze | Snoozes a card for a specific duration
+promote | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/promote | Move a Workflow Card to the next step.
+remove | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/remove | Removes a card
+send_email | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/send_email | Sends an email to the subject of the card
 restore | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/restore | Restore a card
 unsnooze | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/unsnooze | Unsnoozes a card
-remove | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/remove | Removes a card
 go_back | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/go_back | Move a Workflow Card back to the previous step.
-send_email | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/send_email | Sends an email to the subject of the card
-promote | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/promote | Move a Workflow Card to the next step.
-snooze | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/snooze | Snoozes a card for a specific duration
-skip_step | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/skip_step | Move a Workflow Card to the next step without completing the current step.
 
 
 

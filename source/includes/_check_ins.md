@@ -407,13 +407,13 @@ whether to print it for regulars, guests, and/or volunteers.
 
 ```shell
 # to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/labels/1/event_labels"
+curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/events/1/event_labels"
 ```
 
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/check_ins/v2/labels/1/event_labels`
+`GET https://api.planningcenteronline.com/check_ins/v2/events/1/event_labels`
 
 #### URL Parameters
 
@@ -430,7 +430,7 @@ per_page | _integer_ | how many records to return per page (min=1, max=100, defa
 
 ```shell
 # to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/labels/1/event_labels/1"
+curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/events/1/event_labels/1"
 ```
 
 
@@ -455,7 +455,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/label
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/check_ins/v2/labels/1/event_labels/1`
+`GET https://api.planningcenteronline.com/check_ins/v2/events/1/event_labels/1`
 
 #### URL Parameters
 
@@ -472,8 +472,8 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
-event | https://api.planningcenteronline.com/check_ins/v2/labels/1/event_labels/1/event | Event
-label | https://api.planningcenteronline.com/check_ins/v2/labels/1/event_labels/1/label | Label
+event | https://api.planningcenteronline.com/check_ins/v2/events/1/event_labels/1/event | Event
+label | https://api.planningcenteronline.com/check_ins/v2/events/1/event_labels/1/label | Label
 
 
 
@@ -496,13 +496,13 @@ are copied from one session to the next.
 
 ```shell
 # to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/check_ins/1/event_period"
+curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/event_times/1/event_period"
 ```
 
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/check_ins/v2/check_ins/1/event_period`
+`GET https://api.planningcenteronline.com/check_ins/v2/event_times/1/event_period`
 
 #### URL Parameters
 
@@ -519,7 +519,7 @@ per_page | _integer_ | how many records to return per page (min=1, max=100, defa
 
 ```shell
 # to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/check_ins/1/event_period/1"
+curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/event_times/1/event_period/1"
 ```
 
 
@@ -547,7 +547,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/check
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/check_ins/v2/check_ins/1/event_period/1`
+`GET https://api.planningcenteronline.com/check_ins/v2/event_times/1/event_period/1`
 
 #### URL Parameters
 
@@ -564,10 +564,10 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
-check_ins | https://api.planningcenteronline.com/check_ins/v2/check_ins/1/event_period/1/check_ins | CheckIn
-event | https://api.planningcenteronline.com/check_ins/v2/check_ins/1/event_period/1/event | Event
-event_times | https://api.planningcenteronline.com/check_ins/v2/check_ins/1/event_period/1/event_times | EventTime
-location_event_periods | https://api.planningcenteronline.com/check_ins/v2/check_ins/1/event_period/1/location_event_periods | LocationEventPeriod
+check_ins | https://api.planningcenteronline.com/check_ins/v2/event_times/1/event_period/1/check_ins | CheckIn
+event | https://api.planningcenteronline.com/check_ins/v2/event_times/1/event_period/1/event | Event
+event_times | https://api.planningcenteronline.com/check_ins/v2/event_times/1/event_period/1/event_times | EventTime
+location_event_periods | https://api.planningcenteronline.com/check_ins/v2/event_times/1/event_period/1/location_event_periods | LocationEventPeriod
 
 
 
@@ -883,13 +883,13 @@ You can get a location's parent folder from the `parent` attribute.
 
 ```shell
 # to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/check_ins/1/location"
+curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/events/1/locations"
 ```
 
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/check_ins/v2/check_ins/1/location`
+`GET https://api.planningcenteronline.com/check_ins/v2/events/1/locations`
 
 #### URL Parameters
 
@@ -908,7 +908,7 @@ per_page | _integer_ | how many records to return per page (min=1, max=100, defa
 
 ```shell
 # to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/check_ins/1/location/1"
+curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/events/1/locations/1"
 ```
 
 
@@ -942,7 +942,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/check
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/check_ins/v2/check_ins/1/location/1`
+`GET https://api.planningcenteronline.com/check_ins/v2/events/1/locations/1`
 
 #### URL Parameters
 
@@ -961,14 +961,14 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
-check_ins | https://api.planningcenteronline.com/check_ins/v2/check_ins/1/location/1/check_ins | CheckIn
-event | https://api.planningcenteronline.com/check_ins/v2/check_ins/1/location/1/event | Event
-location_event_periods | https://api.planningcenteronline.com/check_ins/v2/check_ins/1/location/1/location_event_periods | LocationEventPeriod
-location_event_times | https://api.planningcenteronline.com/check_ins/v2/check_ins/1/location/1/location_event_times | LocationEventTime
-location_labels | https://api.planningcenteronline.com/check_ins/v2/check_ins/1/location/1/location_labels | LocationLabel
-locations | https://api.planningcenteronline.com/check_ins/v2/check_ins/1/location/1/locations | Location
-options | https://api.planningcenteronline.com/check_ins/v2/check_ins/1/location/1/options | Option
-parent | https://api.planningcenteronline.com/check_ins/v2/check_ins/1/location/1/parent | Location
+check_ins | https://api.planningcenteronline.com/check_ins/v2/events/1/locations/1/check_ins | CheckIn
+event | https://api.planningcenteronline.com/check_ins/v2/events/1/locations/1/event | Event
+location_event_periods | https://api.planningcenteronline.com/check_ins/v2/events/1/locations/1/location_event_periods | LocationEventPeriod
+location_event_times | https://api.planningcenteronline.com/check_ins/v2/events/1/locations/1/location_event_times | LocationEventTime
+location_labels | https://api.planningcenteronline.com/check_ins/v2/events/1/locations/1/location_labels | LocationLabel
+locations | https://api.planningcenteronline.com/check_ins/v2/events/1/locations/1/locations | Location
+options | https://api.planningcenteronline.com/check_ins/v2/events/1/locations/1/options | Option
+parent | https://api.planningcenteronline.com/check_ins/v2/events/1/locations/1/parent | Location
 
 
 
@@ -987,13 +987,13 @@ Counts check-ins for a location during a certain event period.
 
 ```shell
 # to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/check_ins/1/event_period/1/location_event_periods"
+curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/events/1/locations/1/location_event_periods"
 ```
 
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/check_ins/v2/check_ins/1/event_period/1/location_event_periods`
+`GET https://api.planningcenteronline.com/check_ins/v2/events/1/locations/1/location_event_periods`
 
 #### URL Parameters
 
@@ -1010,7 +1010,7 @@ per_page | _integer_ | how many records to return per page (min=1, max=100, defa
 
 ```shell
 # to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/check_ins/1/event_period/1/location_event_periods/1"
+curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/events/1/locations/1/location_event_periods/1"
 ```
 
 
@@ -1034,7 +1034,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/check
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/check_ins/v2/check_ins/1/event_period/1/location_event_periods/1`
+`GET https://api.planningcenteronline.com/check_ins/v2/events/1/locations/1/location_event_periods/1`
 
 #### URL Parameters
 
@@ -1051,9 +1051,9 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
-check_ins | https://api.planningcenteronline.com/check_ins/v2/check_ins/1/event_period/1/location_event_periods/1/check_ins | CheckIn
-event_period | https://api.planningcenteronline.com/check_ins/v2/check_ins/1/event_period/1/location_event_periods/1/event_period | EventPeriod
-location | https://api.planningcenteronline.com/check_ins/v2/check_ins/1/event_period/1/location_event_periods/1/location | Location
+check_ins | https://api.planningcenteronline.com/check_ins/v2/events/1/locations/1/location_event_periods/1/check_ins | CheckIn
+event_period | https://api.planningcenteronline.com/check_ins/v2/events/1/locations/1/location_event_periods/1/event_period | EventPeriod
+location | https://api.planningcenteronline.com/check_ins/v2/events/1/locations/1/location_event_periods/1/location | Location
 
 
 
@@ -1606,13 +1606,13 @@ Counts a person's attendence for a given event.
 
 ```shell
 # to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/people/1/person_events"
+curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/events/1/person_events"
 ```
 
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/check_ins/v2/people/1/person_events`
+`GET https://api.planningcenteronline.com/check_ins/v2/events/1/person_events`
 
 #### URL Parameters
 
@@ -1631,7 +1631,7 @@ per_page | _integer_ | how many records to return per page (min=1, max=100, defa
 
 ```shell
 # to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/people/1/person_events/1"
+curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/events/1/person_events/1"
 ```
 
 
@@ -1653,7 +1653,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/peopl
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/check_ins/v2/people/1/person_events/1`
+`GET https://api.planningcenteronline.com/check_ins/v2/events/1/person_events/1`
 
 #### URL Parameters
 
@@ -1672,10 +1672,10 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
-event | https://api.planningcenteronline.com/check_ins/v2/people/1/person_events/1/event | Event
-first_check_in | https://api.planningcenteronline.com/check_ins/v2/people/1/person_events/1/first_check_in | CheckIn
-last_check_in | https://api.planningcenteronline.com/check_ins/v2/people/1/person_events/1/last_check_in | CheckIn
-person | https://api.planningcenteronline.com/check_ins/v2/people/1/person_events/1/person | Person
+event | https://api.planningcenteronline.com/check_ins/v2/events/1/person_events/1/event | Event
+first_check_in | https://api.planningcenteronline.com/check_ins/v2/events/1/person_events/1/first_check_in | CheckIn
+last_check_in | https://api.planningcenteronline.com/check_ins/v2/events/1/person_events/1/last_check_in | CheckIn
+person | https://api.planningcenteronline.com/check_ins/v2/events/1/person_events/1/person | Person
 
 
 
