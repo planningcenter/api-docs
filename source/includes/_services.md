@@ -383,11 +383,13 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/songs/
       "downloadable": true,
       "file_size": 1,
       "filename": "string",
+      "has_preview": true,
       "linked_url": "string",
       "page_order": "string",
       "pco_type": "string",
       "remote_link": "string",
       "streamable": true,
+      "thumbnail_url": "string",
       "transposable": true,
       "updated_at": "2000-01-01T12:00:00Z",
       "url": "string",
@@ -449,10 +451,18 @@ You can perform the following actions on an Attachment by POSTing to the specifi
 Action | URL | Description
 ------ | --- | -----------
  |  | 
+preview | https://api.planningcenteronline.com/services/v2/songs/1/attachments/1/preview | This action is used to get a reduced resolution (preview) version of the attachment.  It is accessed by `POST`ing to `.../attachments/1/preview`
+
+This will generate the URL and return it in the `attachment_url` attribute of the `AttachmentActivity`.
+
+The `has_preview` attribute of an `Attachment` indicates if a preview is available. When a preview is not available this action will return a `Not Found` error with a status code of `404`.
+
  |  | 
 open | https://api.planningcenteronline.com/services/v2/songs/1/attachments/1/open | This action is used to get the attachment file URL.  It is accessed by `POST`ing to `.../attachments/1/open`
 
 This will generate the URL and return it in the `attachment_url` attribute of the `AttachmentActivity`.
+
+
 
 
 
@@ -3071,6 +3081,7 @@ Association | URL | Endpoint
  |  | 
 available_signups | https://api.planningcenteronline.com/services/v2/people/1/available_signups | AvailableSignup
 blockouts | https://api.planningcenteronline.com/services/v2/people/1/blockouts | Blockout
+ |  | 
 person_team_position_assignments | https://api.planningcenteronline.com/services/v2/people/1/person_team_position_assignments | PersonTeamPositionAssignment
 plan_people | https://api.planningcenteronline.com/services/v2/people/1/plan_people | PlanPerson
 schedules | https://api.planningcenteronline.com/services/v2/people/1/schedules | Schedule
@@ -4285,13 +4296,13 @@ assigned_teams | Team | _true_ |
 
 ```shell
 # to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/declined_plan_times"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people/1/next_plan_time"
 ```
 
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/declined_plan_times`
+`GET https://api.planningcenteronline.com/services/v2/people/1/next_plan_time`
 
 #### URL Parameters
 
@@ -4305,7 +4316,7 @@ per_page | _integer_ | how many records to return per page (min=1, max=100, defa
 
 ```shell
 # to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/declined_plan_times/1"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people/1/next_plan_time/1"
 ```
 
 
@@ -4345,7 +4356,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/declined_plan_times/1`
+`GET https://api.planningcenteronline.com/services/v2/people/1/next_plan_time/1`
 
 #### URL Parameters
 
@@ -4359,7 +4370,7 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
-split_team_rehearsal_assignments | https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/declined_plan_times/1/split_team_rehearsal_assignments | SplitTeamRehearsalAssignment
+split_team_rehearsal_assignments | https://api.planningcenteronline.com/services/v2/people/1/next_plan_time/1/split_team_rehearsal_assignments | SplitTeamRehearsalAssignment
 
 ### Create a new Plan Time
 
@@ -4387,13 +4398,13 @@ team_reminders | array
 
 ```shell
 # to update a record...
-curl -v -u token:secret -X PATCH -d '{"data":{"type":"PlanTime","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/declined_plan_times/1"
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"PlanTime","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/people/1/next_plan_time/1"
 ```
 
 
 #### HTTP Request
 
-`PATCH https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/declined_plan_times/1`
+`PATCH https://api.planningcenteronline.com/services/v2/people/1/next_plan_time/1`
 
 #### Resource Attributes
 
@@ -4409,13 +4420,13 @@ team_reminders | array
 
 ```shell
 # to delete a record...
-curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/declined_plan_times/1"
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/services/v2/people/1/next_plan_time/1"
 ```
 
 
 #### HTTP Request
 
-`DELETE https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/declined_plan_times/1`
+`DELETE https://api.planningcenteronline.com/services/v2/people/1/next_plan_time/1`
 
 ## Schedules
 
@@ -5526,13 +5537,13 @@ time_preference_options | TimePreferenceOption | _true_ |
 
 ```shell
 # to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/declined_plan_times/1/split_team_rehearsal_assignments"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people/1/next_plan_time/1/split_team_rehearsal_assignments"
 ```
 
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/declined_plan_times/1/split_team_rehearsal_assignments`
+`GET https://api.planningcenteronline.com/services/v2/people/1/next_plan_time/1/split_team_rehearsal_assignments`
 
 #### URL Parameters
 
@@ -5545,7 +5556,7 @@ per_page | _integer_ | how many records to return per page (min=1, max=100, defa
 
 ```shell
 # to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/declined_plan_times/1/split_team_rehearsal_assignments/1"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people/1/next_plan_time/1/split_team_rehearsal_assignments/1"
 ```
 
 
@@ -5581,7 +5592,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/declined_plan_times/1/split_team_rehearsal_assignments/1`
+`GET https://api.planningcenteronline.com/services/v2/people/1/next_plan_time/1/split_team_rehearsal_assignments/1`
 
 #### URL Parameters
 
@@ -5593,19 +5604,19 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
-team | https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/declined_plan_times/1/split_team_rehearsal_assignments/1/team | Team
+team | https://api.planningcenteronline.com/services/v2/people/1/next_plan_time/1/split_team_rehearsal_assignments/1/team | Team
 
 ### Create a new Split Team Rehearsal Assignment
 
 ```shell
 # to create a record...
-curl -v -u token:secret -X POST -d '{"data":{"type":"SplitTeamRehearsalAssignment","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/declined_plan_times/1/split_team_rehearsal_assignments"
+curl -v -u token:secret -X POST -d '{"data":{"type":"SplitTeamRehearsalAssignment","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/people/1/next_plan_time/1/split_team_rehearsal_assignments"
 ```
 
 
 #### HTTP Request
 
-`POST https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/declined_plan_times/1/split_team_rehearsal_assignments`
+`POST https://api.planningcenteronline.com/services/v2/people/1/next_plan_time/1/split_team_rehearsal_assignments`
 
 #### Resource Attributes
 
@@ -5617,13 +5628,13 @@ assigned_to | string
 
 ```shell
 # to update a record...
-curl -v -u token:secret -X PATCH -d '{"data":{"type":"SplitTeamRehearsalAssignment","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/declined_plan_times/1/split_team_rehearsal_assignments/1"
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"SplitTeamRehearsalAssignment","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/people/1/next_plan_time/1/split_team_rehearsal_assignments/1"
 ```
 
 
 #### HTTP Request
 
-`PATCH https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/declined_plan_times/1/split_team_rehearsal_assignments/1`
+`PATCH https://api.planningcenteronline.com/services/v2/people/1/next_plan_time/1/split_team_rehearsal_assignments/1`
 
 #### Resource Attributes
 
@@ -5635,13 +5646,13 @@ assigned_to | string
 
 ```shell
 # to delete a record...
-curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/declined_plan_times/1/split_team_rehearsal_assignments/1"
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/services/v2/people/1/next_plan_time/1/split_team_rehearsal_assignments/1"
 ```
 
 
 #### HTTP Request
 
-`DELETE https://api.planningcenteronline.com/services/v2/people/1/plan_people/1/declined_plan_times/1/split_team_rehearsal_assignments/1`
+`DELETE https://api.planningcenteronline.com/services/v2/people/1/next_plan_time/1/split_team_rehearsal_assignments/1`
 
 ## Tags
 

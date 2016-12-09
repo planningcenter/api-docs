@@ -32,6 +32,12 @@ where[location] | _string_ | query on a specific location
 where[primary] | _boolean_ | query on a specific primary
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | city | prefix with a hyphen (-city) to reverse the order
+order | state | prefix with a hyphen (-state) to reverse the order
+order | zip | prefix with a hyphen (-zip) to reverse the order
+order | street | prefix with a hyphen (-street) to reverse the order
+order | location | prefix with a hyphen (-location) to reverse the order
+order | primary | prefix with a hyphen (-primary) to reverse the order
 
 ### Get a single Address
 
@@ -160,6 +166,8 @@ where[name] | _string_ | query on a specific name
 where[url] | _string_ | query on a specific url
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | name | prefix with a hyphen (-name) to reverse the order
+order | url | prefix with a hyphen (-url) to reverse the order
 
 ### Get a single App
 
@@ -326,6 +334,14 @@ where[created_at] | _date_time_ | query on a specific created_at
 where[updated_at] | _date_time_ | query on a specific updated_at
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | application | prefix with a hyphen (-application) to reverse the order
+order | definition_class | prefix with a hyphen (-definition_class) to reverse the order
+order | comparison | prefix with a hyphen (-comparison) to reverse the order
+order | settings | prefix with a hyphen (-settings) to reverse the order
+order | definition_identifier | prefix with a hyphen (-definition_identifier) to reverse the order
+order | description | prefix with a hyphen (-description) to reverse the order
+order | created_at | prefix with a hyphen (-created_at) to reverse the order
+order | updated_at | prefix with a hyphen (-updated_at) to reverse the order
 
 ### Get a single Condition
 
@@ -551,6 +567,9 @@ where[location] | _string_ | query on a specific location
 where[primary] | _boolean_ | query on a specific primary
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | address | prefix with a hyphen (-address) to reverse the order
+order | location | prefix with a hyphen (-location) to reverse the order
+order | primary | prefix with a hyphen (-primary) to reverse the order
 
 ### Get a single Email
 
@@ -678,6 +697,11 @@ include | field_option | include associated field_option
 include | tab | include associated tab
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | value | prefix with a hyphen (-value) to reverse the order
+order | file | prefix with a hyphen (-file) to reverse the order
+order | file_size | prefix with a hyphen (-file_size) to reverse the order
+order | file_content_type | prefix with a hyphen (-file_content_type) to reverse the order
+order | file_name | prefix with a hyphen (-file_name) to reverse the order
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=field_definition,field_option</code></aside>
 
@@ -820,6 +844,12 @@ include | field_options | include associated field_options
 include | tab | include associated tab
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | data_type | prefix with a hyphen (-data_type) to reverse the order
+order | name | prefix with a hyphen (-name) to reverse the order
+order | sequence | prefix with a hyphen (-sequence) to reverse the order
+order | slug | prefix with a hyphen (-slug) to reverse the order
+order | config | prefix with a hyphen (-config) to reverse the order
+order | deleted_at | prefix with a hyphen (-deleted_at) to reverse the order
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=field_options,tab</code></aside>
 
@@ -968,6 +998,8 @@ where[value] | _string_ | query on a specific value
 where[sequence] | _integer_ | query on a specific sequence
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | value | prefix with a hyphen (-value) to reverse the order
+order | sequence | prefix with a hyphen (-sequence) to reverse the order
 
 ### Get a single Field Option
 
@@ -1088,6 +1120,11 @@ where[updated_at] | _date_time_ | query on a specific updated_at
 include | people | include associated people
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | name | prefix with a hyphen (-name) to reverse the order
+order | member_count | prefix with a hyphen (-member_count) to reverse the order
+order | primary_contact_name | prefix with a hyphen (-primary_contact_name) to reverse the order
+order | created_at | prefix with a hyphen (-created_at) to reverse the order
+order | updated_at | prefix with a hyphen (-updated_at) to reverse the order
 
 ### Get a single Household
 
@@ -1225,6 +1262,8 @@ include | person | include associated person
 include | household | include associated household
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | person_name | prefix with a hyphen (-person_name) to reverse the order
+order | pending | prefix with a hyphen (-pending) to reverse the order
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=person,household</code></aside>
 
@@ -1354,6 +1393,7 @@ Parameter | Value | Description
 where[value] | _string_ | query on a specific value
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | value | prefix with a hyphen (-value) to reverse the order
 
 ### Get a single Inactive Reason
 
@@ -1475,6 +1515,10 @@ include | rules | include associated rules
 include | shares | include associated shares
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | name | prefix with a hyphen (-name) to reverse the order
+order | batch_completed_at | prefix with a hyphen (-batch_completed_at) to reverse the order
+order | created_at | prefix with a hyphen (-created_at) to reverse the order
+order | updated_at | prefix with a hyphen (-updated_at) to reverse the order
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=created_by,updated_by</code></aside>
 
@@ -1587,6 +1631,9 @@ where[created_at] | _date_time_ | query on a specific created_at
 include | person | include associated person
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | name | prefix with a hyphen (-name) to reverse the order
+order | group | prefix with a hyphen (-group) to reverse the order
+order | created_at | prefix with a hyphen (-created_at) to reverse the order
 
 ### Get a single List Share
 
@@ -1663,6 +1710,7 @@ Parameter | Value | Description
 where[value] | _string_ | query on a specific value
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | value | prefix with a hyphen (-value) to reverse the order
 
 ### Get a single Marital Status
 
@@ -1790,6 +1838,19 @@ include | message_group | include associated message_group
 include | to | include associated to
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | kind | prefix with a hyphen (-kind) to reverse the order
+order | to_addresses | prefix with a hyphen (-to_addresses) to reverse the order
+order | subject | prefix with a hyphen (-subject) to reverse the order
+order | file | prefix with a hyphen (-file) to reverse the order
+order | app_name | prefix with a hyphen (-app_name) to reverse the order
+order | delivery_status | prefix with a hyphen (-delivery_status) to reverse the order
+order | reject_reason | prefix with a hyphen (-reject_reason) to reverse the order
+order | from_name | prefix with a hyphen (-from_name) to reverse the order
+order | from_address | prefix with a hyphen (-from_address) to reverse the order
+order | created_at | prefix with a hyphen (-created_at) to reverse the order
+order | sent_at | prefix with a hyphen (-sent_at) to reverse the order
+order | bounced_at | prefix with a hyphen (-bounced_at) to reverse the order
+order | rejection_notification_sent_at | prefix with a hyphen (-rejection_notification_sent_at) to reverse the order
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=message_group,to</code></aside>
 
@@ -1891,6 +1952,13 @@ include | from | include associated from
 include | app | include associated app
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | uuid | prefix with a hyphen (-uuid) to reverse the order
+order | message_type | prefix with a hyphen (-message_type) to reverse the order
+order | from_address | prefix with a hyphen (-from_address) to reverse the order
+order | subject | prefix with a hyphen (-subject) to reverse the order
+order | message_count | prefix with a hyphen (-message_count) to reverse the order
+order | system_message | prefix with a hyphen (-system_message) to reverse the order
+order | created_at | prefix with a hyphen (-created_at) to reverse the order
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=messages,from</code></aside>
 
@@ -1979,6 +2047,7 @@ Parameter | Value | Description
 where[value] | _string_ | query on a specific value
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | value | prefix with a hyphen (-value) to reverse the order
 
 ### Get a single Name Prefix
 
@@ -2091,6 +2160,7 @@ Parameter | Value | Description
 where[value] | _string_ | query on a specific value
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | value | prefix with a hyphen (-value) to reverse the order
 
 ### Get a single Name Suffix
 
@@ -2579,6 +2649,27 @@ include | school | include associated school
 include | social_profiles | include associated social_profiles
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | given_name | prefix with a hyphen (-given_name) to reverse the order
+order | first_name | prefix with a hyphen (-first_name) to reverse the order
+order | nickname | prefix with a hyphen (-nickname) to reverse the order
+order | goes_by_name | prefix with a hyphen (-goes_by_name) to reverse the order
+order | middle_name | prefix with a hyphen (-middle_name) to reverse the order
+order | last_name | prefix with a hyphen (-last_name) to reverse the order
+order | birthdate | prefix with a hyphen (-birthdate) to reverse the order
+order | anniversary | prefix with a hyphen (-anniversary) to reverse the order
+order | gender | prefix with a hyphen (-gender) to reverse the order
+order | grade | prefix with a hyphen (-grade) to reverse the order
+order | child | prefix with a hyphen (-child) to reverse the order
+order | status | prefix with a hyphen (-status) to reverse the order
+order | school_type | prefix with a hyphen (-school_type) to reverse the order
+order | graduation_year | prefix with a hyphen (-graduation_year) to reverse the order
+order | site_administrator | prefix with a hyphen (-site_administrator) to reverse the order
+order | people_permissions | prefix with a hyphen (-people_permissions) to reverse the order
+order | membership | prefix with a hyphen (-membership) to reverse the order
+order | remote_id | prefix with a hyphen (-remote_id) to reverse the order
+order | medical_notes | prefix with a hyphen (-medical_notes) to reverse the order
+order | created_at | prefix with a hyphen (-created_at) to reverse the order
+order | updated_at | prefix with a hyphen (-updated_at) to reverse the order
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=addresses,emails</code></aside>
 
@@ -2932,6 +3023,12 @@ where[created_at] | _date_time_ | query on a specific created_at
 where[updated_at] | _date_time_ | query on a specific updated_at
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | number | prefix with a hyphen (-number) to reverse the order
+order | carrier | prefix with a hyphen (-carrier) to reverse the order
+order | location | prefix with a hyphen (-location) to reverse the order
+order | primary | prefix with a hyphen (-primary) to reverse the order
+order | created_at | prefix with a hyphen (-created_at) to reverse the order
+order | updated_at | prefix with a hyphen (-updated_at) to reverse the order
 
 ### Get a single Phone Number
 
@@ -3054,6 +3151,10 @@ include | created_by | include associated created_by
 include | updated_by | include associated updated_by
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | name | prefix with a hyphen (-name) to reverse the order
+order | body | prefix with a hyphen (-body) to reverse the order
+order | created_at | prefix with a hyphen (-created_at) to reverse the order
+order | updated_at | prefix with a hyphen (-updated_at) to reverse the order
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=created_by,updated_by</code></aside>
 
@@ -3190,6 +3291,9 @@ where[updated_at] | _date_time_ | query on a specific updated_at
 include | conditions | include associated conditions
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | subset | prefix with a hyphen (-subset) to reverse the order
+order | created_at | prefix with a hyphen (-created_at) to reverse the order
+order | updated_at | prefix with a hyphen (-updated_at) to reverse the order
 
 ### Get a single Rule
 
@@ -3344,6 +3448,11 @@ where[ending_grade] | _graph/type_annotation/unknown_type_annotation_ | query on
 where[sequence] | _integer_ | query on a specific sequence
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | value | prefix with a hyphen (-value) to reverse the order
+order | school_types | prefix with a hyphen (-school_types) to reverse the order
+order | beginning_grade | prefix with a hyphen (-beginning_grade) to reverse the order
+order | ending_grade | prefix with a hyphen (-ending_grade) to reverse the order
+order | sequence | prefix with a hyphen (-sequence) to reverse the order
 
 ### Get a single School Option
 
@@ -3484,6 +3593,11 @@ where[updated_at] | _date_time_ | query on a specific updated_at
 include | person | include associated person
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | site | prefix with a hyphen (-site) to reverse the order
+order | url | prefix with a hyphen (-url) to reverse the order
+order | verified | prefix with a hyphen (-verified) to reverse the order
+order | created_at | prefix with a hyphen (-created_at) to reverse the order
+order | updated_at | prefix with a hyphen (-updated_at) to reverse the order
 
 ### Get a single Social Profile
 
@@ -3617,6 +3731,9 @@ where[slug] | _string_ | query on a specific slug
 include | field_definitions | include associated field_definitions
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | name | prefix with a hyphen (-name) to reverse the order
+order | sequence | prefix with a hyphen (-sequence) to reverse the order
+order | slug | prefix with a hyphen (-slug) to reverse the order
 
 ### Get a single Tab
 
@@ -3748,6 +3865,9 @@ where[updated_at] | _date_time_ | query on a specific updated_at
 include | steps | include associated steps
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | name | prefix with a hyphen (-name) to reverse the order
+order | created_at | prefix with a hyphen (-created_at) to reverse the order
+order | updated_at | prefix with a hyphen (-updated_at) to reverse the order
 
 ### Get a single Workflow
 
@@ -3837,6 +3957,9 @@ include | person | include associated person
 include | assignee | include associated assignee
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | created_at | prefix with a hyphen (-created_at) to reverse the order
+order | updated_at | prefix with a hyphen (-updated_at) to reverse the order
+order | completed_at | prefix with a hyphen (-completed_at) to reverse the order
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=person,assignee</code></aside>
 
@@ -3994,6 +4117,7 @@ Parameter | Value | Description
 --------- | ----- | -----------
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | id | prefix with a hyphen (-id) to reverse the order
 
 ### Get a single Workflow Card Activity
 
@@ -4174,6 +4298,10 @@ where[updated_at] | _date_time_ | query on a specific updated_at
 include | default_assignee | include associated default_assignee
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | name | prefix with a hyphen (-name) to reverse the order
+order | created_at | prefix with a hyphen (-created_at) to reverse the order
+order | updated_at | prefix with a hyphen (-updated_at) to reverse the order
+order | sequence | prefix with a hyphen (-sequence) to reverse the order
 
 ### Get a single Workflow Step
 
