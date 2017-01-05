@@ -27,7 +27,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/batches"
 Parameter | Value | Description
 --------- | ----- | -----------
 include | owner | include associated owner
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Batch
@@ -46,11 +46,11 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/batches/
     "type": "Batch",
     "id": "1",
     "attributes": {
-      "created_at": "2016-12-09T20:03:31Z",
+      "created_at": "2017-01-05T15:47:34Z",
       "status": "in_progress",
       "total_cents": 150000,
       "total_currency": "USD",
-      "updated_at": "2016-12-09T20:03:31Z"
+      "updated_at": "2017-01-05T15:47:34Z"
     },
     "relationships": {
     }
@@ -104,7 +104,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/deposits
 Parameter | Value | Description
 --------- | ----- | -----------
 include | owner | include associated owner
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Deposit
@@ -124,10 +124,10 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/deposits
     "id": "1",
     "attributes": {
       "cleared": true,
-      "created_at": "2016-12-09T20:03:31Z",
+      "created_at": "2017-01-05T15:47:34Z",
       "total_cents": 350000,
       "total_currency": "USD",
-      "updated_at": "2016-12-09T20:03:31Z"
+      "updated_at": "2017-01-05T15:47:34Z"
     },
     "relationships": {
     }
@@ -181,7 +181,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/donation
 Parameter | Value | Description
 --------- | ----- | -----------
 include | fund | include associated fund
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Designation
@@ -271,7 +271,7 @@ Parameter | Value | Description
 --------- | ----- | -----------
 include | designations | include associated designations
 include | labels | include associated labels
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=designations,labels</code></aside>
@@ -294,7 +294,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/donation
     "attributes": {
       "amount_cents": 2000,
       "amount_currency": "USD",
-      "created_at": "2016-12-09T20:03:31Z",
+      "created_at": "2017-01-05T15:47:34Z",
       "fee_cents": -88,
       "fee_currency": "USD",
       "payment_brand": "Visa",
@@ -303,7 +303,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/donation
       "payment_method": "card",
       "payment_method_sub": "debit",
       "payment_status": "succeeded",
-      "updated_at": "2016-12-09T20:03:31Z"
+      "updated_at": "2017-01-05T15:47:34Z"
     },
     "relationships": {
     }
@@ -367,7 +367,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/funds"
 
 Parameter | Value | Description
 --------- | ----- | -----------
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Fund
@@ -387,11 +387,11 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/funds/1"
     "id": "1",
     "attributes": {
       "color": "#9ccc79",
-      "created_at": "2016-12-09T20:03:31Z",
+      "created_at": "2017-01-05T15:47:34Z",
       "description": "These funds are used to support our missionary efforts here in the US.",
       "ledger_code": "dm-22314",
       "name": "Domestic Missions",
-      "updated_at": "2016-12-09T20:03:31Z",
+      "updated_at": "2017-01-05T15:47:34Z",
       "visibility": "everywhere"
     },
     "relationships": {
@@ -434,7 +434,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/labels"
 
 Parameter | Value | Description
 --------- | ----- | -----------
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 
@@ -535,7 +535,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/recurrin
 
 Parameter | Value | Description
 --------- | ----- | -----------
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Payment Method
@@ -555,12 +555,12 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/recurrin
     "id": "1",
     "attributes": {
       "brand": "Visa",
-      "created_at": "2016-12-09T20:03:31Z",
+      "created_at": "2017-01-05T15:47:34Z",
       "expiration": "8/2018",
       "last4": "4242",
       "method_subtype": "credit",
       "method_type": "card",
-      "updated_at": "2016-12-09T20:03:31Z",
+      "updated_at": "2017-01-05T15:47:34Z",
       "verified": null
     },
     "relationships": {
@@ -617,7 +617,7 @@ Parameter | Value | Description
 --------- | ----- | -----------
 where[first_name] | _string_ | query on a specific first_name
 where[last_name] | _string_ | query on a specific last_name
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Person
@@ -724,7 +724,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/recurrin
 Parameter | Value | Description
 --------- | ----- | -----------
 include | designations | include associated designations
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Recurring Donation
@@ -745,16 +745,16 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/recurrin
     "attributes": {
       "amount_cents": 15000,
       "amount_currency": "USD",
-      "created_at": "2016-12-09T20:03:31Z",
-      "last_donation_received_at": "2016-12-08T00:00:00Z",
-      "next_occurrence": "2017-01-08T00:00:00Z",
+      "created_at": "2017-01-05T15:47:34Z",
+      "last_donation_received_at": "2017-01-04T00:00:00Z",
+      "next_occurrence": "2017-02-04T00:00:00Z",
       "schedule": {
         "day_in_month": {
-          "day": 8
+          "day": 4
         }
       },
       "status": "active",
-      "updated_at": "2016-12-09T20:03:31Z"
+      "updated_at": "2017-01-05T15:47:34Z"
     },
     "relationships": {
     }
@@ -808,7 +808,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/recurrin
 Parameter | Value | Description
 --------- | ----- | -----------
 include | fund | include associated fund
-after | _id_ | get page after the specified id
+offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 ### Get a single Recurring Donation Designation

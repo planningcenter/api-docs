@@ -130,6 +130,12 @@ include | checked_out_by | include associated checked_out_by
 include | options | include associated options
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | first_name | prefix with a hyphen (-first_name) to reverse the order
+order | last_name | prefix with a hyphen (-last_name) to reverse the order
+order | number | prefix with a hyphen (-number) to reverse the order
+order | created_at | prefix with a hyphen (-created_at) to reverse the order
+order | updated_at | prefix with a hyphen (-updated_at) to reverse the order
+order | checked_out_at | prefix with a hyphen (-checked_out_at) to reverse the order
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=location,event</code></aside>
 
@@ -338,6 +344,8 @@ filter | archived | filter using the named scope "archived"
 filter | not_archived | filter using the named scope "not_archived"
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | name | prefix with a hyphen (-name) to reverse the order
+order | created_at | prefix with a hyphen (-created_at) to reverse the order
 
 ### Get a single Event
 
@@ -512,6 +520,7 @@ include | event | include associated event
 include | event_times | include associated event_times
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | starts_at | prefix with a hyphen (-starts_at) to reverse the order
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=event,event_times</code></aside>
 
@@ -602,6 +611,8 @@ include | event_period | include associated event_period
 include | event | include associated event
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | starts_at | prefix with a hyphen (-starts_at) to reverse the order
+order | shows_at | prefix with a hyphen (-shows_at) to reverse the order
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=event_period,event</code></aside>
 
@@ -901,6 +912,8 @@ include | locations | include associated locations
 include | options | include associated options
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | kind | prefix with a hyphen (-kind) to reverse the order
+order | name | prefix with a hyphen (-name) to reverse the order
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=parent,event</code></aside>
 
