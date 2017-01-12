@@ -342,10 +342,14 @@ Parameter | Value | Description
 --------- | ----- | -----------
 filter | archived | filter using the named scope "archived"
 filter | not_archived | filter using the named scope "not_archived"
+include | event_periods | include associated event_periods
+include | attendance_types | include associated attendance_types
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 order | name | prefix with a hyphen (-name) to reverse the order
 order | created_at | prefix with a hyphen (-created_at) to reverse the order
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=event_periods,attendance_types</code></aside>
 
 ### Get a single Event
 
@@ -382,7 +386,12 @@ curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/event
 
 #### URL Parameters
 
-_none_
+Parameter | Value | Description
+--------- | ----- | -----------
+include | event_periods | include associated event_periods
+include | attendance_types | include associated attendance_types
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=event_periods,attendance_types</code></aside>
 
 ### Associations for an Event
 
@@ -609,6 +618,7 @@ Parameter | Value | Description
 --------- | ----- | -----------
 include | event_period | include associated event_period
 include | event | include associated event
+include | headcounts | include associated headcounts
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 order | starts_at | prefix with a hyphen (-starts_at) to reverse the order
@@ -658,6 +668,7 @@ Parameter | Value | Description
 --------- | ----- | -----------
 include | event_period | include associated event_period
 include | event | include associated event
+include | headcounts | include associated headcounts
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=event_period,event</code></aside>
 

@@ -295,6 +295,8 @@ Parameter | Value | Description
 --------- | ----- | -----------
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | name | prefix with a hyphen (-name) to reverse the order
+order | international | prefix with a hyphen (-international) to reverse the order
 
 
 

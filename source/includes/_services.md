@@ -26,6 +26,8 @@ Parameter | Value | Description
 --------- | ----- | -----------
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | created_at | prefix with a hyphen (-created_at) to reverse the order
+order | updated_at | prefix with a hyphen (-updated_at) to reverse the order
 
 ### Get a single Annotation Drawing
 
@@ -613,6 +615,8 @@ where[created_at] | _date_time_ | query on a specific created_at
 where[updated_at] | _date_time_ | query on a specific updated_at
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | created_at | prefix with a hyphen (-created_at) to reverse the order
+order | updated_at | prefix with a hyphen (-updated_at) to reverse the order
 
 ### Get a single Attachment Annotation
 
@@ -1335,6 +1339,8 @@ Parameter | Value | Description
 --------- | ----- | -----------
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | updated_at | prefix with a hyphen (-updated_at) to reverse the order
+order | created_at | prefix with a hyphen (-created_at) to reverse the order
 
 ### Get a single Contributor
 
@@ -2309,6 +2315,8 @@ Parameter | Value | Description
 --------- | ----- | -----------
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | created_at | prefix with a hyphen (-created_at) to reverse the order
+order | updated_at | prefix with a hyphen (-updated_at) to reverse the order
 
 ### Get a single Key
 
@@ -3005,6 +3013,10 @@ Parameter | Value | Description
 --------- | ----- | -----------
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | first_name | prefix with a hyphen (-first_name) to reverse the order
+order | last_name | prefix with a hyphen (-last_name) to reverse the order
+order | created_at | prefix with a hyphen (-created_at) to reverse the order
+order | updated_at | prefix with a hyphen (-updated_at) to reverse the order
 
 ### Get a single Person
 
@@ -3286,13 +3298,13 @@ person | https://api.planningcenteronline.com/services/v2/people/1/person_team_p
 
 ```shell
 # to create a record...
-curl -v -u token:secret -X POST -d '{"data":{"type":"PersonTeamPositionAssignment","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/people/1/teams/1/team_positions/1/person_team_position_assignments"
+curl -v -u token:secret -X POST -d '{"data":{"type":"PersonTeamPositionAssignment","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/service_types/1/team_positions/1/person_team_position_assignments"
 ```
 
 
 #### HTTP Request
 
-`POST https://api.planningcenteronline.com/services/v2/people/1/teams/1/team_positions/1/person_team_position_assignments`
+`POST https://api.planningcenteronline.com/services/v2/service_types/1/team_positions/1/person_team_position_assignments`
 
 #### Resource Attributes
 
@@ -3412,6 +3424,10 @@ filter | no_dates | filter using the named scope "no_dates"
 include | series | include associated series
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | title | prefix with a hyphen (-title) to reverse the order
+order | created_at | prefix with a hyphen (-created_at) to reverse the order
+order | updated_at | prefix with a hyphen (-updated_at) to reverse the order
+order | sort_date | prefix with a hyphen (-sort_date) to reverse the order
 
 ### Get a single Plan
 
@@ -3538,6 +3554,7 @@ item_reorder | https://api.planningcenteronline.com/services/v2/service_types/1/
  |  | 
  |  | 
  |  | 
+ |  | 
 import_template | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/import_template | Import template to plan
 
 #### item_reorder
@@ -3562,6 +3579,8 @@ It expects a `POST` body with a `sequence` of `Item` ids in order.  E.G.
 ```
 
 On success you will get back a `204 No Content`.
+
+
 
 
 
@@ -3668,6 +3687,8 @@ where[updated_at] | _date_time_ | query on a specific updated_at
 include | plan_note_category | include associated plan_note_category
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | created_at | prefix with a hyphen (-created_at) to reverse the order
+order | updated_at | prefix with a hyphen (-updated_at) to reverse the order
 
 ### Get a single Plan Note
 
@@ -4889,6 +4910,7 @@ item_note_categories | https://api.planningcenteronline.com/services/v2/service_
 plan_note_categories | https://api.planningcenteronline.com/services/v2/service_types/1/plan_note_categories | PlanNoteCategory
 plan_templates | https://api.planningcenteronline.com/services/v2/service_types/1/plan_templates | PlanTemplate
 plans | https://api.planningcenteronline.com/services/v2/service_types/1/plans | Plan
+team_positions | https://api.planningcenteronline.com/services/v2/service_types/1/team_positions | TeamPosition
 teams | https://api.planningcenteronline.com/services/v2/service_types/1/teams | Team
 time_preference_options | https://api.planningcenteronline.com/services/v2/service_types/1/time_preference_options | TimePreferenceOption
 
@@ -5255,6 +5277,9 @@ where[themes] | _string_ | query on a specific themes
 where[title] | _string_ | query on a specific title
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | title | prefix with a hyphen (-title) to reverse the order
+order | created_at | prefix with a hyphen (-created_at) to reverse the order
+order | updated_at | prefix with a hyphen (-updated_at) to reverse the order
 
 ### Get a single Song
 
@@ -5438,6 +5463,7 @@ Parameter | Value | Description
 --------- | ----- | -----------
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | plan_sort_date | prefix with a hyphen (-plan_sort_date) to reverse the order
 
 ### Get a single Song Schedule
 
@@ -5829,6 +5855,7 @@ A Team within a Service Type.
 Name | Type | To Many | Description
 ---- | ---- | ------- | -----------
 service_type | ServiceType | _false_ | 
+default_responds_to | Person | _false_ | A relationship with id 0 will be returned when "All Team Leaders" is the default.
 
 ### List Teams
 
@@ -5849,6 +5876,9 @@ Parameter | Value | Description
 include | team_positions | include associated team_positions
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | name | prefix with a hyphen (-name) to reverse the order
+order | created_at | prefix with a hyphen (-created_at) to reverse the order
+order | updated_at | prefix with a hyphen (-updated_at) to reverse the order
 
 ### Get a single Team
 
@@ -5868,12 +5898,20 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
     "attributes": {
       "assigned_directly": true,
       "created_at": "2000-01-01T12:00:00Z",
+      "default_prepare_notifications": true,
+      "default_status": "string",
       "name": "string",
       "schedule_to": "string",
       "sequence": 1,
       "updated_at": "2000-01-01T12:00:00Z"
     },
     "relationships": {
+      "default_responds_to": {
+        "data": {
+          "type": "Person",
+          "id": "123"
+        }
+      },
       "service_type": {
         "data": {
           "type": "ServiceType",
@@ -6014,17 +6052,24 @@ If the Team is assigned via tags, these are Tags where the option "Any" is speci
 
 If the Team is assigned via tags, these are specific Tags that are specified.
 
+### Relationships
+
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+team | Team | _false_ | 
+
 ### List Team Positions
 
 ```shell
 # to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people/1/teams/1/team_positions"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/service_types/1/team_positions"
 ```
 
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/people/1/teams/1/team_positions`
+`GET https://api.planningcenteronline.com/services/v2/service_types/1/team_positions`
 
 #### URL Parameters
 
@@ -6037,7 +6082,7 @@ per_page | _integer_ | how many records to return per page (min=1, max=100, defa
 
 ```shell
 # to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people/1/teams/1/team_positions/1"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/service_types/1/team_positions/1"
 ```
 
 
@@ -6061,6 +6106,12 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
       ]
     },
     "relationships": {
+      "team": {
+        "data": {
+          "type": "Team",
+          "id": "123"
+        }
+      }
     }
   }
 }
@@ -6068,7 +6119,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/people/1/teams/1/team_positions/1`
+`GET https://api.planningcenteronline.com/services/v2/service_types/1/team_positions/1`
 
 #### URL Parameters
 
@@ -6080,7 +6131,7 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
-person_team_position_assignments | https://api.planningcenteronline.com/services/v2/people/1/teams/1/team_positions/1/person_team_position_assignments | PersonTeamPositionAssignment
+person_team_position_assignments | https://api.planningcenteronline.com/services/v2/service_types/1/team_positions/1/person_team_position_assignments | PersonTeamPositionAssignment
 
 
 

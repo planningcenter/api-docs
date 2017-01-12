@@ -8,7 +8,7 @@ PCO Giving tracks all donations for your church, allowing people to give a one-t
 
 <span class='attribute-info-name'>status</span>
 
-One of `in_progress`, `ready_for_deposit`, or `deposited`.
+One of `in_progress` or `committed`.
 
 ### List Batches
 
@@ -46,11 +46,11 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/batches/
     "type": "Batch",
     "id": "1",
     "attributes": {
-      "created_at": "2017-01-05T15:47:34Z",
+      "created_at": "2017-01-12T15:14:30Z",
       "status": "in_progress",
       "total_cents": 150000,
       "total_currency": "USD",
-      "updated_at": "2017-01-05T15:47:34Z"
+      "updated_at": "2017-01-12T15:14:30Z"
     },
     "relationships": {
     }
@@ -74,7 +74,7 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
-deposit | https://api.planningcenteronline.com/giving/v2/batches/1/deposit | Deposit
+batch_group | https://api.planningcenteronline.com/giving/v2/batches/1/batch_group | BatchGroup
 owner | https://api.planningcenteronline.com/giving/v2/batches/1/owner | Person
 
 
@@ -83,21 +83,21 @@ owner | https://api.planningcenteronline.com/giving/v2/batches/1/owner | Person
 
 
 
-## Deposits
+## BatchGroups
 
 
 
-### List Deposits
+### List Batch Groups
 
 ```shell
 # to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/deposits"
+curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/batch_groups"
 ```
 
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/giving/v2/deposits`
+`GET https://api.planningcenteronline.com/giving/v2/batch_groups`
 
 #### URL Parameters
 
@@ -107,11 +107,11 @@ include | owner | include associated owner
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
-### Get a single Deposit
+### Get a single Batch Group
 
 ```shell
 # to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/deposits/1"
+curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/batch_groups/1"
 ```
 
 
@@ -120,14 +120,14 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/deposits
 ```json
 {
   "data": {
-    "type": "Deposit",
+    "type": "BatchGroup",
     "id": "1",
     "attributes": {
-      "cleared": true,
-      "created_at": "2017-01-05T15:47:34Z",
+      "committed": true,
+      "created_at": "2017-01-12T15:14:30Z",
       "total_cents": 350000,
       "total_currency": "USD",
-      "updated_at": "2017-01-05T15:47:34Z"
+      "updated_at": "2017-01-12T15:14:30Z"
     },
     "relationships": {
     }
@@ -137,7 +137,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/deposits
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/giving/v2/deposits/1`
+`GET https://api.planningcenteronline.com/giving/v2/batch_groups/1`
 
 #### URL Parameters
 
@@ -145,14 +145,14 @@ Parameter | Value | Description
 --------- | ----- | -----------
 include | owner | include associated owner
 
-### Associations for a Deposit
+### Associations for a Batch Group
 
 You can append one of the following associations onto this resource URL to jump to an associated record.
 
 Association | URL | Endpoint
 ----------- | --- | --------
-batches | https://api.planningcenteronline.com/giving/v2/deposits/1/batches | Batch
-owner | https://api.planningcenteronline.com/giving/v2/deposits/1/owner | Person
+batches | https://api.planningcenteronline.com/giving/v2/batch_groups/1/batches | Batch
+owner | https://api.planningcenteronline.com/giving/v2/batch_groups/1/owner | Person
 
 
 
@@ -294,7 +294,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/donation
     "attributes": {
       "amount_cents": 2000,
       "amount_currency": "USD",
-      "created_at": "2017-01-05T15:47:34Z",
+      "created_at": "2017-01-12T15:14:30Z",
       "fee_cents": -88,
       "fee_currency": "USD",
       "payment_brand": "Visa",
@@ -303,7 +303,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/donation
       "payment_method": "card",
       "payment_method_sub": "debit",
       "payment_status": "succeeded",
-      "updated_at": "2017-01-05T15:47:34Z"
+      "updated_at": "2017-01-12T15:14:30Z"
     },
     "relationships": {
     }
@@ -387,11 +387,11 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/funds/1"
     "id": "1",
     "attributes": {
       "color": "#9ccc79",
-      "created_at": "2017-01-05T15:47:34Z",
+      "created_at": "2017-01-12T15:14:30Z",
       "description": "These funds are used to support our missionary efforts here in the US.",
       "ledger_code": "dm-22314",
       "name": "Domestic Missions",
-      "updated_at": "2017-01-05T15:47:34Z",
+      "updated_at": "2017-01-12T15:14:30Z",
       "visibility": "everywhere"
     },
     "relationships": {
@@ -485,8 +485,8 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
+batch_groups | https://api.planningcenteronline.com/giving/v2/batch_groups | BatchGroup
 batches | https://api.planningcenteronline.com/giving/v2/batches | Batch
-deposits | https://api.planningcenteronline.com/giving/v2/deposits | Deposit
 donations | https://api.planningcenteronline.com/giving/v2/donations | Donation
 funds | https://api.planningcenteronline.com/giving/v2/funds | Fund
 labels | https://api.planningcenteronline.com/giving/v2/labels | Label
@@ -555,12 +555,12 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/recurrin
     "id": "1",
     "attributes": {
       "brand": "Visa",
-      "created_at": "2017-01-05T15:47:34Z",
+      "created_at": "2017-01-12T15:14:30Z",
       "expiration": "8/2018",
       "last4": "4242",
       "method_subtype": "credit",
       "method_type": "card",
-      "updated_at": "2017-01-05T15:47:34Z",
+      "updated_at": "2017-01-12T15:14:30Z",
       "verified": null
     },
     "relationships": {
@@ -683,8 +683,8 @@ You can append one of the following associations onto this resource URL to jump 
 Association | URL | Endpoint
 ----------- | --- | --------
  |  | 
+batch_groups | https://api.planningcenteronline.com/giving/v2/people/1/batch_groups | BatchGroup
 batches | https://api.planningcenteronline.com/giving/v2/people/1/batches | Batch
-deposits | https://api.planningcenteronline.com/giving/v2/people/1/deposits | Deposit
 donations | https://api.planningcenteronline.com/giving/v2/people/1/donations | Donation
 payment_methods | https://api.planningcenteronline.com/giving/v2/people/1/payment_methods | PaymentMethod
 recurring_donations | https://api.planningcenteronline.com/giving/v2/people/1/recurring_donations | RecurringDonation
@@ -745,16 +745,16 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/recurrin
     "attributes": {
       "amount_cents": 15000,
       "amount_currency": "USD",
-      "created_at": "2017-01-05T15:47:34Z",
-      "last_donation_received_at": "2017-01-04T00:00:00Z",
-      "next_occurrence": "2017-02-04T00:00:00Z",
+      "created_at": "2017-01-12T15:14:30Z",
+      "last_donation_received_at": "2017-01-11T00:00:00Z",
+      "next_occurrence": "2017-02-11T00:00:00Z",
       "schedule": {
         "day_in_month": {
-          "day": 4
+          "day": 11
         }
       },
       "status": "active",
-      "updated_at": "2017-01-05T15:47:34Z"
+      "updated_at": "2017-01-12T15:14:30Z"
     },
     "relationships": {
     }
