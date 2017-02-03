@@ -2764,6 +2764,7 @@ person_apps | https://api.planningcenteronline.com/people/v2/people/1/person_app
 phone_numbers | https://api.planningcenteronline.com/people/v2/people/1/phone_numbers | PhoneNumber
 school | https://api.planningcenteronline.com/people/v2/people/1/school | SchoolOption
 social_profiles | https://api.planningcenteronline.com/people/v2/people/1/social_profiles | SocialProfile
+workflow_cards | https://api.planningcenteronline.com/people/v2/people/1/workflow_cards | WorkflowCard
 
 ### Actions for a Person
 
@@ -2875,6 +2876,7 @@ A Person App is the relationship between a Person and an App.
 Name | Type | To Many | Description
 ---- | ---- | ------- | -----------
 app | App | _false_ | 
+person | Person | _false_ | 
 
 ### List Person Apps
 
@@ -2921,6 +2923,12 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1
           "type": "App",
           "id": "123"
         }
+      },
+      "person": {
+        "data": {
+          "type": "Person",
+          "id": "123"
+        }
       }
     }
   }
@@ -2959,10 +2967,7 @@ curl -v -u token:secret -X POST -d '{"data":{"type":"PersonApp","attributes":{..
 
 #### Resource Attributes
 
-Attribute | Type
---------- | ----
-allow_pco_login | boolean
-people_permissions | integer
+_none_
 
 ### Update an existing Person App
 
@@ -2978,10 +2983,7 @@ curl -v -u token:secret -X PATCH -d '{"data":{"type":"PersonApp","id":"1","attri
 
 #### Resource Attributes
 
-Attribute | Type
---------- | ----
-allow_pco_login | boolean
-people_permissions | integer
+_none_
 
 ### Delete a Person App
 
@@ -3938,6 +3940,7 @@ Name | Type | To Many | Description
 ---- | ---- | ------- | -----------
 assignee | Assignee | _false_ | 
 current_step | CurrentStep | _false_ | 
+workflow | Workflow | _false_ | 
 
 ### List Workflow Cards
 
@@ -3962,6 +3965,7 @@ per_page | _integer_ | how many records to return per page (min=1, max=100, defa
 order | created_at | prefix with a hyphen (-created_at) to reverse the order
 order | updated_at | prefix with a hyphen (-updated_at) to reverse the order
 order | completed_at | prefix with a hyphen (-completed_at) to reverse the order
+order | removed_at | prefix with a hyphen (-removed_at) to reverse the order
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=person,assignee</code></aside>
 
@@ -3983,6 +3987,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflow
     "attributes": {
       "completed_at": "2000-01-01T12:00:00Z",
       "created_at": "2000-01-01T12:00:00Z",
+      "removed_at": "2000-01-01T12:00:00Z",
       "snooze_until": "2000-01-01T12:00:00Z",
       "updated_at": "2000-01-01T12:00:00Z"
     },
@@ -3996,6 +4001,12 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflow
       "current_step": {
         "data": {
           "type": "CurrentStep",
+          "id": "123"
+        }
+      },
+      "workflow": {
+        "data": {
+          "type": "Workflow",
           "id": "123"
         }
       }
