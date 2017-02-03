@@ -25,6 +25,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/event
 
 Parameter | Value | Description
 --------- | ----- | -----------
+include | event | include associated event
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
@@ -61,7 +62,9 @@ curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/event
 
 #### URL Parameters
 
-_none_
+Parameter | Value | Description
+--------- | ----- | -----------
+include | event | include associated event
 
 ### Associations for an Attendance Type
 
@@ -69,11 +72,54 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
+event | https://api.planningcenteronline.com/check_ins/v2/events/1/attendance_types/1/event | Event
 headcounts | https://api.planningcenteronline.com/check_ins/v2/events/1/attendance_types/1/headcounts | Headcount
 
+### Create a new Attendance Type
+
+```shell
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{"type":"AttendanceType","attributes":{...}}}' "https://api.planningcenteronline.com/check_ins/v2/events/1/attendance_types"
+```
 
 
+<aside class='info'>Only users with the role <code>editor</code> can create this resource.</aside>
 
+#### HTTP Request
+
+`POST https://api.planningcenteronline.com/check_ins/v2/events/1/attendance_types`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+name | string
+color | string
+created_at | date_time
+updated_at | date_time
+
+### Update an existing Attendance Type
+
+```shell
+# to update a record...
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"AttendanceType","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/check_ins/v2/events/1/attendance_types/1"
+```
+
+
+<aside class='info'>Only users with the role <code>editor</code> can update this resource.</aside>
+
+#### HTTP Request
+
+`PATCH https://api.planningcenteronline.com/check_ins/v2/events/1/attendance_types/1`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+name | string
+color | string
+created_at | date_time
+updated_at | date_time
 
 
 
@@ -403,6 +449,7 @@ attendance_types | https://api.planningcenteronline.com/check_ins/v2/events/1/at
 check_ins | https://api.planningcenteronline.com/check_ins/v2/events/1/check_ins | CheckIn
 event_labels | https://api.planningcenteronline.com/check_ins/v2/events/1/event_labels | EventLabel
 event_periods | https://api.planningcenteronline.com/check_ins/v2/events/1/event_periods | EventPeriod
+ |  | 
 locations | https://api.planningcenteronline.com/check_ins/v2/events/1/locations | Location
 person_events | https://api.planningcenteronline.com/check_ins/v2/events/1/person_events | PersonEvent
 
@@ -702,13 +749,13 @@ If one does not exist, the count may have been zero.
 
 ```shell
 # to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/event_times/1/headcounts"
+curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/headcounts"
 ```
 
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/check_ins/v2/event_times/1/headcounts`
+`GET https://api.planningcenteronline.com/check_ins/v2/headcounts`
 
 #### URL Parameters
 
@@ -725,7 +772,7 @@ per_page | _integer_ | how many records to return per page (min=1, max=100, defa
 
 ```shell
 # to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/event_times/1/headcounts/1"
+curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/headcounts/1"
 ```
 
 
@@ -747,7 +794,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/event
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/check_ins/v2/event_times/1/headcounts/1`
+`GET https://api.planningcenteronline.com/check_ins/v2/headcounts/1`
 
 #### URL Parameters
 
@@ -764,8 +811,8 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
-attendance_type | https://api.planningcenteronline.com/check_ins/v2/event_times/1/headcounts/1/attendance_type | AttendanceType
-event_time | https://api.planningcenteronline.com/check_ins/v2/event_times/1/headcounts/1/event_time | EventTime
+attendance_type | https://api.planningcenteronline.com/check_ins/v2/headcounts/1/attendance_type | AttendanceType
+event_time | https://api.planningcenteronline.com/check_ins/v2/headcounts/1/event_time | EventTime
 
 ### Create a new Headcount
 
@@ -791,7 +838,7 @@ total | integer
 
 ```shell
 # to update a record...
-curl -v -u token:secret -X PATCH -d '{"data":{"type":"Headcount","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/check_ins/v2/event_times/1/headcounts/1"
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"Headcount","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/check_ins/v2/headcounts/1"
 ```
 
 
@@ -799,7 +846,7 @@ curl -v -u token:secret -X PATCH -d '{"data":{"type":"Headcount","id":"1","attri
 
 #### HTTP Request
 
-`PATCH https://api.planningcenteronline.com/check_ins/v2/event_times/1/headcounts/1`
+`PATCH https://api.planningcenteronline.com/check_ins/v2/headcounts/1`
 
 #### Resource Attributes
 
@@ -1395,6 +1442,7 @@ Association | URL | Endpoint
 check_ins | https://api.planningcenteronline.com/check_ins/v2/check_ins | CheckIn
 event_times | https://api.planningcenteronline.com/check_ins/v2/event_times | EventTime
 events | https://api.planningcenteronline.com/check_ins/v2/events | Event
+headcounts | https://api.planningcenteronline.com/check_ins/v2/headcounts | Headcount
 labels | https://api.planningcenteronline.com/check_ins/v2/labels | Label
 passes | https://api.planningcenteronline.com/check_ins/v2/passes | Pass
 people | https://api.planningcenteronline.com/check_ins/v2/people | Person
@@ -1552,6 +1600,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/peopl
 
 Parameter | Value | Description
 --------- | ----- | -----------
+include | organization | include associated organization
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
@@ -1600,7 +1649,9 @@ curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/peopl
 
 #### URL Parameters
 
-_none_
+Parameter | Value | Description
+--------- | ----- | -----------
+include | organization | include associated organization
 
 ### Associations for a Person
 
@@ -1610,6 +1661,7 @@ Association | URL | Endpoint
 ----------- | --- | --------
  |  | 
 check_ins | https://api.planningcenteronline.com/check_ins/v2/people/1/check_ins | CheckIn
+organization | https://api.planningcenteronline.com/check_ins/v2/people/1/organization | Organization
 passes | https://api.planningcenteronline.com/check_ins/v2/people/1/passes | Pass
 person_events | https://api.planningcenteronline.com/check_ins/v2/people/1/person_events | PersonEvent
 
