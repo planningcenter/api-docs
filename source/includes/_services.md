@@ -167,6 +167,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/songs/
     "attributes": {
       "bpm": 1.42,
       "chord_chart": "string",
+      "chord_chart_chord_color": 1,
       "chord_chart_columns": 1,
       "chord_chart_font": "string",
       "chord_chart_font_size": 1,
@@ -288,6 +289,7 @@ chord_chart_font | string
 chord_chart_key | string
 chord_chart_columns | integer
 chord_chart_font_size | integer
+chord_chart_chord_color | integer
 
 ### Update an existing Arrangement
 
@@ -315,6 +317,7 @@ chord_chart_font | string
 chord_chart_key | string
 chord_chart_columns | integer
 chord_chart_font_size | integer
+chord_chart_chord_color | integer
 
 ### Delete an Arrangement
 
@@ -820,6 +823,39 @@ You can append one of the following associations onto this resource URL to jump 
 Association | URL | Endpoint
 ----------- | --- | --------
 signup_sheets | https://api.planningcenteronline.com/services/v2/people/1/available_signups/1/signup_sheets | SignupSheet
+
+
+
+
+
+
+
+## BackgroundChecks
+
+represents a missing background check for a person being scheduled to a team that requires a background check
+
+
+
+### Relationships
+
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+person | Person | _false_ | 
+team | Team | _false_ | 
+
+### List Background Checks
+
+#### HTTP Request
+
+`GET `
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+offset | _integer_ | get results from given offset
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
 
 
@@ -1824,6 +1860,12 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/songs/
     "id": "primary_key",
     "attributes": {
       "created_at": "2000-01-01T12:00:00Z",
+      "custom_arrangement_sequence": [
+
+      ],
+      "custom_arrangement_sequence_short": [
+
+      ],
       "description": "string",
       "html_details": "string",
       "item_type": "string",
@@ -1921,6 +1963,7 @@ length | integer
 description | string
 title | string
 service_position | string
+html_details | string
 item_type | string
 
 ### Update an existing Item
@@ -1943,6 +1986,7 @@ length | integer
 description | string
 title | string
 service_position | string
+html_details | string
 
 ### Delete an Item
 
@@ -3022,6 +3066,7 @@ media | https://api.planningcenteronline.com/services/v2/media | Media
 people | https://api.planningcenteronline.com/services/v2/people | Person
  |  | 
  |  | 
+plans | https://api.planningcenteronline.com/services/v2/plans | Organization
 series | https://api.planningcenteronline.com/services/v2/series | Series
 service_types | https://api.planningcenteronline.com/services/v2/service_types | ServiceType
 songs | https://api.planningcenteronline.com/services/v2/songs | Song
@@ -3038,6 +3083,9 @@ Action | URL | Description
  |  | 
  |  | 
  |  | 
+ |  | 
+
+
 
 
 
@@ -3615,6 +3663,7 @@ all_attachments | https://api.planningcenteronline.com/services/v2/service_types
 attachments | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/attachments | Attachment
 contributors | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/contributors | Contributor
 items | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/items | Item
+my_schedules | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/my_schedules | Schedule
 needed_positions | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/needed_positions | NeededPosition
 next_plan | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/next_plan | Plan
 notes | https://api.planningcenteronline.com/services/v2/service_types/1/plans/1/notes | PlanNote

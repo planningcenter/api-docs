@@ -84,8 +84,6 @@ curl -v -u token:secret -X POST -d '{"data":{"type":"Address","attributes":{...}
 ```
 
 
-<aside class='info'>Only users with the role <code>editor_in_any_app</code> can create this resource.</aside>
-
 #### HTTP Request
 
 `POST https://api.planningcenteronline.com/people/v2/people/1/addresses`
@@ -109,8 +107,6 @@ curl -v -u token:secret -X PATCH -d '{"data":{"type":"Address","id":"1","attribu
 ```
 
 
-<aside class='info'>Only users with the role <code>editor_in_any_app</code> can update this resource.</aside>
-
 #### HTTP Request
 
 `PATCH https://api.planningcenteronline.com/people/v2/people/1/addresses/1`
@@ -133,8 +129,6 @@ primary | boolean
 curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v2/people/1/addresses/1"
 ```
 
-
-<aside class='info'>Only users with the role <code>editor_in_any_app</code> can delete this resource.</aside>
 
 #### HTTP Request
 

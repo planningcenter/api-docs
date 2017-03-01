@@ -1414,6 +1414,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2"
     "type": "Organization",
     "id": "primary_key",
     "attributes": {
+      "avatar_url": "string",
       "daily_check_ins": 1,
       "date_format_pattern": "unknown",
       "name": "string",
