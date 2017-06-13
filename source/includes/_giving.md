@@ -46,11 +46,11 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/batches/
     "type": "Batch",
     "id": "1",
     "attributes": {
-      "created_at": "2017-03-01T11:10:12Z",
+      "created_at": "2017-06-13T15:40:37Z",
       "status": "in_progress",
       "total_cents": 150000,
       "total_currency": "USD",
-      "updated_at": "2017-03-01T11:10:12Z"
+      "updated_at": "2017-06-13T15:40:37Z"
     },
     "relationships": {
     }
@@ -124,10 +124,10 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/batch_gr
     "id": "1",
     "attributes": {
       "committed": true,
-      "created_at": "2017-03-01T11:10:12Z",
+      "created_at": "2017-06-13T15:40:37Z",
       "total_cents": 350000,
       "total_currency": "USD",
-      "updated_at": "2017-03-01T11:10:12Z"
+      "updated_at": "2017-06-13T15:40:37Z"
     },
     "relationships": {
     }
@@ -253,6 +253,13 @@ One of `ach`, `cash`, `check`, or `card`.
 
 For cards only. One of `credit`, `debit`, `prepaid`, or `unknown`. Will be `null` for other payment method types.
 
+### Relationships
+
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+person | Person | _false_ | 
+
 ### List Donations
 
 ```shell
@@ -294,7 +301,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/donation
     "attributes": {
       "amount_cents": 2000,
       "amount_currency": "USD",
-      "created_at": "2017-03-01T11:10:12Z",
+      "created_at": "2017-06-13T15:40:37Z",
       "fee_cents": -88,
       "fee_currency": "USD",
       "payment_brand": "Visa",
@@ -303,9 +310,15 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/donation
       "payment_method": "card",
       "payment_method_sub": "debit",
       "payment_status": "succeeded",
-      "updated_at": "2017-03-01T11:10:12Z"
+      "updated_at": "2017-06-13T15:40:37Z"
     },
     "relationships": {
+      "person": {
+        "data": {
+          "type": "Person",
+          "id": "123"
+        }
+      }
     }
   }
 }
@@ -387,11 +400,11 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/funds/1"
     "id": "1",
     "attributes": {
       "color": "#9ccc79",
-      "created_at": "2017-03-01T11:10:12Z",
+      "created_at": "2017-06-13T15:40:37Z",
       "description": "These funds are used to support our missionary efforts here in the US.",
       "ledger_code": "dm-22314",
       "name": "Domestic Missions",
-      "updated_at": "2017-03-01T11:10:12Z",
+      "updated_at": "2017-06-13T15:40:37Z",
       "visibility": "everywhere"
     },
     "relationships": {
@@ -555,12 +568,12 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/recurrin
     "id": "1",
     "attributes": {
       "brand": "Visa",
-      "created_at": "2017-03-01T11:10:12Z",
+      "created_at": "2017-06-13T15:40:37Z",
       "expiration": "8/2018",
       "last4": "4242",
       "method_subtype": "credit",
       "method_type": "card",
-      "updated_at": "2017-03-01T11:10:12Z",
+      "updated_at": "2017-06-13T15:40:37Z",
       "verified": null
     },
     "relationships": {
@@ -745,16 +758,16 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/recurrin
     "attributes": {
       "amount_cents": 15000,
       "amount_currency": "USD",
-      "created_at": "2017-03-01T11:10:12Z",
-      "last_donation_received_at": "2017-02-28T00:00:00Z",
-      "next_occurrence": "2017-03-28T00:00:00Z",
+      "created_at": "2017-06-13T15:40:37Z",
+      "last_donation_received_at": "2017-06-12T00:00:00Z",
+      "next_occurrence": "2017-07-12T00:00:00Z",
       "schedule": {
         "day_in_month": {
-          "day": 28
+          "day": 12
         }
       },
       "status": "active",
-      "updated_at": "2017-03-01T11:10:12Z"
+      "updated_at": "2017-06-13T15:40:37Z"
     },
     "relationships": {
     }

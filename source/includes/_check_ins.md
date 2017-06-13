@@ -75,51 +75,9 @@ Association | URL | Endpoint
 event | https://api.planningcenteronline.com/check_ins/v2/events/1/attendance_types/1/event | Event
 headcounts | https://api.planningcenteronline.com/check_ins/v2/events/1/attendance_types/1/headcounts | Headcount
 
-### Create a new Attendance Type
-
-```shell
-# to create a record...
-curl -v -u token:secret -X POST -d '{"data":{"type":"AttendanceType","attributes":{...}}}' "https://api.planningcenteronline.com/check_ins/v2/events/1/attendance_types"
-```
 
 
-<aside class='info'>Only users with the role <code>editor</code> can create this resource.</aside>
 
-#### HTTP Request
-
-`POST https://api.planningcenteronline.com/check_ins/v2/events/1/attendance_types`
-
-#### Resource Attributes
-
-Attribute | Type
---------- | ----
-name | string
-color | string
-created_at | date_time
-updated_at | date_time
-
-### Update an existing Attendance Type
-
-```shell
-# to update a record...
-curl -v -u token:secret -X PATCH -d '{"data":{"type":"AttendanceType","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/check_ins/v2/events/1/attendance_types/1"
-```
-
-
-<aside class='info'>Only users with the role <code>editor</code> can update this resource.</aside>
-
-#### HTTP Request
-
-`PATCH https://api.planningcenteronline.com/check_ins/v2/events/1/attendance_types/1`
-
-#### Resource Attributes
-
-Attribute | Type
---------- | ----
-name | string
-color | string
-created_at | date_time
-updated_at | date_time
 
 
 
@@ -319,9 +277,11 @@ curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/check
     "id": "primary_key",
     "attributes": {
       "check_ins_count": 1,
+      "created_at": "2000-01-01T12:00:00Z",
       "name_labels_count": 1,
       "print_status": 1,
-      "security_labels_count": 1
+      "security_labels_count": 1,
+      "updated_at": "2000-01-01T12:00:00Z"
     },
     "relationships": {
     }
@@ -417,6 +377,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/event
       "created_at": "2000-01-01T12:00:00Z",
       "enable_services_integration": true,
       "frequency": "string",
+      "integration_key": "string",
       "name": "string",
       "updated_at": "2000-01-01T12:00:00Z"
     },
@@ -506,10 +467,12 @@ curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/event
     "type": "EventLabel",
     "id": "primary_key",
     "attributes": {
+      "created_at": "2000-01-01T12:00:00Z",
       "for_guest": true,
       "for_regular": true,
       "for_volunteer": true,
-      "quantity": 1
+      "quantity": 1,
+      "updated_at": "2000-01-01T12:00:00Z"
     },
     "relationships": {
     }
@@ -784,7 +747,9 @@ curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/headc
     "type": "Headcount",
     "id": "primary_key",
     "attributes": {
-      "total": 1
+      "created_at": "2000-01-01T12:00:00Z",
+      "total": 1,
+      "updated_at": "2000-01-01T12:00:00Z"
     },
     "relationships": {
     }
@@ -814,45 +779,19 @@ Association | URL | Endpoint
 attendance_type | https://api.planningcenteronline.com/check_ins/v2/headcounts/1/attendance_type | AttendanceType
 event_time | https://api.planningcenteronline.com/check_ins/v2/headcounts/1/event_time | EventTime
 
-### Create a new Headcount
+### Actions for a Headcount
 
-```shell
-# to create a record...
-curl -v -u token:secret -X POST -d '{"data":{"type":"Headcount","attributes":{...}}}' "https://api.planningcenteronline.com/check_ins/v2/event_times/1/headcounts"
-```
+You can perform the following actions on a Headcount by POSTing to the specified URL.
 
-
-<aside class='info'>Only users with the role <code>editor</code> can create this resource.</aside>
-
-#### HTTP Request
-
-`POST https://api.planningcenteronline.com/check_ins/v2/event_times/1/headcounts`
-
-#### Resource Attributes
-
-Attribute | Type
---------- | ----
-total | integer
-
-### Update an existing Headcount
-
-```shell
-# to update a record...
-curl -v -u token:secret -X PATCH -d '{"data":{"type":"Headcount","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/check_ins/v2/headcounts/1"
-```
+Action | URL | Description
+------ | --- | -----------
+ |  | 
 
 
-<aside class='info'>Only users with the role <code>editor</code> can update this resource.</aside>
 
-#### HTTP Request
 
-`PATCH https://api.planningcenteronline.com/check_ins/v2/headcounts/1`
 
-#### Resource Attributes
 
-Attribute | Type
---------- | ----
-total | integer
 
 
 
@@ -902,9 +841,11 @@ curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/label
     "type": "Label",
     "id": "primary_key",
     "attributes": {
+      "created_at": "2000-01-01T12:00:00Z",
       "name": "string",
       "prints_for": "string",
       "roll": "string",
+      "updated_at": "2000-01-01T12:00:00Z",
       "xml": "string"
     },
     "relationships": {
@@ -1093,8 +1034,10 @@ curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/event
     "type": "LocationEventPeriod",
     "id": "primary_key",
     "attributes": {
+      "created_at": "2000-01-01T12:00:00Z",
       "guest_count": 1,
       "regular_count": 1,
+      "updated_at": "2000-01-01T12:00:00Z",
       "volunteer_count": 1
     },
     "relationships": {
@@ -1179,8 +1122,10 @@ curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/event
     "type": "LocationEventTime",
     "id": "primary_key",
     "attributes": {
+      "created_at": "2000-01-01T12:00:00Z",
       "guest_count": 1,
       "regular_count": 1,
+      "updated_at": "2000-01-01T12:00:00Z",
       "volunteer_count": 1
     },
     "relationships": {
@@ -1265,10 +1210,12 @@ curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/label
     "type": "LocationLabel",
     "id": "primary_key",
     "attributes": {
+      "created_at": "2000-01-01T12:00:00Z",
       "for_guest": true,
       "for_regular": true,
       "for_volunteer": true,
-      "quantity": 1
+      "quantity": 1,
+      "updated_at": "2000-01-01T12:00:00Z"
     },
     "relationships": {
     }
@@ -1354,7 +1301,9 @@ curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/check
     "id": "primary_key",
     "attributes": {
       "body": "string",
-      "quantity": 1
+      "created_at": "2000-01-01T12:00:00Z",
+      "quantity": 1,
+      "updated_at": "2000-01-01T12:00:00Z"
     },
     "relationships": {
     }
@@ -1415,10 +1364,13 @@ curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2"
     "id": "primary_key",
     "attributes": {
       "avatar_url": "string",
+      "created_at": "2000-01-01T12:00:00Z",
       "daily_check_ins": 1,
       "date_format_pattern": "unknown",
       "name": "string",
-      "time_zone": "string"
+      "time_zone": "string",
+      "time_zone_olson": "unknown",
+      "updated_at": "2000-01-01T12:00:00Z"
     },
     "relationships": {
     }
@@ -1626,17 +1578,20 @@ curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/peopl
       "birthdate": "2000-01-01",
       "check_in_count": 1,
       "child": true,
+      "created_at": "2000-01-01T12:00:00Z",
       "email_addresses": "unknown",
       "first_name": "string",
       "gender": "string",
       "grade": 1,
+      "headcounter": true,
       "last_name": "string",
       "medical_notes": "string",
       "middle_name": "string",
       "name_prefix": "string",
       "name_suffix": "string",
       "permission": "string",
-      "phone_numbers": "unknown"
+      "phone_numbers": "unknown",
+      "updated_at": "2000-01-01T12:00:00Z"
     },
     "relationships": {
     }
@@ -1720,7 +1675,9 @@ curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/event
     "type": "PersonEvent",
     "id": "primary_key",
     "attributes": {
-      "check_in_count": 1
+      "check_in_count": 1,
+      "created_at": "2000-01-01T12:00:00Z",
+      "updated_at": "2000-01-01T12:00:00Z"
     },
     "relationships": {
     }
@@ -1810,12 +1767,14 @@ curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/stati
     "type": "Station",
     "id": "primary_key",
     "attributes": {
+      "created_at": "2000-01-01T12:00:00Z",
       "input_type": 1,
+      "input_type_options": 1,
       "mode": 1,
       "name": "string",
       "online": "unknown",
-      "show_scanner": true,
-      "timeout_seconds": 1
+      "timeout_seconds": 1,
+      "updated_at": "2000-01-01T12:00:00Z"
     },
     "relationships": {
     }
@@ -1900,10 +1859,12 @@ curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/theme
     "id": "primary_key",
     "attributes": {
       "color": "string",
+      "created_at": "2000-01-01T12:00:00Z",
       "image": "string",
       "image_thumbnail": "unknown",
       "name": "string",
-      "text_color": "string"
+      "text_color": "string",
+      "updated_at": "2000-01-01T12:00:00Z"
     },
     "relationships": {
     }

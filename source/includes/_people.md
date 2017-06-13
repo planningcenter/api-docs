@@ -542,6 +542,13 @@ An email represents an email address and location.
 
 
 
+### Relationships
+
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+person | Person | _false_ | 
+
 ### List Emails
 
 ```shell
@@ -588,6 +595,12 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/emails/1
       "primary": true
     },
     "relationships": {
+      "person": {
+        "data": {
+          "type": "Person",
+          "id": "123"
+        }
+      }
     }
   }
 }
@@ -1088,7 +1101,7 @@ curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v
 
 ## Households
 
-A household links people together and can have a primary contact.
+A household links people together and can have a primary contact. To add a person to an existing household, use the HouseholdMemberships endpoint.
 
 
 
@@ -1192,7 +1205,8 @@ name | string
 member_count | integer
 primary_contact_id | integer
 
-To create a new household, you must specify the primary contact and the people as relationships: `{"data":{"attributes":{"name":"Smith"},"relationships":{"people":{"data":[{"type":"Person","id":"1"},{"type":"Person","id":"2"}]},"primary_contact":{"data":{"type":"Person","id":"1"}}}}}`
+To create a new household, you must specify the primary contact and the people as relationships:<br>
+`{"data":{"attributes":{"name":"Smith"},"relationships":{"people":{"data":[{"type":"Person","id":"1"},{"type":"Person","id":"2"}]},"primary_contact":{"data":{"type":"Person","id":"1"}}}}}`
 
 ### Update an existing Household
 
@@ -1235,6 +1249,13 @@ curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v
 A household membership is the linking record between a household and a person.
 
 
+
+### Relationships
+
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+person | Person | _false_ | 
 
 ### List Household Memberships
 
@@ -1283,6 +1304,12 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1
       "person_name": "string"
     },
     "relationships": {
+      "person": {
+        "data": {
+          "type": "Person",
+          "id": "123"
+        }
+      }
     }
   }
 }
@@ -1329,6 +1356,9 @@ curl -v -u token:secret -X POST -d '{"data":{"type":"HouseholdMembership","attri
 Attribute | Type
 --------- | ----
 pending | boolean
+
+To add someone to a household, you must specify the person as a relationship:<br>
+`{"data":{"attributes":{},"relationships":{"person":{"data":{"type":"Person","id":"1"}}}}}`
 
 ### Update an existing Household Membership
 
@@ -1874,6 +1904,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/messages
       "from_address": "unknown",
       "from_name": "unknown",
       "kind": 1,
+      "read_at": "2000-01-01T12:00:00Z",
       "reject_reason": "string",
       "rejection_notification_sent_at": "2000-01-01T12:00:00Z",
       "sent_at": "2000-01-01T12:00:00Z",
@@ -1907,6 +1938,22 @@ Association | URL | Endpoint
 ----------- | --- | --------
 message_group | https://api.planningcenteronline.com/people/v2/messages/1/message_group | MessageGroup
 to | https://api.planningcenteronline.com/people/v2/messages/1/to | Person
+
+### Actions for a Message
+
+You can perform the following actions on a Message by POSTing to the specified URL.
+
+Action | URL | Description
+------ | --- | -----------
+ |  | 
+ |  | 
+ |  | 
+
+
+
+
+
+
 
 
 
@@ -2767,6 +2814,9 @@ You can perform the following actions on a Person by POSTing to the specified UR
 Action | URL | Description
 ------ | --- | -----------
  |  | 
+ |  | 
+
+
 
 
 
@@ -2997,6 +3047,13 @@ A phone number represents a single telephone number and location.
 
 
 
+### Relationships
+
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+person | Person | _false_ | 
+
 ### List Phone Numbers
 
 ```shell
@@ -3052,6 +3109,12 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1
       "updated_at": "2000-01-01T12:00:00Z"
     },
     "relationships": {
+      "person": {
+        "data": {
+          "type": "Person",
+          "id": "123"
+        }
+      }
     }
   }
 }
@@ -3933,6 +3996,7 @@ A Card
 Name | Type | To Many | Description
 ---- | ---- | ------- | -----------
 assignee | Assignee | _false_ | 
+person | Person | _false_ | 
 current_step | CurrentStep | _false_ | 
 workflow | Workflow | _false_ | 
 
@@ -3981,6 +4045,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflow
     "attributes": {
       "completed_at": "2000-01-01T12:00:00Z",
       "created_at": "2000-01-01T12:00:00Z",
+      "moved_to_step_at": "2000-01-01T12:00:00Z",
       "removed_at": "2000-01-01T12:00:00Z",
       "snooze_until": "2000-01-01T12:00:00Z",
       "updated_at": "2000-01-01T12:00:00Z"
@@ -3995,6 +4060,12 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflow
       "current_step": {
         "data": {
           "type": "CurrentStep",
+          "id": "123"
+        }
+      },
+      "person": {
+        "data": {
+          "type": "Person",
           "id": "123"
         }
       },
@@ -4283,6 +4354,13 @@ A Step
 
 
 
+### Relationships
+
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+workflow | Workflow | _false_ | 
+
 ### List Workflow Steps
 
 ```shell
@@ -4328,6 +4406,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflow
     "attributes": {
       "auto_snooze_days": 1,
       "created_at": "2000-01-01T12:00:00Z",
+      "default_assignee_id": 1,
       "description": "string",
       "my_ready_card_count": "unknown",
       "name": "string",
@@ -4337,6 +4416,12 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflow
       "updated_at": "2000-01-01T12:00:00Z"
     },
     "relationships": {
+      "workflow": {
+        "data": {
+          "type": "Workflow",
+          "id": "123"
+        }
+      }
     }
   }
 }

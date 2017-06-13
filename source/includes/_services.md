@@ -91,7 +91,7 @@ Possible Values:
 
 Possible Values:
 
-`10`, `11`, `12`, `13`, `14`, `15`, `16`, `18`, `20`, `24`, `28`, `32`, `36`, `42`, `48`
+`10`, `11`, `12`, `13`, `14`, `15`, `16`, `18`, `20`, `22`, `24`, `26`, `28`, `32`, `36`, `42`, `48`
 
 
 <span class='attribute-info-name'>meter</span>
@@ -823,6 +823,16 @@ You can append one of the following associations onto this resource URL to jump 
 Association | URL | Endpoint
 ----------- | --- | --------
 signup_sheets | https://api.planningcenteronline.com/services/v2/people/1/available_signups/1/signup_sheets | SignupSheet
+
+### Actions for an Available Signup
+
+You can perform the following actions on an Available Signup by POSTing to the specified URL.
+
+Action | URL | Description
+------ | --- | -----------
+ |  | 
+
+
 
 
 
@@ -1624,6 +1634,103 @@ per_page | _integer_ | how many records to return per page (min=1, max=100, defa
 
 
 
+## ExtendedTeams
+
+An extended view of a team
+
+
+
+### Relationships
+
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+service_type | ServiceType | _false_ | 
+
+### List Extended Teams
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/extended_teams"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/services/v2/extended_teams`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+offset | _integer_ | get results from given offset
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | name | prefix with a hyphen (-name) to reverse the order
+order | created_at | prefix with a hyphen (-created_at) to reverse the order
+order | secure_team | prefix with a hyphen (-secure_team) to reverse the order
+order | split_team | prefix with a hyphen (-split_team) to reverse the order
+order | tag_team | prefix with a hyphen (-tag_team) to reverse the order
+order | service_type_name | prefix with a hyphen (-service_type_name) to reverse the order
+order | leader_count | prefix with a hyphen (-leader_count) to reverse the order
+order | position_count | prefix with a hyphen (-position_count) to reverse the order
+order | member_count | prefix with a hyphen (-member_count) to reverse the order
+order | last_scheduled_date | prefix with a hyphen (-last_scheduled_date) to reverse the order
+order | has_issue | prefix with a hyphen (-has_issue) to reverse the order
+
+### Get a single Extended Team
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/extended_teams/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "ExtendedTeam",
+    "id": "primary_key",
+    "attributes": {
+      "created_at": "string",
+      "has_issue": true,
+      "last_scheduled_date": "2000-01-01",
+      "leader_count": 1,
+      "member_count": 1,
+      "name": "string",
+      "position_count": 1,
+      "secure_team": true,
+      "service_type_name": "string",
+      "split_team": true,
+      "tag_team": true
+    },
+    "relationships": {
+      "service_type": {
+        "data": {
+          "type": "ServiceType",
+          "id": "123"
+        }
+      }
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/services/v2/extended_teams/1`
+
+#### URL Parameters
+
+_none_
+
+
+
+
+
+
+
 ## Folders
 
 A folder is a container used to organize multiple Service Types or other Folders.
@@ -1706,6 +1813,7 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
+ |  | 
 folders | https://api.planningcenteronline.com/services/v2/folders/1/folders | Folder
 service_types | https://api.planningcenteronline.com/services/v2/folders/1/service_types | ServiceType
 
@@ -1838,6 +1946,7 @@ include | media | include associated media
 include | arrangement | include associated arrangement
 include | key | include associated key
 include | item_times | include associated item_times
+include | selected_attachment | include associated selected_attachment
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
@@ -1926,6 +2035,7 @@ include | media | include associated media
 include | arrangement | include associated arrangement
 include | key | include associated key
 include | item_times | include associated item_times
+include | selected_attachment | include associated selected_attachment
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=item_notes,song</code></aside>
 
@@ -1941,6 +2051,7 @@ item_notes | https://api.planningcenteronline.com/services/v2/songs/1/last_sched
 item_times | https://api.planningcenteronline.com/services/v2/songs/1/last_scheduled_item/1/item_times | ItemTime
 key | https://api.planningcenteronline.com/services/v2/songs/1/last_scheduled_item/1/key | Key
 media | https://api.planningcenteronline.com/services/v2/songs/1/last_scheduled_item/1/media | Media
+selected_attachment | https://api.planningcenteronline.com/services/v2/songs/1/last_scheduled_item/1/selected_attachment | Attachment
 song | https://api.planningcenteronline.com/services/v2/songs/1/last_scheduled_item/1/song | Song
 
 ### Create a new Item
@@ -3028,10 +3139,13 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2"
       "ccli_connected": true,
       "created_at": "2000-01-01T12:00:00Z",
       "date_format": 1,
+      "file_storage_exceeded": true,
       "legacy_id": "primary_key",
       "music_stand_enabled": true,
       "name": "string",
       "owner_name": "string",
+      "people_allowed": 1,
+      "people_remaining": 1,
       "projector_enabled": true,
       "secret": "string",
       "time_zone": "string",
@@ -3061,9 +3175,12 @@ Association | URL | Endpoint
 attachment_types | https://api.planningcenteronline.com/services/v2/attachment_types | AttachmentType
  |  | 
 email_templates | https://api.planningcenteronline.com/services/v2/email_templates | EmailTemplate
+ |  | 
 folders | https://api.planningcenteronline.com/services/v2/folders | Folder
 media | https://api.planningcenteronline.com/services/v2/media | Media
 people | https://api.planningcenteronline.com/services/v2/people | Person
+ |  | 
+ |  | 
  |  | 
  |  | 
 plans | https://api.planningcenteronline.com/services/v2/plans | Organization
@@ -3218,6 +3335,7 @@ Association | URL | Endpoint
 available_signups | https://api.planningcenteronline.com/services/v2/people/1/available_signups | AvailableSignup
 blockouts | https://api.planningcenteronline.com/services/v2/people/1/blockouts | Blockout
  |  | 
+ |  | 
 person_team_position_assignments | https://api.planningcenteronline.com/services/v2/people/1/person_team_position_assignments | PersonTeamPositionAssignment
 plan_people | https://api.planningcenteronline.com/services/v2/people/1/plan_people | PlanPerson
 schedules | https://api.planningcenteronline.com/services/v2/people/1/schedules | Schedule
@@ -3236,8 +3354,11 @@ Action | URL | Description
  |  | 
  |  | 
  |  | 
+ |  | 
 assign_tags | https://api.planningcenteronline.com/services/v2/people/1/assign_tags | Used to assign tags to a person.
  |  | 
+
+
 
 
 
@@ -4006,6 +4127,10 @@ A person scheduled within a specific plan.
 <span class='attribute-info-name'>can_accept_partial</span>
 
 If the person is scheduled to a split team where they could potentially accept 1 time and decline another.
+
+<span class='attribute-info-name'>status</span>
+
+Accepts one of 'C', 'U', 'D', or 'Confirmed', 'Unconfirmed', or 'Declined'
 
 ### Relationships
 
@@ -5035,6 +5160,7 @@ You can append one of the following associations onto this resource URL to jump 
 Association | URL | Endpoint
 ----------- | --- | --------
 attachments | https://api.planningcenteronline.com/services/v2/service_types/1/attachments | Attachment
+ |  | 
 item_note_categories | https://api.planningcenteronline.com/services/v2/service_types/1/item_note_categories | ItemNoteCategory
 layouts | https://api.planningcenteronline.com/services/v2/service_types/1/layouts | Layout
 plan_note_categories | https://api.planningcenteronline.com/services/v2/service_types/1/plan_note_categories | PlanNoteCategory
