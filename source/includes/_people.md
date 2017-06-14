@@ -2350,6 +2350,7 @@ name_prefixes | https://api.planningcenteronline.com/people/v2/name_prefixes | N
 name_suffixes | https://api.planningcenteronline.com/people/v2/name_suffixes | NameSuffix
 people | https://api.planningcenteronline.com/people/v2/people | Person
 people_imports | https://api.planningcenteronline.com/people/v2/people_imports | PeopleImport
+person_mergers | https://api.planningcenteronline.com/people/v2/person_mergers | PersonMerger
 reports | https://api.planningcenteronline.com/people/v2/reports | Report
 school_options | https://api.planningcenteronline.com/people/v2/school_options | SchoolOption
 social_profiles | https://api.planningcenteronline.com/people/v2/social_profiles | SocialProfile
@@ -3040,6 +3041,72 @@ curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v
 #### HTTP Request
 
 `DELETE https://api.planningcenteronline.com/people/v2/people/1/person_apps/1`
+
+## PersonMergers
+
+A Person Merger is the history of profiles that were merged into other profiles.
+
+
+
+### List Person Mergers
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/person_mergers"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/people/v2/person_mergers`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+where[person_to_keep_id] | _integer_ | query on a specific person_to_keep_id
+where[person_to_remove_id] | _integer_ | query on a specific person_to_remove_id
+offset | _integer_ | get results from given offset
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+### Get a single Person Merger
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/person_mergers/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "PersonMerger",
+    "id": "primary_key",
+    "attributes": {
+      "person_to_keep_id": 1,
+      "person_to_remove_id": 1
+    },
+    "relationships": {
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/people/v2/person_mergers/1`
+
+#### URL Parameters
+
+_none_
+
+
+
+
+
+
 
 ## PhoneNumbers
 
