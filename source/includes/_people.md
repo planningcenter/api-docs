@@ -8,17 +8,24 @@ An address represents a physical and/or mailing address for a person.
 
 
 
+### Relationships
+
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+person | Person | _false_ | 
+
 ### List Addresses
 
 ```shell
 # to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1/addresses"
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/addresses"
 ```
 
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/people/v2/people/1/addresses`
+`GET https://api.planningcenteronline.com/people/v2/addresses`
 
 #### URL Parameters
 
@@ -43,7 +50,7 @@ order | primary | prefix with a hyphen (-primary) to reverse the order
 
 ```shell
 # to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1/addresses/1"
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/addresses/1"
 ```
 
 
@@ -63,6 +70,12 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1
       "zip": "string"
     },
     "relationships": {
+      "person": {
+        "data": {
+          "type": "Person",
+          "id": "123"
+        }
+      }
     }
   }
 }
@@ -70,7 +83,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/people/v2/people/1/addresses/1`
+`GET https://api.planningcenteronline.com/people/v2/addresses/1`
 
 #### URL Parameters
 
@@ -103,13 +116,13 @@ primary | boolean
 
 ```shell
 # to update a record...
-curl -v -u token:secret -X PATCH -d '{"data":{"type":"Address","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/people/1/addresses/1"
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"Address","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/addresses/1"
 ```
 
 
 #### HTTP Request
 
-`PATCH https://api.planningcenteronline.com/people/v2/people/1/addresses/1`
+`PATCH https://api.planningcenteronline.com/people/v2/addresses/1`
 
 #### Resource Attributes
 
@@ -126,13 +139,13 @@ primary | boolean
 
 ```shell
 # to delete a record...
-curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v2/people/1/addresses/1"
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v2/addresses/1"
 ```
 
 
 #### HTTP Request
 
-`DELETE https://api.planningcenteronline.com/people/v2/people/1/addresses/1`
+`DELETE https://api.planningcenteronline.com/people/v2/addresses/1`
 
 ## Apps
 
@@ -2335,6 +2348,7 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
+addresses | https://api.planningcenteronline.com/people/v2/addresses | Address
 apps | https://api.planningcenteronline.com/people/v2/apps | App
 campuses | https://api.planningcenteronline.com/people/v2/campuses | Campus
 carriers | https://api.planningcenteronline.com/people/v2/carriers | Carrier

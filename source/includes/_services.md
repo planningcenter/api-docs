@@ -1646,6 +1646,7 @@ An extended view of a team
 Name | Type | To Many | Description
 ---- | ---- | ------- | -----------
 service_type | ServiceType | _false_ | 
+created_by | Person | _false_ | 
 
 ### List Extended Teams
 
@@ -1706,6 +1707,12 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/extend
       "tag_team": true
     },
     "relationships": {
+      "created_by": {
+        "data": {
+          "type": "Person",
+          "id": "123"
+        }
+      },
       "service_type": {
         "data": {
           "type": "ServiceType",
