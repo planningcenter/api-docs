@@ -57,13 +57,13 @@
   </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"429"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"detail"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rate limit exceeded: 118 of 100 requests per 60 seconds"</span><span class="w">
+      </span><span class="s2">"detail"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rate limit exceeded: 118 of 100 requests per 20 seconds"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>The API is rate limited to 100 requests per minute per user. You can see our count of your API rate limiting by inspecting the <code class="prettyprint">X-PCO-API-Request-Rate-Count</code>, <code class="prettyprint">X-PCO-API-Request-Rate-Limit</code> &amp; <code class="prettyprint">X-PCO-API-Request-Rate-Period</code> HTTP headers. Requests that exceed that limit will return a HTTP status 429.</p>
+<p>Usually the API is rate limited to 100 requests per 20 seconds per user, but that limit and time period are subject to change either up or down as necessary. If you think your app may be affected by rate limits, it should be developed to adjust dynamically inspecting the values of <code class="prettyprint">X-PCO-API-Request-Rate-Limit</code> and <code class="prettyprint">X-PCO-API-Request-Rate-Period</code> in the HTTP headers. Your current count is discoverable in the <code class="prettyprint">X-PCO-API-Request-Rate-Count</code> key. Requests that exceed the current limit will return an HTTP status 429. The number of seconds to wait until you can retry those requests is in the key <code class="prettyprint">Retry-After</code>.</p>
 
 <h1 id="authentication">Authentication</h1>
 
