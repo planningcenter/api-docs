@@ -39,7 +39,7 @@ The Planning Center Online API can be used to interact with all of your organiza
 }
 ```
 
-Usually the API is rate limited to 100 requests per 20 seconds per user, but that limit and time period are subject to change either up or down as necessary. If you think your app may be affected by rate limits, it should be developed to adjust dynamically inspecting the values of `X-PCO-API-Request-Rate-Limit` and `X-PCO-API-Request-Rate-Period` in the HTTP headers. Your current count is also discoverable in the `X-PCO-API-Request-Rate-Count` key. Requests that exceed the current limit will return an HTTP status 429.
+Usually the API is rate limited to 100 requests per 20 seconds per user, but that limit and time period are subject to change either up or down as necessary. If you think your app may be affected by rate limits, it should be developed to adjust dynamically inspecting the values of `X-PCO-API-Request-Rate-Limit` and `X-PCO-API-Request-Rate-Period` in the HTTP headers. Your current count is discoverable in the `X-PCO-API-Request-Rate-Count` key. Requests that exceed the current limit will return an HTTP status 429. The number of seconds to wait until you can retry those requests is in the key `Retry-After`.
 
 # Authentication
 
