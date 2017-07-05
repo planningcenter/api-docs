@@ -151,6 +151,14 @@ Each PCO app is a distinct [OAuth scope](http://tools.ietf.org/html/rfc6749#sect
 
 When authorizing, you can request scopes using the `scope` parameter. The value should be a space-separated list of scopes.
 
+### Current User
+
+```
+curl -H 'Authorization: Bearer ...' https://api.planningcenteronline.com/people/v2/me
+```
+
+To get information about the current user, you can use the `/me` endpoint.
+
 # JSON API
 
 This API is built to conform to the [JSON API](http://jsonapi.org/) 1.0 specification.
