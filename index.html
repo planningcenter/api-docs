@@ -193,6 +193,12 @@ This means that, if your app does not issue a refresh for 1 year, then your user
 
 <p>When authorizing, you can request scopes using the <code class="prettyprint">scope</code> parameter. The value should be a space-separated list of scopes.</p>
 
+<h3 id="current-user">Current User</h3>
+<pre><code class="highlight plaintext">curl -H 'Authorization: Bearer ...' https://api.planningcenteronline.com/people/v2/me
+</code></pre>
+
+<p>To get information about the current user, you can use the <code class="prettyprint">/me</code> endpoint.</p>
+
 <h1 id="json-api">JSON API</h1>
 
 <p>This API is built to conform to the <a href="http://jsonapi.org/">JSON API</a> 1.0 specification.</p>
