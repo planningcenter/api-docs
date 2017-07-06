@@ -46,11 +46,11 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/batches/
     "type": "Batch",
     "id": "1",
     "attributes": {
-      "created_at": "2017-06-14T21:27:33Z",
+      "created_at": "2017-07-06T11:59:38Z",
       "status": "in_progress",
       "total_cents": 150000,
       "total_currency": "USD",
-      "updated_at": "2017-06-14T21:27:33Z"
+      "updated_at": "2017-07-06T11:59:38Z"
     },
     "relationships": {
     }
@@ -124,10 +124,10 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/batch_gr
     "id": "1",
     "attributes": {
       "committed": true,
-      "created_at": "2017-06-14T21:27:33Z",
+      "created_at": "2017-07-06T11:59:38Z",
       "total_cents": 350000,
       "total_currency": "USD",
-      "updated_at": "2017-06-14T21:27:33Z"
+      "updated_at": "2017-07-06T11:59:38Z"
     },
     "relationships": {
     }
@@ -241,10 +241,6 @@ fund | https://api.planningcenteronline.com/giving/v2/donations/1/designations/1
 
 One of `pending`, `succeeded`, or `failed`.
 
-<span class='attribute-info-name'>payment_channel</span>
-
-Either `batch` or `online`.
-
 <span class='attribute-info-name'>payment_method</span>
 
 One of `ach`, `cash`, `check`, or `card`.
@@ -301,16 +297,15 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/donation
     "attributes": {
       "amount_cents": 2000,
       "amount_currency": "USD",
-      "created_at": "2017-06-14T21:27:33Z",
+      "created_at": "2017-07-06T11:59:38Z",
       "fee_cents": -88,
       "fee_currency": "USD",
       "payment_brand": "Visa",
-      "payment_channel": "online",
       "payment_last4": "4242",
       "payment_method": "card",
       "payment_method_sub": "debit",
       "payment_status": "succeeded",
-      "updated_at": "2017-06-14T21:27:33Z"
+      "updated_at": "2017-07-06T11:59:38Z"
     },
     "relationships": {
       "person": {
@@ -400,11 +395,11 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/funds/1"
     "id": "1",
     "attributes": {
       "color": "#9ccc79",
-      "created_at": "2017-06-14T21:27:33Z",
+      "created_at": "2017-07-06T11:59:38Z",
       "description": "These funds are used to support our missionary efforts here in the US.",
       "ledger_code": "dm-22314",
       "name": "Domestic Missions",
-      "updated_at": "2017-06-14T21:27:33Z",
+      "updated_at": "2017-07-06T11:59:38Z",
       "visibility": "everywhere"
     },
     "relationships": {
@@ -536,13 +531,13 @@ For cards only. String representation of the expiration date in the `MM/YYYY` fo
 
 ```shell
 # to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/recurring_donations/1/payment_method"
+curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/people/1/payment_methods"
 ```
 
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/giving/v2/recurring_donations/1/payment_method`
+`GET https://api.planningcenteronline.com/giving/v2/people/1/payment_methods`
 
 #### URL Parameters
 
@@ -555,7 +550,7 @@ per_page | _integer_ | how many records to return per page (min=1, max=100, defa
 
 ```shell
 # to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/recurring_donations/1/payment_method/1"
+curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/people/1/payment_methods/1"
 ```
 
 
@@ -568,12 +563,12 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/recurrin
     "id": "1",
     "attributes": {
       "brand": "Visa",
-      "created_at": "2017-06-14T21:27:33Z",
+      "created_at": "2017-07-06T11:59:38Z",
       "expiration": "8/2018",
       "last4": "4242",
       "method_subtype": "credit",
       "method_type": "card",
-      "updated_at": "2017-06-14T21:27:33Z",
+      "updated_at": "2017-07-06T11:59:38Z",
       "verified": null
     },
     "relationships": {
@@ -584,7 +579,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/recurrin
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/giving/v2/recurring_donations/1/payment_method/1`
+`GET https://api.planningcenteronline.com/giving/v2/people/1/payment_methods/1`
 
 #### URL Parameters
 
@@ -596,7 +591,7 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
-recurring_donations | https://api.planningcenteronline.com/giving/v2/recurring_donations/1/payment_method/1/recurring_donations | RecurringDonation
+recurring_donations | https://api.planningcenteronline.com/giving/v2/people/1/payment_methods/1/recurring_donations | RecurringDonation
 
 
 
@@ -758,16 +753,16 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/recurrin
     "attributes": {
       "amount_cents": 15000,
       "amount_currency": "USD",
-      "created_at": "2017-06-14T21:27:33Z",
-      "last_donation_received_at": "2017-06-13T00:00:00Z",
-      "next_occurrence": "2017-07-13T00:00:00Z",
+      "created_at": "2017-07-06T11:59:38Z",
+      "last_donation_received_at": "2017-07-05T00:00:00Z",
+      "next_occurrence": "2017-08-05T00:00:00Z",
       "schedule": {
         "day_in_month": {
-          "day": 13
+          "day": 5
         }
       },
       "status": "active",
-      "updated_at": "2017-06-14T21:27:33Z"
+      "updated_at": "2017-07-06T11:59:38Z"
     },
     "relationships": {
     }
