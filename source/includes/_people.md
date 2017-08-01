@@ -693,6 +693,13 @@ A field datum is an individual piece of data for a custom field.
 
 
 
+### Relationships
+
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+field_definition | FieldDefinition | _false_ | 
+
 ### List Field Data
 
 ```shell
@@ -750,6 +757,12 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1
       "value": "string"
     },
     "relationships": {
+      "field_definition": {
+        "data": {
+          "type": "FieldDefinition",
+          "id": "123"
+        }
+      }
     }
   }
 }
@@ -2326,6 +2339,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2"
     "type": "Organization",
     "id": "primary_key",
     "attributes": {
+      "date_format": 1,
       "name": "string"
     },
     "relationships": {
@@ -2358,6 +2372,7 @@ households | https://api.planningcenteronline.com/people/v2/households | Househo
 inactive_reasons | https://api.planningcenteronline.com/people/v2/inactive_reasons | InactiveReason
 lists | https://api.planningcenteronline.com/people/v2/lists | List
 marital_statuses | https://api.planningcenteronline.com/people/v2/marital_statuses | MaritalStatus
+ |  | 
 message_groups | https://api.planningcenteronline.com/people/v2/message_groups | MessageGroup
 messages | https://api.planningcenteronline.com/people/v2/messages | Message
 name_prefixes | https://api.planningcenteronline.com/people/v2/name_prefixes | NamePrefix
@@ -2370,6 +2385,7 @@ school_options | https://api.planningcenteronline.com/people/v2/school_options |
 social_profiles | https://api.planningcenteronline.com/people/v2/social_profiles | SocialProfile
 stats | https://api.planningcenteronline.com/people/v2/stats | OrganizationStatistics
 tabs | https://api.planningcenteronline.com/people/v2/tabs | Tab
+ |  | 
 workflows | https://api.planningcenteronline.com/people/v2/workflows | Workflow
 
 
@@ -4004,12 +4020,21 @@ Parameter | Value | Description
 where[name] | _string_ | query on a specific name
 where[created_at] | _date_time_ | query on a specific created_at
 where[updated_at] | _date_time_ | query on a specific updated_at
+where[campus_id] | _integer_ | query on a specific campus_id
+where[workflow_category_id] | _integer_ | query on a specific workflow_category_id
 include | steps | include associated steps
+include | shares | include associated shares
+include | category | include associated category
+include | campus | include associated campus
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 order | name | prefix with a hyphen (-name) to reverse the order
 order | created_at | prefix with a hyphen (-created_at) to reverse the order
 order | updated_at | prefix with a hyphen (-updated_at) to reverse the order
+order | campus_id | prefix with a hyphen (-campus_id) to reverse the order
+order | workflow_category_id | prefix with a hyphen (-workflow_category_id) to reverse the order
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=steps,shares</code></aside>
 
 ### Get a single Workflow
 
@@ -4027,12 +4052,14 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflow
     "type": "Workflow",
     "id": "primary_key",
     "attributes": {
+      "campus_id": 1,
       "completed_card_count": "unknown",
       "created_at": "2000-01-01T12:00:00Z",
       "my_ready_card_count": "unknown",
       "name": "string",
       "total_ready_card_count": "unknown",
-      "updated_at": "2000-01-01T12:00:00Z"
+      "updated_at": "2000-01-01T12:00:00Z",
+      "workflow_category_id": 1
     },
     "relationships": {
     }
@@ -4049,6 +4076,11 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflow
 Parameter | Value | Description
 --------- | ----- | -----------
 include | steps | include associated steps
+include | shares | include associated shares
+include | category | include associated category
+include | campus | include associated campus
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=steps,shares</code></aside>
 
 ### Associations for a Workflow
 
@@ -4056,7 +4088,10 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
+ |  | 
 cards | https://api.planningcenteronline.com/people/v2/workflows/1/cards | WorkflowCard
+ |  | 
+shares | https://api.planningcenteronline.com/people/v2/workflows/1/shares | WorkflowShare
 steps | https://api.planningcenteronline.com/people/v2/workflows/1/steps | WorkflowStep
 
 
@@ -4097,13 +4132,16 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflow
 
 Parameter | Value | Description
 --------- | ----- | -----------
+where[stage] | _graph/type_annotation/unknown_type_annotation_ | query on a specific stage
 include | person | include associated person
 include | assignee | include associated assignee
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | stage | prefix with a hyphen (-stage) to reverse the order
 order | created_at | prefix with a hyphen (-created_at) to reverse the order
 order | updated_at | prefix with a hyphen (-updated_at) to reverse the order
 order | completed_at | prefix with a hyphen (-completed_at) to reverse the order
+order | flagged_for_notification_at | prefix with a hyphen (-flagged_for_notification_at) to reverse the order
 order | removed_at | prefix with a hyphen (-removed_at) to reverse the order
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=person,assignee</code></aside>
@@ -4126,9 +4164,12 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflow
     "attributes": {
       "completed_at": "2000-01-01T12:00:00Z",
       "created_at": "2000-01-01T12:00:00Z",
+      "flagged_for_notification_at": "2000-01-01T12:00:00Z",
       "moved_to_step_at": "2000-01-01T12:00:00Z",
       "removed_at": "2000-01-01T12:00:00Z",
       "snooze_until": "2000-01-01T12:00:00Z",
+      "stage": "unknown",
+      "sticky_assignment": true,
       "updated_at": "2000-01-01T12:00:00Z"
     },
     "relationships": {
@@ -4232,7 +4273,9 @@ curl -v -u token:secret -X POST -d '{"data":{"type":"WorkflowCard","attributes":
 
 #### Resource Attributes
 
-_none_
+Attribute | Type
+--------- | ----
+sticky_assignment | boolean
 
 ### Update an existing Workflow Card
 
@@ -4248,7 +4291,9 @@ curl -v -u token:secret -X PATCH -d '{"data":{"type":"WorkflowCard","id":"1","at
 
 #### Resource Attributes
 
-_none_
+Attribute | Type
+--------- | ----
+sticky_assignment | boolean
 
 
 
@@ -4257,6 +4302,13 @@ _none_
 Workflow Card Activity is a record of an action performed on a card
 
 
+
+### Relationships
+
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+workflow_card | WorkflowCard | _false_ | 
 
 ### List Workflow Card Activities
 
@@ -4305,6 +4357,12 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflow
       "type": "unknown"
     },
     "relationships": {
+      "workflow_card": {
+        "data": {
+          "type": "WorkflowCard",
+          "id": "123"
+        }
+      }
     }
   }
 }
@@ -4429,6 +4487,151 @@ note | string
 
 
 
+## WorkflowShares
+
+A workflow share defines who can can a workflow
+
+
+
+### Relationships
+
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+person | Person | _false_ | 
+workflow | Workflow | _false_ | 
+
+### List Workflow Shares
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflows/1/shares"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/people/v2/workflows/1/shares`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+include | person | include associated person
+offset | _integer_ | get results from given offset
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+### Get a single Workflow Share
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflows/1/shares/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "WorkflowShare",
+    "id": "primary_key",
+    "attributes": {
+      "group": 1,
+      "person_id": 1
+    },
+    "relationships": {
+      "person": {
+        "data": {
+          "type": "Person",
+          "id": "123"
+        }
+      },
+      "workflow": {
+        "data": {
+          "type": "Workflow",
+          "id": "123"
+        }
+      }
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/people/v2/workflows/1/shares/1`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+include | person | include associated person
+
+### Associations for a Workflow Share
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL | Endpoint
+----------- | --- | --------
+person | https://api.planningcenteronline.com/people/v2/workflows/1/shares/1/person | Person
+
+### Create a new Workflow Share
+
+```shell
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{"type":"WorkflowShare","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/workflows/1/shares"
+```
+
+
+<aside class='info'>Only users with the role <code>manager</code> can create this resource.</aside>
+
+#### HTTP Request
+
+`POST https://api.planningcenteronline.com/people/v2/workflows/1/shares`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+group | integer
+person_id | integer
+
+### Update an existing Workflow Share
+
+```shell
+# to update a record...
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"WorkflowShare","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/workflows/1/shares/1"
+```
+
+
+<aside class='info'>Only users with the role <code>manager</code> can update this resource.</aside>
+
+#### HTTP Request
+
+`PATCH https://api.planningcenteronline.com/people/v2/workflows/1/shares/1`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+group | integer
+person_id | integer
+
+### Delete a Workflow Share
+
+```shell
+# to delete a record...
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v2/workflows/1/shares/1"
+```
+
+
+<aside class='info'>Only users with the role <code>manager</code> can delete this resource.</aside>
+
+#### HTTP Request
+
+`DELETE https://api.planningcenteronline.com/people/v2/workflows/1/shares/1`
+
 ## WorkflowSteps
 
 A Step
@@ -4486,6 +4689,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflow
     "id": "primary_key",
     "attributes": {
       "auto_snooze_days": 1,
+      "auto_snooze_interval": 1,
+      "auto_snooze_value": 1,
       "created_at": "2000-01-01T12:00:00Z",
       "default_assignee_id": 1,
       "description": "string",
@@ -4524,7 +4729,121 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
+assignee_summaries | https://api.planningcenteronline.com/people/v2/workflows/1/steps/1/assignee_summaries | WorkflowStepAssigneeSummary
 default_assignee | https://api.planningcenteronline.com/people/v2/workflows/1/steps/1/default_assignee | Person
+
+
+
+### Update an existing Workflow Step
+
+```shell
+# to update a record...
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"WorkflowStep","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/workflows/1/steps/1"
+```
+
+
+<aside class='info'>Only users with the role <code>manager</code> can update this resource.</aside>
+
+#### HTTP Request
+
+`PATCH https://api.planningcenteronline.com/people/v2/workflows/1/steps/1`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+sequence | integer
+
+
+
+## WorkflowStepAssigneeSummaries
+
+The ready and snoozed count for an assignee & step
+
+
+
+### Relationships
+
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+person | Person | _false_ | 
+step | Step | _false_ | 
+
+### List Workflow Step Assignee Summaries
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflows/1/steps/1/assignee_summaries"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/people/v2/workflows/1/steps/1/assignee_summaries`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+include | person | include associated person
+offset | _integer_ | get results from given offset
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+### Get a single Workflow Step Assignee Summary
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflows/1/steps/1/assignee_summaries/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "WorkflowStepAssigneeSummary",
+    "id": "primary_key",
+    "attributes": {
+      "ready_count": "unknown",
+      "snoozed_count": "unknown"
+    },
+    "relationships": {
+      "person": {
+        "data": {
+          "type": "Person",
+          "id": "123"
+        }
+      },
+      "step": {
+        "data": {
+          "type": "Step",
+          "id": "123"
+        }
+      }
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/people/v2/workflows/1/steps/1/assignee_summaries/1`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+include | person | include associated person
+
+### Associations for a Workflow Step Assignee Summary
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL | Endpoint
+----------- | --- | --------
+person | https://api.planningcenteronline.com/people/v2/workflows/1/steps/1/assignee_summaries/1/person | Person
 
 
 

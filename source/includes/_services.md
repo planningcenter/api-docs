@@ -2,72 +2,6 @@
 
 Schedule your teams, manage your music, and revolutionize the way you plan your worship services.
 
-## AnnotationDrawings
-
-A single pen stroke, highlighter stroke, or text annotation a user has added to a PDF in Music Stand.
-
-
-
-### List Annotation Drawings
-
-```shell
-# to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/songs/1/attachments/1/annotation_drawings"
-```
-
-
-#### HTTP Request
-
-`GET https://api.planningcenteronline.com/services/v2/songs/1/attachments/1/annotation_drawings`
-
-#### URL Parameters
-
-Parameter | Value | Description
---------- | ----- | -----------
-offset | _integer_ | get results from given offset
-per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
-order | created_at | prefix with a hyphen (-created_at) to reverse the order
-order | updated_at | prefix with a hyphen (-updated_at) to reverse the order
-
-### Get a single Annotation Drawing
-
-```shell
-# to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/songs/1/attachments/1/annotation_drawings/1"
-```
-
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "data": {
-    "type": "AnnotationDrawing",
-    "id": "primary_key",
-    "attributes": {
-      "created_at": "2000-01-01T12:00:00Z",
-      "updated_at": "2000-01-01T12:00:00Z"
-    },
-    "relationships": {
-    }
-  }
-}
-```
-
-#### HTTP Request
-
-`GET https://api.planningcenteronline.com/services/v2/songs/1/attachments/1/annotation_drawings/1`
-
-#### URL Parameters
-
-_none_
-
-
-
-
-
-
-
 ## Arrangements
 
 Each arrangement belongs to a song and is a different version of that song.
@@ -165,6 +99,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/songs/
     "type": "Arrangement",
     "id": "primary_key",
     "attributes": {
+      "archived_at": "2000-01-01T12:00:00Z",
       "bpm": 1.42,
       "chord_chart": "string",
       "chord_chart_chord_color": 1,
@@ -363,6 +298,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/songs/
 
 Parameter | Value | Description
 --------- | ----- | -----------
+include | zooms | include associated zooms
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
@@ -438,7 +374,9 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/songs/
 
 #### URL Parameters
 
-_none_
+Parameter | Value | Description
+--------- | ----- | -----------
+include | zooms | include associated zooms
 
 ### Associations for an Attachment
 
@@ -446,8 +384,7 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
-annotation_drawings | https://api.planningcenteronline.com/services/v2/songs/1/attachments/1/annotation_drawings | AnnotationDrawing
-attachment_annotations | https://api.planningcenteronline.com/services/v2/songs/1/attachments/1/attachment_annotations | AttachmentAnnotation
+zooms | https://api.planningcenteronline.com/services/v2/songs/1/attachments/1/zooms | Zoom
 
 ### Actions for an Attachment
 
@@ -492,8 +429,10 @@ curl -v -u token:secret -X POST -d '{"data":{"type":"Attachment","attributes":{.
 
 Attribute | Type
 --------- | ----
+file_upload_identifier | string
 filename | string
 remote_link | string
+page_order | string
 
 ```shell
 # to create a record...
@@ -509,8 +448,10 @@ curl -v -u token:secret -X POST -d '{"data":{"type":"Attachment","attributes":{.
 
 Attribute | Type
 --------- | ----
+file_upload_identifier | string
 filename | string
 remote_link | string
+page_order | string
 
 ```shell
 # to create a record...
@@ -526,8 +467,10 @@ curl -v -u token:secret -X POST -d '{"data":{"type":"Attachment","attributes":{.
 
 Attribute | Type
 --------- | ----
+file_upload_identifier | string
 filename | string
 remote_link | string
+page_order | string
 
 ### Update an existing Attachment
 
@@ -545,8 +488,10 @@ curl -v -u token:secret -X PATCH -d '{"data":{"type":"Attachment","id":"1","attr
 
 Attribute | Type
 --------- | ----
+file_upload_identifier | string
 filename | string
 remote_link | string
+page_order | string
 
 ### Delete an Attachment
 
@@ -585,75 +530,6 @@ Parameter | Value | Description
 --------- | ----- | -----------
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
-
-
-
-
-
-
-
-## AttachmentAnnotations
-
-A set of annotation drawings that make up all annotations a user has added to a PDF in Music Stand.
-
-
-
-### List Attachment Annotations
-
-```shell
-# to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/songs/1/attachments/1/attachment_annotations"
-```
-
-
-#### HTTP Request
-
-`GET https://api.planningcenteronline.com/services/v2/songs/1/attachments/1/attachment_annotations`
-
-#### URL Parameters
-
-Parameter | Value | Description
---------- | ----- | -----------
-where[created_at] | _date_time_ | query on a specific created_at
-where[updated_at] | _date_time_ | query on a specific updated_at
-offset | _integer_ | get results from given offset
-per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
-order | created_at | prefix with a hyphen (-created_at) to reverse the order
-order | updated_at | prefix with a hyphen (-updated_at) to reverse the order
-
-### Get a single Attachment Annotation
-
-```shell
-# to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/songs/1/attachments/1/attachment_annotations/1"
-```
-
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "data": {
-    "type": "AttachmentAnnotation",
-    "id": "primary_key",
-    "attributes": {
-      "created_at": "2000-01-01T12:00:00Z",
-      "updated_at": "2000-01-01T12:00:00Z",
-      "user_name": "string"
-    },
-    "relationships": {
-    }
-  }
-}
-```
-
-#### HTTP Request
-
-`GET https://api.planningcenteronline.com/services/v2/songs/1/attachments/1/attachment_annotations/1`
-
-#### URL Parameters
-
-_none_
 
 
 
@@ -1634,110 +1510,6 @@ per_page | _integer_ | how many records to return per page (min=1, max=100, defa
 
 
 
-## ExtendedTeams
-
-An extended view of a team
-
-
-
-### Relationships
-
-
-Name | Type | To Many | Description
----- | ---- | ------- | -----------
-service_type | ServiceType | _false_ | 
-created_by | Person | _false_ | 
-
-### List Extended Teams
-
-```shell
-# to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/extended_teams"
-```
-
-
-#### HTTP Request
-
-`GET https://api.planningcenteronline.com/services/v2/extended_teams`
-
-#### URL Parameters
-
-Parameter | Value | Description
---------- | ----- | -----------
-offset | _integer_ | get results from given offset
-per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
-order | name | prefix with a hyphen (-name) to reverse the order
-order | created_at | prefix with a hyphen (-created_at) to reverse the order
-order | secure_team | prefix with a hyphen (-secure_team) to reverse the order
-order | split_team | prefix with a hyphen (-split_team) to reverse the order
-order | tag_team | prefix with a hyphen (-tag_team) to reverse the order
-order | service_type_name | prefix with a hyphen (-service_type_name) to reverse the order
-order | leader_count | prefix with a hyphen (-leader_count) to reverse the order
-order | position_count | prefix with a hyphen (-position_count) to reverse the order
-order | member_count | prefix with a hyphen (-member_count) to reverse the order
-order | last_scheduled_date | prefix with a hyphen (-last_scheduled_date) to reverse the order
-order | has_issue | prefix with a hyphen (-has_issue) to reverse the order
-
-### Get a single Extended Team
-
-```shell
-# to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/extended_teams/1"
-```
-
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "data": {
-    "type": "ExtendedTeam",
-    "id": "primary_key",
-    "attributes": {
-      "created_at": "string",
-      "has_issue": true,
-      "last_scheduled_date": "2000-01-01",
-      "leader_count": 1,
-      "member_count": 1,
-      "name": "string",
-      "position_count": 1,
-      "secure_team": true,
-      "service_type_name": "string",
-      "split_team": true,
-      "tag_team": true
-    },
-    "relationships": {
-      "created_by": {
-        "data": {
-          "type": "Person",
-          "id": "123"
-        }
-      },
-      "service_type": {
-        "data": {
-          "type": "ServiceType",
-          "id": "123"
-        }
-      }
-    }
-  }
-}
-```
-
-#### HTTP Request
-
-`GET https://api.planningcenteronline.com/services/v2/extended_teams/1`
-
-#### URL Parameters
-
-_none_
-
-
-
-
-
-
-
 ## Folders
 
 A folder is a container used to organize multiple Service Types or other Folders.
@@ -1823,6 +1595,19 @@ Association | URL | Endpoint
  |  | 
 folders | https://api.planningcenteronline.com/services/v2/folders/1/folders | Folder
 service_types | https://api.planningcenteronline.com/services/v2/folders/1/service_types | ServiceType
+
+### Actions for a Folder
+
+You can perform the following actions on a Folder by POSTing to the specified URL.
+
+Action | URL | Description
+------ | --- | -----------
+ |  | 
+ |  | 
+
+
+
+
 
 ### Create a new Folder
 
@@ -3208,6 +2993,15 @@ Action | URL | Description
  |  | 
  |  | 
  |  | 
+ |  | 
+ |  | 
+ |  | 
+
+
+
+
+
+
 
 
 
@@ -3259,6 +3053,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
 
 Parameter | Value | Description
 --------- | ----- | -----------
+where[legacy_id] | _primary_key_ | query on a specific legacy_id
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 order | first_name | prefix with a hyphen (-first_name) to reverse the order
@@ -3362,8 +3157,14 @@ Action | URL | Description
  |  | 
  |  | 
  |  | 
+ |  | 
+ |  | 
 assign_tags | https://api.planningcenteronline.com/services/v2/people/1/assign_tags | Used to assign tags to a person.
  |  | 
+
+
+
+
 
 
 
@@ -3466,6 +3267,7 @@ Indicates which Time Preference Options are preferred (checked).
 Name | Type | To Many | Description
 ---- | ---- | ------- | -----------
 person | Person | _false_ | 
+team_position | TeamPosition | _false_ | 
 time_preference_options | TimePreferenceOption | _true_ | 
 
 ### List Person Team Position Assignments
@@ -3515,6 +3317,12 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
       "person": {
         "data": {
           "type": "Person",
+          "id": "123"
+        }
+      },
+      "team_position": {
+        "data": {
+          "type": "TeamPosition",
           "id": "123"
         }
       },
@@ -5185,6 +4993,8 @@ Action | URL | Description
 ------ | --- | -----------
  |  | 
 create_plans | https://api.planningcenteronline.com/services/v2/service_types/1/create_plans | Create multiple plans
+ |  | 
+ |  | 
 
 
 
@@ -5209,6 +5019,10 @@ Accepted attributes:
 Accepted Relationships
 
 - `plan` The plan to copy items, people and notes from.  (These items will only be copied if you supply a valid plan relationship)
+
+
+
+
 
 
 ### Create a new Service Type
@@ -6138,11 +5952,15 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
 Parameter | Value | Description
 --------- | ----- | -----------
 include | team_positions | include associated team_positions
+include | people | include associated people
+include | person_team_position_assignments | include associated person_team_position_assignments
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 order | name | prefix with a hyphen (-name) to reverse the order
 order | created_at | prefix with a hyphen (-created_at) to reverse the order
 order | updated_at | prefix with a hyphen (-updated_at) to reverse the order
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=team_positions,people</code></aside>
 
 ### Get a single Team
 
@@ -6196,6 +6014,10 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
 Parameter | Value | Description
 --------- | ----- | -----------
 include | team_positions | include associated team_positions
+include | people | include associated people
+include | person_team_position_assignments | include associated person_team_position_assignments
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=team_positions,people</code></aside>
 
 ### Associations for a Team
 
@@ -6203,6 +6025,8 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
+people | https://api.planningcenteronline.com/services/v2/people/1/teams/1/people | Person
+person_team_position_assignments | https://api.planningcenteronline.com/services/v2/people/1/teams/1/person_team_position_assignments | PersonTeamPositionAssignment
 plan_people | https://api.planningcenteronline.com/services/v2/people/1/teams/1/plan_people | PlanPerson
 team_leaders | https://api.planningcenteronline.com/services/v2/people/1/teams/1/team_leaders | TeamLeader
 team_positions | https://api.planningcenteronline.com/services/v2/people/1/teams/1/team_positions | TeamPosition
@@ -6243,6 +6067,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
 
 Parameter | Value | Description
 --------- | ----- | -----------
+include | people | include associated people
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
@@ -6290,7 +6115,17 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
 
 #### URL Parameters
 
-_none_
+Parameter | Value | Description
+--------- | ----- | -----------
+include | people | include associated people
+
+### Associations for a Team Leader
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL | Endpoint
+----------- | --- | --------
+people | https://api.planningcenteronline.com/services/v2/people/1/team_leaders/1/people | Person
 
 
 
@@ -6559,3 +6394,153 @@ _none_
 
 
 
+
+
+## Zooms
+
+Describes a zoom level for an attachment
+
+### Attribute Info
+
+<span class='attribute-info-name'>aspect_ratio</span>
+
+The aspect ratio of the device this zoom is for. It is rounded to the nearest 3 decimal places.
+
+<span class='attribute-info-name'>x_offset</span>
+
+The percentage of the document's width the zoomed document should be offset by horizontally.
+
+<span class='attribute-info-name'>y_offset</span>
+
+The percentage of the document's height the zoomed document should be offset by vertically.
+
+<span class='attribute-info-name'>zoom_level</span>
+
+The percentage of the zoom. Must be a value between 1.0 and 5.0
+
+### Relationships
+
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+person | Person | _false_ | 
+attachable | Attachment | _false_ | 
+
+### List Zooms
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/songs/1/attachments/1/zooms"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/services/v2/songs/1/attachments/1/zooms`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+offset | _integer_ | get results from given offset
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+### Get a single Zoom
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/songs/1/attachments/1/zooms/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "Zoom",
+    "id": "primary_key",
+    "attributes": {
+      "aspect_ratio": 1.42,
+      "x_offset": 1.42,
+      "y_offset": 1.42,
+      "zoom_level": 1.42
+    },
+    "relationships": {
+      "attachable": {
+        "data": {
+          "type": "Attachment",
+          "id": "123"
+        }
+      },
+      "person": {
+        "data": {
+          "type": "Person",
+          "id": "123"
+        }
+      }
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/services/v2/songs/1/attachments/1/zooms/1`
+
+#### URL Parameters
+
+_none_
+
+### Create a new Zoom
+
+```shell
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{"type":"Zoom","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/songs/1/attachments/1/zooms"
+```
+
+
+#### HTTP Request
+
+`POST https://api.planningcenteronline.com/services/v2/songs/1/attachments/1/zooms`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+zoom_level | float
+x_offset | float
+y_offset | float
+aspect_ratio | float
+
+### Update an existing Zoom
+
+```shell
+# to update a record...
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"Zoom","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/songs/1/attachments/1/zooms/1"
+```
+
+
+#### HTTP Request
+
+`PATCH https://api.planningcenteronline.com/services/v2/songs/1/attachments/1/zooms/1`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+zoom_level | float
+x_offset | float
+y_offset | float
+
+### Delete a Zoom
+
+```shell
+# to delete a record...
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/services/v2/songs/1/attachments/1/zooms/1"
+```
+
+
+#### HTTP Request
+
+`DELETE https://api.planningcenteronline.com/services/v2/songs/1/attachments/1/zooms/1`
