@@ -149,7 +149,11 @@ Each PCO app is a distinct [OAuth scope](http://tools.ietf.org/html/rfc6749#sect
 | People | people |
 | Services | services |
 
+Authorization URL is [https://api.planningcenteronline.com/oauth/authorize](https://api.planningcenteronline.com/oauth/authorize)
+Token URL is [https://api.planningcenteronline.com/oauth/token](https://api.planningcenteronline.com/oauth/token)
 When authorizing, you can request scopes using the `scope` parameter. The value should be a space-separated list of scopes.
+The value for `response_type` should be `code`
+
 
 ### Current User
 
