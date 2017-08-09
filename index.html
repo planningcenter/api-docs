@@ -16297,6 +16297,11 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 <td>TagGroup</td>
 </tr>
 <tr>
+<td>teams</td>
+<td>https://api.planningcenteronline.com/services/v2/teams</td>
+<td>Team</td>
+</tr>
+<tr>
 <td></td>
 <td></td>
 <td></td>
@@ -20549,12 +20554,12 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 
 <h3 id="list-teams">List Teams</h3>
 <pre><code class="highlight shell"><span class="c"># to list records...</span>
-curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/services/v2/people/1/teams"</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/services/v2/teams"</span>
 </code></pre>
 
 <h4 id="http-request">HTTP Request</h4>
 
-<p><code class="prettyprint">GET https://api.planningcenteronline.com/services/v2/people/1/teams</code></p>
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/services/v2/teams</code></p>
 
 <h4 id="url-parameters">URL Parameters</h4>
 
@@ -20611,7 +20616,7 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 
 <h3 id="get-a-single-team">Get a single Team</h3>
 <pre><code class="highlight shell"><span class="c"># to show...</span>
-curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/services/v2/people/1/teams/1"</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/services/v2/teams/1"</span>
 </code></pre>
 
 <blockquote>
@@ -20651,7 +20656,7 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 
 <h4 id="http-request">HTTP Request</h4>
 
-<p><code class="prettyprint">GET https://api.planningcenteronline.com/services/v2/people/1/teams/1</code></p>
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/services/v2/teams/1</code></p>
 
 <h4 id="url-parameters">URL Parameters</h4>
 
@@ -20694,28 +20699,56 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 </thead><tbody>
 <tr>
 <td>people</td>
-<td>https://api.planningcenteronline.com/services/v2/people/1/teams/1/people</td>
+<td>https://api.planningcenteronline.com/services/v2/teams/1/people</td>
 <td>Person</td>
 </tr>
 <tr>
 <td>person_team_position_assignments</td>
-<td>https://api.planningcenteronline.com/services/v2/people/1/teams/1/person_team_position_assignments</td>
+<td>https://api.planningcenteronline.com/services/v2/teams/1/person_team_position_assignments</td>
 <td>PersonTeamPositionAssignment</td>
 </tr>
 <tr>
 <td>plan_people</td>
-<td>https://api.planningcenteronline.com/services/v2/people/1/teams/1/plan_people</td>
+<td>https://api.planningcenteronline.com/services/v2/teams/1/plan_people</td>
 <td>PlanPerson</td>
 </tr>
 <tr>
 <td>team_leaders</td>
-<td>https://api.planningcenteronline.com/services/v2/people/1/teams/1/team_leaders</td>
+<td>https://api.planningcenteronline.com/services/v2/teams/1/team_leaders</td>
 <td>TeamLeader</td>
 </tr>
 <tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
 <td>team_positions</td>
-<td>https://api.planningcenteronline.com/services/v2/people/1/teams/1/team_positions</td>
+<td>https://api.planningcenteronline.com/services/v2/teams/1/team_positions</td>
 <td>TeamPosition</td>
+</tr>
+</tbody></table>
+
+<h3 id="actions-for-a-team">Actions for a Team</h3>
+
+<p>You can perform the following actions on a Team by POSTing to the specified URL.</p>
+
+<table><thead>
+<tr>
+<th>Action</th>
+<th>URL</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 </tbody></table>
 
@@ -20980,6 +21013,24 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 <td>person_team_position_assignments</td>
 <td>https://api.planningcenteronline.com/services/v2/service_types/1/team_positions/1/person_team_position_assignments</td>
 <td>PersonTeamPositionAssignment</td>
+</tr>
+</tbody></table>
+
+<h3 id="actions-for-a-team-position">Actions for a Team Position</h3>
+
+<p>You can perform the following actions on a Team Position by POSTing to the specified URL.</p>
+
+<table><thead>
+<tr>
+<th>Action</th>
+<th>URL</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 </tbody></table>
 
