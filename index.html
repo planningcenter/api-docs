@@ -8516,6 +8516,11 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 <td>query on a specific membership</td>
 </tr>
 <tr>
+<td>where[inactivated_at]</td>
+<td><em>date_time</em></td>
+<td>query on a specific inactivated_at</td>
+</tr>
+<tr>
 <td>where[remote_id]</td>
 <td><em>integer</em></td>
 <td>query on a specific remote_id</td>
@@ -8704,6 +8709,11 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 <td>order</td>
 <td>membership</td>
 <td>prefix with a hyphen (-membership) to reverse the order</td>
+</tr>
+<tr>
+<td>order</td>
+<td>inactivated_at</td>
+<td>prefix with a hyphen (-inactivated_at) to reverse the order</td>
 </tr>
 <tr>
 <td>order</td>
@@ -9080,6 +9090,11 @@ curl -v -u token:secret -X POST -d <span class="s1">'{"data":{"type":"Person","a
 <td></td>
 </tr>
 <tr>
+<td>inactivated_at</td>
+<td>date_time</td>
+<td></td>
+</tr>
+<tr>
 <td>remote_id</td>
 <td>integer</td>
 <td></td>
@@ -9197,6 +9212,11 @@ curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{"type":"Person","
 <tr>
 <td>membership</td>
 <td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>inactivated_at</td>
+<td>date_time</td>
 <td></td>
 </tr>
 <tr>
