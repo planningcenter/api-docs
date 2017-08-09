@@ -2980,6 +2980,7 @@ series | https://api.planningcenteronline.com/services/v2/series | Series
 service_types | https://api.planningcenteronline.com/services/v2/service_types | ServiceType
 songs | https://api.planningcenteronline.com/services/v2/songs | Song
 tag_groups | https://api.planningcenteronline.com/services/v2/tag_groups | TagGroup
+teams | https://api.planningcenteronline.com/services/v2/teams | Team
  |  | 
 
 ### Actions for an Organization
@@ -5939,13 +5940,13 @@ default_responds_to | Person | _false_ | A relationship with id 0 will be return
 
 ```shell
 # to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people/1/teams"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/teams"
 ```
 
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/people/1/teams`
+`GET https://api.planningcenteronline.com/services/v2/teams`
 
 #### URL Parameters
 
@@ -5966,7 +5967,7 @@ order | updated_at | prefix with a hyphen (-updated_at) to reverse the order
 
 ```shell
 # to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people/1/teams/1"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/teams/1"
 ```
 
 
@@ -6007,7 +6008,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/people/1/teams/1`
+`GET https://api.planningcenteronline.com/services/v2/teams/1`
 
 #### URL Parameters
 
@@ -6025,11 +6026,25 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
-people | https://api.planningcenteronline.com/services/v2/people/1/teams/1/people | Person
-person_team_position_assignments | https://api.planningcenteronline.com/services/v2/people/1/teams/1/person_team_position_assignments | PersonTeamPositionAssignment
-plan_people | https://api.planningcenteronline.com/services/v2/people/1/teams/1/plan_people | PlanPerson
-team_leaders | https://api.planningcenteronline.com/services/v2/people/1/teams/1/team_leaders | TeamLeader
-team_positions | https://api.planningcenteronline.com/services/v2/people/1/teams/1/team_positions | TeamPosition
+people | https://api.planningcenteronline.com/services/v2/teams/1/people | Person
+person_team_position_assignments | https://api.planningcenteronline.com/services/v2/teams/1/person_team_position_assignments | PersonTeamPositionAssignment
+plan_people | https://api.planningcenteronline.com/services/v2/teams/1/plan_people | PlanPerson
+team_leaders | https://api.planningcenteronline.com/services/v2/teams/1/team_leaders | TeamLeader
+ |  | 
+team_positions | https://api.planningcenteronline.com/services/v2/teams/1/team_positions | TeamPosition
+
+### Actions for a Team
+
+You can perform the following actions on a Team by POSTing to the specified URL.
+
+Action | URL | Description
+------ | --- | -----------
+ |  | 
+ |  | 
+
+
+
+
 
 
 
@@ -6231,6 +6246,16 @@ You can append one of the following associations onto this resource URL to jump 
 Association | URL | Endpoint
 ----------- | --- | --------
 person_team_position_assignments | https://api.planningcenteronline.com/services/v2/service_types/1/team_positions/1/person_team_position_assignments | PersonTeamPositionAssignment
+
+### Actions for a Team Position
+
+You can perform the following actions on a Team Position by POSTing to the specified URL.
+
+Action | URL | Description
+------ | --- | -----------
+ |  | 
+
+
 
 
 
