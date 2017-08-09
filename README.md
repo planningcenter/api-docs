@@ -4,7 +4,9 @@
 
 ### Planning Center API Documentation
 
-Source for [Planning Center API docs](http://planningcenter.github.io/api-docs/) in the branch `gh-pages`.
+This is the source for [Planning Center API docs](http://planningcenter.github.io/api-docs/). This Middleman app will generate the documentation published in the `gh-pages` branch.
+
+⚠️ Note: When the `gh-pages` branch is published, commit messages are posted in the Planning Center [community Slack #api channel](https://planningcenter.slack.com/messages/C2VK7B8KC). Descriptive commit messages will help customers understand what's changed.
 
 #### How to Build (Do this before publishing)
 
@@ -15,7 +17,7 @@ cd api-docs
 bundle install
 DEPLOY_ENV=production rake
 git add .
-git commit -m "Updated Docs"
+git commit -m "Useful commit message here."
 git push
 ```
 
@@ -28,7 +30,7 @@ cd api-docs-gh-pages
 git checkout gh-pages
 ./update
 git add .
-git commit -m "Updated Docs"
+git commit -m "Useful commit message here."
 git push
 ```
 
