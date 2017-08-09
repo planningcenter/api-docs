@@ -2702,6 +2702,7 @@ where[graduation_year] | _integer_ | query on a specific graduation_year
 where[site_administrator] | _boolean_ | query on a specific site_administrator
 where[people_permissions] | _string_ | query on a specific people_permissions
 where[membership] | _string_ | query on a specific membership
+where[inactivated_at] | _date_time_ | query on a specific inactivated_at
 where[remote_id] | _integer_ | query on a specific remote_id
 where[medical_notes] | _string_ | query on a specific medical_notes
 where[created_at] | _date_time_ | query on a specific created_at
@@ -2740,6 +2741,7 @@ order | graduation_year | prefix with a hyphen (-graduation_year) to reverse the
 order | site_administrator | prefix with a hyphen (-site_administrator) to reverse the order
 order | people_permissions | prefix with a hyphen (-people_permissions) to reverse the order
 order | membership | prefix with a hyphen (-membership) to reverse the order
+order | inactivated_at | prefix with a hyphen (-inactivated_at) to reverse the order
 order | remote_id | prefix with a hyphen (-remote_id) to reverse the order
 order | medical_notes | prefix with a hyphen (-medical_notes) to reverse the order
 order | created_at | prefix with a hyphen (-created_at) to reverse the order
@@ -2884,6 +2886,7 @@ graduation_year | integer
 site_administrator | boolean
 people_permissions | string
 membership | string
+inactivated_at | date_time
 remote_id | integer
 medical_notes | string
 avatar | string | File UUID (see [File Uploads](#file-uploads) section)
@@ -2921,6 +2924,7 @@ graduation_year | integer
 site_administrator | boolean
 people_permissions | string
 membership | string
+inactivated_at | date_time
 remote_id | integer
 medical_notes | string
 avatar | string | File UUID (see [File Uploads](#file-uploads) section)
