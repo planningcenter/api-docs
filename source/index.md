@@ -22,7 +22,7 @@ search: true
 
 # Introduction
 
-The Planning Center Online API can be used to interact with all of your organization's data inside Planning Center. In this first iteration of the API the data inside PCO People is available; we are now working towards adding endpoints for some of our other apps (including an all new API for Services).
+The Planning Center API can be used to interact with all of your organization's data inside Planning Center. In this first iteration of the API the data inside PCO People is available; we are now working towards adding endpoints for some of our other apps (including an all new API for Services).
 
 # Rate limiting
 
