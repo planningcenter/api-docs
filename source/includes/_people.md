@@ -2710,6 +2710,7 @@ where[updated_at] | _date_time_ | query on a specific updated_at
 where[id] | _primary_key_ | query on a specific id
 filter | created_since | filter people created in the last 24 hours; pass an additional `time` parameter in ISO 8601 format to specify your own timeframe
 filter | admins | filter using the named scope "admins"
+filter | organization_admins | filter using the named scope "organization_admins"
 include | addresses | include associated addresses
 include | emails | include associated emails
 include | field_data | include associated field_data
