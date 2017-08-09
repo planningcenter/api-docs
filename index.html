@@ -191,7 +191,10 @@ This means that, if your app does not issue a refresh for 1 year, then your user
 </tr>
 </tbody></table>
 
-<p>When authorizing, you can request scopes using the <code class="prettyprint">scope</code> parameter. The value should be a space-separated list of scopes.</p>
+<p>Authorization URL is <a href="https://api.planningcenteronline.com/oauth/authorize">https://api.planningcenteronline.com/oauth/authorize</a>
+Token URL is <a href="https://api.planningcenteronline.com/oauth/token">https://api.planningcenteronline.com/oauth/token</a>
+When authorizing, you can request scopes using the <code class="prettyprint">scope</code> parameter. The value should be a space-separated list of scopes.
+The value for <code class="prettyprint">response_type</code> should be <code class="prettyprint">code</code></p>
 
 <h3 id="current-user">Current User</h3>
 <pre><code class="highlight plaintext">curl -H 'Authorization: Bearer ...' https://api.planningcenteronline.com/people/v2/me
