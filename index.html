@@ -5371,6 +5371,11 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 <td>query on a specific file_name</td>
 </tr>
 <tr>
+<td>where[field_definition_id]</td>
+<td><em>integer</em></td>
+<td>query on a specific field_definition_id</td>
+</tr>
+<tr>
 <td>include</td>
 <td>field_definition</td>
 <td>include associated field_definition</td>
@@ -5437,6 +5442,7 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
     </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FieldDatum"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"primary_key"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"field_definition_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
       </span><span class="s2">"file"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"file_content_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"file_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
@@ -5538,6 +5544,10 @@ curl -v -u token:secret -X POST -d <span class="s1">'{"data":{"type":"FieldDatum
 <td>value</td>
 <td>string</td>
 </tr>
+<tr>
+<td>field_definition_id</td>
+<td>integer</td>
+</tr>
 </tbody></table>
 
 <h3 id="update-an-existing-field-datum">Update an existing Field Datum</h3>
@@ -5562,6 +5572,10 @@ curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{"type":"FieldDatu
 <tr>
 <td>value</td>
 <td>string</td>
+</tr>
+<tr>
+<td>field_definition_id</td>
+<td>integer</td>
 </tr>
 </tbody></table>
 
