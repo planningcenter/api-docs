@@ -721,6 +721,7 @@ where[file] | _string_ | query on a specific file
 where[file_size] | _integer_ | query on a specific file_size
 where[file_content_type] | _string_ | query on a specific file_content_type
 where[file_name] | _graph/type_annotation/unknown_type_annotation_ | query on a specific file_name
+where[field_definition_id] | _integer_ | query on a specific field_definition_id
 include | field_definition | include associated field_definition
 include | field_option | include associated field_option
 include | tab | include associated tab
@@ -750,6 +751,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1
     "type": "FieldDatum",
     "id": "primary_key",
     "attributes": {
+      "field_definition_id": 1,
       "file": "string",
       "file_content_type": "string",
       "file_name": "unknown",
@@ -811,6 +813,7 @@ curl -v -u token:secret -X POST -d '{"data":{"type":"FieldDatum","attributes":{.
 Attribute | Type
 --------- | ----
 value | string
+field_definition_id | integer
 
 ### Update an existing Field Datum
 
@@ -831,6 +834,7 @@ curl -v -u token:secret -X PATCH -d '{"data":{"type":"FieldDatum","id":"1","attr
 Attribute | Type
 --------- | ----
 value | string
+field_definition_id | integer
 
 ### Delete a Field Datum
 
