@@ -3092,6 +3092,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/people
       "media_tab": "string",
       "middle_name": "string",
       "notes": "string",
+      "passed_background_check": true,
       "people_tab": "string",
       "permissions": "string",
       "photo_thumbnail_url": "string",
