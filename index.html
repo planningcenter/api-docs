@@ -12548,18 +12548,19 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 <tr>
 <td>preview</td>
 <td>https://api.planningcenteronline.com/services/v2/songs/1/attachments/1/preview</td>
-<td>This action is used to get a reduced resolution (preview) version of the attachment.  It is accessed by <code class="prettyprint">POST</code>ing to <code class="prettyprint">.../attachments/1/preview</code></td>
+<td>This action is used to get a reduced resolution (preview) version of the attachment.  It is accessed by <code class="prettyprint">POST</code>ing to <code class="prettyprint">.../attachments/1/preview</code><br><br>This will generate the URL and return it in the <code class="prettyprint">attachment_url</code> attribute of the <code class="prettyprint">AttachmentActivity</code>.<br><br>The <code class="prettyprint">has_preview</code> attribute of an <code class="prettyprint">Attachment</code> indicates if a preview is available. When a preview is not available this action will return a <code class="prettyprint">Not Found</code> error with a status code of <code class="prettyprint">404</code>.<br></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>open</td>
+<td>https://api.planningcenteronline.com/services/v2/songs/1/attachments/1/open</td>
+<td>This action is used to get the attachment file URL.  It is accessed by <code class="prettyprint">POST</code>ing to <code class="prettyprint">.../attachments/1/open</code><br><br>This will generate the URL and return it in the <code class="prettyprint">attachment_url</code> attribute of the <code class="prettyprint">AttachmentActivity</code>.<br></td>
 </tr>
 </tbody></table>
-
-<p>This will generate the URL and return it in the <code class="prettyprint">attachment_url</code> attribute of the <code class="prettyprint">AttachmentActivity</code>.</p>
-
-<p>The <code class="prettyprint">has_preview</code> attribute of an <code class="prettyprint">Attachment</code> indicates if a preview is available. When a preview is not available this action will return a <code class="prettyprint">Not Found</code> error with a status code of <code class="prettyprint">404</code>.</p>
-
-<p>|  | 
-open | https://api.planningcenteronline.com/services/v2/songs/1/attachments/1/open | This action is used to get the attachment file URL.  It is accessed by <code class="prettyprint">POST</code>ing to <code class="prettyprint">.../attachments/1/open</code></p>
-
-<p>This will generate the URL and return it in the <code class="prettyprint">attachment_url</code> attribute of the <code class="prettyprint">AttachmentActivity</code>.</p>
 
 <h3 id="create-a-new-attachment">Create a new Attachment</h3>
 <pre><code class="highlight shell"><span class="c"># to create a record...</span>
