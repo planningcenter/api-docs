@@ -4279,6 +4279,7 @@ Parameter | Value | Description
 --------- | ----- | -----------
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | created_at | prefix with a hyphen (-created_at) to reverse the order
 
 ### Get a single Workflow Card Note
 
@@ -4296,6 +4297,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflow
     "type": "WorkflowCardNote",
     "id": "1",
     "attributes": {
+      "created_at": "2000-01-01T12:00:00Z",
       "note": "string"
     },
     "relationships": {
