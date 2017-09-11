@@ -11356,6 +11356,11 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 <td><em>integer</em></td>
 <td>how many records to return per page (min=1, max=100, default=25)</td>
 </tr>
+<tr>
+<td>order</td>
+<td>created_at</td>
+<td>prefix with a hyphen (-created_at) to reverse the order</td>
+</tr>
 </tbody></table>
 
 <h3 id="get-a-single-workflow-card-note">Get a single Workflow Card Note</h3>
@@ -11371,6 +11376,7 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
     </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WorkflowCardNote"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"relationships"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
