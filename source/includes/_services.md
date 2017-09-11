@@ -3291,6 +3291,8 @@ Parameter | Value | Description
 include | person | include associated person
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | first_name | prefix with a hyphen (-first_name) to reverse the order
+order | last_name | prefix with a hyphen (-last_name) to reverse the order
 
 ### Get a single Person Team Position Assignment
 
@@ -6086,6 +6088,8 @@ Parameter | Value | Description
 include | people | include associated people
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | first_name | prefix with a hyphen (-first_name) to reverse the order
+order | last_name | prefix with a hyphen (-last_name) to reverse the order
 
 ### Get a single Team Leader
 
