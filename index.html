@@ -10904,6 +10904,72 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 </tr>
 </tbody></table>
 
+<h3 id="create-a-new-workflow">Create a new Workflow</h3>
+<pre><code class="highlight shell"><span class="c"># to create a record...</span>
+curl -v -u token:secret -X POST -d <span class="s1">'{"data":{"type":"Workflow","attributes":{...}}}'</span> <span class="s2">"https://api.planningcenteronline.com/people/v2/workflows"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>manager</code> can create this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">POST https://api.planningcenteronline.com/people/v2/workflows</code></p>
+
+<h4 id="resource-attributes">Resource Attributes</h4>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+</tr>
+<tr>
+<td>campus_id</td>
+<td>integer</td>
+</tr>
+<tr>
+<td>workflow_category_id</td>
+<td>integer</td>
+</tr>
+</tbody></table>
+
+<h3 id="update-an-existing-workflow">Update an existing Workflow</h3>
+<pre><code class="highlight shell"><span class="c"># to update a record...</span>
+curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{"type":"Workflow","id":"1","attributes":{...}}}'</span> <span class="s2">"https://api.planningcenteronline.com/people/v2/workflows/1"</span>
+</code></pre>
+
+<aside class='info'>Only users with the role <code>editor</code> can update this resource.</aside>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">PATCH https://api.planningcenteronline.com/people/v2/workflows/1</code></p>
+
+<h4 id="resource-attributes">Resource Attributes</h4>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+</tr>
+<tr>
+<td>campus_id</td>
+<td>integer</td>
+</tr>
+<tr>
+<td>workflow_category_id</td>
+<td>integer</td>
+</tr>
+</tbody></table>
+
 <h2 id="workflowcards">WorkflowCards</h2>
 
 <p>A Card</p>
