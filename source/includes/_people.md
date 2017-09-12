@@ -3961,9 +3961,49 @@ cards | https://api.planningcenteronline.com/people/v2/workflows/1/cards | Workf
 shares | https://api.planningcenteronline.com/people/v2/workflows/1/shares | WorkflowShare
 steps | https://api.planningcenteronline.com/people/v2/workflows/1/steps | WorkflowStep
 
+### Create a new Workflow
+
+```shell
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{"type":"Workflow","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/workflows"
+```
 
 
+<aside class='info'>Only users with the role <code>manager</code> can create this resource.</aside>
 
+#### HTTP Request
+
+`POST https://api.planningcenteronline.com/people/v2/workflows`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+name | string
+campus_id | integer
+workflow_category_id | integer
+
+### Update an existing Workflow
+
+```shell
+# to update a record...
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"Workflow","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/workflows/1"
+```
+
+
+<aside class='info'>Only users with the role <code>editor</code> can update this resource.</aside>
+
+#### HTTP Request
+
+`PATCH https://api.planningcenteronline.com/people/v2/workflows/1`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+name | string
+campus_id | integer
+workflow_category_id | integer
 
 
 
