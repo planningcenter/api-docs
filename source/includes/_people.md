@@ -678,7 +678,6 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1
     "type": "FieldDatum",
     "id": "primary_key",
     "attributes": {
-      "field_definition_id": 1,
       "file": "string",
       "file_content_type": "string",
       "file_name": "unknown",
