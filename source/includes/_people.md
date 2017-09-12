@@ -3880,10 +3880,13 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflow
 Parameter | Value | Description
 --------- | ----- | -----------
 where[name] | _string_ | query on a specific name
-where[created_at] | _date_time_ | query on a specific created_at
-where[updated_at] | _date_time_ | query on a specific updated_at
 where[campus_id] | _integer_ | query on a specific campus_id
 where[workflow_category_id] | _integer_ | query on a specific workflow_category_id
+where[created_at] | _date_time_ | query on a specific created_at
+where[updated_at] | _date_time_ | query on a specific updated_at
+where[deleted_at] | _date_time_ | query on a specific deleted_at
+filter | only_deleted | filter using the named scope "only_deleted"
+filter | with_deleted | filter using the named scope "with_deleted"
 include | steps | include associated steps
 include | shares | include associated shares
 include | category | include associated category
@@ -3891,10 +3894,11 @@ include | campus | include associated campus
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 order | name | prefix with a hyphen (-name) to reverse the order
-order | created_at | prefix with a hyphen (-created_at) to reverse the order
-order | updated_at | prefix with a hyphen (-updated_at) to reverse the order
 order | campus_id | prefix with a hyphen (-campus_id) to reverse the order
 order | workflow_category_id | prefix with a hyphen (-workflow_category_id) to reverse the order
+order | created_at | prefix with a hyphen (-created_at) to reverse the order
+order | updated_at | prefix with a hyphen (-updated_at) to reverse the order
+order | deleted_at | prefix with a hyphen (-deleted_at) to reverse the order
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=steps,shares</code></aside>
 
@@ -3917,6 +3921,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflow
       "campus_id": 1,
       "completed_card_count": "unknown",
       "created_at": "2000-01-01T12:00:00Z",
+      "deleted_at": "2000-01-01T12:00:00Z",
       "my_ready_card_count": "unknown",
       "name": "string",
       "total_ready_card_count": "unknown",
