@@ -10702,6 +10702,16 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 <td>query on a specific name</td>
 </tr>
 <tr>
+<td>where[campus_id]</td>
+<td><em>integer</em></td>
+<td>query on a specific campus_id</td>
+</tr>
+<tr>
+<td>where[workflow_category_id]</td>
+<td><em>integer</em></td>
+<td>query on a specific workflow_category_id</td>
+</tr>
+<tr>
 <td>where[created_at]</td>
 <td><em>date_time</em></td>
 <td>query on a specific created_at</td>
@@ -10712,14 +10722,19 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 <td>query on a specific updated_at</td>
 </tr>
 <tr>
-<td>where[campus_id]</td>
-<td><em>integer</em></td>
-<td>query on a specific campus_id</td>
+<td>where[deleted_at]</td>
+<td><em>date_time</em></td>
+<td>query on a specific deleted_at</td>
 </tr>
 <tr>
-<td>where[workflow_category_id]</td>
-<td><em>integer</em></td>
-<td>query on a specific workflow_category_id</td>
+<td>filter</td>
+<td>only_deleted</td>
+<td>filter using the named scope &ldquo;only_deleted&rdquo;</td>
+</tr>
+<tr>
+<td>filter</td>
+<td>with_deleted</td>
+<td>filter using the named scope &ldquo;with_deleted&rdquo;</td>
 </tr>
 <tr>
 <td>include</td>
@@ -10758,6 +10773,16 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 </tr>
 <tr>
 <td>order</td>
+<td>campus_id</td>
+<td>prefix with a hyphen (-campus_id) to reverse the order</td>
+</tr>
+<tr>
+<td>order</td>
+<td>workflow_category_id</td>
+<td>prefix with a hyphen (-workflow_category_id) to reverse the order</td>
+</tr>
+<tr>
+<td>order</td>
 <td>created_at</td>
 <td>prefix with a hyphen (-created_at) to reverse the order</td>
 </tr>
@@ -10768,13 +10793,8 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 </tr>
 <tr>
 <td>order</td>
-<td>campus_id</td>
-<td>prefix with a hyphen (-campus_id) to reverse the order</td>
-</tr>
-<tr>
-<td>order</td>
-<td>workflow_category_id</td>
-<td>prefix with a hyphen (-workflow_category_id) to reverse the order</td>
+<td>deleted_at</td>
+<td>prefix with a hyphen (-deleted_at) to reverse the order</td>
 </tr>
 </tbody></table>
 
@@ -10796,6 +10816,7 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
       </span><span class="s2">"campus_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
       </span><span class="s2">"completed_card_count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"deleted_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000-01-01T12:00:00Z"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"my_ready_card_count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"total_ready_card_count"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
