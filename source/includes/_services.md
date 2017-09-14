@@ -3135,6 +3135,7 @@ blockouts | https://api.planningcenteronline.com/services/v2/people/1/blockouts 
 person_team_position_assignments | https://api.planningcenteronline.com/services/v2/people/1/person_team_position_assignments | PersonTeamPositionAssignment
 plan_people | https://api.planningcenteronline.com/services/v2/people/1/plan_people | PlanPerson
 schedules | https://api.planningcenteronline.com/services/v2/people/1/schedules | Schedule
+ |  | 
 tags | https://api.planningcenteronline.com/services/v2/people/1/tags | Tag
 team_leaders | https://api.planningcenteronline.com/services/v2/people/1/team_leaders | TeamLeader
  |  | 
@@ -3153,8 +3154,11 @@ Action | URL | Description
  |  | 
  |  | 
  |  | 
+ |  | 
 assign_tags | https://api.planningcenteronline.com/services/v2/people/1/assign_tags | Used to assign tags to a person.
  |  | 
+
+
 
 
 
@@ -4991,6 +4995,7 @@ Action | URL | Description
 create_plans | https://api.planningcenteronline.com/services/v2/service_types/1/create_plans | Create multiple plans
  |  | 
  |  | 
+ |  | 
 
 
 
@@ -5015,6 +5020,8 @@ Accepted attributes:
 Accepted Relationships
 
 - `plan` The plan to copy items, people and notes from.  (These items will only be copied if you supply a valid plan relationship)
+
+
 
 
 
@@ -6036,6 +6043,12 @@ Action | URL | Description
 ------ | --- | -----------
  |  | 
  |  | 
+ |  | 
+ |  | 
+
+
+
+
 
 
 
@@ -6251,6 +6264,9 @@ You can perform the following actions on a Team Position by POSTing to the speci
 Action | URL | Description
 ------ | --- | -----------
  |  | 
+ |  | 
+
+
 
 
 

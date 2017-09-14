@@ -8,6 +8,7 @@ APP_NAMES = %w(
   services
   check_ins
   giving
+  webhooks
 )
 
 desc 'Fetch newest docs from the API'
