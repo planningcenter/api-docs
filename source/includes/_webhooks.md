@@ -1,6 +1,29 @@
 # Webhooks
 
-Webhooks allow a third-party application to receive events when something changes in Planning Center
+Webhooks allow a third-party application to receive real-time data payloads when something changes in Planning
+Center. In most cases, webhooks are a faster, more efficient alternative to polling the API for data changes.
+
+**Permissions:** Organization Administrators can establish and manage webhook subscriptions at
+https://api.planningcenteronline.com/webhooks. Any Org Admin can manage existing webhooks for your organization.
+
+**Request & Responses:** You can inspect the request and your server response of every webhook at
+https://api.planningcenteronline.com/webhooks. Requests are POST only. Responding with a 410 will deactivate
+the webhook subscription.
+
+**Payloads:** Other than the payload data, each webhook delivery includes a unique ID, a type, and an attempt
+number. Use this data for logging and surfacing helpful messaging in your application.
+
+**Rate-limits:** At present, there are no rate-limits for webhooks.
+
+**Failures & Retries:** If the delivery of webhook fails, you’ll receive an email after it’s failed for an hour.
+If the webook continues to fail, a second email will be sent on the final try before it’s deactivated
+(after 5.4 days since the first failure). The webhook will automatically retry up to 16 times with an exponential
+backoff. You can manually redeliver a webhook at https://api.planningcenteronline.com/webhooks.
+
+**Retry Schedule:** If a webhook is met with anything other than a 200 status, it will be retried along the
+following schedule after the first failure: 30 seconds, 1 minute, 2 minutes, 4 minutes, 8 minutes, 16 minutes,
+32 minutes, 64 minutes, 2.1 hours, 4.2 hours, 8.5 hours, 17 hours, and finally once per day for up to 4 days.
+
 
 ## AvailableEvents
 
