@@ -12487,6 +12487,11 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 <td>include associated zooms</td>
 </tr>
 <tr>
+<td>include</td>
+<td>drawings</td>
+<td>include associated drawings</td>
+</tr>
+<tr>
 <td>offset</td>
 <td><em>integer</em></td>
 <td>get results from given offset</td>
@@ -12497,6 +12502,8 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 <td>how many records to return per page (min=1, max=100, default=25)</td>
 </tr>
 </tbody></table>
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=zooms,drawings</code></aside>
 
 <h3 id="get-a-single-attachment">Get a single Attachment</h3>
 <pre><code class="highlight shell"><span class="c"># to show...</span>
@@ -12579,7 +12586,14 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 <td>zooms</td>
 <td>include associated zooms</td>
 </tr>
+<tr>
+<td>include</td>
+<td>drawings</td>
+<td>include associated drawings</td>
+</tr>
 </tbody></table>
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=zooms,drawings</code></aside>
 
 <h3 id="associations-for-an-attachment">Associations for an Attachment</h3>
 
@@ -12592,6 +12606,11 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 <th>Endpoint</th>
 </tr>
 </thead><tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
 <tr>
 <td>zooms</td>
 <td>https://api.planningcenteronline.com/services/v2/songs/1/attachments/1/zooms</td>
@@ -16216,6 +16235,11 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
 <tr>
 <td></td>
 <td></td>
@@ -20314,6 +20338,24 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 
 <p><em>none</em></p>
 
+<h3 id="associations-for-a-tag">Associations for a Tag</h3>
+
+<p>You can append one of the following associations onto this resource URL to jump to an associated record.</p>
+
+<table><thead>
+<tr>
+<th>Association</th>
+<th>URL</th>
+<th>Endpoint</th>
+</tr>
+</thead><tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
 <h2 id="taggroups">TagGroups</h2>
 
 <p>A tag group contains tags</p>
@@ -20440,6 +20482,11 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 <th>Endpoint</th>
 </tr>
 </thead><tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
 <tr>
 <td>tags</td>
 <td>https://api.planningcenteronline.com/services/v2/tag_groups/1/tags</td>
@@ -20952,6 +20999,11 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 <th>Endpoint</th>
 </tr>
 </thead><tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
 <tr>
 <td>person_team_position_assignments</td>
 <td>https://api.planningcenteronline.com/services/v2/service_types/1/team_positions/1/person_team_position_assignments</td>
