@@ -2618,7 +2618,6 @@ Parameter | Value | Description
 where[given_name] | _string_ | query on a specific given_name
 where[first_name] | _string_ | query on a specific first_name
 where[nickname] | _string_ | query on a specific nickname
-where[goes_by_name] | _string_ | query on a specific goes_by_name
 where[middle_name] | _string_ | query on a specific middle_name
 where[last_name] | _string_ | query on a specific last_name
 where[birthdate] | _date_ | query on a specific birthdate
@@ -2658,7 +2657,6 @@ per_page | _integer_ | how many records to return per page (min=1, max=100, defa
 order | given_name | prefix with a hyphen (-given_name) to reverse the order
 order | first_name | prefix with a hyphen (-first_name) to reverse the order
 order | nickname | prefix with a hyphen (-nickname) to reverse the order
-order | goes_by_name | prefix with a hyphen (-goes_by_name) to reverse the order
 order | middle_name | prefix with a hyphen (-middle_name) to reverse the order
 order | last_name | prefix with a hyphen (-last_name) to reverse the order
 order | birthdate | prefix with a hyphen (-birthdate) to reverse the order
@@ -2803,7 +2801,6 @@ Attribute | Type | Note
 given_name | string
 first_name | string
 nickname | string
-goes_by_name | string
 middle_name | string
 last_name | string
 birthdate | date
@@ -2841,7 +2838,6 @@ Attribute | Type | Note
 given_name | string
 first_name | string
 nickname | string
-goes_by_name | string
 middle_name | string
 last_name | string
 birthdate | date
