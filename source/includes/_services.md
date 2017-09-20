@@ -299,8 +299,11 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/songs/
 Parameter | Value | Description
 --------- | ----- | -----------
 include | zooms | include associated zooms
+include | drawings | include associated drawings
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=zooms,drawings</code></aside>
 
 ### Get a single Attachment
 
@@ -377,6 +380,9 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/songs/
 Parameter | Value | Description
 --------- | ----- | -----------
 include | zooms | include associated zooms
+include | drawings | include associated drawings
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=zooms,drawings</code></aside>
 
 ### Associations for an Attachment
 
@@ -384,6 +390,7 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
+ |  | 
 zooms | https://api.planningcenteronline.com/services/v2/songs/1/attachments/1/zooms | Zoom
 
 ### Actions for an Attachment
@@ -2989,6 +2996,9 @@ Action | URL | Description
  |  | 
  |  | 
  |  | 
+ |  | 
+
+
 
 
 
@@ -5831,6 +5841,14 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/songs/
 
 _none_
 
+### Associations for a Tag
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL | Endpoint
+----------- | --- | --------
+ |  | 
+
 
 
 
@@ -5916,6 +5934,7 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
+ |  | 
 tags | https://api.planningcenteronline.com/services/v2/tag_groups/1/tags | Tag
 
 
@@ -6255,6 +6274,7 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
+ |  | 
 person_team_position_assignments | https://api.planningcenteronline.com/services/v2/service_types/1/team_positions/1/person_team_position_assignments | PersonTeamPositionAssignment
 
 ### Actions for a Team Position
