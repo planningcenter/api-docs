@@ -897,7 +897,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/payment_
     "id": "1",
     "attributes": {
       "created_at": "2017-09-27T11:14:37Z",
-      "name": "PushPay",
+      "name": "PayPal",
       "updated_at": "2017-09-27T11:14:37Z"
     },
     "relationships": {
