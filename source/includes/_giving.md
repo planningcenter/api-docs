@@ -1,4 +1,4 @@
-# PCO Giving (BETA)
+# PCO Giving
 
 PCO Giving tracks all donations for your church, allowing people to give a one-time gift or set up recurring donations.
 
@@ -6,9 +6,11 @@ PCO Giving tracks all donations for your church, allowing people to give a one-t
 
 ### Attribute Info
 
-<span class='attribute-info-name'>status</span>
+<span class='attribute-info-name'>committed_at</span>
 
-One of `in_progress` or `committed`.
+The datetime that a batch was committed. If it's `null`, the batch is still in progress
+
+
 
 ### List Batches
 
@@ -46,11 +48,11 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/batches/
     "type": "Batch",
     "id": "1",
     "attributes": {
-      "created_at": "2017-09-14T16:21:20Z",
-      "status": "in_progress",
+      "committed_at": null,
+      "created_at": "2017-09-27T11:14:37Z",
       "total_cents": 150000,
       "total_currency": "USD",
-      "updated_at": "2017-09-14T16:21:20Z"
+      "updated_at": "2017-09-27T11:14:37Z"
     },
     "relationships": {
     }
@@ -75,15 +77,92 @@ You can append one of the following associations onto this resource URL to jump 
 Association | URL | Endpoint
 ----------- | --- | --------
 batch_group | https://api.planningcenteronline.com/giving/v2/batches/1/batch_group | BatchGroup
+donations | https://api.planningcenteronline.com/giving/v2/batches/1/donations | Donation
 owner | https://api.planningcenteronline.com/giving/v2/batches/1/owner | Person
 
+### Actions for a Batch
+
+You can perform the following actions on a Batch by POSTing to the specified URL.
+
+Action | URL | Description
+------ | --- | -----------
+commit | https://api.planningcenteronline.com/giving/v2/batches/1/commit | Used to commit an in progress batch.
+
+#### commit
+
+This action takes an uncommitted batch and commits it.
+It will respond with `unprocessable_entity` if the batch cannot be committed.
+
+It does not expect a body.
 
 
+### Create a new Batch
+
+```shell
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{"type":"Batch","attributes":{...}}}' "https://api.planningcenteronline.com/giving/v2/batches"
+```
 
 
+#### HTTP Request
 
+`POST https://api.planningcenteronline.com/giving/v2/batches`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+description | string
+
+```shell
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{"type":"Batch","attributes":{...}}}' "https://api.planningcenteronline.com/giving/v2/batch_groups/1/batches"
+```
+
+
+#### HTTP Request
+
+`POST https://api.planningcenteronline.com/giving/v2/batch_groups/1/batches`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+description | string
+
+### Update an existing Batch
+
+```shell
+# to update a record...
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"Batch","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/giving/v2/batches/1"
+```
+
+
+#### HTTP Request
+
+`PATCH https://api.planningcenteronline.com/giving/v2/batches/1`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+description | string
+
+### Delete a Batch
+
+```shell
+# to delete a record...
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/giving/v2/batches/1"
+```
+
+
+#### HTTP Request
+
+`DELETE https://api.planningcenteronline.com/giving/v2/batches/1`
 
 ## BatchGroups
+
+
 
 
 
@@ -124,10 +203,10 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/batch_gr
     "id": "1",
     "attributes": {
       "committed": true,
-      "created_at": "2017-09-14T16:21:20Z",
+      "created_at": "2017-09-27T11:14:37Z",
       "total_cents": 350000,
       "total_currency": "USD",
-      "updated_at": "2017-09-14T16:21:20Z"
+      "updated_at": "2017-09-27T11:14:37Z"
     },
     "relationships": {
     }
@@ -164,6 +243,12 @@ owner | https://api.planningcenteronline.com/giving/v2/batch_groups/1/owner | Pe
 
 
 
+### Relationships
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+fund | Fund | _false_ | 
+
 ### List Designations
 
 ```shell
@@ -180,7 +265,6 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/donation
 
 Parameter | Value | Description
 --------- | ----- | -----------
-include | fund | include associated fund
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
@@ -204,6 +288,12 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/donation
       "amount_currency": "USD"
     },
     "relationships": {
+      "fund": {
+        "data": {
+          "type": "Fund",
+          "id": "123"
+        }
+      }
     }
   }
 }
@@ -215,9 +305,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/donation
 
 #### URL Parameters
 
-Parameter | Value | Description
---------- | ----- | -----------
-include | fund | include associated fund
+_none_
 
 ### Associations for a Designation
 
@@ -237,24 +325,31 @@ fund | https://api.planningcenteronline.com/giving/v2/donations/1/designations/1
 
 ### Attribute Info
 
+<span class='attribute-info-name'>payment_brand</span>
+
+For cards, this is the card brand (eg Visa, Mastercard, etc). For checks, this is the bank name
+
 <span class='attribute-info-name'>payment_status</span>
 
-One of `pending`, `succeeded`, or `failed`.
+For stripe payments only.
 
-<span class='attribute-info-name'>payment_method</span>
-
-One of `ach`, `cash`, `check`, or `card`.
+Possible values: `pending`, `succeeded`, or `failed`
 
 <span class='attribute-info-name'>payment_method_sub</span>
 
-For cards only. One of `credit`, `debit`, `prepaid`, or `unknown`. Will be `null` for other payment method types.
+For cards only. Will be `null` for other payment method types.
+
+Possible values: `credit`, `debit`, `prepaid`, or `unknown`
+
+<span class='attribute-info-name'>payment_method</span>
+
+Possible values: `ach`, `cash`, `check`, or `card`
 
 ### Relationships
 
-
 Name | Type | To Many | Description
 ---- | ---- | ------- | -----------
-person | Person | _false_ | 
+person | Person | _false_ |  | payment_source | PaymentSource | _false_ | `PaymentSource` is required, but cannot be `planning_center`, as that is reserved for Donations created in the Planning Center Giving Web UI.
 
 ### List Donations
 
@@ -297,17 +392,26 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/donation
     "attributes": {
       "amount_cents": 2000,
       "amount_currency": "USD",
-      "created_at": "2017-09-14T16:21:20Z",
+      "created_at": "2017-09-27T11:14:37Z",
       "fee_cents": -88,
       "fee_currency": "USD",
       "payment_brand": "Visa",
+      "payment_check_dated_at": null,
+      "payment_check_number": null,
       "payment_last4": "4242",
       "payment_method": "card",
       "payment_method_sub": "debit",
       "payment_status": "succeeded",
-      "updated_at": "2017-09-14T16:21:20Z"
+      "received_at": "2017-09-27T00:00:00Z",
+      "updated_at": "2017-09-27T11:14:37Z"
     },
     "relationships": {
+      "payment_source": {
+        "data": {
+          "type": "PaymentSource",
+          "id": "123"
+        }
+      },
       "person": {
         "data": {
           "type": "Person",
@@ -341,11 +445,154 @@ Association | URL | Endpoint
 designations | https://api.planningcenteronline.com/giving/v2/donations/1/designations | Designation
 labels | https://api.planningcenteronline.com/giving/v2/donations/1/labels | Label
 
+### Create a new Donation
+
+```shell
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{"type":"Donation","attributes":{...}}}' "https://api.planningcenteronline.com/giving/v2/batches/1/donations"
+```
 
 
+#### HTTP Request
+
+`POST https://api.planningcenteronline.com/giving/v2/batches/1/donations`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+payment_method | string
+payment_method_sub | string
+payment_last4 | string
+payment_brand | string
+payment_check_number | integer
+payment_check_dated_at | date
+payment_status | string
+fee_cents | integer
+received_at | date_time
+
+#### Included Resources
+
+```shell
+# to create a record with Designations...
+curl -v -u token:secret -X POST -d '{"data":{"type":"Donation",...},"included":[{"type":"Designation","attributes":{...}}]}' "https://api.planningcenteronline.com/giving/v2/donations"
+```
+
+You may include Designations to create inline with the Donation.
+
+Attribute | Type
+--------- | ----
+amount_cents | integer
+
+##### Relationships
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+fund | Fund | _false_ | 
+
+```shell
+# A full example of creating a Donation...
+curl -u token:secret -X POST -d '
+  {
+    "data": {
+      "type": "Donation",
+      "attributes": {
+        "payment_method": "cash",
+        "received_at": "2017-10-10"
+      },
+      "relationships": {
+        "person": {
+          "data": { "type": "Person", "id": "123" }
+        },
+        "payment_source": {
+          "data": { "type": "PaymentSource", "id": "123" }
+        }
+      }
+    },
+    "included": [
+      {
+        "type": "Designation",
+        "attributes": { "amount_cents": 2000 },
+        "relationships": {
+          "fund": {
+            "data": { "type": "Fund", "id": "123" }
+          }
+        }
+      }
+    ]
+  }' https://api.planningcenteronline.com/giving/v2/batches/1/donations
+```
+
+#### Notes
+
+When creating a Donation, you _must_ include at least one Designation,
+and each Designation _must_ have `amount_cents` and a Fund relationship
+
+### Update an existing Donation
+
+```shell
+# to update a record...
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"Donation","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/giving/v2/donations/1"
+```
 
 
+#### HTTP Request
 
+`PATCH https://api.planningcenteronline.com/giving/v2/donations/1`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+payment_method | string
+payment_method_sub | string
+payment_last4 | string
+payment_brand | string
+payment_check_number | integer
+payment_check_dated_at | date
+payment_status | string
+fee_cents | integer
+received_at | date_time
+
+#### Included Resources
+
+```shell
+# to update a record with Designations...
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"Donation","id":"1",...},"included":[{"type":"Designation","id":"1","attributes":{...}}]}' "https://api.planningcenteronline.com/giving/v2/donations/1"
+```
+
+You may include Designations to update inline with the Donation.
+
+Attribute | Type
+--------- | ----
+amount_cents | integer
+
+##### Relationships
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+fund | Fund | _false_ | 
+
+#### Notes
+
+When updating a Donation, if you specify an `id` attribute for each Designation,
+those Designations can be updated.
+
+However, if you have Designations in the `included` array _without_ `id`s,
+all Designations will be removed and replaced with the Designations in your `PATCH`
+request.
+
+### Delete a Donation
+
+```shell
+# to delete a record...
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/giving/v2/donations/1"
+```
+
+
+#### HTTP Request
+
+`DELETE https://api.planningcenteronline.com/giving/v2/donations/1`
 
 ## Funds
 
@@ -357,7 +604,9 @@ Hex color code.
 
 <span class='attribute-info-name'>visibility</span>
 
-One of `everywhere`, `admin_only`, or `nowhere`.
+Possible values: `everywhere`, `admin_only`, or `nowhere`
+
+
 
 ### List Funds
 
@@ -395,11 +644,11 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/funds/1"
     "id": "1",
     "attributes": {
       "color": "#9ccc79",
-      "created_at": "2017-09-14T16:21:20Z",
+      "created_at": "2017-09-27T11:14:37Z",
       "description": "These funds are used to support our missionary efforts here in the US.",
       "ledger_code": "dm-22314",
       "name": "Domestic Missions",
-      "updated_at": "2017-09-14T16:21:20Z",
+      "updated_at": "2017-09-27T11:14:37Z",
       "visibility": "everywhere"
     },
     "relationships": {
@@ -423,6 +672,8 @@ _none_
 
 
 ## Labels
+
+
 
 
 
@@ -452,6 +703,8 @@ per_page | _integer_ | how many records to return per page (min=1, max=100, defa
 
 
 ## Organizations
+
+
 
 
 
@@ -498,6 +751,7 @@ batches | https://api.planningcenteronline.com/giving/v2/batches | Batch
 donations | https://api.planningcenteronline.com/giving/v2/donations | Donation
 funds | https://api.planningcenteronline.com/giving/v2/funds | Fund
 labels | https://api.planningcenteronline.com/giving/v2/labels | Label
+payment_sources | https://api.planningcenteronline.com/giving/v2/payment_sources | PaymentSource
 people | https://api.planningcenteronline.com/giving/v2/people | Person
 recurring_donations | https://api.planningcenteronline.com/giving/v2/recurring_donations | RecurringDonation
 
@@ -515,17 +769,19 @@ recurring_donations | https://api.planningcenteronline.com/giving/v2/recurring_d
 
 For bank accounts only. Will be `null` for cards.
 
-<span class='attribute-info-name'>method_type</span>
-
-Either `card` or `bank_account`.
-
 <span class='attribute-info-name'>method_subtype</span>
 
-For cards, either `credit` or `debit`. For bank accounts, either `checking or savings`.
+For cards, either `credit` or `debit`. For bank accounts, either `checking` or `savings`.
 
 <span class='attribute-info-name'>expiration</span>
 
 For cards only. String representation of the expiration date in the `MM/YYYY` form (without leading zeros). Will be `null` for bank accounts.
+
+<span class='attribute-info-name'>method_type</span>
+
+Possible values: `card` or `bank_account`
+
+
 
 ### List Payment Methods
 
@@ -563,12 +819,12 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/people/1
     "id": "1",
     "attributes": {
       "brand": "Visa",
-      "created_at": "2017-09-14T16:21:20Z",
+      "created_at": "2017-09-27T11:14:37Z",
       "expiration": "8/2018",
       "last4": "4242",
       "method_subtype": "credit",
       "method_type": "card",
-      "updated_at": "2017-09-14T16:21:20Z",
+      "updated_at": "2017-09-27T11:14:37Z",
       "verified": null
     },
     "relationships": {
@@ -599,13 +855,130 @@ recurring_donations | https://api.planningcenteronline.com/giving/v2/people/1/pa
 
 
 
+## PaymentSources
+
+
+
+
+
+### List Payment Sources
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/payment_sources"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/giving/v2/payment_sources`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+offset | _integer_ | get results from given offset
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+### Get a single Payment Source
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/payment_sources/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "PaymentSource",
+    "id": "1",
+    "attributes": {
+      "created_at": "2017-09-27T11:14:37Z",
+      "name": "PushPay",
+      "updated_at": "2017-09-27T11:14:37Z"
+    },
+    "relationships": {
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/giving/v2/payment_sources/1`
+
+#### URL Parameters
+
+_none_
+
+### Associations for a Payment Source
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL | Endpoint
+----------- | --- | --------
+donations | https://api.planningcenteronline.com/giving/v2/payment_sources/1/donations | Donation
+
+### Create a new Payment Source
+
+```shell
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{"type":"PaymentSource","attributes":{...}}}' "https://api.planningcenteronline.com/giving/v2/payment_sources"
+```
+
+
+#### HTTP Request
+
+`POST https://api.planningcenteronline.com/giving/v2/payment_sources`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+name | string
+
+### Update an existing Payment Source
+
+```shell
+# to update a record...
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"PaymentSource","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/giving/v2/payment_sources/1"
+```
+
+
+#### HTTP Request
+
+`PATCH https://api.planningcenteronline.com/giving/v2/payment_sources/1`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+name | string
+
+### Delete a Payment Source
+
+```shell
+# to delete a record...
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/giving/v2/payment_sources/1"
+```
+
+
+#### HTTP Request
+
+`DELETE https://api.planningcenteronline.com/giving/v2/payment_sources/1`
+
 ## People
 
 ### Attribute Info
 
 <span class='attribute-info-name'>permissions</span>
 
-Either `administrator` or `null`.
+Possible values: `administrator`
+
+
 
 ### List People
 
@@ -709,11 +1082,17 @@ recurring_donations | https://api.planningcenteronline.com/giving/v2/people/1/re
 
 <span class='attribute-info-name'>status</span>
 
-One of `active`, `on hold indefinitely` or `on hold until {date}`.
+One of `active`, `indefinite_hold` or `temporary_hold`.
+
+<span class='attribute-info-name'>release_hold_at</span>
+
+The date when a `temporary_hold` will be released.
 
 <span class='attribute-info-name'>schedule</span>
 
 JSON representation of the billing schedule. See the [`repeatable`](https://github.com/molawson/repeatable#time-expressions) Ruby gem for more details on the structure and meaning.
+
+
 
 ### List Recurring Donations
 
@@ -753,16 +1132,16 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/recurrin
     "attributes": {
       "amount_cents": 15000,
       "amount_currency": "USD",
-      "created_at": "2017-09-14T16:21:20Z",
-      "last_donation_received_at": "2017-09-13T00:00:00Z",
-      "next_occurrence": "2017-10-13T00:00:00Z",
+      "created_at": "2017-09-27T11:14:37Z",
+      "last_donation_received_at": "2017-09-26T00:00:00Z",
+      "next_occurrence": "2017-10-26T00:00:00Z",
       "schedule": {
         "day_in_month": {
-          "day": 13
+          "day": 26
         }
       },
       "status": "active",
-      "updated_at": "2017-09-14T16:21:20Z"
+      "updated_at": "2017-09-27T11:14:37Z"
     },
     "relationships": {
     }
@@ -796,6 +1175,8 @@ payment_method | https://api.planningcenteronline.com/giving/v2/recurring_donati
 
 
 ## RecurringDonationDesignations
+
+
 
 
 
