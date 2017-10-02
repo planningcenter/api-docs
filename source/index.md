@@ -12,6 +12,7 @@ includes:
   - check_ins
   - giving
   - people
+  - resources
   - services
   - webhooks
   - errors
@@ -148,6 +149,7 @@ Each PCO app is a distinct [OAuth scope](http://tools.ietf.org/html/rfc6749#sect
 | Check-ins | check_ins |
 | Giving | giving |
 | People | people |
+| Resources | resources |
 | Services | services |
 
 Authorization URL is [https://api.planningcenteronline.com/oauth/authorize](https://api.planningcenteronline.com/oauth/authorize)

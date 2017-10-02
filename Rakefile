@@ -9,6 +9,7 @@ APP_NAMES = %w(
   check_ins
   giving
   webhooks
+  resources
 )
 
 desc 'Fetch newest docs from the API'
