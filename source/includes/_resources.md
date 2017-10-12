@@ -697,14 +697,18 @@ where[kind] | _string_ | query on a specific kind
 where[serial_number] | _string_ | query on a specific serial_number
 where[created_at] | _date_time_ | query on a specific created_at
 where[updated_at] | _date_time_ | query on a specific updated_at
+filter | rooms | filter using the named scope "rooms"
+filter | resources | filter using the named scope "resources"
 include | event_resource_requests | include associated event_resource_requests
 include | resource_approval_groups | include associated resource_approval_groups
 include | resource_questions | include associated resource_questions
 include | conflicts | include associated conflicts
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | name | prefix with a hyphen (-name) to reverse the order
 order | created_at | prefix with a hyphen (-created_at) to reverse the order
 order | updated_at | prefix with a hyphen (-updated_at) to reverse the order
+order | expires_at | prefix with a hyphen (-expires_at) to reverse the order
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=event_resource_requests,resource_approval_groups</code></aside>
 
