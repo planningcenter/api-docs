@@ -324,7 +324,11 @@ A request of a resource for a specific event.
 
 Name | Type | To Many | Description
 ---- | ---- | ------- | -----------
+event | Event | _false_ | 
+resource | Resource | _false_ | 
 event_resource_request | EventResourceRequest | _false_ | 
+created_by | Person | _false_ | 
+room_setup | RoomSetup | _false_ | 
 
 ### List Event Resource Requests
 
@@ -343,14 +347,15 @@ curl -v -u token:secret "https://api.planningcenteronline.com/resources/v2/event
 Parameter | Value | Description
 --------- | ----- | -----------
 where[approval_status] | _string_ | query on a specific approval_status
-where[resource_id] | _integer_ | query on a specific resource_id
-where[created_by_id] | _integer_ | query on a specific created_by_id
-where[event_id] | _integer_ | query on a specific event_id
 where[percent_approved] | _integer_ | query on a specific percent_approved
 where[created_at] | _date_time_ | query on a specific created_at
 where[updated_at] | _date_time_ | query on a specific updated_at
+include | event | include associated event
+include | resource | include associated resource
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=event,resource</code></aside>
 
 ### Get a single Event Resource Request
 
@@ -373,15 +378,37 @@ curl -v -u token:secret "https://api.planningcenteronline.com/resources/v2/event
       "created_at": "2000-01-01T12:00:00Z",
       "percent_approved": 1,
       "quantity": 1,
-      "resource_id": 1,
-      "room_setup_id": 1,
       "room_setup_info": "string",
       "updated_at": "2000-01-01T12:00:00Z"
     },
     "relationships": {
+      "created_by": {
+        "data": {
+          "type": "Person",
+          "id": "123"
+        }
+      },
+      "event": {
+        "data": {
+          "type": "Event",
+          "id": "123"
+        }
+      },
       "event_resource_request": {
         "data": {
           "type": "EventResourceRequest",
+          "id": "123"
+        }
+      },
+      "resource": {
+        "data": {
+          "type": "Resource",
+          "id": "123"
+        }
+      },
+      "room_setup": {
+        "data": {
+          "type": "RoomSetup",
           "id": "123"
         }
       }
@@ -396,7 +423,12 @@ curl -v -u token:secret "https://api.planningcenteronline.com/resources/v2/event
 
 #### URL Parameters
 
-_none_
+Parameter | Value | Description
+--------- | ----- | -----------
+include | event | include associated event
+include | resource | include associated resource
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=event,resource</code></aside>
 
 ### Associations for an Event Resource Request
 
@@ -405,6 +437,8 @@ You can append one of the following associations onto this resource URL to jump 
 Association | URL | Endpoint
 ----------- | --- | --------
  |  | 
+event | https://api.planningcenteronline.com/resources/v2/event_resource_requests/1/event | Event
+resource | https://api.planningcenteronline.com/resources/v2/event_resource_requests/1/resource | Resource
 resource_bookings | https://api.planningcenteronline.com/resources/v2/event_resource_requests/1/resource_bookings | ResourceBooking
 
 
