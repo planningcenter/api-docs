@@ -10,6 +10,13 @@ requests.
 
 
 
+### Relationships
+
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+resource | Resource | _false_ | 
+
 ### List Conflicts
 
 ```shell
@@ -26,7 +33,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/resources/v2/confl
 
 Parameter | Value | Description
 --------- | ----- | -----------
-where[resource_id] | _integer_ | query on a specific resource_id
+include | resource | include associated resource
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
@@ -49,10 +56,15 @@ curl -v -u token:secret "https://api.planningcenteronline.com/resources/v2/confl
       "note": "string",
       "resolved_at": "2000-01-01T12:00:00Z",
       "resolved_by_id": 1,
-      "resource_id": 1,
       "winner_id": 1
     },
     "relationships": {
+      "resource": {
+        "data": {
+          "type": "Resource",
+          "id": "123"
+        }
+      }
     }
   }
 }
@@ -64,7 +76,9 @@ curl -v -u token:secret "https://api.planningcenteronline.com/resources/v2/confl
 
 #### URL Parameters
 
-_none_
+Parameter | Value | Description
+--------- | ----- | -----------
+include | resource | include associated resource
 
 ### Associations for a Conflict
 
@@ -73,6 +87,7 @@ You can append one of the following associations onto this resource URL to jump 
 Association | URL | Endpoint
 ----------- | --- | --------
  |  | 
+resource | https://api.planningcenteronline.com/resources/v2/conflicts/1/resource | Resource
 
 
 
