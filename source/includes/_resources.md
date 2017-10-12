@@ -1232,6 +1232,7 @@ where[created_at] | _date_time_ | query on a specific created_at
 where[updated_at] | _date_time_ | query on a specific updated_at
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | name | prefix with a hyphen (-name) to reverse the order
 order | created_at | prefix with a hyphen (-created_at) to reverse the order
 order | updated_at | prefix with a hyphen (-updated_at) to reverse the order
 
@@ -1251,12 +1252,10 @@ curl -v -u token:secret "https://api.planningcenteronline.com/resources/v2/room_
     "type": "RoomSetup",
     "id": "primary_key",
     "attributes": {
-      "created_by_id": 1,
       "created_at": "2000-01-01T12:00:00Z",
       "description": "string",
       "diagram": "string",
       "name": "string",
-      "setupable_id": 1,
       "setupable_type": "string",
       "updated_at": "2000-01-01T12:00:00Z"
     },
