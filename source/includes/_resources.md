@@ -36,6 +36,7 @@ Parameter | Value | Description
 include | resource | include associated resource
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | resolved_at | prefix with a hyphen (-resolved_at) to reverse the order
 
 ### Get a single Conflict
 
@@ -53,9 +54,11 @@ curl -v -u token:secret "https://api.planningcenteronline.com/resources/v2/confl
     "type": "Conflict",
     "id": "primary_key",
     "attributes": {
+      "created_at": "2000-01-01T12:00:00Z",
       "note": "string",
       "resolved_at": "2000-01-01T12:00:00Z",
       "resolved_by_id": 1,
+      "updated_at": "2000-01-01T12:00:00Z",
       "winner_id": 1
     },
     "relationships": {
@@ -129,6 +132,8 @@ where[name] | _string_ | query on a specific name
 where[approval_status] | _string_ | query on a specific approval_status
 where[percent_approved] | _integer_ | query on a specific percent_approved
 where[percent_rejected] | _integer_ | query on a specific percent_rejected
+where[created_at] | _date_time_ | query on a specific created_at
+where[updated_at] | _date_time_ | query on a specific updated_at
 include | owner | include associated owner
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
@@ -151,10 +156,12 @@ curl -v -u token:secret "https://api.planningcenteronline.com/resources/v2/event
     "attributes": {
       "approval_status": "string",
       "archived_at": "2000-01-01T12:00:00Z",
+      "created_at": "2000-01-01T12:00:00Z",
       "details": "string",
       "name": "string",
       "percent_approved": 1,
       "percent_rejected": 1,
+      "updated_at": "2000-01-01T12:00:00Z"
     },
     "relationships": {
       "owner": {
@@ -228,11 +235,16 @@ Parameter | Value | Description
 --------- | ----- | -----------
 where[starts_at] | _date_time_ | query on a specific starts_at
 where[ends_at] | _date_time_ | query on a specific ends_at
+where[created_at] | _date_time_ | query on a specific created_at
+where[updated_at] | _date_time_ | query on a specific updated_at
 include | event | include associated event
 include | event_times | include associated event_times
 include | resource_bookings | include associated resource_bookings
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | created_at | prefix with a hyphen (-created_at) to reverse the order
+order | updated_at | prefix with a hyphen (-updated_at) to reverse the order
+
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=event,event_times</code></aside>
 
 ### Get a single Event Instance
@@ -251,8 +263,10 @@ curl -v -u token:secret "https://api.planningcenteronline.com/resources/v2/event
     "type": "EventInstance",
     "id": "primary_key",
     "attributes": {
+      "created_at": "2000-01-01T12:00:00Z",
       "ends_at": "2000-01-01T12:00:00Z",
-      "starts_at": "2000-01-01T12:00:00Z"
+      "starts_at": "2000-01-01T12:00:00Z",
+      "updated_at": "2000-01-01T12:00:00Z"
     },
     "relationships": {
       "event": {
@@ -331,6 +345,8 @@ where[resource_id] | _integer_ | query on a specific resource_id
 where[created_by_id] | _integer_ | query on a specific created_by_id
 where[event_id] | _integer_ | query on a specific event_id
 where[percent_approved] | _integer_ | query on a specific percent_approved
+where[created_at] | _date_time_ | query on a specific created_at
+where[updated_at] | _date_time_ | query on a specific updated_at
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
@@ -352,13 +368,13 @@ curl -v -u token:secret "https://api.planningcenteronline.com/resources/v2/event
     "attributes": {
       "approval_sent": true,
       "approval_status": "string",
-      "created_by_id": 1,
-      "event_id": 1,
+      "created_at": "2000-01-01T12:00:00Z",
       "percent_approved": 1,
       "quantity": 1,
       "resource_id": 1,
       "room_setup_id": 1,
-      "room_setup_info": "string"
+      "room_setup_info": "string",
+      "updated_at": "2000-01-01T12:00:00Z"
     },
     "relationships": {
       "event_resource_request": {
@@ -428,6 +444,8 @@ where[visible_on_kiosks?] | _graph/type_annotation/unknown_type_annotation_ | qu
 where[visible_on_door_signage?] | _graph/type_annotation/unknown_type_annotation_ | query on a specific visible_on_door_signage?
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | starts_at | prefix with a hyphen (-starts_at) to reverse the order
+order | ends_at | prefix with a hyphen (-ends_at) to reverse the order
 
 
 
@@ -522,8 +540,12 @@ where[first_name] | _string_ | query on a specific first_name
 where[last_name] | _string_ | query on a specific last_name
 where[middle_name] | _string_ | query on a specific middle_name
 where[account_center_id] | _integer_ | query on a specific account_center_id
+where[created_at] | _date_time_ | query on a specific created_at
+where[updated_at] | _date_time_ | query on a specific updated_at
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | created_at | prefix with a hyphen (-created_at) to reverse the order
+order | updated_at | prefix with a hyphen (-updated_at) to reverse the order
 
 ### Get a single Person
 
@@ -545,6 +567,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/resources/v2/peopl
       "avatar_url": "string",
       "child": true,
       "contact_data": "string",
+      "created_at": "2000-01-01T12:00:00Z",
       "facebook_id": 1,
       "first_name": "string",
       "gender": "string",
@@ -558,7 +581,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/resources/v2/peopl
       "remote_id": 1,
       "resolves_conflicts": true,
       "site_administrator": true,
-      "status": 1
+      "status": 1,
+      "updated_at": "2000-01-01T12:00:00Z"
     },
     "relationships": {
     }
@@ -612,12 +636,16 @@ where[name] | _string_ | query on a specific name
 where[kind] | _string_ | query on a specific kind
 where[resource_folder_id] | _integer_ | query on a specific resource_folder_id
 where[serial_number] | _string_ | query on a specific serial_number
+where[created_at] | _date_time_ | query on a specific created_at
+where[updated_at] | _date_time_ | query on a specific updated_at
 include | event_resource_requests | include associated event_resource_requests
 include | resource_approval_groups | include associated resource_approval_groups
 include | resource_questions | include associated resource_questions
 include | conflicts | include associated conflicts
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | created_at | prefix with a hyphen (-created_at) to reverse the order
+order | updated_at | prefix with a hyphen (-updated_at) to reverse the order
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=event_resource_requests,resource_approval_groups</code></aside>
 
@@ -638,6 +666,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/resources/v2/resou
     "id": "primary_key",
     "attributes": {
       "created_by_id": 1,
+      "created_at": "2000-01-01T12:00:00Z",
       "description": "string",
       "expires_at": "2000-01-01T12:00:00Z",
       "home_location": "string",
@@ -646,7 +675,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/resources/v2/resou
       "name": "string",
       "quantity": 1,
       "resource_folder_id": 1,
-      "serial_number": "string"
+      "serial_number": "string",
+      "updated_at": "2000-01-01T12:00:00Z"
     },
     "relationships": {
     }
@@ -714,8 +744,12 @@ Parameter | Value | Description
 --------- | ----- | -----------
 where[name] | _string_ | query on a specific name
 include | approvers | include associated approvers
+where[created_at] | _date_time_ | query on a specific created_at
+where[updated_at] | _date_time_ | query on a specific updated_at
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | created_at | prefix with a hyphen (-created_at) to reverse the order
+order | updated_at | prefix with a hyphen (-updated_at) to reverse the order
 
 ### Get a single Resource Approval Group
 
@@ -733,7 +767,9 @@ curl -v -u token:secret "https://api.planningcenteronline.com/resources/v2/resou
     "type": "ResourceApprovalGroup",
     "id": "primary_key",
     "attributes": {
-      "name": "string"
+      "created_at": "2000-01-01T12:00:00Z",
+      "name": "string",
+      "updated_at": "2000-01-01T12:00:00Z"
     },
     "relationships": {
     }
@@ -793,8 +829,12 @@ where[event_resource_request_id] | _integer_ | query on a specific event_resourc
 where[starts_at] | _date_time_ | query on a specific starts_at
 where[ends_at] | _date_time_ | query on a specific ends_at
 where[resource_id] | _integer_ | query on a specific resource_id
+where[created_at] | _date_time_ | query on a specific created_at
+where[updated_at] | _date_time_ | query on a specific updated_at
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | created_at | prefix with a hyphen (-created_at) to reverse the order
+order | updated_at | prefix with a hyphen (-updated_at) to reverse the order
 
 ### Get a single Resource Booking
 
@@ -812,13 +852,15 @@ curl -v -u token:secret "https://api.planningcenteronline.com/resources/v2/resou
     "type": "ResourceBooking",
     "id": "primary_key",
     "attributes": {
+      "created_at": "2000-01-01T12:00:00Z",
       "ends_at": "2000-01-01T12:00:00Z",
       "event_id": 1,
       "event_instance_id": 1,
       "event_resource_request_id": 1,
       "quantity": 1,
       "resource_id": 1,
-      "starts_at": "2000-01-01T12:00:00Z"
+      "starts_at": "2000-01-01T12:00:00Z",
+      "updated_at": "2000-01-01T12:00:00Z"
     },
     "relationships": {
     }
@@ -873,6 +915,8 @@ Parameter | Value | Description
 --------- | ----- | -----------
 where[kind] | _string_ | query on a specific kind
 where[resource_id] | _integer_ | query on a specific resource_id
+where[created_at] | _date_time_ | query on a specific created_at
+where[updated_at] | _date_time_ | query on a specific updated_at
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
@@ -894,12 +938,13 @@ curl -v -u token:secret "https://api.planningcenteronline.com/resources/v2/resou
     "attributes": {
       "choices": "string",
       "created_by_id": 1,
+      "created_at": "2000-01-01T12:00:00Z",
       "kind": "string",
       "multiple_select": true,
       "optional": true,
       "position": 1,
       "question": "string",
-      "resource_id": 1
+      "updated_at": "2000-01-01T12:00:00Z"
     },
     "relationships": {
     }
@@ -954,8 +999,12 @@ Parameter | Value | Description
 --------- | ----- | -----------
 where[name] | _string_ | query on a specific name
 where[setupable_type] | _string_ | query on a specific setupable_type
+where[created_at] | _date_time_ | query on a specific created_at
+where[updated_at] | _date_time_ | query on a specific updated_at
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | created_at | prefix with a hyphen (-created_at) to reverse the order
+order | updated_at | prefix with a hyphen (-updated_at) to reverse the order
 
 ### Get a single Room Setup
 
@@ -974,11 +1023,13 @@ curl -v -u token:secret "https://api.planningcenteronline.com/resources/v2/room_
     "id": "primary_key",
     "attributes": {
       "created_by_id": 1,
+      "created_at": "2000-01-01T12:00:00Z",
       "description": "string",
       "diagram": "string",
       "name": "string",
       "setupable_id": 1,
-      "setupable_type": "string"
+      "setupable_type": "string",
+      "updated_at": "2000-01-01T12:00:00Z"
     },
     "relationships": {
       "room_setup": {
