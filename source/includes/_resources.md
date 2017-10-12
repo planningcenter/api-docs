@@ -237,6 +237,7 @@ where[starts_at] | _date_time_ | query on a specific starts_at
 where[ends_at] | _date_time_ | query on a specific ends_at
 where[created_at] | _date_time_ | query on a specific created_at
 where[updated_at] | _date_time_ | query on a specific updated_at
+filter | future | filter using the named scope "future"
 include | event | include associated event
 include | event_times | include associated event_times
 include | resource_bookings | include associated resource_bookings
