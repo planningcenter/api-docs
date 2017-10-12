@@ -456,6 +456,13 @@ Event Instance.
 
 
 
+### Relationships
+
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+event | Event | _false_ | 
+
 ### List Event Times
 
 ```shell
@@ -472,17 +479,25 @@ curl -v -u token:secret "https://api.planningcenteronline.com/resources/v2/event
 
 Parameter | Value | Description
 --------- | ----- | -----------
-where[event_id] | _graph/type_annotation/unknown_type_annotation_ | query on a specific event_id
 where[starts_at] | _graph/type_annotation/unknown_type_annotation_ | query on a specific starts_at
 where[ends_at] | _graph/type_annotation/unknown_type_annotation_ | query on a specific ends_at
 where[name] | _graph/type_annotation/unknown_type_annotation_ | query on a specific name
 where[visible_on_website?] | _graph/type_annotation/unknown_type_annotation_ | query on a specific visible_on_website?
 where[visible_on_kiosks?] | _graph/type_annotation/unknown_type_annotation_ | query on a specific visible_on_kiosks?
 where[visible_on_door_signage?] | _graph/type_annotation/unknown_type_annotation_ | query on a specific visible_on_door_signage?
+include | event | include associated event
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 order | starts_at | prefix with a hyphen (-starts_at) to reverse the order
 order | ends_at | prefix with a hyphen (-ends_at) to reverse the order
+
+### Associations for an Event Time
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL | Endpoint
+----------- | --- | --------
+event | https://api.planningcenteronline.com/resources/v2/event_instances/1/event_times/1/event | Event
 
 
 
