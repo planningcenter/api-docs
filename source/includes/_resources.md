@@ -901,6 +901,12 @@ where[ends_at] | _date_time_ | query on a specific ends_at
 where[resource_id] | _integer_ | query on a specific resource_id
 where[created_at] | _date_time_ | query on a specific created_at
 where[updated_at] | _date_time_ | query on a specific updated_at
+filter | future | filter using the named scope "future"
+filter | approved | filter using the named scope "approved"
+filter | pending | filter using the named scope "pending"
+filter | rejected | filter using the named scope "rejected"
+filter | rooms | filter using the named scope "rooms"
+filter | resources | filter using the named scope "resources"
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 order | created_at | prefix with a hyphen (-created_at) to reverse the order
