@@ -806,13 +806,16 @@ curl -v -u token:secret "https://api.planningcenteronline.com/resources/v2/resou
 Parameter | Value | Description
 --------- | ----- | -----------
 where[name] | _string_ | query on a specific name
-include | approvers | include associated approvers
 where[created_at] | _date_time_ | query on a specific created_at
 where[updated_at] | _date_time_ | query on a specific updated_at
+include | people | include associated people
+include | resources | include associated resources
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 order | created_at | prefix with a hyphen (-created_at) to reverse the order
 order | updated_at | prefix with a hyphen (-updated_at) to reverse the order
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=people,resources</code></aside>
 
 ### Get a single Resource Approval Group
 
@@ -848,7 +851,10 @@ curl -v -u token:secret "https://api.planningcenteronline.com/resources/v2/resou
 
 Parameter | Value | Description
 --------- | ----- | -----------
-include | approvers | include associated approvers
+include | people | include associated people
+include | resources | include associated resources
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=people,resources</code></aside>
 
 ### Associations for a Resource Approval Group
 
@@ -856,7 +862,8 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
-approvers | https://api.planningcenteronline.com/resources/v2/resource_approval_groups/1/approvers | Person
+people | https://api.planningcenteronline.com/resources/v2/resource_approval_groups/1/people | Person
+resources | https://api.planningcenteronline.com/resources/v2/resource_approval_groups/1/resources | Resource
 
 
 
