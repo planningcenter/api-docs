@@ -102,6 +102,13 @@ An event.
 
 
 
+### Relationships
+
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+owner | Person | _false_ | 
+
 ### List Events
 
 ```shell
@@ -120,10 +127,9 @@ Parameter | Value | Description
 --------- | ----- | -----------
 where[name] | _string_ | query on a specific name
 where[approval_status] | _string_ | query on a specific approval_status
-where[event_folder_id] | _integer_ | query on a specific event_folder_id
-where[owner_id] | _integer_ | query on a specific owner_id
 where[percent_approved] | _integer_ | query on a specific percent_approved
 where[percent_rejected] | _integer_ | query on a specific percent_rejected
+include | owner | include associated owner
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
@@ -145,16 +151,18 @@ curl -v -u token:secret "https://api.planningcenteronline.com/resources/v2/event
     "attributes": {
       "approval_status": "string",
       "archived_at": "2000-01-01T12:00:00Z",
-      "created_by_id": 1,
       "details": "string",
-      "event_folder_id": 1,
       "name": "string",
-      "owner_id": 1,
       "percent_approved": 1,
       "percent_rejected": 1,
-      "updated_by_id": 1
     },
     "relationships": {
+      "owner": {
+        "data": {
+          "type": "Person",
+          "id": "123"
+        }
+      }
     }
   }
 }
@@ -166,7 +174,9 @@ curl -v -u token:secret "https://api.planningcenteronline.com/resources/v2/event
 
 #### URL Parameters
 
-_none_
+Parameter | Value | Description
+--------- | ----- | -----------
+include | owner | include associated owner
 
 ### Associations for an Event
 
