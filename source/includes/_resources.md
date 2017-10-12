@@ -878,6 +878,15 @@ A specific booking of a resource for an event instance.
 
 
 
+### Relationships
+
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+event | Event | _false_ | 
+event_instance | EventInstance | _false_ | 
+resource | Resource | _false_ | 
+
 ### List Resource Bookings
 
 ```shell
@@ -894,11 +903,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/resources/v2/resou
 
 Parameter | Value | Description
 --------- | ----- | -----------
-where[event_id] | _integer_ | query on a specific event_id
-where[event_resource_request_id] | _integer_ | query on a specific event_resource_request_id
 where[starts_at] | _date_time_ | query on a specific starts_at
 where[ends_at] | _date_time_ | query on a specific ends_at
-where[resource_id] | _integer_ | query on a specific resource_id
 where[created_at] | _date_time_ | query on a specific created_at
 where[updated_at] | _date_time_ | query on a specific updated_at
 filter | future | filter using the named scope "future"
@@ -907,10 +913,16 @@ filter | pending | filter using the named scope "pending"
 filter | rejected | filter using the named scope "rejected"
 filter | rooms | filter using the named scope "rooms"
 filter | resources | filter using the named scope "resources"
+include | event | include associated event
+include | resource | include associated resource
+include | event_instance | include associated event_instance
+include | event_resource_request | include associated event_resource_request
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 order | created_at | prefix with a hyphen (-created_at) to reverse the order
 order | updated_at | prefix with a hyphen (-updated_at) to reverse the order
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=event,resource</code></aside>
 
 ### Get a single Resource Booking
 
@@ -930,15 +942,29 @@ curl -v -u token:secret "https://api.planningcenteronline.com/resources/v2/resou
     "attributes": {
       "created_at": "2000-01-01T12:00:00Z",
       "ends_at": "2000-01-01T12:00:00Z",
-      "event_id": 1,
-      "event_instance_id": 1,
-      "event_resource_request_id": 1,
       "quantity": 1,
-      "resource_id": 1,
       "starts_at": "2000-01-01T12:00:00Z",
       "updated_at": "2000-01-01T12:00:00Z"
     },
     "relationships": {
+      "event": {
+        "data": {
+          "type": "Event",
+          "id": "123"
+        }
+      },
+      "event_instance": {
+        "data": {
+          "type": "EventInstance",
+          "id": "123"
+        }
+      },
+      "resource": {
+        "data": {
+          "type": "Resource",
+          "id": "123"
+        }
+      }
     }
   }
 }
@@ -950,7 +976,14 @@ curl -v -u token:secret "https://api.planningcenteronline.com/resources/v2/resou
 
 #### URL Parameters
 
-_none_
+Parameter | Value | Description
+--------- | ----- | -----------
+include | event | include associated event
+include | resource | include associated resource
+include | event_instance | include associated event_instance
+include | event_resource_request | include associated event_resource_request
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=event,resource</code></aside>
 
 ### Associations for a Resource Booking
 
@@ -959,6 +992,9 @@ You can append one of the following associations onto this resource URL to jump 
 Association | URL | Endpoint
 ----------- | --- | --------
  |  | 
+ |  | 
+event_instance | https://api.planningcenteronline.com/resources/v2/resource_bookings/1/event_instance | EventInstance
+resource | https://api.planningcenteronline.com/resources/v2/resource_bookings/1/resource | Resource
 
 
 
