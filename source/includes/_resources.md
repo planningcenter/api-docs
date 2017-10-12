@@ -203,6 +203,13 @@ A specific occurence of an event.
 
 
 
+### Relationships
+
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+event | Event | _false_ | 
+
 ### List Event Instances
 
 ```shell
@@ -221,9 +228,12 @@ Parameter | Value | Description
 --------- | ----- | -----------
 where[starts_at] | _date_time_ | query on a specific starts_at
 where[ends_at] | _date_time_ | query on a specific ends_at
-where[event_id] | _integer_ | query on a specific event_id
+include | event | include associated event
+include | event_times | include associated event_times
+include | resource_bookings | include associated resource_bookings
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=event,event_times</code></aside>
 
 ### Get a single Event Instance
 
@@ -242,10 +252,15 @@ curl -v -u token:secret "https://api.planningcenteronline.com/resources/v2/event
     "id": "primary_key",
     "attributes": {
       "ends_at": "2000-01-01T12:00:00Z",
-      "event_id": 1,
       "starts_at": "2000-01-01T12:00:00Z"
     },
     "relationships": {
+      "event": {
+        "data": {
+          "type": "Event",
+          "id": "123"
+        }
+      }
     }
   }
 }
@@ -257,7 +272,13 @@ curl -v -u token:secret "https://api.planningcenteronline.com/resources/v2/event
 
 #### URL Parameters
 
-_none_
+Parameter | Value | Description
+--------- | ----- | -----------
+include | event | include associated event
+include | event_times | include associated event_times
+include | resource_bookings | include associated resource_bookings
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=event,event_times</code></aside>
 
 ### Associations for an Event Instance
 
@@ -265,6 +286,7 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
+event | https://api.planningcenteronline.com/resources/v2/event_instances/1/event | Event
 event_times | https://api.planningcenteronline.com/resources/v2/event_instances/1/event_times | EventTime
 resource_bookings | https://api.planningcenteronline.com/resources/v2/event_instances/1/resource_bookings | ResourceBooking
 
