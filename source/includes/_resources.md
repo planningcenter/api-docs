@@ -1112,6 +1112,13 @@ A question to answer when requesting to book a resource.
 
 
 
+### Relationships
+
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+resource | Resource | _false_ | 
+
 ### List Resource Questions
 
 ```shell
@@ -1129,7 +1136,6 @@ curl -v -u token:secret "https://api.planningcenteronline.com/resources/v2/resou
 Parameter | Value | Description
 --------- | ----- | -----------
 where[kind] | _string_ | query on a specific kind
-where[resource_id] | _integer_ | query on a specific resource_id
 where[created_at] | _date_time_ | query on a specific created_at
 where[updated_at] | _date_time_ | query on a specific updated_at
 offset | _integer_ | get results from given offset
@@ -1152,7 +1158,6 @@ curl -v -u token:secret "https://api.planningcenteronline.com/resources/v2/resou
     "id": "primary_key",
     "attributes": {
       "choices": "string",
-      "created_by_id": 1,
       "created_at": "2000-01-01T12:00:00Z",
       "kind": "string",
       "multiple_select": true,
@@ -1162,6 +1167,12 @@ curl -v -u token:secret "https://api.planningcenteronline.com/resources/v2/resou
       "updated_at": "2000-01-01T12:00:00Z"
     },
     "relationships": {
+      "resource": {
+        "data": {
+          "type": "Resource",
+          "id": "123"
+        }
+      }
     }
   }
 }
