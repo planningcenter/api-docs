@@ -926,6 +926,8 @@ include | event_instance | include associated event_instance
 include | event_resource_request | include associated event_resource_request
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | starts_at | prefix with a hyphen (-starts_at) to reverse the order
+order | ends_at | prefix with a hyphen (-ends_at) to reverse the order
 order | created_at | prefix with a hyphen (-created_at) to reverse the order
 order | updated_at | prefix with a hyphen (-updated_at) to reverse the order
 
