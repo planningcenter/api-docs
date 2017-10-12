@@ -555,6 +555,7 @@ events | https://api.planningcenteronline.com/resources/v2/events | Event
 people | https://api.planningcenteronline.com/resources/v2/people | Person
 resource_approval_groups | https://api.planningcenteronline.com/resources/v2/resource_approval_groups | ResourceApprovalGroup
 resource_bookings | https://api.planningcenteronline.com/resources/v2/resource_bookings | ResourceBooking
+resource_folders | https://api.planningcenteronline.com/resources/v2/resource_folders | ResourceFolder
 resource_questions | https://api.planningcenteronline.com/resources/v2/resource_questions | ResourceQuestion
 resources | https://api.planningcenteronline.com/resources/v2/resources | Resource
 room_setups | https://api.planningcenteronline.com/resources/v2/room_setups | RoomSetup
@@ -666,7 +667,14 @@ an event.
 
 <span class='attribute-info-name'>kind</span>
 
-Possible values: `room`, `equipment`
+Possible values: `Room`, `Resource`
+
+### Relationships
+
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+resource_folder | ResourceFolder | _false_ | 
 
 ### List Resources
 
@@ -686,7 +694,6 @@ Parameter | Value | Description
 --------- | ----- | -----------
 where[name] | _string_ | query on a specific name
 where[kind] | _string_ | query on a specific kind
-where[resource_folder_id] | _integer_ | query on a specific resource_folder_id
 where[serial_number] | _string_ | query on a specific serial_number
 where[created_at] | _date_time_ | query on a specific created_at
 where[updated_at] | _date_time_ | query on a specific updated_at
@@ -717,7 +724,6 @@ curl -v -u token:secret "https://api.planningcenteronline.com/resources/v2/resou
     "type": "Resource",
     "id": "primary_key",
     "attributes": {
-      "created_by_id": 1,
       "created_at": "2000-01-01T12:00:00Z",
       "description": "string",
       "expires_at": "2000-01-01T12:00:00Z",
@@ -726,11 +732,16 @@ curl -v -u token:secret "https://api.planningcenteronline.com/resources/v2/resou
       "kind": "string",
       "name": "string",
       "quantity": 1,
-      "resource_folder_id": 1,
       "serial_number": "string",
       "updated_at": "2000-01-01T12:00:00Z"
     },
     "relationships": {
+      "resource_folder": {
+        "data": {
+          "type": "ResourceFolder",
+          "id": "123"
+        }
+      }
     }
   }
 }
@@ -935,6 +946,105 @@ You can append one of the following associations onto this resource URL to jump 
 Association | URL | Endpoint
 ----------- | --- | --------
  |  | 
+
+
+
+
+
+
+
+## ResourceFolders
+
+An organizational folder containing rooms or resources.
+
+
+
+
+### Relationships
+
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+resource_folder | ResourceFolder | _false_ | The parent resource folder
+
+### List Resource Folders
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/resources/v2/resource_folders"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/resources/v2/resource_folders`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+where[name] | _string_ | query on a specific name
+where[created_at] | _date_time_ | query on a specific created_at
+where[updated_at] | _date_time_ | query on a specific updated_at
+filter | rooms | filter using the named scope "rooms"
+filter | resources | filter using the named scope "resources"
+include | resources | include associated resources
+offset | _integer_ | get results from given offset
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | name | prefix with a hyphen (-name) to reverse the order
+order | created_at | prefix with a hyphen (-created_at) to reverse the order
+order | updated_at | prefix with a hyphen (-updated_at) to reverse the order
+
+### Get a single Resource Folder
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/resources/v2/resource_folders/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "ResourceFolder",
+    "id": "primary_key",
+    "attributes": {
+      "created_at": "2000-01-01T12:00:00Z",
+      "kind": "string",
+      "name": "string",
+      "updated_at": "2000-01-01T12:00:00Z"
+    },
+    "relationships": {
+      "resource_folder": {
+        "data": {
+          "type": "ResourceFolder",
+          "id": "123"
+        }
+      }
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/resources/v2/resource_folders/1`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+include | resources | include associated resources
+
+### Associations for a Resource Folder
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL | Endpoint
+----------- | --- | --------
+resources | https://api.planningcenteronline.com/resources/v2/resource_folders/1/resources | Resource
 
 
 
