@@ -597,6 +597,8 @@ where[created_at] | _date_time_ | query on a specific created_at
 where[updated_at] | _date_time_ | query on a specific updated_at
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | first_name | prefix with a hyphen (-first_name) to reverse the order
+order | last_name | prefix with a hyphen (-last_name) to reverse the order
 order | created_at | prefix with a hyphen (-created_at) to reverse the order
 order | updated_at | prefix with a hyphen (-updated_at) to reverse the order
 
