@@ -471,6 +471,63 @@ filename | string
 remote_link | string
 page_order | string
 
+```shell
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{"type":"Attachment","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/media/1/attachments"
+```
+
+
+#### HTTP Request
+
+`POST https://api.planningcenteronline.com/services/v2/media/1/attachments`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+file_upload_identifier | string
+filename | string
+remote_link | string
+page_order | string
+
+```shell
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{"type":"Attachment","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/series/1/plans/1/attachments"
+```
+
+
+#### HTTP Request
+
+`POST https://api.planningcenteronline.com/services/v2/series/1/plans/1/attachments`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+file_upload_identifier | string
+filename | string
+remote_link | string
+page_order | string
+
+```shell
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{"type":"Attachment","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/service_types/1/attachments"
+```
+
+
+#### HTTP Request
+
+`POST https://api.planningcenteronline.com/services/v2/service_types/1/attachments`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+file_upload_identifier | string
+filename | string
+remote_link | string
+page_order | string
+
 ### Update an existing Attachment
 
 ```shell
