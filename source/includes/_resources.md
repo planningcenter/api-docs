@@ -479,12 +479,11 @@ curl -v -u token:secret "https://api.planningcenteronline.com/resources/v2/event
 
 Parameter | Value | Description
 --------- | ----- | -----------
-where[starts_at] | _graph/type_annotation/unknown_type_annotation_ | query on a specific starts_at
-where[ends_at] | _graph/type_annotation/unknown_type_annotation_ | query on a specific ends_at
-where[name] | _graph/type_annotation/unknown_type_annotation_ | query on a specific name
-where[visible_on_website?] | _graph/type_annotation/unknown_type_annotation_ | query on a specific visible_on_website?
-where[visible_on_kiosks?] | _graph/type_annotation/unknown_type_annotation_ | query on a specific visible_on_kiosks?
-where[visible_on_door_signage?] | _graph/type_annotation/unknown_type_annotation_ | query on a specific visible_on_door_signage?
+where[starts_at] | _date_time_ | query on a specific starts_at
+where[ends_at] | _date_time_ | query on a specific ends_at
+where[name] | _date_time_ | query on a specific name
+where[visible_on_kiosks] | _boolean_ | query on a specific visible_on_kiosks
+where[visible_on_widget_and_ical] | _boolean_ | query on a specific visible_on_widget_and_ical
 include | event | include associated event
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
