@@ -2,6 +2,115 @@
 
 Reserve rooms, publish event calendars, and revolutionize the way you allocate your church’s resources
 
+## Attachments
+
+    An uploaded file.
+
+
+### Attribute Info
+
+<span class='attribute-info-name'>file_size</span>
+
+File size in bytes
+
+### Relationships
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+event | Event | _false_ | 
+
+### List Attachments
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/resources/v2/attachments"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/resources/v2/attachments`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+where[name] | _string_ | query on a specific name
+where[description] | _string_ | query on a specific description
+where[content_type] | _string_ | query on a specific content_type
+where[created_at] | _date_time_ | query on a specific created_at
+where[updated_at] | _date_time_ | query on a specific updated_at
+where[file_size] | _integer_ | query on a specific file_size
+include | event | include associated event
+offset | _integer_ | get results from given offset
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | name | prefix with a hyphen (-name) to reverse the order
+order | description | prefix with a hyphen (-description) to reverse the order
+order | content_type | prefix with a hyphen (-content_type) to reverse the order
+order | created_at | prefix with a hyphen (-created_at) to reverse the order
+order | updated_at | prefix with a hyphen (-updated_at) to reverse the order
+order | file_size | prefix with a hyphen (-file_size) to reverse the order
+
+### Get a single Attachment
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/resources/v2/attachments/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "Attachment",
+    "id": "primary_key",
+    "attributes": {
+      "content_type": "string",
+      "created_at": "2000-01-01T12:00:00Z",
+      "description": "string",
+      "file_size": 1,
+      "name": "string",
+      "updated_at": "2000-01-01T12:00:00Z",
+      "url": "string"
+    },
+    "relationships": {
+      "event": {
+        "data": {
+          "type": "Event",
+          "id": "123"
+        }
+      }
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/resources/v2/attachments/1`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+include | event | include associated event
+
+### Associations for an Attachment
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL | Endpoint
+----------- | --- | --------
+event | https://api.planningcenteronline.com/resources/v2/attachments/1/event | Event
+
+
+
+
+
+
+
 ## Conflicts
 
 A Conflict between two events caused by overlapping event resource
@@ -11,7 +120,6 @@ requests.
 
 
 ### Relationships
-
 
 Name | Type | To Many | Description
 ---- | ---- | ------- | -----------
@@ -107,10 +215,9 @@ An event.
 
 ### Relationships
 
-
 Name | Type | To Many | Description
 ---- | ---- | ------- | -----------
-owner | Person | _false_ | 
+owner | Person | _false_ |  | attachments | Attachment | _true_ | 
 
 ### List Events
 
@@ -135,8 +242,11 @@ where[percent_rejected] | _integer_ | query on a specific percent_rejected
 where[created_at] | _date_time_ | query on a specific created_at
 where[updated_at] | _date_time_ | query on a specific updated_at
 include | owner | include associated owner
+include | attachments | include associated attachments
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=owner,attachments</code></aside>
 
 ### Get a single Event
 
@@ -164,6 +274,14 @@ curl -v -u token:secret "https://api.planningcenteronline.com/resources/v2/event
       "updated_at": "2000-01-01T12:00:00Z"
     },
     "relationships": {
+      "attachments": {
+        "data": [
+          {
+            "type": "Attachment",
+            "id": "123"
+          }
+        ]
+      },
       "owner": {
         "data": {
           "type": "Person",
@@ -184,6 +302,9 @@ curl -v -u token:secret "https://api.planningcenteronline.com/resources/v2/event
 Parameter | Value | Description
 --------- | ----- | -----------
 include | owner | include associated owner
+include | attachments | include associated attachments
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=owner,attachments</code></aside>
 
 ### Associations for an Event
 
@@ -191,10 +312,12 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
+attachments | https://api.planningcenteronline.com/resources/v2/events/1/attachments | Attachment
  |  | 
 conflicts | https://api.planningcenteronline.com/resources/v2/events/1/conflicts | Conflict
 event_instances | https://api.planningcenteronline.com/resources/v2/events/1/event_instances | EventInstance
 event_resource_requests | https://api.planningcenteronline.com/resources/v2/events/1/event_resource_requests | EventResourceRequest
+owner | https://api.planningcenteronline.com/resources/v2/events/1/owner | Person
 resource_bookings | https://api.planningcenteronline.com/resources/v2/events/1/resource_bookings | ResourceBooking
 
 
@@ -211,7 +334,6 @@ A specific occurence of an event.
 
 
 ### Relationships
-
 
 Name | Type | To Many | Description
 ---- | ---- | ------- | -----------
@@ -322,14 +444,9 @@ A request of a resource for a specific event.
 
 ### Relationships
 
-
 Name | Type | To Many | Description
 ---- | ---- | ------- | -----------
-event | Event | _false_ | 
-resource | Resource | _false_ | 
-event_resource_request | EventResourceRequest | _false_ | 
-created_by | Person | _false_ | 
-room_setup | RoomSetup | _false_ | 
+event | Event | _false_ |  | resource | Resource | _false_ |  | event_resource_request | EventResourceRequest | _false_ |  | created_by | Person | _false_ |  | room_setup | RoomSetup | _false_ | 
 
 ### List Event Resource Requests
 
@@ -349,6 +466,7 @@ Parameter | Value | Description
 --------- | ----- | -----------
 where[approval_status] | _string_ | query on a specific approval_status
 where[percent_approved] | _integer_ | query on a specific percent_approved
+where[approval_sent] | _boolean_ | query on a specific approval_sent
 where[created_at] | _date_time_ | query on a specific created_at
 where[updated_at] | _date_time_ | query on a specific updated_at
 include | event | include associated event
@@ -458,7 +576,6 @@ Event Instance.
 
 ### Relationships
 
-
 Name | Type | To Many | Description
 ---- | ---- | ------- | -----------
 event | Event | _false_ | 
@@ -508,6 +625,8 @@ event | https://api.planningcenteronline.com/resources/v2/event_instances/1/even
 
 
 
+
+
 ### Get a single Organization
 
 ```shell
@@ -522,7 +641,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/resources/v2"
 {
   "data": {
     "type": "Organization",
-    "id": "1",
+    "id": "primary_key",
     "attributes": {
       "name": "string"
     },
@@ -546,6 +665,7 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
+attachments | https://api.planningcenteronline.com/resources/v2/attachments | Attachment
  |  | 
 conflicts | https://api.planningcenteronline.com/resources/v2/conflicts | Conflict
 event_instances | https://api.planningcenteronline.com/resources/v2/event_instances | EventInstance
@@ -570,6 +690,12 @@ room_setups | https://api.planningcenteronline.com/resources/v2/room_setups | Ro
 The people in your organization.
 
 
+### Attribute Info
+
+<span class='attribute-info-name'>status</span>
+
+Possible values: `active`, `pending`, or `inactive`
+
 
 
 ### List People
@@ -591,7 +717,6 @@ Parameter | Value | Description
 where[first_name] | _string_ | query on a specific first_name
 where[last_name] | _string_ | query on a specific last_name
 where[middle_name] | _string_ | query on a specific middle_name
-where[account_center_id] | _integer_ | query on a specific account_center_id
 where[created_at] | _date_time_ | query on a specific created_at
 where[updated_at] | _date_time_ | query on a specific updated_at
 offset | _integer_ | get results from given offset
@@ -617,7 +742,6 @@ curl -v -u token:secret "https://api.planningcenteronline.com/resources/v2/peopl
     "type": "Person",
     "id": "primary_key",
     "attributes": {
-      "account_center_id": 1,
       "avatar_url": "string",
       "child": true,
       "contact_data": "string",
@@ -632,10 +756,9 @@ curl -v -u token:secret "https://api.planningcenteronline.com/resources/v2/peopl
       "name_suffix": "string",
       "pending_request_count": 1,
       "permissions": 1,
-      "remote_id": 1,
       "resolves_conflicts": true,
       "site_administrator": true,
-      "status": 1,
+      "status": "value",
       "updated_at": "2000-01-01T12:00:00Z"
     },
     "relationships": {
@@ -671,7 +794,6 @@ an event.
 Possible values: `Room`, `Resource`
 
 ### Relationships
-
 
 Name | Type | To Many | Description
 ---- | ---- | ------- | -----------
@@ -794,6 +916,8 @@ room_setups | https://api.planningcenteronline.com/resources/v2/resources/1/room
 
 
 
+
+
 ### List Resource Approval Groups
 
 ```shell
@@ -886,12 +1010,9 @@ A specific booking of a resource for an event instance.
 
 ### Relationships
 
-
 Name | Type | To Many | Description
 ---- | ---- | ------- | -----------
-event | Event | _false_ | 
-event_instance | EventInstance | _false_ | 
-resource | Resource | _false_ | 
+event | Event | _false_ |  | event_instance | EventInstance | _false_ |  | resource | Resource | _false_ | 
 
 ### List Resource Bookings
 
@@ -1019,7 +1140,6 @@ An organizational folder containing rooms or resources.
 
 ### Relationships
 
-
 Name | Type | To Many | Description
 ---- | ---- | ------- | -----------
 resource_folder | ResourceFolder | _false_ | The parent resource folder
@@ -1118,7 +1238,6 @@ A question to answer when requesting to book a resource.
 
 ### Relationships
 
-
 Name | Type | To Many | Description
 ---- | ---- | ------- | -----------
 resource | Resource | _false_ | 
@@ -1205,7 +1324,6 @@ setups.
 
 
 ### Relationships
-
 
 Name | Type | To Many | Description
 ---- | ---- | ------- | -----------
