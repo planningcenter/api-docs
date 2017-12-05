@@ -1225,10 +1225,13 @@ curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v
 
 A household membership is the linking record between a household and a person.
 
+### Attribute Info
 
+<span class='attribute-info-name'>pending</span>
+
+False when a person's memership in a household is unverified.
 
 ### Relationships
-
 
 Name | Type | To Many | Description
 ---- | ---- | ------- | -----------
@@ -1334,7 +1337,7 @@ Attribute | Type
 --------- | ----
 pending | boolean
 
-To add someone to a household, you must specify the person as a relationship:<br>
+To add someone to a household, you must specify the person as a relationship:
 `{"data":{"attributes":{},"relationships":{"person":{"data":{"type":"Person","id":"1"}}}}}`
 
 ### Update an existing Household Membership
@@ -1374,6 +1377,8 @@ curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v
 ## InactiveReasons
 
 An inactive reason is a small bit of text indicating why a member is no longer active.
+
+
 
 
 
