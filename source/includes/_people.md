@@ -1493,6 +1493,8 @@ A list is a powerful tool for finding and grouping people together using any cri
 
 
 
+
+
 ### List Lists
 
 ```shell
@@ -1519,6 +1521,7 @@ include | owner | include associated owner
 include | people | include associated people
 include | rules | include associated rules
 include | shares | include associated shares
+include | mailchimp_sync_status | include associated mailchimp_sync_status
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 order | name | prefix with a hyphen (-name) to reverse the order
@@ -1577,6 +1580,7 @@ include | owner | include associated owner
 include | people | include associated people
 include | rules | include associated rules
 include | shares | include associated shares
+include | mailchimp_sync_status | include associated mailchimp_sync_status
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=created_by,updated_by</code></aside>
 
@@ -1587,6 +1591,7 @@ You can append one of the following associations onto this resource URL to jump 
 Association | URL | Endpoint
 ----------- | --- | --------
 created_by | https://api.planningcenteronline.com/people/v2/lists/1/created_by | Person
+mailchimp_sync_status | https://api.planningcenteronline.com/people/v2/lists/1/mailchimp_sync_status | MailchimpSyncStatus
 owner | https://api.planningcenteronline.com/people/v2/lists/1/owner | Person
 people | https://api.planningcenteronline.com/people/v2/lists/1/people | Person
 rules | https://api.planningcenteronline.com/people/v2/lists/1/rules | Rule
@@ -1599,6 +1604,7 @@ You can perform the following actions on a List by POSTing to the specified URL.
 
 Action | URL | Description
 ------ | --- | -----------
+mailchimp_sync | https://api.planningcenteronline.com/people/v2/lists/1/mailchimp_sync | Sync a List to Mailchimp. (Mailchimp integration must already be configured for this organization.)
 run | https://api.planningcenteronline.com/people/v2/lists/1/run | Run a List to update its results.
 
 
@@ -1691,9 +1697,80 @@ person | https://api.planningcenteronline.com/people/v2/lists/1/shares/1/person 
 
 
 
+## MailchimpSyncStatuses
+
+The status of syncing a List with Mailchimp.
+
+
+
+
+
+### List Mailchimp Sync Statuses
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/lists/1/mailchimp_sync_status"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/people/v2/lists/1/mailchimp_sync_status`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+offset | _integer_ | get results from given offset
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+### Get a single Mailchimp Sync Status
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/lists/1/mailchimp_sync_status/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "MailchimpSyncStatus",
+    "id": "primary_key",
+    "attributes": {
+      "completed_at": "unknown",
+      "error": "unknown",
+      "progress": "unknown",
+      "segment_id": "unknown",
+      "status": "unknown"
+    },
+    "relationships": {
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/people/v2/lists/1/mailchimp_sync_status/1`
+
+#### URL Parameters
+
+_none_
+
+
+
+
+
+
+
 ## MaritalStatuses
 
 A martial status represents a member's current status, e.g. married, single, etc.
+
+
 
 
 
