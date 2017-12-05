@@ -10,7 +10,6 @@ An address represents a physical and/or mailing address for a person.
 
 ### Relationships
 
-
 Name | Type | To Many | Description
 ---- | ---- | ------- | -----------
 person | Person | _false_ | 
@@ -45,6 +44,8 @@ order | zip | prefix with a hyphen (-zip) to reverse the order
 order | street | prefix with a hyphen (-street) to reverse the order
 order | location | prefix with a hyphen (-location) to reverse the order
 order | primary | prefix with a hyphen (-primary) to reverse the order
+order | created_at | prefix with a hyphen (-created_at) to reverse the order
+order | updated_at | prefix with a hyphen (-updated_at) to reverse the order
 
 ### Get a single Address
 
@@ -63,10 +64,12 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/addresse
     "id": "primary_key",
     "attributes": {
       "city": "string",
+      "created_at": "2000-01-01T12:00:00Z",
       "location": "string",
       "primary": true,
       "state": "string",
       "street": "string",
+      "updated_at": "2000-01-01T12:00:00Z",
       "zip": "string"
     },
     "relationships": {
@@ -153,6 +156,8 @@ An app is one of the handful of apps that PCO offers that organizations can subs
 
 
 
+
+
 ### List Apps
 
 ```shell
@@ -221,6 +226,8 @@ A Campus is a location belonging to an Organization
 
 
 
+
+
 ### List Campuses
 
 ```shell
@@ -284,6 +291,8 @@ _none_
 
 
 
+
+
 ### List Carriers
 
 ```shell
@@ -314,6 +323,8 @@ order | international | prefix with a hyphen (-international) to reverse the ord
 ## Conditions
 
 A condition is an individual criterion used by a List Rule.
+
+
 
 
 
@@ -411,6 +422,8 @@ A Connected Person is an account from a different organization linked to an acco
 
 
 
+
+
 ### List Connected People
 
 ```shell
@@ -484,7 +497,6 @@ An email represents an email address and location.
 
 ### Relationships
 
-
 Name | Type | To Many | Description
 ---- | ---- | ------- | -----------
 person | Person | _false_ | 
@@ -513,6 +525,8 @@ per_page | _integer_ | how many records to return per page (min=1, max=100, defa
 order | address | prefix with a hyphen (-address) to reverse the order
 order | location | prefix with a hyphen (-location) to reverse the order
 order | primary | prefix with a hyphen (-primary) to reverse the order
+order | created_at | prefix with a hyphen (-created_at) to reverse the order
+order | updated_at | prefix with a hyphen (-updated_at) to reverse the order
 
 ### Get a single Email
 
@@ -531,8 +545,10 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/emails/1
     "id": "primary_key",
     "attributes": {
       "address": "string",
+      "created_at": "2000-01-01T12:00:00Z",
       "location": "string",
-      "primary": true
+      "primary": true,
+      "updated_at": "2000-01-01T12:00:00Z"
     },
     "relationships": {
       "person": {
@@ -621,7 +637,6 @@ A field datum is an individual piece of data for a custom field.
 
 
 ### Relationships
-
 
 Name | Type | To Many | Description
 ---- | ---- | ------- | -----------
@@ -779,6 +794,8 @@ curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v
 ## FieldDefinitions
 
 A field definition represents a custom field -- its name, data type, etc.
+
+
 
 
 
@@ -943,6 +960,8 @@ A field option represents an individual option for a custom field of type "selec
 
 
 
+
+
 ### List Field Options
 
 ```shell
@@ -1061,6 +1080,8 @@ A household links people together and can have a primary contact. To add a perso
 
 
 
+
+
 ### List Households
 
 ```shell
@@ -1161,7 +1182,7 @@ name | string
 member_count | integer
 primary_contact_id | integer
 
-To create a new household, you must specify the primary contact and the people as relationships:<br>
+To create a new household, you must specify the primary contact and the people as relationships:
 `{"data":{"attributes":{"name":"Smith"},"relationships":{"people":{"data":[{"type":"Person","id":"1"},{"type":"Person","id":"2"}]},"primary_contact":{"data":{"type":"Person","id":"1"}}}}}`
 
 ### Update an existing Household
