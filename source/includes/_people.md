@@ -1463,8 +1463,6 @@ curl -v -u token:secret -X PATCH -d '{"data":{"type":"InactiveReason","id":"1","
 ```
 
 
-<aside class='info'>Only users with the role <code>manager</code> can update this resource.</aside>
-
 #### HTTP Request
 
 `PATCH https://api.planningcenteronline.com/people/v2/inactive_reasons/1`
@@ -1779,8 +1777,6 @@ value | string
 curl -v -u token:secret -X PATCH -d '{"data":{"type":"MaritalStatus","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/marital_statuses/1"
 ```
 
-
-<aside class='info'>Only users with the role <code>manager</code> can update this resource.</aside>
 
 #### HTTP Request
 
