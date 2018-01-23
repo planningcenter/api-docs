@@ -71,7 +71,7 @@ curl -u app_id:secret https://api.planningcenteronline.com/people/v2/people
 Create a Personal Access Token and use HTTP Basic Auth if you just need access to your own account:
 
 1. Visit [api.planningcenteronline.com/oauth/applications](https://api.planningcenteronline.com/oauth/applications).
-2. Create a new "HTTP Basic Application"
+2. Create a new "Personal Access Token"
 3. Pass your token and secret in every request using [HTTP Basic Auth](https://en.wikipedia.org/wiki/Basic_access_authentication).
 
 ## OAuth 2.0
