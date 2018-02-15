@@ -16,7 +16,7 @@ desc 'Fetch newest docs from the API'
 task :fetch do
   base_url = case ENV['DEPLOY_ENV']
   when 'development'
-    'http://api.pco.dev'
+    'http://api.pco.test'
   when 'staging'
     'https://api-staging.planningcenteronline.com'
   else
