@@ -331,7 +331,7 @@ For cards, this is the card brand (eg Visa, Mastercard, etc). For checks, this i
 
 <span class='attribute-info-name'>payment_status</span>
 
-For stripe payments only.
+Read only. One of `pending`, `succeeded`, `failed`, or `unknown`.For Stripe donations, this is the payment status. For batch donations, `pending` and `succeeded` values are dependent on whether the batch has been committed.
 
 Possible values: `pending`, `succeeded`, or `failed`
 
@@ -341,6 +341,10 @@ For cards only. Will be `null` for other payment method types.
 
 Possible values: `credit`, `debit`, `prepaid`, or `unknown`
 
+<span class='attribute-info-name'>refundable</span>
+
+Read only. A boolean indicating whether this donation can be refunded via the API. Note that for some donations, this may be false, even though the donation _can_ be refunded in the UI.
+
 <span class='attribute-info-name'>payment_method</span>
 
 Possible values: `ach`, `cash`, `check`, or `card`
@@ -349,7 +353,8 @@ Possible values: `ach`, `cash`, `check`, or `card`
 
 Name | Type | To Many | Description
 ---- | ---- | ------- | -----------
-person | Person | _false_ |  | payment_source | PaymentSource | _false_ | `PaymentSource` is required, but cannot be `planning_center`, as that is reserved for Donations created in the Planning Center Giving Web UI.
+person | Person | _false_ |
+payment_source | PaymentSource | _false_ | `PaymentSource` is required, but cannot be `planning_center`, as that is reserved for Donations created in the Planning Center Giving Web UI.
 
 ### List Donations
 
@@ -367,6 +372,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/donation
 
 Parameter | Value | Description
 --------- | ----- | -----------
+where[payment_method] | _string_ | query on a specific payment_method
 include | designations | include associated designations
 include | labels | include associated labels
 offset | _integer_ | get results from given offset
@@ -402,8 +408,9 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/donation
       "payment_method": "card",
       "payment_method_sub": "debit",
       "payment_status": "succeeded",
-      "received_at": "2017-09-27T00:00:00Z",
-      "updated_at": "2017-09-27T11:14:37Z"
+      "received_at": "2018-02-15T00:00:00Z",
+      "refunded": false,
+      "updated_at": "2018-02-15T17:29:35Z"
     },
     "relationships": {
       "payment_source": {
@@ -444,6 +451,33 @@ Association | URL | Endpoint
 ----------- | --- | --------
 designations | https://api.planningcenteronline.com/giving/v2/donations/1/designations | Designation
 labels | https://api.planningcenteronline.com/giving/v2/donations/1/labels | Label
+refund | https://api.planningcenteronline.com/giving/v2/donations/1/refund | Refund
+
+### Actions for a Donation
+
+You can perform the following actions on a Donation by POSTing to the specified URL.
+
+Action | URL | Description
+------ | --- | -----------
+issue_refund | https://api.planningcenteronline.com/giving/v2/donations/1/issue_refund | Used to refund a batch donation
+
+#### issue_refund
+
+This action refunds a batch donation.
+It will respond with `unprocessable_entity` if the donation cannot be refunded, or if the donation is not part of a batch.
+
+`refunded_at` is optional, but recommended for data accuracy.
+
+```json
+{
+  "data": {
+    "attributes": {
+      "refunded_at": "1959-02-03"
+    }
+  }
+}
+```
+
 
 ### Create a new Donation
 
@@ -461,15 +495,14 @@ curl -v -u token:secret -X POST -d '{"data":{"type":"Donation","attributes":{...
 
 Attribute | Type
 --------- | ----
-payment_method | string
 payment_method_sub | string
 payment_last4 | string
 payment_brand | string
 payment_check_number | integer
 payment_check_dated_at | date
-payment_status | string
 fee_cents | integer
 received_at | date_time
+payment_method | string
 
 #### Included Resources
 
@@ -488,7 +521,7 @@ amount_cents | integer
 
 Name | Type | To Many | Description
 ---- | ---- | ------- | -----------
-fund | Fund | _false_ | 
+fund | Fund | _false_ |
 
 ```shell
 # A full example of creating a Donation...
@@ -544,15 +577,14 @@ curl -v -u token:secret -X PATCH -d '{"data":{"type":"Donation","id":"1","attrib
 
 Attribute | Type
 --------- | ----
-payment_method | string
 payment_method_sub | string
 payment_last4 | string
 payment_brand | string
 payment_check_number | integer
 payment_check_dated_at | date
-payment_status | string
 fee_cents | integer
 received_at | date_time
+payment_method | string
 
 #### Included Resources
 
@@ -571,7 +603,7 @@ amount_cents | integer
 
 Name | Type | To Many | Description
 ---- | ---- | ------- | -----------
-fund | Fund | _false_ | 
+fund | Fund | _false_ |
 
 #### Notes
 
@@ -604,7 +636,7 @@ Hex color code.
 
 <span class='attribute-info-name'>visibility</span>
 
-Possible values: `everywhere`, `admin_only`, or `nowhere`
+Possible values: `everywhere`, `admin_only`, `nowhere`, or `hidden`
 
 
 
@@ -1242,6 +1274,57 @@ You can append one of the following associations onto this resource URL to jump 
 Association | URL | Endpoint
 ----------- | --- | --------
 fund | https://api.planningcenteronline.com/giving/v2/recurring_donations/1/designations/1/fund | Fund
+
+
+
+
+
+
+
+## Refund
+
+
+
+
+
+### Get a single Refund
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/donations/1/refund"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "Refund",
+    "id": "1",
+    "attributes": {
+      "amount_cents": -2000,
+      "amount_currency": "USD",
+      "created_at": "2018-02-15T17:29:35Z",
+      "fee_cents": -88,
+      "fee_currency": "USD",
+      "payment_method": "card",
+      "refunded_at": "2018-02-15T00:00:00Z",
+      "updated_at": "2018-02-15T17:29:35Z"
+    },
+    "relationships": {
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/giving/v2/donations/1/refund`
+
+#### URL Parameters
+
+_none_
 
 
 
