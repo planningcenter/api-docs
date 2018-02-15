@@ -3632,7 +3632,7 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/g
 
 <p><span class='attribute-info-name'>payment_status</span></p>
 
-<p>For stripe payments only.</p>
+<p>Read only. One of <code class="prettyprint">pending</code>, <code class="prettyprint">succeeded</code>, <code class="prettyprint">failed</code>, or <code class="prettyprint">unknown</code>.For Stripe donations, this is the payment status. For batch donations, <code class="prettyprint">pending</code> and <code class="prettyprint">succeeded</code> values are dependent on whether the batch has been committed.</p>
 
 <p>Possible values: <code class="prettyprint">pending</code>, <code class="prettyprint">succeeded</code>, or <code class="prettyprint">failed</code></p>
 
@@ -3641,6 +3641,10 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/g
 <p>For cards only. Will be <code class="prettyprint">null</code> for other payment method types.</p>
 
 <p>Possible values: <code class="prettyprint">credit</code>, <code class="prettyprint">debit</code>, <code class="prettyprint">prepaid</code>, or <code class="prettyprint">unknown</code></p>
+
+<p><span class='attribute-info-name'>refundable</span></p>
+
+<p>Read only. A boolean indicating whether this donation can be refunded via the API. Note that for some donations, this may be false, even though the donation <em>can</em> be refunded in the UI.</p>
 
 <p><span class='attribute-info-name'>payment_method</span></p>
 
@@ -3662,6 +3666,12 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/g
 <td><em>false</em></td>
 <td></td>
 </tr>
+<tr>
+<td>payment_source</td>
+<td>PaymentSource</td>
+<td><em>false</em></td>
+<td><code class="prettyprint">PaymentSource</code> is required, but cannot be <code class="prettyprint">planning_center</code>, as that is reserved for Donations created in the Planning Center Giving Web UI.</td>
+</tr>
 </tbody></table>
 
 <h3 id="list-donations">List Donations</h3>
@@ -3682,6 +3692,11 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/g
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>where[payment_method]</td>
+<td><em>string</em></td>
+<td>query on a specific payment_method</td>
+</tr>
 <tr>
 <td>include</td>
 <td>designations</td>
@@ -3721,7 +3736,7 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/g
     </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">2000</span><span class="p">,</span><span class="w">
       </span><span class="s2">"amount_currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-09-27T11:14:37Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-02-15T17:29:35Z"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"fee_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">-88</span><span class="p">,</span><span class="w">
       </span><span class="s2">"fee_currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"payment_brand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Visa"</span><span class="p">,</span><span class="w">
@@ -3731,8 +3746,9 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/g
       </span><span class="s2">"payment_method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"card"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"payment_method_sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"debit"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"payment_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"succeeded"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"received_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-09-27T00:00:00Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-09-27T11:14:37Z"</span><span class="w">
+      </span><span class="s2">"received_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-02-15T00:00:00Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"refunded"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-02-15T17:29:35Z"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"relationships"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"payment_source"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -3800,7 +3816,45 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/g
 <td>https://api.planningcenteronline.com/giving/v2/donations/1/labels</td>
 <td>Label</td>
 </tr>
+<tr>
+<td>refund</td>
+<td>https://api.planningcenteronline.com/giving/v2/donations/1/refund</td>
+<td>Refund</td>
+</tr>
 </tbody></table>
+
+<h3 id="actions-for-a-donation">Actions for a Donation</h3>
+
+<p>You can perform the following actions on a Donation by POSTing to the specified URL.</p>
+
+<table><thead>
+<tr>
+<th>Action</th>
+<th>URL</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>issue_refund</td>
+<td>https://api.planningcenteronline.com/giving/v2/donations/1/issue_refund</td>
+<td>Used to refund a batch donation</td>
+</tr>
+</tbody></table>
+
+<h4 id="issue_refund">issue_refund</h4>
+
+<p>This action refunds a batch donation.
+It will respond with <code class="prettyprint">unprocessable_entity</code> if the donation cannot be refunded, or if the donation is not part of a batch.</p>
+
+<p><code class="prettyprint">refunded_at</code> is optional, but recommended for data accuracy.</p>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"refunded_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1959-02-03"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 
 <h3 id="create-a-new-donation">Create a new Donation</h3>
 <pre><code class="highlight shell"><span class="c"># to create a record...</span>
@@ -3819,10 +3873,6 @@ curl -v -u token:secret -X POST -d <span class="s1">'{"data":{"type":"Donation",
 <th>Type</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>payment_method</td>
-<td>string</td>
-</tr>
 <tr>
 <td>payment_method_sub</td>
 <td>string</td>
@@ -3844,16 +3894,16 @@ curl -v -u token:secret -X POST -d <span class="s1">'{"data":{"type":"Donation",
 <td>date</td>
 </tr>
 <tr>
-<td>payment_status</td>
-<td>string</td>
-</tr>
-<tr>
 <td>fee_cents</td>
 <td>integer</td>
 </tr>
 <tr>
 <td>received_at</td>
 <td>date_time</td>
+</tr>
+<tr>
+<td>payment_method</td>
+<td>string</td>
 </tr>
 </tbody></table>
 
@@ -3948,10 +3998,6 @@ curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{"type":"Donation"
 </tr>
 </thead><tbody>
 <tr>
-<td>payment_method</td>
-<td>string</td>
-</tr>
-<tr>
 <td>payment_method_sub</td>
 <td>string</td>
 </tr>
@@ -3972,16 +4018,16 @@ curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{"type":"Donation"
 <td>date</td>
 </tr>
 <tr>
-<td>payment_status</td>
-<td>string</td>
-</tr>
-<tr>
 <td>fee_cents</td>
 <td>integer</td>
 </tr>
 <tr>
 <td>received_at</td>
 <td>date_time</td>
+</tr>
+<tr>
+<td>payment_method</td>
+<td>string</td>
 </tr>
 </tbody></table>
 
@@ -4050,7 +4096,7 @@ curl -v -u token:secret -X DELETE <span class="s2">"https://api.planningcenteron
 
 <p><span class='attribute-info-name'>visibility</span></p>
 
-<p>Possible values: <code class="prettyprint">everywhere</code>, <code class="prettyprint">admin_only</code>, or <code class="prettyprint">nowhere</code></p>
+<p>Possible values: <code class="prettyprint">everywhere</code>, <code class="prettyprint">admin_only</code>, <code class="prettyprint">nowhere</code>, or <code class="prettyprint">hidden</code></p>
 
 <h3 id="list-funds">List Funds</h3>
 <pre><code class="highlight shell"><span class="c"># to list records...</span>
@@ -4096,11 +4142,11 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/g
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#9ccc79"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-09-27T11:14:37Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-02-15T17:29:35Z"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"These funds are used to support our missionary efforts here in the US."</span><span class="p">,</span><span class="w">
       </span><span class="s2">"ledger_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dm-22314"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Domestic Missions"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-09-27T11:14:37Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-02-15T17:29:35Z"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"visibility"</span><span class="p">:</span><span class="w"> </span><span class="s2">"everywhere"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"relationships"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -4297,12 +4343,12 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/g
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"brand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Visa"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-09-27T11:14:37Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-02-15T17:29:35Z"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"expiration"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8/2018"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"last4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4242"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"method_subtype"</span><span class="p">:</span><span class="w"> </span><span class="s2">"credit"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"method_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"card"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-09-27T11:14:37Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-02-15T17:29:35Z"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"relationships"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -4382,9 +4428,9 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/g
     </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PaymentSource"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-09-27T11:14:37Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-02-15T17:29:35Z"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PayPal"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-09-27T11:14:37Z"</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-02-15T17:29:35Z"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"relationships"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="p">}</span><span class="w">
@@ -4683,16 +4729,16 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/g
     </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">15000</span><span class="p">,</span><span class="w">
       </span><span class="s2">"amount_currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-09-27T11:14:37Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"last_donation_received_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-09-26T00:00:00Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"next_occurrence"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-10-26T00:00:00Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-02-15T17:29:35Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"last_donation_received_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-02-14T00:00:00Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"next_occurrence"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-03-14T00:00:00Z"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"schedule"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"day_in_month"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"day"</span><span class="p">:</span><span class="w"> </span><span class="mi">26</span><span class="w">
+          </span><span class="s2">"day"</span><span class="p">:</span><span class="w"> </span><span class="mi">14</span><span class="w">
         </span><span class="p">}</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"active"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-09-27T11:14:37Z"</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-02-15T17:29:35Z"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"relationships"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="p">}</span><span class="w">
@@ -4839,6 +4885,44 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/g
 <td>Fund</td>
 </tr>
 </tbody></table>
+
+<h2 id="refund">Refund</h2>
+
+<h3 id="get-a-single-refund">Get a single Refund</h3>
+<pre><code class="highlight shell"><span class="c"># to show...</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/giving/v2/donations/1/refund"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Refund"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"amount_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">-2000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"amount_currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-02-15T17:29:35Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"fee_cents"</span><span class="p">:</span><span class="w"> </span><span class="mi">-88</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"fee_currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"payment_method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"card"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"refunded_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-02-15T00:00:00Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-02-15T17:29:35Z"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"relationships"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/giving/v2/donations/1/refund</code></p>
+
+<h4 id="url-parameters">URL Parameters</h4>
+
+<p><em>none</em></p>
 
           <h1 id="pco-people">PCO People</h1>
 
