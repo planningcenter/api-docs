@@ -12,7 +12,7 @@ An address represents a physical and/or mailing address for a person.
 
 Name | Type | To Many | Description
 ---- | ---- | ------- | -----------
-person | Person | _false_ | 
+person | Person | _false_ |
 
 ### List Addresses
 
@@ -499,7 +499,7 @@ An email represents an email address and location.
 
 Name | Type | To Many | Description
 ---- | ---- | ------- | -----------
-person | Person | _false_ | 
+person | Person | _false_ |
 
 ### List Emails
 
@@ -640,19 +640,20 @@ A field datum is an individual piece of data for a custom field.
 
 Name | Type | To Many | Description
 ---- | ---- | ------- | -----------
-field_definition | FieldDefinition | _false_ | 
+field_definition | FieldDefinition | _false_ |
+customizable | Customizable | _false_ |
 
 ### List Field Data
 
 ```shell
 # to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1/field_data"
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/field_data"
 ```
 
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/people/v2/people/1/field_data`
+`GET https://api.planningcenteronline.com/people/v2/field_data`
 
 #### URL Parameters
 
@@ -681,7 +682,7 @@ order | file_name | prefix with a hyphen (-file_name) to reverse the order
 
 ```shell
 # to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1/field_data/1"
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/field_data/1"
 ```
 
 
@@ -700,6 +701,12 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1
       "value": "string"
     },
     "relationships": {
+      "customizable": {
+        "data": {
+          "type": "Customizable",
+          "id": "123"
+        }
+      },
       "field_definition": {
         "data": {
           "type": "FieldDefinition",
@@ -713,7 +720,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/people/v2/people/1/field_data/1`
+`GET https://api.planningcenteronline.com/people/v2/field_data/1`
 
 #### URL Parameters
 
@@ -731,9 +738,10 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
-field_definition | https://api.planningcenteronline.com/people/v2/people/1/field_data/1/field_definition | FieldDefinition
-field_option | https://api.planningcenteronline.com/people/v2/people/1/field_data/1/field_option | FieldOption
-tab | https://api.planningcenteronline.com/people/v2/people/1/field_data/1/tab | Tab
+field_definition | https://api.planningcenteronline.com/people/v2/field_data/1/field_definition | FieldDefinition
+field_option | https://api.planningcenteronline.com/people/v2/field_data/1/field_option | FieldOption
+person | https://api.planningcenteronline.com/people/v2/field_data/1/person | Person
+tab | https://api.planningcenteronline.com/people/v2/field_data/1/tab | Tab
 
 ### Create a new Field Datum
 
@@ -760,7 +768,7 @@ field_definition_id | integer
 
 ```shell
 # to update a record...
-curl -v -u token:secret -X PATCH -d '{"data":{"type":"FieldDatum","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/people/1/field_data/1"
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"FieldDatum","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/field_data/1"
 ```
 
 
@@ -768,7 +776,7 @@ curl -v -u token:secret -X PATCH -d '{"data":{"type":"FieldDatum","id":"1","attr
 
 #### HTTP Request
 
-`PATCH https://api.planningcenteronline.com/people/v2/people/1/field_data/1`
+`PATCH https://api.planningcenteronline.com/people/v2/field_data/1`
 
 #### Resource Attributes
 
@@ -781,7 +789,7 @@ field_definition_id | integer
 
 ```shell
 # to delete a record...
-curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v2/people/1/field_data/1"
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v2/field_data/1"
 ```
 
 
@@ -789,7 +797,7 @@ curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v
 
 #### HTTP Request
 
-`DELETE https://api.planningcenteronline.com/people/v2/people/1/field_data/1`
+`DELETE https://api.planningcenteronline.com/people/v2/field_data/1`
 
 ## FieldDefinitions
 
@@ -1235,7 +1243,7 @@ False when a person's memership in a household is unverified.
 
 Name | Type | To Many | Description
 ---- | ---- | ------- | -----------
-person | Person | _false_ | 
+person | Person | _false_ |
 
 ### List Household Memberships
 
@@ -1604,8 +1612,8 @@ You can perform the following actions on a List by POSTing to the specified URL.
 
 Action | URL | Description
 ------ | --- | -----------
-mailchimp_sync | https://api.planningcenteronline.com/people/v2/lists/1/mailchimp_sync | Sync a List to Mailchimp. (Mailchimp integration must already be configured for this organization.)
 run | https://api.planningcenteronline.com/people/v2/lists/1/run | Run a List to update its results.
+mailchimp_sync | https://api.planningcenteronline.com/people/v2/lists/1/mailchimp_sync | Sync a List to Mailchimp. (Mailchimp integration must already be configured for this organization.)
 
 
 
@@ -1618,6 +1626,12 @@ run | https://api.planningcenteronline.com/people/v2/lists/1/run | Run a List to
 ## ListShares
 
 A list share indicates who has access to edit a list.
+
+### Attribute Info
+
+<span class='attribute-info-name'>group</span>
+
+Possible values: `No Access`, `Viewer`, `Editor`, or `Manager`
 
 
 
@@ -1638,7 +1652,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/lists/1/
 Parameter | Value | Description
 --------- | ----- | -----------
 where[name] | _graph/type_annotation/unknown_type_annotation_ | query on a specific name
-where[group] | _integer_ | query on a specific group
+where[group] | _string_ | query on a specific group
 where[created_at] | _date_time_ | query on a specific created_at
 include | person | include associated person
 offset | _integer_ | get results from given offset
@@ -1664,7 +1678,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/lists/1/
     "id": "primary_key",
     "attributes": {
       "created_at": "2000-01-01T12:00:00Z",
-      "group": 1,
+      "group": "value",
       "name": "unknown"
     },
     "relationships": {
@@ -1883,6 +1897,12 @@ curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v
 
 A message is an individual email or sms text sent to a member. Every message has a parent message group.
 
+### Attribute Info
+
+<span class='attribute-info-name'>kind</span>
+
+Possible values: `email` or `sms`
+
 
 
 ### List Messages
@@ -1901,11 +1921,10 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/messages
 
 Parameter | Value | Description
 --------- | ----- | -----------
-where[kind] | _integer_ | query on a specific kind
+where[kind] | _string_ | query on a specific kind
 where[to_addresses] | _string_ | query on a specific to_addresses
 where[subject] | _string_ | query on a specific subject
 where[file] | _string_ | query on a specific file
-where[app_name] | _graph/type_annotation/unknown_type_annotation_ | query on a specific app_name
 where[delivery_status] | _string_ | query on a specific delivery_status
 where[reject_reason] | _string_ | query on a specific reject_reason
 where[from_name] | _graph/type_annotation/unknown_type_annotation_ | query on a specific from_name
@@ -1923,7 +1942,6 @@ order | kind | prefix with a hyphen (-kind) to reverse the order
 order | to_addresses | prefix with a hyphen (-to_addresses) to reverse the order
 order | subject | prefix with a hyphen (-subject) to reverse the order
 order | file | prefix with a hyphen (-file) to reverse the order
-order | app_name | prefix with a hyphen (-app_name) to reverse the order
 order | delivery_status | prefix with a hyphen (-delivery_status) to reverse the order
 order | reject_reason | prefix with a hyphen (-reject_reason) to reverse the order
 order | from_name | prefix with a hyphen (-from_name) to reverse the order
@@ -1932,6 +1950,7 @@ order | created_at | prefix with a hyphen (-created_at) to reverse the order
 order | sent_at | prefix with a hyphen (-sent_at) to reverse the order
 order | bounced_at | prefix with a hyphen (-bounced_at) to reverse the order
 order | rejection_notification_sent_at | prefix with a hyphen (-rejection_notification_sent_at) to reverse the order
+order | app_name | prefix with a hyphen (-app_name) to reverse the order
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=message_group,to</code></aside>
 
@@ -1958,7 +1977,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/messages
       "file": "string",
       "from_address": "unknown",
       "from_name": "unknown",
-      "kind": 1,
+      "kind": "value",
       "read_at": "2000-01-01T12:00:00Z",
       "reject_reason": "string",
       "rejection_notification_sent_at": "2000-01-01T12:00:00Z",
@@ -1994,22 +2013,6 @@ Association | URL | Endpoint
 message_group | https://api.planningcenteronline.com/people/v2/messages/1/message_group | MessageGroup
 to | https://api.planningcenteronline.com/people/v2/messages/1/to | Person
 
-### Actions for a Message
-
-You can perform the following actions on a Message by POSTing to the specified URL.
-
-Action | URL | Description
------- | --- | -----------
- |  | 
- |  | 
- |  | 
-
-
-
-
-
-
-
 
 
 
@@ -2019,6 +2022,8 @@ Action | URL | Description
 ## MessageGroups
 
 A message group represents one or more emails or text messages sent from one of the Planning Center apps. The message group indicates the from person, app, etc.
+
+
 
 
 
@@ -2123,6 +2128,8 @@ messages | https://api.planningcenteronline.com/people/v2/message_groups/1/messa
 ## NamePrefixes
 
 A name prefix is one of Mr., Mrs., etc.
+
+
 
 
 
@@ -2239,6 +2246,8 @@ A name suffix is one of Sr., Jr., etc.
 
 
 
+
+
 ### List Name Suffixes
 
 ```shell
@@ -2352,6 +2361,8 @@ The organization represents a single church. Every other resource is scoped to t
 
 
 
+
+
 ### Get a single Organization
 
 ```shell
@@ -2396,7 +2407,9 @@ apps | https://api.planningcenteronline.com/people/v2/apps | App
 campuses | https://api.planningcenteronline.com/people/v2/campuses | Campus
 carriers | https://api.planningcenteronline.com/people/v2/carriers | Carrier
 emails | https://api.planningcenteronline.com/people/v2/emails | Email
+field_data | https://api.planningcenteronline.com/people/v2/field_data | FieldDatum
 field_definitions | https://api.planningcenteronline.com/people/v2/field_definitions | FieldDefinition
+ |  | 
 households | https://api.planningcenteronline.com/people/v2/households | Household
 inactive_reasons | https://api.planningcenteronline.com/people/v2/inactive_reasons | InactiveReason
 lists | https://api.planningcenteronline.com/people/v2/lists | List
@@ -2406,6 +2419,8 @@ message_groups | https://api.planningcenteronline.com/people/v2/message_groups |
 messages | https://api.planningcenteronline.com/people/v2/messages | Message
 name_prefixes | https://api.planningcenteronline.com/people/v2/name_prefixes | NamePrefix
 name_suffixes | https://api.planningcenteronline.com/people/v2/name_suffixes | NameSuffix
+ |  | 
+ |  | 
 people | https://api.planningcenteronline.com/people/v2/people | Person
 people_imports | https://api.planningcenteronline.com/people/v2/people_imports | PeopleImport
 person_mergers | https://api.planningcenteronline.com/people/v2/person_mergers | PersonMerger
@@ -2426,6 +2441,8 @@ workflows | https://api.planningcenteronline.com/people/v2/workflows | Workflow
 ## OrganizationStatistics
 
 Returns statistics for the organization.
+
+
 
 
 
@@ -2458,6 +2475,12 @@ per_page | _integer_ | how many records to return per page (min=1, max=100, defa
 
 A PeopleImport is a record of an ongoing or previous import from a CSV file.
 
+### Attribute Info
+
+<span class='attribute-info-name'>status</span>
+
+Possible values: `matching`, `processing_preview`, `previewing`, `processing_import`, `complete`, `undone`, or `undoing`
+
 
 
 ### List People Imports
@@ -2476,7 +2499,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people_i
 
 Parameter | Value | Description
 --------- | ----- | -----------
-where[status] | _integer_ | query on a specific status
+where[status] | _string_ | query on a specific status
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
@@ -2501,7 +2524,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people_i
       "identical_people_ids": "string",
       "people_ids": "string",
       "processed_at": "2000-01-01T12:00:00Z",
-      "status": 1,
+      "status": "value",
       "undone_at": "2000-01-01T12:00:00Z",
       "updated_at": "2000-01-01T12:00:00Z"
     },
@@ -2537,6 +2560,8 @@ histories | https://api.planningcenteronline.com/people/v2/people_imports/1/hist
 ## PeopleImportConflicts
 
 A PeopleImportConflict is a record of change that will occur if the parent PeopleImport is completed.
+
+
 
 
 
@@ -2609,6 +2634,8 @@ _none_
 ## PeopleImportHistories
 
 A PeopleImportHistory is a record of change that occurred when the parent PeopleImport was completed.
+
+
 
 
 
@@ -2695,6 +2722,8 @@ person | https://api.planningcenteronline.com/people/v2/people_imports/1/histori
 ## People
 
 A person record represents a single member/user of the application. Each person has different permissions that determine how the user can use this app (if at all).
+
+
 
 
 
@@ -2862,24 +2891,12 @@ message_groups | https://api.planningcenteronline.com/people/v2/people/1/message
 messages | https://api.planningcenteronline.com/people/v2/people/1/messages | Message
 name_prefix | https://api.planningcenteronline.com/people/v2/people/1/name_prefix | NamePrefix
 name_suffix | https://api.planningcenteronline.com/people/v2/people/1/name_suffix | NameSuffix
+ |  | 
 person_apps | https://api.planningcenteronline.com/people/v2/people/1/person_apps | PersonApp
 phone_numbers | https://api.planningcenteronline.com/people/v2/people/1/phone_numbers | PhoneNumber
 school | https://api.planningcenteronline.com/people/v2/people/1/school | SchoolOption
 social_profiles | https://api.planningcenteronline.com/people/v2/people/1/social_profiles | SocialProfile
 workflow_cards | https://api.planningcenteronline.com/people/v2/people/1/workflow_cards | WorkflowCard
-
-### Actions for a Person
-
-You can perform the following actions on a Person by POSTing to the specified URL.
-
-Action | URL | Description
------- | --- | -----------
- |  | 
- |  | 
-
-
-
-
 
 ### Create a new Person
 
@@ -2918,6 +2935,34 @@ remote_id | integer
 medical_notes | string
 avatar | string | File UUID (see [File Uploads](#file-uploads) section)
 
+#### Included Resources
+
+```shell
+# to create a record with a NamePrefix...
+curl -v -u token:secret -X POST -d '{"data":{"type":"Person",...},"included":[{"type":"NamePrefix","attributes":{...}}]}' "https://api.planningcenteronline.com/people/v2/people"
+```
+
+You may include a NamePrefix to create inline with the Person.
+
+Attribute | Type
+--------- | ----
+value | string
+
+false
+
+```shell
+# to create a record with a NameSuffix...
+curl -v -u token:secret -X POST -d '{"data":{"type":"Person",...},"included":[{"type":"NameSuffix","attributes":{...}}]}' "https://api.planningcenteronline.com/people/v2/people"
+```
+
+You may include a NameSuffix to create inline with the Person.
+
+Attribute | Type
+--------- | ----
+value | string
+
+false
+
 ### Update an existing Person
 
 ```shell
@@ -2955,6 +3000,34 @@ remote_id | integer
 medical_notes | string
 avatar | string | File UUID (see [File Uploads](#file-uploads) section)
 
+#### Included Resources
+
+```shell
+# to update a record with a NamePrefix...
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"Person","id":"1",...},"included":[{"type":"NamePrefix","id":"1","attributes":{...}}]}' "https://api.planningcenteronline.com/people/v2/people/1"
+```
+
+You may include a NamePrefix to update inline with the Person.
+
+Attribute | Type
+--------- | ----
+value | string
+
+false
+
+```shell
+# to update a record with a NameSuffix...
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"Person","id":"1",...},"included":[{"type":"NameSuffix","id":"1","attributes":{...}}]}' "https://api.planningcenteronline.com/people/v2/people/1"
+```
+
+You may include a NameSuffix to update inline with the Person.
+
+Attribute | Type
+--------- | ----
+value | string
+
+false
+
 ### Delete a Person
 
 ```shell
@@ -2973,15 +3046,18 @@ curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v
 
 A Person App is the relationship between a Person and an App.
 
+### Attribute Info
 
+<span class='attribute-info-name'>people_permissions</span>
+
+Possible values: `no_access`, `viewer`, or `editor`
 
 ### Relationships
 
-
 Name | Type | To Many | Description
 ---- | ---- | ------- | -----------
-app | App | _false_ | 
-person | Person | _false_ | 
+app | App | _false_ |
+person | Person | _false_ |
 
 ### List Person Apps
 
@@ -3020,7 +3096,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1
     "id": "primary_key",
     "attributes": {
       "allow_pco_login": true,
-      "people_permissions": 1
+      "people_permissions": "value"
     },
     "relationships": {
       "app": {
@@ -3108,6 +3184,8 @@ A Person Merger is the history of profiles that were merged into other profiles.
 
 
 
+
+
 ### List Person Mergers
 
 ```shell
@@ -3176,10 +3254,9 @@ A phone number represents a single telephone number and location.
 
 ### Relationships
 
-
 Name | Type | To Many | Description
 ---- | ---- | ------- | -----------
-person | Person | _false_ | 
+person | Person | _false_ |
 
 ### List Phone Numbers
 
@@ -3312,6 +3389,8 @@ curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v
 ## Reports
 
 A report is editable liquid syntax that provides a powerful tool for presenting your Lists however you want.
+
+
 
 
 
@@ -3457,6 +3536,8 @@ A rule belongs to a List and groups conditions together.
 
 
 
+
+
 ### List Rules
 
 ```shell
@@ -3537,6 +3618,8 @@ conditions | https://api.planningcenteronline.com/people/v2/lists/1/rules/1/cond
 ## SchoolOptions
 
 A school option represents a school name, school type, grades, etc. and can be selected for a person.
+
+
 
 
 
@@ -3684,6 +3767,8 @@ A social profile represents a members's Twitter, Facebook, or other social media
 
 
 
+
+
 ### List Social Profiles
 
 ```shell
@@ -3824,6 +3909,8 @@ A tab is a custom tab and groups like field definitions.
 
 
 
+
+
 ### List Tabs
 
 ```shell
@@ -3958,6 +4045,8 @@ A Workflow
 
 
 
+
+
 ### List Workflows
 
 ```shell
@@ -4019,6 +4108,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflow
       "deleted_at": "2000-01-01T12:00:00Z",
       "my_ready_card_count": "unknown",
       "name": "string",
+      "total_cards_count": "unknown",
+      "total_ready_and_snoozed_card_count": "unknown",
       "total_ready_card_count": "unknown",
       "updated_at": "2000-01-01T12:00:00Z",
       "workflow_category_id": 1
@@ -4053,6 +4144,7 @@ Association | URL | Endpoint
  |  | 
 cards | https://api.planningcenteronline.com/people/v2/workflows/1/cards | WorkflowCard
  |  | 
+shared_people | https://api.planningcenteronline.com/people/v2/workflows/1/shared_people | Person
 shares | https://api.planningcenteronline.com/people/v2/workflows/1/shares | WorkflowShare
 steps | https://api.planningcenteronline.com/people/v2/workflows/1/steps | WorkflowStep
 
@@ -4110,25 +4202,24 @@ A Card
 
 ### Relationships
 
-
 Name | Type | To Many | Description
 ---- | ---- | ------- | -----------
-assignee | Assignee | _false_ | 
-person | Person | _false_ | 
-current_step | CurrentStep | _false_ | 
-workflow | Workflow | _false_ | 
+assignee | Assignee | _false_ |
+person | Person | _false_ |
+current_step | CurrentStep | _false_ |
+workflow | Workflow | _false_ |
 
 ### List Workflow Cards
 
 ```shell
 # to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflows/1/cards"
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1/workflow_cards"
 ```
 
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/people/v2/workflows/1/cards`
+`GET https://api.planningcenteronline.com/people/v2/people/1/workflow_cards`
 
 #### URL Parameters
 
@@ -4139,12 +4230,13 @@ include | person | include associated person
 include | assignee | include associated assignee
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
-order | stage | prefix with a hyphen (-stage) to reverse the order
 order | created_at | prefix with a hyphen (-created_at) to reverse the order
 order | updated_at | prefix with a hyphen (-updated_at) to reverse the order
 order | completed_at | prefix with a hyphen (-completed_at) to reverse the order
 order | flagged_for_notification_at | prefix with a hyphen (-flagged_for_notification_at) to reverse the order
 order | removed_at | prefix with a hyphen (-removed_at) to reverse the order
+order | moved_to_step_at | prefix with a hyphen (-moved_to_step_at) to reverse the order
+order | stage | prefix with a hyphen (-stage) to reverse the order
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=person,assignee</code></aside>
 
@@ -4152,7 +4244,7 @@ order | removed_at | prefix with a hyphen (-removed_at) to reverse the order
 
 ```shell
 # to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflows/1/cards/1"
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1/workflow_cards/1"
 ```
 
 
@@ -4164,10 +4256,12 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflow
     "type": "WorkflowCard",
     "id": "primary_key",
     "attributes": {
+      "calculated_due_at_in_days_ago": "unknown",
       "completed_at": "2000-01-01T12:00:00Z",
       "created_at": "2000-01-01T12:00:00Z",
       "flagged_for_notification_at": "2000-01-01T12:00:00Z",
       "moved_to_step_at": "2000-01-01T12:00:00Z",
+      "overdue": "unknown",
       "removed_at": "2000-01-01T12:00:00Z",
       "snooze_until": "2000-01-01T12:00:00Z",
       "stage": "unknown",
@@ -4206,7 +4300,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflow
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/people/v2/workflows/1/cards/1`
+`GET https://api.planningcenteronline.com/people/v2/people/1/workflow_cards/1`
 
 #### URL Parameters
 
@@ -4223,10 +4317,10 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
-activities | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/activities | WorkflowCardActivity
-assignee | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/assignee | Person
-notes | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/notes | WorkflowCardNote
-person | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/person | Person
+activities | https://api.planningcenteronline.com/people/v2/people/1/workflow_cards/1/activities | WorkflowCardActivity
+assignee | https://api.planningcenteronline.com/people/v2/people/1/workflow_cards/1/assignee | Person
+notes | https://api.planningcenteronline.com/people/v2/people/1/workflow_cards/1/notes | WorkflowCardNote
+person | https://api.planningcenteronline.com/people/v2/people/1/workflow_cards/1/person | Person
 
 ### Actions for a Workflow Card
 
@@ -4234,29 +4328,44 @@ You can perform the following actions on a Workflow Card by POSTing to the speci
 
 Action | URL | Description
 ------ | --- | -----------
-skip_step | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/skip_step | Move a Workflow Card to the next step without completing the current step.
-snooze | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/snooze | Snoozes a card for a specific duration
-promote | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/promote | Move a Workflow Card to the next step.
-remove | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/remove | Removes a card
-send_email | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/send_email | Sends an email to the subject of the card
-restore | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/restore | Restore a card
-unsnooze | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/unsnooze | Unsnoozes a card
-go_back | https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/go_back | Move a Workflow Card back to the previous step.
+remove | https://api.planningcenteronline.com/people/v2/people/1/workflow_cards/1/remove | Removes a card
+promote | https://api.planningcenteronline.com/people/v2/people/1/workflow_cards/1/promote | Move a Workflow Card to the next step.
+snooze | https://api.planningcenteronline.com/people/v2/people/1/workflow_cards/1/snooze | Snoozes a card for a specific duration
+send_email | https://api.planningcenteronline.com/people/v2/people/1/workflow_cards/1/send_email | Sends an email to the subject of the card
+go_back | https://api.planningcenteronline.com/people/v2/people/1/workflow_cards/1/go_back | Move a Workflow Card back to the previous step.
+skip_step | https://api.planningcenteronline.com/people/v2/people/1/workflow_cards/1/skip_step | Move a Workflow Card to the next step without completing the current step.
+unsnooze | https://api.planningcenteronline.com/people/v2/people/1/workflow_cards/1/unsnooze | Unsnoozes a card
+restore | https://api.planningcenteronline.com/people/v2/people/1/workflow_cards/1/restore | Restore a card
+
+#### snooze
+
+Pass in a duration in days.
+
+```json
+{
+  "data": {
+    "attributes": {
+      "duration": 15
+    }
+  }
+}
+```
 
 
+#### send_email
 
+Pass in a subject and note.
 
-
-
-
-
-
-
-
-
-
-
-
+```json
+{
+  "data": {
+    "attributes": {
+      "subject": "Dear Respected One",
+      "body": "Permit me to inform you of my desire of going into business relationship with you."
+    }
+  }
+}
+```
 
 
 ### Create a new Workflow Card
@@ -4283,13 +4392,13 @@ sticky_assignment | boolean
 
 ```shell
 # to update a record...
-curl -v -u token:secret -X PATCH -d '{"data":{"type":"WorkflowCard","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/workflows/1/cards/1"
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"WorkflowCard","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/people/1/workflow_cards/1"
 ```
 
 
 #### HTTP Request
 
-`PATCH https://api.planningcenteronline.com/people/v2/workflows/1/cards/1`
+`PATCH https://api.planningcenteronline.com/people/v2/people/1/workflow_cards/1`
 
 #### Resource Attributes
 
@@ -4307,22 +4416,21 @@ Workflow Card Activity is a record of an action performed on a card
 
 ### Relationships
 
-
 Name | Type | To Many | Description
 ---- | ---- | ------- | -----------
-workflow_card | WorkflowCard | _false_ | 
+workflow_card | WorkflowCard | _false_ |
 
 ### List Workflow Card Activities
 
 ```shell
 # to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/activities"
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1/workflow_cards/1/activities"
 ```
 
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/activities`
+`GET https://api.planningcenteronline.com/people/v2/people/1/workflow_cards/1/activities`
 
 #### URL Parameters
 
@@ -4336,7 +4444,7 @@ order | id | prefix with a hyphen (-id) to reverse the order
 
 ```shell
 # to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/activities/1"
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1/workflow_cards/1/activities/1"
 ```
 
 
@@ -4372,7 +4480,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflow
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/activities/1`
+`GET https://api.planningcenteronline.com/people/v2/people/1/workflow_cards/1/activities/1`
 
 #### URL Parameters
 
@@ -4386,13 +4494,13 @@ _none_
 
 ```shell
 # to delete a record...
-curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/activities/1"
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v2/people/1/workflow_cards/1/activities/1"
 ```
 
 
 #### HTTP Request
 
-`DELETE https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/activities/1`
+`DELETE https://api.planningcenteronline.com/people/v2/people/1/workflow_cards/1/activities/1`
 
 ## WorkflowCardNotes
 
@@ -4400,17 +4508,23 @@ Workflow Note is a note that has been made on a Workflow Card
 
 
 
+### Relationships
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+note_category | NoteCategory | _false_ |
+
 ### List Workflow Card Notes
 
 ```shell
 # to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/notes"
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1/workflow_cards/1/notes"
 ```
 
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/notes`
+`GET https://api.planningcenteronline.com/people/v2/people/1/workflow_cards/1/notes`
 
 #### URL Parameters
 
@@ -4424,7 +4538,7 @@ order | created_at | prefix with a hyphen (-created_at) to reverse the order
 
 ```shell
 # to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/notes/1"
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1/workflow_cards/1/notes/1"
 ```
 
 
@@ -4440,6 +4554,12 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflow
       "note": "string"
     },
     "relationships": {
+      "note_category": {
+        "data": {
+          "type": "NoteCategory",
+          "id": "123"
+        }
+      }
     }
   }
 }
@@ -4447,7 +4567,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflow
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/notes/1`
+`GET https://api.planningcenteronline.com/people/v2/people/1/workflow_cards/1/notes/1`
 
 #### URL Parameters
 
@@ -4457,13 +4577,13 @@ _none_
 
 ```shell
 # to create a record...
-curl -v -u token:secret -X POST -d '{"data":{"type":"WorkflowCardNote","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/notes"
+curl -v -u token:secret -X POST -d '{"data":{"type":"WorkflowCardNote","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/people/1/workflow_cards/1/notes"
 ```
 
 
 #### HTTP Request
 
-`POST https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/notes`
+`POST https://api.planningcenteronline.com/people/v2/people/1/workflow_cards/1/notes`
 
 #### Resource Attributes
 
@@ -4475,13 +4595,13 @@ note | string
 
 ```shell
 # to update a record...
-curl -v -u token:secret -X PATCH -d '{"data":{"type":"WorkflowCardNote","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/notes/1"
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"WorkflowCardNote","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/people/1/workflow_cards/1/notes/1"
 ```
 
 
 #### HTTP Request
 
-`PATCH https://api.planningcenteronline.com/people/v2/workflows/1/cards/1/notes/1`
+`PATCH https://api.planningcenteronline.com/people/v2/people/1/workflow_cards/1/notes/1`
 
 #### Resource Attributes
 
@@ -4495,15 +4615,18 @@ note | string
 
 A workflow share defines who can can a workflow
 
+### Attribute Info
 
+<span class='attribute-info-name'>group</span>
+
+Possible values: `No Access`, `Viewer`, `Editor`, or `Manager`
 
 ### Relationships
 
-
 Name | Type | To Many | Description
 ---- | ---- | ------- | -----------
-person | Person | _false_ | 
-workflow | Workflow | _false_ | 
+person | Person | _false_ |
+workflow | Workflow | _false_ |
 
 ### List Workflow Shares
 
@@ -4541,7 +4664,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflow
     "type": "WorkflowShare",
     "id": "primary_key",
     "attributes": {
-      "group": 1,
+      "group": "value",
       "person_id": 1
     },
     "relationships": {
@@ -4598,7 +4721,7 @@ curl -v -u token:secret -X POST -d '{"data":{"type":"WorkflowShare","attributes"
 
 Attribute | Type
 --------- | ----
-group | integer
+group | string
 person_id | integer
 
 ### Update an existing Workflow Share
@@ -4619,7 +4742,7 @@ curl -v -u token:secret -X PATCH -d '{"data":{"type":"WorkflowShare","id":"1","a
 
 Attribute | Type
 --------- | ----
-group | integer
+group | string
 person_id | integer
 
 ### Delete a Workflow Share
@@ -4640,14 +4763,17 @@ curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v
 
 A Step
 
+### Attribute Info
 
+<span class='attribute-info-name'>auto_snooze_interval</span>
+
+Possible values: `day`, `week`, or `month`
 
 ### Relationships
 
-
 Name | Type | To Many | Description
 ---- | ---- | ------- | -----------
-workflow | Workflow | _false_ | 
+workflow | Workflow | _false_ |
 
 ### List Workflow Steps
 
@@ -4693,11 +4819,12 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/workflow
     "id": "primary_key",
     "attributes": {
       "auto_snooze_days": 1,
-      "auto_snooze_interval": 1,
+      "auto_snooze_interval": "value",
       "auto_snooze_value": 1,
       "created_at": "2000-01-01T12:00:00Z",
       "default_assignee_id": 1,
       "description": "string",
+      "expected_response_time_in_days": 1,
       "my_ready_card_count": "unknown",
       "name": "string",
       "sequence": 1,
@@ -4768,11 +4895,10 @@ The ready and snoozed count for an assignee & step
 
 ### Relationships
 
-
 Name | Type | To Many | Description
 ---- | ---- | ------- | -----------
-person | Person | _false_ | 
-step | Step | _false_ | 
+person | Person | _false_ |
+step | Step | _false_ |
 
 ### List Workflow Step Assignee Summaries
 
