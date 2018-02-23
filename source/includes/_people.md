@@ -1623,6 +1623,130 @@ mailchimp_sync | https://api.planningcenteronline.com/people/v2/lists/1/mailchim
 
 
 
+## ListCategories
+
+A List Category
+
+
+
+
+
+### List List Categories
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/list_categories"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/people/v2/list_categories`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+where[name] | _string_ | query on a specific name
+where[created_at] | _date_time_ | query on a specific created_at
+where[updated_at] | _date_time_ | query on a specific updated_at
+where[organization_id] | _integer_ | query on a specific organization_id
+offset | _integer_ | get results from given offset
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | name | prefix with a hyphen (-name) to reverse the order
+order | created_at | prefix with a hyphen (-created_at) to reverse the order
+order | updated_at | prefix with a hyphen (-updated_at) to reverse the order
+order | organization_id | prefix with a hyphen (-organization_id) to reverse the order
+
+### Get a single List Category
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/list_categories/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "ListCategory",
+    "id": "primary_key",
+    "attributes": {
+      "created_at": "2000-01-01T12:00:00Z",
+      "name": "string",
+      "organization_id": 1,
+      "updated_at": "2000-01-01T12:00:00Z"
+    },
+    "relationships": {
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/people/v2/list_categories/1`
+
+#### URL Parameters
+
+_none_
+
+### Create a new List Category
+
+```shell
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{"type":"ListCategory","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/list_categories"
+```
+
+
+<aside class='info'>Only users with the role <code>manager</code> can create this resource.</aside>
+
+#### HTTP Request
+
+`POST https://api.planningcenteronline.com/people/v2/list_categories`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+name | string
+
+### Update an existing List Category
+
+```shell
+# to update a record...
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"ListCategory","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/list_categories/1"
+```
+
+
+<aside class='info'>Only users with the role <code>manager</code> can update this resource.</aside>
+
+#### HTTP Request
+
+`PATCH https://api.planningcenteronline.com/people/v2/list_categories/1`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+name | string
+
+### Delete a List Category
+
+```shell
+# to delete a record...
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v2/list_categories/1"
+```
+
+
+<aside class='info'>Only users with the role <code>manager</code> can delete this resource.</aside>
+
+#### HTTP Request
+
+`DELETE https://api.planningcenteronline.com/people/v2/list_categories/1`
+
 ## ListShares
 
 A list share indicates who has access to edit a list.
@@ -2412,6 +2536,7 @@ field_definitions | https://api.planningcenteronline.com/people/v2/field_definit
  |  | 
 households | https://api.planningcenteronline.com/people/v2/households | Household
 inactive_reasons | https://api.planningcenteronline.com/people/v2/inactive_reasons | InactiveReason
+list_categories | https://api.planningcenteronline.com/people/v2/list_categories | ListCategory
 lists | https://api.planningcenteronline.com/people/v2/lists | List
 marital_statuses | https://api.planningcenteronline.com/people/v2/marital_statuses | MaritalStatus
  |  | 
