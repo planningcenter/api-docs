@@ -2481,7 +2481,7 @@ curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v
 
 ## Notes
 
-A Note
+A note is text with a category connected to a person’s profile.
 
 
 
@@ -2578,8 +2578,6 @@ curl -v -u token:secret -X POST -d '{"data":{"type":"Note","attributes":{...}}}'
 ```
 
 
-<aside class='info'>Only users with the role <code>editor</code> can create this resource.</aside>
-
 #### HTTP Request
 
 `POST https://api.planningcenteronline.com/people/v2/people/1/notes`
@@ -2591,26 +2589,7 @@ Attribute | Type
 note | string
 note_category_id | integer
 
-### Update an existing Note
 
-```shell
-# to update a record...
-curl -v -u token:secret -X PATCH -d '{"data":{"type":"Note","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/notes/1"
-```
-
-
-<aside class='info'>Only users with the role <code>editor</code> can update this resource.</aside>
-
-#### HTTP Request
-
-`PATCH https://api.planningcenteronline.com/people/v2/notes/1`
-
-#### Resource Attributes
-
-Attribute | Type
---------- | ----
-note | string
-note_category_id | integer
 
 ### Delete a Note
 
@@ -2619,8 +2598,6 @@ note_category_id | integer
 curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v2/notes/1"
 ```
 
-
-<aside class='info'>Only users with the role <code>editor</code> can delete this resource.</aside>
 
 #### HTTP Request
 
