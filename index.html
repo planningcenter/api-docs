@@ -8697,7 +8697,7 @@ curl -v -u token:secret -X DELETE <span class="s2">"https://api.planningcenteron
 
 <h2 id="notes">Notes</h2>
 
-<p>A Note</p>
+<p>A note is text with a category connected to a person’s profile.</p>
 
 <h3 id="list-notes">List Notes</h3>
 <pre><code class="highlight shell"><span class="c"># to list records...</span>
@@ -8863,40 +8863,9 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/p
 curl -v -u token:secret -X POST -d <span class="s1">'{"data":{"type":"Note","attributes":{...}}}'</span> <span class="s2">"https://api.planningcenteronline.com/people/v2/people/1/notes"</span>
 </code></pre>
 
-<aside class='info'>Only users with the role <code>editor</code> can create this resource.</aside>
-
 <h4 id="http-request">HTTP Request</h4>
 
 <p><code class="prettyprint">POST https://api.planningcenteronline.com/people/v2/people/1/notes</code></p>
-
-<h4 id="resource-attributes">Resource Attributes</h4>
-
-<table><thead>
-<tr>
-<th>Attribute</th>
-<th>Type</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>note</td>
-<td>string</td>
-</tr>
-<tr>
-<td>note_category_id</td>
-<td>integer</td>
-</tr>
-</tbody></table>
-
-<h3 id="update-an-existing-note">Update an existing Note</h3>
-<pre><code class="highlight shell"><span class="c"># to update a record...</span>
-curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{"type":"Note","id":"1","attributes":{...}}}'</span> <span class="s2">"https://api.planningcenteronline.com/people/v2/notes/1"</span>
-</code></pre>
-
-<aside class='info'>Only users with the role <code>editor</code> can update this resource.</aside>
-
-<h4 id="http-request">HTTP Request</h4>
-
-<p><code class="prettyprint">PATCH https://api.planningcenteronline.com/people/v2/notes/1</code></p>
 
 <h4 id="resource-attributes">Resource Attributes</h4>
 
@@ -8920,8 +8889,6 @@ curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{"type":"Note","id
 <pre><code class="highlight shell"><span class="c"># to delete a record...</span>
 curl -v -u token:secret -X DELETE <span class="s2">"https://api.planningcenteronline.com/people/v2/notes/1"</span>
 </code></pre>
-
-<aside class='info'>Only users with the role <code>editor</code> can delete this resource.</aside>
 
 <h4 id="http-request">HTTP Request</h4>
 
