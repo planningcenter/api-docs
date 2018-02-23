@@ -2479,6 +2479,153 @@ curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v
 
 `DELETE https://api.planningcenteronline.com/people/v2/name_suffixes/1`
 
+## Notes
+
+A Note
+
+
+
+
+
+### List Notes
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/notes"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/people/v2/notes`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+where[note] | _string_ | query on a specific note
+where[note_category_id] | _integer_ | query on a specific note_category_id
+include | category | include associated category
+include | created_by | include associated created_by
+include | person | include associated person
+offset | _integer_ | get results from given offset
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | note | prefix with a hyphen (-note) to reverse the order
+order | note_category_id | prefix with a hyphen (-note_category_id) to reverse the order
+order | created_at | prefix with a hyphen (-created_at) to reverse the order
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=category,created_by</code></aside>
+
+### Get a single Note
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/notes/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "Note",
+    "id": "primary_key",
+    "attributes": {
+      "created_at": "2000-01-01T12:00:00Z",
+      "created_by_id": 1,
+      "note": "string",
+      "note_category_id": 1,
+      "organization_id": 1,
+      "person_id": 1,
+      "updated_at": "2000-01-01T12:00:00Z"
+    },
+    "relationships": {
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/people/v2/notes/1`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+include | category | include associated category
+include | created_by | include associated created_by
+include | person | include associated person
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=category,created_by</code></aside>
+
+### Associations for a Note
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL | Endpoint
+----------- | --- | --------
+category | https://api.planningcenteronline.com/people/v2/notes/1/category | NoteCategory
+created_by | https://api.planningcenteronline.com/people/v2/notes/1/created_by | Person
+person | https://api.planningcenteronline.com/people/v2/notes/1/person | Person
+
+### Create a new Note
+
+```shell
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{"type":"Note","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/people/1/notes"
+```
+
+
+<aside class='info'>Only users with the role <code>editor</code> can create this resource.</aside>
+
+#### HTTP Request
+
+`POST https://api.planningcenteronline.com/people/v2/people/1/notes`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+note | string
+note_category_id | integer
+
+### Update an existing Note
+
+```shell
+# to update a record...
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"Note","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/notes/1"
+```
+
+
+<aside class='info'>Only users with the role <code>editor</code> can update this resource.</aside>
+
+#### HTTP Request
+
+`PATCH https://api.planningcenteronline.com/people/v2/notes/1`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+note | string
+note_category_id | integer
+
+### Delete a Note
+
+```shell
+# to delete a record...
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v2/notes/1"
+```
+
+
+<aside class='info'>Only users with the role <code>editor</code> can delete this resource.</aside>
+
+#### HTTP Request
+
+`DELETE https://api.planningcenteronline.com/people/v2/notes/1`
+
 ## Organizations
 
 The organization represents a single church. Every other resource is scoped to this record.
@@ -2545,7 +2692,7 @@ messages | https://api.planningcenteronline.com/people/v2/messages | Message
 name_prefixes | https://api.planningcenteronline.com/people/v2/name_prefixes | NamePrefix
 name_suffixes | https://api.planningcenteronline.com/people/v2/name_suffixes | NameSuffix
  |  | 
- |  | 
+notes | https://api.planningcenteronline.com/people/v2/notes | Note
 people | https://api.planningcenteronline.com/people/v2/people | Person
 people_imports | https://api.planningcenteronline.com/people/v2/people_imports | PeopleImport
 person_mergers | https://api.planningcenteronline.com/people/v2/person_mergers | PersonMerger
@@ -3016,7 +3163,7 @@ message_groups | https://api.planningcenteronline.com/people/v2/people/1/message
 messages | https://api.planningcenteronline.com/people/v2/people/1/messages | Message
 name_prefix | https://api.planningcenteronline.com/people/v2/people/1/name_prefix | NamePrefix
 name_suffix | https://api.planningcenteronline.com/people/v2/people/1/name_suffix | NameSuffix
- |  | 
+notes | https://api.planningcenteronline.com/people/v2/people/1/notes | Note
 person_apps | https://api.planningcenteronline.com/people/v2/people/1/person_apps | PersonApp
 phone_numbers | https://api.planningcenteronline.com/people/v2/people/1/phone_numbers | PhoneNumber
 school | https://api.planningcenteronline.com/people/v2/people/1/school | SchoolOption
