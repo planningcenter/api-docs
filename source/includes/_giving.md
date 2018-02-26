@@ -321,6 +321,91 @@ fund | https://api.planningcenteronline.com/giving/v2/donations/1/designations/1
 
 
 
+## DesignationRefunds
+
+
+
+### Relationships
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+designation | Designation | _false_ |
+
+### List Designation Refunds
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/donations/1/refund/designation_refunds"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/giving/v2/donations/1/refund/designation_refunds`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+include | designation | include associated designation
+offset | _integer_ | get results from given offset
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+### Get a single Designation Refund
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/donations/1/refund/designation_refunds/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "DesignationRefund",
+    "id": "2345",
+    "attributes": {
+      "amount_cents": -1000,
+      "amount_currency": "USD"
+    },
+    "relationships": {
+      "designation": {
+        "data": {
+          "type": "Designation",
+          "id": "123"
+        }
+      }
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/giving/v2/donations/1/refund/designation_refunds/1`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+include | designation | include associated designation
+
+### Associations for a Designation Refund
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL | Endpoint
+----------- | --- | --------
+designation | https://api.planningcenteronline.com/giving/v2/donations/1/refund/designation_refunds/1/designation | Designation
+
+
+
+
+
+
+
 ## Donations
 
 ### Attribute Info
@@ -1325,6 +1410,14 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/donation
 #### URL Parameters
 
 _none_
+
+### Associations for a Refund
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL | Endpoint
+----------- | --- | --------
+designation_refunds | https://api.planningcenteronline.com/giving/v2/donations/1/refund/designation_refunds | DesignationRefund
 
 
 
