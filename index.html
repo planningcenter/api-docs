@@ -4215,6 +4215,10 @@ curl -v -u token:secret -X DELETE <span class="s2">"https://api.planningcenteron
 
 <p>Hex color code.</p>
 
+<p><span class='attribute-info-name'>deletable</span></p>
+
+<p>Read only. Boolean that tells if you if the fund can be deleted or not. Read more <a href="https://pcogiving.zendesk.com/hc/en-us/articles/205197070-Managing-Funds#deleting-funds">in our product documentation</a></p>
+
 <p><span class='attribute-info-name'>visibility</span></p>
 
 <p>Possible values: <code class="prettyprint">everywhere</code>, <code class="prettyprint">admin_only</code>, <code class="prettyprint">nowhere</code>, or <code class="prettyprint">hidden</code></p>
@@ -4263,11 +4267,12 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/g
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#9ccc79"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-09-27T11:14:37Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-02-28T17:56:35Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"deletable"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
       </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"These funds are used to support our missionary efforts here in the US."</span><span class="p">,</span><span class="w">
       </span><span class="s2">"ledger_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dm-22314"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Domestic Missions"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-09-27T11:14:37Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-02-28T17:56:35Z"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"visibility"</span><span class="p">:</span><span class="w"> </span><span class="s2">"everywhere"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"relationships"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -4283,6 +4288,154 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/g
 <h4 id="url-parameters">URL Parameters</h4>
 
 <p><em>none</em></p>
+
+<h3 id="create-a-new-fund">Create a new Fund</h3>
+<pre><code class="highlight shell"><span class="c"># to create a record...</span>
+curl -v -u token:secret -X POST -d <span class="s1">'{"data":{"type":"Fund","attributes":{...}}}'</span> <span class="s2">"https://api.planningcenteronline.com/giving/v2/funds"</span>
+</code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">POST https://api.planningcenteronline.com/giving/v2/funds</code></p>
+
+<h4 id="resource-attributes">Resource Attributes</h4>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+</tr>
+<tr>
+<td>ledger_code</td>
+<td>string</td>
+</tr>
+<tr>
+<td>description</td>
+<td>string</td>
+</tr>
+<tr>
+<td>visibility</td>
+<td>string</td>
+</tr>
+<tr>
+<td>color_identifier</td>
+<td>integer</td>
+</tr>
+</tbody></table>
+
+<p>When creating a Fund, a <code class="prettyprint">color_identifier</code> must be assigned.
+A <code class="prettyprint">color_identifier</code> is an integer that corresponds to an available fund color.
+These colors are predefined and not configurable.
+There are 12 colors available.</p>
+
+<table><thead>
+<tr>
+<th>Identifier</th>
+<th>Hex Code</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1</td>
+<td>#a1a1a1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>#b2cf74</td>
+</tr>
+<tr>
+<td>3</td>
+<td>#9ccc79</td>
+</tr>
+<tr>
+<td>4</td>
+<td>#9bd3b7</td>
+</tr>
+<tr>
+<td>5</td>
+<td>#81bbbc</td>
+</tr>
+<tr>
+<td>6</td>
+<td>#78afce</td>
+</tr>
+<tr>
+<td>7</td>
+<td>#d99fca</td>
+</tr>
+<tr>
+<td>8</td>
+<td>#c0a0d2</td>
+</tr>
+<tr>
+<td>9</td>
+<td>#f19ca2</td>
+</tr>
+<tr>
+<td>10</td>
+<td>#f59b79</td>
+</tr>
+<tr>
+<td>11</td>
+<td>#fab676</td>
+</tr>
+<tr>
+<td>12</td>
+<td>#cfab77</td>
+</tr>
+</tbody></table>
+
+<h3 id="update-an-existing-fund">Update an existing Fund</h3>
+<pre><code class="highlight shell"><span class="c"># to update a record...</span>
+curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{"type":"Fund","id":"1","attributes":{...}}}'</span> <span class="s2">"https://api.planningcenteronline.com/giving/v2/funds/1"</span>
+</code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">PATCH https://api.planningcenteronline.com/giving/v2/funds/1</code></p>
+
+<h4 id="resource-attributes">Resource Attributes</h4>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+</tr>
+<tr>
+<td>ledger_code</td>
+<td>string</td>
+</tr>
+<tr>
+<td>description</td>
+<td>string</td>
+</tr>
+<tr>
+<td>visibility</td>
+<td>string</td>
+</tr>
+<tr>
+<td>color_identifier</td>
+<td>integer</td>
+</tr>
+</tbody></table>
+
+<h3 id="delete-a-fund">Delete a Fund</h3>
+<pre><code class="highlight shell"><span class="c"># to delete a record...</span>
+curl -v -u token:secret -X DELETE <span class="s2">"https://api.planningcenteronline.com/giving/v2/funds/1"</span>
+</code></pre>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">DELETE https://api.planningcenteronline.com/giving/v2/funds/1</code></p>
 
 <h2 id="labels">Labels</h2>
 
