@@ -49,10 +49,10 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/batches/
     "id": "1",
     "attributes": {
       "committed_at": null,
-      "created_at": "2017-09-27T11:14:37Z",
+      "created_at": "2018-02-28T17:56:35Z",
       "total_cents": 150000,
       "total_currency": "USD",
-      "updated_at": "2017-09-27T11:14:37Z"
+      "updated_at": "2018-02-28T17:56:35Z"
     },
     "relationships": {
     }
@@ -203,10 +203,10 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/batch_gr
     "id": "1",
     "attributes": {
       "committed": true,
-      "created_at": "2017-09-27T11:14:37Z",
+      "created_at": "2018-02-28T17:56:35Z",
       "total_cents": 350000,
       "total_currency": "USD",
-      "updated_at": "2017-09-27T11:14:37Z"
+      "updated_at": "2018-02-28T17:56:35Z"
     },
     "relationships": {
     }
@@ -247,7 +247,7 @@ owner | https://api.planningcenteronline.com/giving/v2/batch_groups/1/owner | Pe
 
 Name | Type | To Many | Description
 ---- | ---- | ------- | -----------
-fund | Fund | _false_ | 
+fund | Fund | _false_ |
 
 ### List Designations
 
@@ -483,7 +483,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/donation
     "attributes": {
       "amount_cents": 2000,
       "amount_currency": "USD",
-      "created_at": "2017-09-27T11:14:37Z",
+      "created_at": "2018-02-28T17:56:35Z",
       "fee_cents": -88,
       "fee_currency": "USD",
       "payment_brand": "Visa",
@@ -493,9 +493,9 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/donation
       "payment_method": "card",
       "payment_method_sub": "debit",
       "payment_status": "succeeded",
-      "received_at": "2018-02-15T00:00:00Z",
+      "received_at": "2018-02-28T00:00:00Z",
       "refunded": false,
-      "updated_at": "2018-02-15T17:29:35Z"
+      "updated_at": "2018-02-28T17:56:35Z"
     },
     "relationships": {
       "payment_source": {
@@ -719,6 +719,10 @@ curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/giving/v
 
 Hex color code.
 
+<span class='attribute-info-name'>deletable</span>
+
+Read only. Boolean that tells if you if the fund can be deleted or not. Read more [in our product documentation](https://pcogiving.zendesk.com/hc/en-us/articles/205197070-Managing-Funds#deleting-funds)
+
 <span class='attribute-info-name'>visibility</span>
 
 Possible values: `everywhere`, `admin_only`, `nowhere`, or `hidden`
@@ -761,11 +765,12 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/funds/1"
     "id": "1",
     "attributes": {
       "color": "#9ccc79",
-      "created_at": "2017-09-27T11:14:37Z",
+      "created_at": "2018-02-28T17:56:35Z",
+      "deletable": false,
       "description": "These funds are used to support our missionary efforts here in the US.",
       "ledger_code": "dm-22314",
       "name": "Domestic Missions",
-      "updated_at": "2017-09-27T11:14:37Z",
+      "updated_at": "2018-02-28T17:56:35Z",
       "visibility": "everywhere"
     },
     "relationships": {
@@ -782,11 +787,82 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/funds/1"
 
 _none_
 
+### Create a new Fund
+
+```shell
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{"type":"Fund","attributes":{...}}}' "https://api.planningcenteronline.com/giving/v2/funds"
+```
 
 
+#### HTTP Request
+
+`POST https://api.planningcenteronline.com/giving/v2/funds`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+name | string
+ledger_code | string
+description | string
+visibility | string
+color_identifier | integer
+
+When creating a Fund, a `color_identifier` must be assigned.
+A `color_identifier` is an integer that corresponds to an available fund color.
+These colors are predefined and not configurable.
+There are 12 colors available.
+
+Identifier | Hex Code
+--- | ---
+1 | #a1a1a1
+2 | #b2cf74
+3 | #9ccc79
+4 | #9bd3b7
+5 | #81bbbc
+6 | #78afce
+7 | #d99fca
+8 | #c0a0d2
+9 | #f19ca2
+10 | #f59b79
+11 | #fab676
+12 | #cfab77
 
 
+### Update an existing Fund
 
+```shell
+# to update a record...
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"Fund","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/giving/v2/funds/1"
+```
+
+
+#### HTTP Request
+
+`PATCH https://api.planningcenteronline.com/giving/v2/funds/1`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+name | string
+ledger_code | string
+description | string
+visibility | string
+color_identifier | integer
+
+### Delete a Fund
+
+```shell
+# to delete a record...
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/giving/v2/funds/1"
+```
+
+
+#### HTTP Request
+
+`DELETE https://api.planningcenteronline.com/giving/v2/funds/1`
 
 ## Labels
 
@@ -936,12 +1012,12 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/people/1
     "id": "1",
     "attributes": {
       "brand": "Visa",
-      "created_at": "2017-09-27T11:14:37Z",
+      "created_at": "2018-02-28T17:56:35Z",
       "expiration": "8/2018",
       "last4": "4242",
       "method_subtype": "credit",
       "method_type": "card",
-      "updated_at": "2017-09-27T11:14:37Z",
+      "updated_at": "2018-02-28T17:56:35Z",
       "verified": null
     },
     "relationships": {
@@ -1013,9 +1089,9 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/payment_
     "type": "PaymentSource",
     "id": "1",
     "attributes": {
-      "created_at": "2017-09-27T11:14:37Z",
+      "created_at": "2018-02-28T17:56:35Z",
       "name": "PayPal",
-      "updated_at": "2017-09-27T11:14:37Z"
+      "updated_at": "2018-02-28T17:56:35Z"
     },
     "relationships": {
     }
@@ -1249,16 +1325,16 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/recurrin
     "attributes": {
       "amount_cents": 15000,
       "amount_currency": "USD",
-      "created_at": "2017-09-27T11:14:37Z",
-      "last_donation_received_at": "2017-09-26T00:00:00Z",
-      "next_occurrence": "2017-10-26T00:00:00Z",
+      "created_at": "2018-02-28T17:56:35Z",
+      "last_donation_received_at": "2018-02-27T00:00:00Z",
+      "next_occurrence": "2018-03-27T00:00:00Z",
       "schedule": {
         "day_in_month": {
-          "day": 26
+          "day": 27
         }
       },
       "status": "active",
-      "updated_at": "2017-09-27T11:14:37Z"
+      "updated_at": "2018-02-28T17:56:35Z"
     },
     "relationships": {
     }
@@ -1390,12 +1466,12 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/donation
     "attributes": {
       "amount_cents": -2000,
       "amount_currency": "USD",
-      "created_at": "2018-02-15T17:29:35Z",
+      "created_at": "2018-02-28T17:56:35Z",
       "fee_cents": -88,
       "fee_currency": "USD",
       "payment_method": "card",
-      "refunded_at": "2018-02-15T00:00:00Z",
-      "updated_at": "2018-02-15T17:29:35Z"
+      "refunded_at": "2018-02-28T00:00:00Z",
+      "updated_at": "2018-02-28T17:56:35Z"
     },
     "relationships": {
     }
