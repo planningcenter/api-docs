@@ -438,6 +438,7 @@ Possible values: `ach`, `cash`, `check`, or `card`
 
 Name | Type | To Many | Description
 ---- | ---- | ------- | -----------
+batch | Batch | _false_ |
 person | Person | _false_ |
 payment_source | PaymentSource | _false_ | `PaymentSource` is required, but cannot be `planning_center`, as that is reserved for Donations created in the Planning Center Giving Web UI.
 
@@ -493,11 +494,17 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/donation
       "payment_method": "card",
       "payment_method_sub": "debit",
       "payment_status": "succeeded",
-      "received_at": "2018-02-28T00:00:00Z",
+      "received_at": "2018-03-02T00:00:00Z",
       "refunded": false,
-      "updated_at": "2018-02-28T17:56:35Z"
+      "updated_at": "2018-03-02T14:27:54Z"
     },
     "relationships": {
+      "batch": {
+        "data": {
+          "type": "Batch",
+          "id": "123"
+        }
+      },
       "payment_source": {
         "data": {
           "type": "PaymentSource",
