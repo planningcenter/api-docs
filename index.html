@@ -250,6 +250,46 @@ The value for <code class="prettyprint">response_type</code> should be <code cla
 
 <aside class='info'>Times are always returned in UTC.</aside>
 
+<p>When querying for <code class="prettyprint">date_time</code> attributes, multiple operators are available. If you want to query plans on <code class="prettyprint">created_at</code> for example:</p>
+
+<table><thead>
+<tr>
+<th>operator</th>
+<th>usage</th>
+<th>result</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">=</code></td>
+<td><code class="prettyprint">?where[created_at]=2018-02-22</code></td>
+<td>created on February 22nd, 2018</td>
+</tr>
+<tr>
+<td><code class="prettyprint">[gt]=</code></td>
+<td><code class="prettyprint">?where[created_at][gt]=2018-02-22</code></td>
+<td>created after February 22nd, 2018</td>
+</tr>
+<tr>
+<td><code class="prettyprint">[gte]=</code></td>
+<td><code class="prettyprint">?where[created_at][gte]=2018-02-22</code></td>
+<td>created on or after February 22nd, 2018</td>
+</tr>
+<tr>
+<td><code class="prettyprint">[lt]=</code></td>
+<td><code class="prettyprint">?where[created_at][lt]=2018-02-22</code></td>
+<td>created before February 22nd, 2018</td>
+</tr>
+<tr>
+<td><code class="prettyprint">[lte]=</code></td>
+<td><code class="prettyprint">?where[created_at][lte]=2018-02-22</code></td>
+<td>created on or before February 22nd, 2018</td>
+</tr>
+</tbody></table>
+
+<p><code class="prettyprint">gt</code>, <code class="prettyprint">gte</code>, <code class="prettyprint">lt</code>, and <code class="prettyprint">lte</code> can be combined to further filter records. For example
+<code class="prettyprint">?where[created_at][gte]=2018-02-01&amp;where[created_at][lte]=2018-02-28</code>
+will return all plans created during February 2018.</p>
+
 <h1 id="file-uploads">File Uploads</h1>
 
 <blockquote>
