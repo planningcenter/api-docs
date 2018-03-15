@@ -192,6 +192,20 @@ All dates and times conform to the [ISO 8601](https://en.wikipedia.org/wiki/ISO_
 
 <aside class='info'>Times are always returned in UTC.</aside>
 
+When querying for `date_time` attributes, multiple operators are available. If you want to query plans on `created_at` for example:
+
+| operator | usage | result |
+| --- | --- | --- | --- |
+| `=` | `?where[created_at]=2018-02-22` | created on February 22nd, 2018 |
+| `[gt]=` | `?where[created_at][gt]=2018-02-22` | created after February 22nd, 2018 |
+| `[gte]=` | `?where[created_at][gte]=2018-02-22` | created on or after February 22nd, 2018 |
+| `[lt]=` | `?where[created_at][lt]=2018-02-22` | created before February 22nd, 2018 |
+| `[lte]=` | `?where[created_at][lte]=2018-02-22` | created on or before February 22nd, 2018 |
+
+`gt`, `gte`, `lt`, and `lte` can be combined to further filter records. For example
+`?where[created_at][gte]=2018-02-01&where[created_at][lte]=2018-02-28`
+will return all plans created during February 2018.
+
 # File Uploads
 
 > Here's how to upload a file with curl:
