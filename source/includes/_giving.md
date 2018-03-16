@@ -459,6 +459,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/donation
 Parameter | Value | Description
 --------- | ----- | -----------
 where[payment_method] | _string_ | query on a specific payment_method
+where[received_at] | _date_time_ | query on a specific received_at
 include | designations | include associated designations
 include | labels | include associated labels
 offset | _integer_ | get results from given offset
@@ -593,8 +594,8 @@ payment_brand | string
 payment_check_number | integer
 payment_check_dated_at | date
 fee_cents | integer
-received_at | date_time
 payment_method | string
+received_at | date_time
 
 #### Included Resources
 
@@ -675,8 +676,8 @@ payment_brand | string
 payment_check_number | integer
 payment_check_dated_at | date
 fee_cents | integer
-received_at | date_time
 payment_method | string
+received_at | date_time
 
 #### Included Resources
 
