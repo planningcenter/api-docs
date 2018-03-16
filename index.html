@@ -3865,6 +3865,11 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/g
 <td>query on a specific payment_method</td>
 </tr>
 <tr>
+<td>where[received_at]</td>
+<td><em>date_time</em></td>
+<td>query on a specific received_at</td>
+</tr>
+<tr>
 <td>include</td>
 <td>designations</td>
 <td>include associated designations</td>
@@ -4071,12 +4076,12 @@ curl -v -u token:secret -X POST -d <span class="s1">'{"data":{"type":"Donation",
 <td>integer</td>
 </tr>
 <tr>
-<td>received_at</td>
-<td>date_time</td>
-</tr>
-<tr>
 <td>payment_method</td>
 <td>string</td>
+</tr>
+<tr>
+<td>received_at</td>
+<td>date_time</td>
 </tr>
 </tbody></table>
 
@@ -4195,12 +4200,12 @@ curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{"type":"Donation"
 <td>integer</td>
 </tr>
 <tr>
-<td>received_at</td>
-<td>date_time</td>
-</tr>
-<tr>
 <td>payment_method</td>
 <td>string</td>
+</tr>
+<tr>
+<td>received_at</td>
+<td>date_time</td>
 </tr>
 </tbody></table>
 
