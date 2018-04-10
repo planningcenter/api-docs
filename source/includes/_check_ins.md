@@ -562,6 +562,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/check_ins/v2/event
       "created_at": "2000-01-01T12:00:00Z",
       "ends_at": "2000-01-01T12:00:00Z",
       "guest_count": 1,
+      "note": "string",
       "regular_count": 1,
       "starts_at": "2000-01-01T12:00:00Z",
       "updated_at": "2000-01-01T12:00:00Z",
