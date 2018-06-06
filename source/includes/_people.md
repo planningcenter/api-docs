@@ -573,7 +573,11 @@ A Connected Person is an account from a different organization linked to an acco
 
 
 
+### Relationships
 
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+organization | Organization | _false_ |
 
 ### List Connected People
 
@@ -621,6 +625,12 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1
       "type": "ConnectedPerson"
     },
     "relationships": {
+      "organization": {
+        "data": {
+          "type": "Organization",
+          "id": "123"
+        }
+      }
     }
   }
 }
@@ -814,8 +824,7 @@ where[value] | _string_ | query on a specific value
 where[file] | _string_ | query on a specific file
 where[file_size] | _integer_ | query on a specific file_size
 where[file_content_type] | _string_ | query on a specific file_content_type
-where[file_name] | _graph/type_annotation/unknown_type_annotation_ | query on a specific file_name
-where[field_definition_id] | _integer_ | query on a specific field_definition_id
+where[file_name] | _unknown_ | query on a specific file_name
 include | field_definition | include associated field_definition
 include | field_option | include associated field_option
 include | tab | include associated tab
@@ -902,8 +911,6 @@ curl -v -u token:secret -X POST -d '{"data":{"type":"FieldDatum","attributes":{.
 ```
 
 
-<aside class='info'>Only users with the role <code>editor</code> can create this resource.</aside>
-
 #### HTTP Request
 
 `POST https://api.planningcenteronline.com/people/v2/people/1/field_data`
@@ -913,7 +920,6 @@ curl -v -u token:secret -X POST -d '{"data":{"type":"FieldDatum","attributes":{.
 Attribute | Type
 --------- | ----
 value | string
-field_definition_id | integer
 
 ### Update an existing Field Datum
 
@@ -922,8 +928,6 @@ field_definition_id | integer
 curl -v -u token:secret -X PATCH -d '{"data":{"type":"FieldDatum","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/field_data/1"
 ```
 
-
-<aside class='info'>Only users with the role <code>editor</code> can update this resource.</aside>
 
 #### HTTP Request
 
@@ -934,7 +938,6 @@ curl -v -u token:secret -X PATCH -d '{"data":{"type":"FieldDatum","id":"1","attr
 Attribute | Type
 --------- | ----
 value | string
-field_definition_id | integer
 
 ### Delete a Field Datum
 
@@ -943,8 +946,6 @@ field_definition_id | integer
 curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v2/field_data/1"
 ```
 
-
-<aside class='info'>Only users with the role <code>editor</code> can delete this resource.</aside>
 
 #### HTTP Request
 
@@ -956,7 +957,11 @@ A field definition represents a custom field -- its name, data type, etc.
 
 
 
+### Relationships
 
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+tab | Tab | _false_ |
 
 ### List Field Definitions
 
@@ -980,6 +985,7 @@ where[sequence] | _integer_ | query on a specific sequence
 where[slug] | _string_ | query on a specific slug
 where[config] | _string_ | query on a specific config
 where[deleted_at] | _date_time_ | query on a specific deleted_at
+where[tab_id] | _primary_key_ | query on a specific tab_id
 filter | include_deleted | By default, deleted fields are not included. Pass filter=include_deleted to include them.
 include | field_options | include associated field_options
 include | tab | include associated tab
@@ -991,10 +997,9 @@ order | sequence | prefix with a hyphen (-sequence) to reverse the order
 order | slug | prefix with a hyphen (-slug) to reverse the order
 order | config | prefix with a hyphen (-config) to reverse the order
 order | deleted_at | prefix with a hyphen (-deleted_at) to reverse the order
+order | tab_id | prefix with a hyphen (-tab_id) to reverse the order
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=field_options,tab</code></aside>
-
-To exclude deleted field definitions, query with `where[deleted_at]=` (blank value).
 
 ### Get a single Field Definition
 
@@ -1017,9 +1022,16 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/field_de
       "deleted_at": "2000-01-01T12:00:00Z",
       "name": "string",
       "sequence": 1,
-      "slug": "string"
+      "slug": "string",
+      "tab_id": "primary_key"
     },
     "relationships": {
+      "tab": {
+        "data": {
+          "type": "Tab",
+          "id": "123"
+        }
+      }
     }
   }
 }
@@ -1055,8 +1067,6 @@ curl -v -u token:secret -X POST -d '{"data":{"type":"FieldDefinition","attribute
 ```
 
 
-<aside class='info'>Only users with the role <code>manager</code> can create this resource.</aside>
-
 #### HTTP Request
 
 `POST https://api.planningcenteronline.com/people/v2/tabs/1/field_definitions`
@@ -1079,8 +1089,6 @@ deleted_at | date_time
 curl -v -u token:secret -X PATCH -d '{"data":{"type":"FieldDefinition","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/field_definitions/1"
 ```
 
-
-<aside class='info'>Only users with the role <code>manager</code> can update this resource.</aside>
 
 #### HTTP Request
 
@@ -1105,13 +1113,9 @@ curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v
 ```
 
 
-<aside class='info'>Only users with the role <code>manager</code> can delete this resource.</aside>
-
 #### HTTP Request
 
 `DELETE https://api.planningcenteronline.com/people/v2/field_definitions/1`
-
-Deleting a field definition internally sets its `deleted_at` attribute to the current time.
 
 ## FieldOptions
 
@@ -1119,19 +1123,23 @@ A field option represents an individual option for a custom field of type "selec
 
 
 
+### Relationships
 
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+field_definition | FieldDefinition | _false_ |
 
 ### List Field Options
 
 ```shell
 # to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/field_definitions/1/field_options"
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/field_data/1/field_option"
 ```
 
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/people/v2/field_definitions/1/field_options`
+`GET https://api.planningcenteronline.com/people/v2/field_data/1/field_option`
 
 #### URL Parameters
 
@@ -1148,7 +1156,7 @@ order | sequence | prefix with a hyphen (-sequence) to reverse the order
 
 ```shell
 # to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/field_definitions/1/field_options/1"
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/field_data/1/field_option/1"
 ```
 
 
@@ -1164,6 +1172,12 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/field_de
       "value": "string"
     },
     "relationships": {
+      "field_definition": {
+        "data": {
+          "type": "FieldDefinition",
+          "id": "123"
+        }
+      }
     }
   }
 }
@@ -1171,7 +1185,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/field_de
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/people/v2/field_definitions/1/field_options/1`
+`GET https://api.planningcenteronline.com/people/v2/field_data/1/field_option/1`
 
 #### URL Parameters
 
@@ -1184,8 +1198,6 @@ _none_
 curl -v -u token:secret -X POST -d '{"data":{"type":"FieldOption","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/field_definitions/1/field_options"
 ```
 
-
-<aside class='info'>Only users with the role <code>manager</code> can create this resource.</aside>
 
 #### HTTP Request
 
@@ -1202,15 +1214,13 @@ sequence | integer
 
 ```shell
 # to update a record...
-curl -v -u token:secret -X PATCH -d '{"data":{"type":"FieldOption","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/field_definitions/1/field_options/1"
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"FieldOption","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/field_data/1/field_option/1"
 ```
 
 
-<aside class='info'>Only users with the role <code>manager</code> can update this resource.</aside>
-
 #### HTTP Request
 
-`PATCH https://api.planningcenteronline.com/people/v2/field_definitions/1/field_options/1`
+`PATCH https://api.planningcenteronline.com/people/v2/field_data/1/field_option/1`
 
 #### Resource Attributes
 
@@ -1223,15 +1233,13 @@ sequence | integer
 
 ```shell
 # to delete a record...
-curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v2/field_definitions/1/field_options/1"
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v2/field_data/1/field_option/1"
 ```
 
 
-<aside class='info'>Only users with the role <code>manager</code> can delete this resource.</aside>
-
 #### HTTP Request
 
-`DELETE https://api.planningcenteronline.com/people/v2/field_definitions/1/field_options/1`
+`DELETE https://api.planningcenteronline.com/people/v2/field_data/1/field_option/1`
 
 ## Households
 
