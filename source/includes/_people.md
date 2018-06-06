@@ -3594,7 +3594,12 @@ A Person Merger is the history of profiles that were merged into other profiles.
 
 
 
+### Relationships
 
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+person_to_keep | Person | _false_ |
+person_to_remove | Person | _false_ |
 
 ### List Person Mergers
 
@@ -3612,8 +3617,8 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/person_m
 
 Parameter | Value | Description
 --------- | ----- | -----------
-where[person_to_keep_id] | _integer_ | query on a specific person_to_keep_id
-where[person_to_remove_id] | _integer_ | query on a specific person_to_remove_id
+where[person_to_keep_id] | _primary_key_ | query on a specific person_to_keep_id
+where[person_to_remove_id] | _primary_key_ | query on a specific person_to_remove_id
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
@@ -3633,10 +3638,22 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/person_m
     "type": "PersonMerger",
     "id": "primary_key",
     "attributes": {
-      "person_to_keep_id": 1,
-      "person_to_remove_id": 1
+      "person_to_keep_id": "primary_key",
+      "person_to_remove_id": "primary_key"
     },
     "relationships": {
+      "person_to_keep": {
+        "data": {
+          "type": "Person",
+          "id": "123"
+        }
+      },
+      "person_to_remove": {
+        "data": {
+          "type": "Person",
+          "id": "123"
+        }
+      }
     }
   }
 }
