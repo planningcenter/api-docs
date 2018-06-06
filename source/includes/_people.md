@@ -2840,6 +2840,7 @@ messages | https://api.planningcenteronline.com/people/v2/messages | Message
 name_prefixes | https://api.planningcenteronline.com/people/v2/name_prefixes | NamePrefix
 name_suffixes | https://api.planningcenteronline.com/people/v2/name_suffixes | NameSuffix
  |  | 
+ |  | 
 notes | https://api.planningcenteronline.com/people/v2/notes | Note
 people | https://api.planningcenteronline.com/people/v2/people | Person
 people_imports | https://api.planningcenteronline.com/people/v2/people_imports | PeopleImport
@@ -2941,8 +2942,6 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people_i
     "attributes": {
       "attribs": "string",
       "created_at": "2000-01-01T12:00:00Z",
-      "identical_people_ids": "string",
-      "people_ids": "string",
       "processed_at": "2000-01-01T12:00:00Z",
       "status": "value",
       "undone_at": "2000-01-01T12:00:00Z",
@@ -3311,6 +3310,7 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
+ |  | 
  |  | 
 addresses | https://api.planningcenteronline.com/people/v2/people/1/addresses | Address
 apps | https://api.planningcenteronline.com/people/v2/people/1/apps | App
