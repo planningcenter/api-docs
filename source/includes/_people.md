@@ -3367,9 +3367,9 @@ site_administrator | boolean
 people_permissions | string
 membership | string
 inactivated_at | date_time
-remote_id | integer
 medical_notes | string
 avatar | string | File UUID (see [File Uploads](#file-uploads) section)
+remote_id | integer
 
 #### Included Resources
 
@@ -3432,9 +3432,9 @@ site_administrator | boolean
 people_permissions | string
 membership | string
 inactivated_at | date_time
-remote_id | integer
 medical_notes | string
 avatar | string | File UUID (see [File Uploads](#file-uploads) section)
+remote_id | integer
 
 #### Included Resources
 
@@ -3471,8 +3471,6 @@ false
 curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v2/people/1"
 ```
 
-
-<aside class='info'>Only users with the role <code>site_administrator</code> can delete this resource.</aside>
 
 #### HTTP Request
 
@@ -3586,33 +3584,9 @@ curl -v -u token:secret -X POST -d '{"data":{"type":"PersonApp","attributes":{..
 
 _none_
 
-### Update an existing Person App
-
-```shell
-# to update a record...
-curl -v -u token:secret -X PATCH -d '{"data":{"type":"PersonApp","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/people/1/person_apps/1"
-```
 
 
-#### HTTP Request
 
-`PATCH https://api.planningcenteronline.com/people/v2/people/1/person_apps/1`
-
-#### Resource Attributes
-
-_none_
-
-### Delete a Person App
-
-```shell
-# to delete a record...
-curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v2/people/1/person_apps/1"
-```
-
-
-#### HTTP Request
-
-`DELETE https://api.planningcenteronline.com/people/v2/people/1/person_apps/1`
 
 ## PersonMergers
 
