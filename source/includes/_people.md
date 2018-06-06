@@ -2678,14 +2678,38 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/notes/1"
     "id": "primary_key",
     "attributes": {
       "created_at": "2000-01-01T12:00:00Z",
-      "created_by_id": 1,
+      "created_by_id": "primary_key",
       "note": "string",
-      "note_category_id": 1,
-      "organization_id": 1,
-      "person_id": 1,
+      "note_category_id": "primary_key",
+      "organization_id": "primary_key",
+      "person_id": "primary_key",
       "updated_at": "2000-01-01T12:00:00Z"
     },
     "relationships": {
+      "created_by": {
+        "data": {
+          "type": "Person",
+          "id": "123"
+        }
+      },
+      "note_category": {
+        "data": {
+          "type": "NoteCategory",
+          "id": "123"
+        }
+      },
+      "organization": {
+        "data": {
+          "type": "Organization",
+          "id": "123"
+        }
+      },
+      "person": {
+        "data": {
+          "type": "Person",
+          "id": "123"
+        }
+      }
     }
   }
 }
@@ -2732,7 +2756,9 @@ curl -v -u token:secret -X POST -d '{"data":{"type":"Note","attributes":{...}}}'
 Attribute | Type
 --------- | ----
 note | string
-note_category_id | integer
+created_at | date_time
+updated_at | date_time
+note_category_id | primary_key
 
 
 
