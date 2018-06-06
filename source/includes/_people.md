@@ -1247,7 +1247,11 @@ A household links people together and can have a primary contact. To add a perso
 
 
 
+### Relationships
 
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+primary_contact | PrimaryContact | _false_ |
 
 ### List Households
 
@@ -1298,11 +1302,17 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/househol
       "created_at": "2000-01-01T12:00:00Z",
       "member_count": 1,
       "name": "string",
-      "primary_contact_id": 1,
+      "primary_contact_id": "primary_key",
       "primary_contact_name": "string",
       "updated_at": "2000-01-01T12:00:00Z"
     },
     "relationships": {
+      "primary_contact": {
+        "data": {
+          "type": "PrimaryContact",
+          "id": "123"
+        }
+      }
     }
   }
 }
@@ -1335,8 +1345,6 @@ curl -v -u token:secret -X POST -d '{"data":{"type":"Household","attributes":{..
 ```
 
 
-<aside class='info'>Only users with the role <code>editor</code> can create this resource.</aside>
-
 #### HTTP Request
 
 `POST https://api.planningcenteronline.com/people/v2/households`
@@ -1347,10 +1355,7 @@ Attribute | Type
 --------- | ----
 name | string
 member_count | integer
-primary_contact_id | integer
-
-To create a new household, you must specify the primary contact and the people as relationships:
-`{"data":{"attributes":{"name":"Smith"},"relationships":{"people":{"data":[{"type":"Person","id":"1"},{"type":"Person","id":"2"}]},"primary_contact":{"data":{"type":"Person","id":"1"}}}}}`
+primary_contact_id | primary_key
 
 ### Update an existing Household
 
@@ -1359,8 +1364,6 @@ To create a new household, you must specify the primary contact and the people a
 curl -v -u token:secret -X PATCH -d '{"data":{"type":"Household","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/households/1"
 ```
 
-
-<aside class='info'>Only users with the role <code>editor</code> can update this resource.</aside>
 
 #### HTTP Request
 
@@ -1372,7 +1375,7 @@ Attribute | Type
 --------- | ----
 name | string
 member_count | integer
-primary_contact_id | integer
+primary_contact_id | primary_key
 
 ### Delete a Household
 
@@ -1381,8 +1384,6 @@ primary_contact_id | integer
 curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v2/households/1"
 ```
 
-
-<aside class='info'>Only users with the role <code>editor</code> can delete this resource.</aside>
 
 #### HTTP Request
 
@@ -1492,8 +1493,6 @@ curl -v -u token:secret -X POST -d '{"data":{"type":"HouseholdMembership","attri
 ```
 
 
-<aside class='info'>Only users with the role <code>editor</code> can create this resource.</aside>
-
 #### HTTP Request
 
 `POST https://api.planningcenteronline.com/people/v2/households/1/household_memberships`
@@ -1504,9 +1503,6 @@ Attribute | Type
 --------- | ----
 pending | boolean
 
-To add someone to a household, you must specify the person as a relationship:
-`{"data":{"attributes":{},"relationships":{"person":{"data":{"type":"Person","id":"1"}}}}}`
-
 ### Update an existing Household Membership
 
 ```shell
@@ -1514,8 +1510,6 @@ To add someone to a household, you must specify the person as a relationship:
 curl -v -u token:secret -X PATCH -d '{"data":{"type":"HouseholdMembership","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/people/1/household_memberships/1"
 ```
 
-
-<aside class='info'>Only users with the role <code>editor</code> can update this resource.</aside>
 
 #### HTTP Request
 
@@ -1534,8 +1528,6 @@ pending | boolean
 curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v2/people/1/household_memberships/1"
 ```
 
-
-<aside class='info'>Only users with the role <code>editor</code> can delete this resource.</aside>
 
 #### HTTP Request
 
