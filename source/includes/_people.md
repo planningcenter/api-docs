@@ -1777,7 +1777,11 @@ A List Category
 
 
 
+### Relationships
 
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+organization | Organization | _false_ |
 
 ### List List Categories
 
@@ -1798,7 +1802,7 @@ Parameter | Value | Description
 where[name] | _string_ | query on a specific name
 where[created_at] | _date_time_ | query on a specific created_at
 where[updated_at] | _date_time_ | query on a specific updated_at
-where[organization_id] | _integer_ | query on a specific organization_id
+where[organization_id] | _primary_key_ | query on a specific organization_id
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 order | name | prefix with a hyphen (-name) to reverse the order
@@ -1824,10 +1828,16 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/list_cat
     "attributes": {
       "created_at": "2000-01-01T12:00:00Z",
       "name": "string",
-      "organization_id": 1,
+      "organization_id": "primary_key",
       "updated_at": "2000-01-01T12:00:00Z"
     },
     "relationships": {
+      "organization": {
+        "data": {
+          "type": "Organization",
+          "id": "123"
+        }
+      }
     }
   }
 }
@@ -1849,8 +1859,6 @@ curl -v -u token:secret -X POST -d '{"data":{"type":"ListCategory","attributes":
 ```
 
 
-<aside class='info'>Only users with the role <code>manager</code> can create this resource.</aside>
-
 #### HTTP Request
 
 `POST https://api.planningcenteronline.com/people/v2/list_categories`
@@ -1869,8 +1877,6 @@ curl -v -u token:secret -X PATCH -d '{"data":{"type":"ListCategory","id":"1","at
 ```
 
 
-<aside class='info'>Only users with the role <code>manager</code> can update this resource.</aside>
-
 #### HTTP Request
 
 `PATCH https://api.planningcenteronline.com/people/v2/list_categories/1`
@@ -1888,8 +1894,6 @@ name | string
 curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v2/list_categories/1"
 ```
 
-
-<aside class='info'>Only users with the role <code>manager</code> can delete this resource.</aside>
 
 #### HTTP Request
 
@@ -1923,7 +1927,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/lists/1/
 
 Parameter | Value | Description
 --------- | ----- | -----------
-where[name] | _graph/type_annotation/unknown_type_annotation_ | query on a specific name
+where[name] | _unknown_ | query on a specific name
 where[group] | _string_ | query on a specific group
 where[created_at] | _date_time_ | query on a specific created_at
 include | person | include associated person
@@ -2029,7 +2033,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/lists/1/
       "completed_at": "unknown",
       "error": "unknown",
       "progress": "unknown",
-      "segment_id": "unknown",
+      "segment_id": 1,
       "status": "unknown"
     },
     "relationships": {
