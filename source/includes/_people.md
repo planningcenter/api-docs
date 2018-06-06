@@ -4193,8 +4193,6 @@ curl -v -u token:secret -X POST -d '{"data":{"type":"SchoolOption","attributes":
 ```
 
 
-<aside class='info'>Only users with the role <code>manager</code> can create this resource.</aside>
-
 #### HTTP Request
 
 `POST https://api.planningcenteronline.com/people/v2/school_options`
@@ -4204,9 +4202,9 @@ curl -v -u token:secret -X POST -d '{"data":{"type":"SchoolOption","attributes":
 Attribute | Type
 --------- | ----
 value | string
-school_types | graph/type_annotation/unknown_type_annotation
-beginning_grade | graph/type_annotation/unknown_type_annotation
-ending_grade | graph/type_annotation/unknown_type_annotation
+school_types | unknown
+beginning_grade | unknown
+ending_grade | unknown
 sequence | integer
 
 ### Update an existing School Option
@@ -4217,8 +4215,6 @@ curl -v -u token:secret -X PATCH -d '{"data":{"type":"SchoolOption","id":"1","at
 ```
 
 
-<aside class='info'>Only users with the role <code>manager</code> can update this resource.</aside>
-
 #### HTTP Request
 
 `PATCH https://api.planningcenteronline.com/people/v2/school_options/1`
@@ -4228,9 +4224,9 @@ curl -v -u token:secret -X PATCH -d '{"data":{"type":"SchoolOption","id":"1","at
 Attribute | Type
 --------- | ----
 value | string
-school_types | graph/type_annotation/unknown_type_annotation
-beginning_grade | graph/type_annotation/unknown_type_annotation
-ending_grade | graph/type_annotation/unknown_type_annotation
+school_types | unknown
+beginning_grade | unknown
+ending_grade | unknown
 sequence | integer
 
 ### Delete a School Option
@@ -4240,8 +4236,6 @@ sequence | integer
 curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v2/school_options/1"
 ```
 
-
-<aside class='info'>Only users with the role <code>manager</code> can delete this resource.</aside>
 
 #### HTTP Request
 
