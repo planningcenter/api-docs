@@ -1602,8 +1602,6 @@ curl -v -u token:secret -X POST -d '{"data":{"type":"InactiveReason","attributes
 ```
 
 
-<aside class='info'>Only users with the role <code>manager</code> can create this resource.</aside>
-
 #### HTTP Request
 
 `POST https://api.planningcenteronline.com/people/v2/inactive_reasons`
@@ -1639,8 +1637,6 @@ value | string
 curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v2/inactive_reasons/1"
 ```
 
-
-<aside class='info'>Only users with the role <code>manager</code> can delete this resource.</aside>
 
 #### HTTP Request
 
@@ -1750,6 +1746,7 @@ You can append one of the following associations onto this resource URL to jump 
 Association | URL | Endpoint
 ----------- | --- | --------
 created_by | https://api.planningcenteronline.com/people/v2/lists/1/created_by | Person
+ |  | 
 mailchimp_sync_status | https://api.planningcenteronline.com/people/v2/lists/1/mailchimp_sync_status | MailchimpSyncStatus
 owner | https://api.planningcenteronline.com/people/v2/lists/1/owner | Person
 people | https://api.planningcenteronline.com/people/v2/lists/1/people | Person
