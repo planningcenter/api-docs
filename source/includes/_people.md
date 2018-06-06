@@ -226,7 +226,11 @@ A Campus is a location belonging to an Organization
 
 
 
+### Relationships
 
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+organization | Organization | _false_ |
 
 ### List Campuses
 
@@ -263,11 +267,31 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/campuses
     "type": "Campus",
     "id": "primary_key",
     "attributes": {
-      "latitude": "unknown",
-      "longitude": "unknown",
-      "name": "string"
+      "avatar_url": "string",
+      "church_center_enabled": true,
+      "city": "string",
+      "contact_email_address": "string",
+      "country": "string",
+      "date_format": 1,
+      "description": "string",
+      "latitude": 1.42,
+      "longitude": 1.42,
+      "name": "string",
+      "phone_number": "string",
+      "state": "string",
+      "street": "string",
+      "time_zone": "string",
+      "twenty_four_hour_time": true,
+      "website": "string",
+      "zip": "string"
     },
     "relationships": {
+      "organization": {
+        "data": {
+          "type": "Organization",
+          "id": "123"
+        }
+      }
     }
   }
 }
@@ -279,13 +303,139 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/campuses
 
 #### URL Parameters
 
-_none_
+Parameter | Value | Description
+--------- | ----- | -----------
+include | service_times | include associated service_times
+
+### Associations for a Campus
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL | Endpoint
+----------- | --- | --------
+service_times | https://api.planningcenteronline.com/people/v2/campuses/1/service_times | ServiceTime
+
+### Create a new Campus
+
+```shell
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{"type":"Campus","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/campuses"
+```
 
 
+#### HTTP Request
+
+`POST https://api.planningcenteronline.com/people/v2/campuses`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+name | string
+latitude | float
+longitude | float
+description | string
+street | string
+city | string
+state | string
+zip | string
+country | string
+phone_number | string
+website | string
+twenty_four_hour_time | boolean
+date_format | integer
+church_center_enabled | boolean
+contact_email_address | string
+time_zone | string
+
+#### Included Resources
+
+```shell
+# to create a record with ServiceTimes...
+curl -v -u token:secret -X POST -d '{"data":{"type":"Campus",...},"included":[{"type":"ServiceTime","attributes":{...}}]}' "https://api.planningcenteronline.com/people/v2/campuses"
+```
+
+You may include ServiceTimes to create inline with the Campus.
+
+Attribute | Type
+--------- | ----
+start_time | integer
+day | string
+description | string
+
+##### Relationships
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+organization | Organization | _false_ |
+campus | Campus | _false_ |
+
+### Update an existing Campus
+
+```shell
+# to update a record...
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"Campus","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/campuses/1"
+```
 
 
+#### HTTP Request
+
+`PATCH https://api.planningcenteronline.com/people/v2/campuses/1`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+name | string
+latitude | float
+longitude | float
+description | string
+street | string
+city | string
+state | string
+zip | string
+country | string
+phone_number | string
+website | string
+twenty_four_hour_time | boolean
+date_format | integer
+church_center_enabled | boolean
+contact_email_address | string
+time_zone | string
+
+#### Included Resources
+
+```shell
+# to update a record with ServiceTimes...
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"Campus","id":"1",...},"included":[{"type":"ServiceTime","id":"1","attributes":{...}}]}' "https://api.planningcenteronline.com/people/v2/campuses/1"
+```
+
+You may include ServiceTimes to update inline with the Campus.
+
+Attribute | Type
+--------- | ----
+start_time | integer
+day | string
+description | string
+
+##### Relationships
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+organization | Organization | _false_ |
+campus | Campus | _false_ |
+
+### Delete a Campus
+
+```shell
+# to delete a record...
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v2/campuses/1"
+```
 
 
+#### HTTP Request
+
+`DELETE https://api.planningcenteronline.com/people/v2/campuses/1`
 
 ## Carriers
 
@@ -2974,7 +3124,11 @@ A person record represents a single member/user of the application. Each person 
 
 
 
+### Relationships
 
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+primary_campus | PrimaryCampus | _false_ |
 
 ### List People
 
@@ -3009,10 +3163,10 @@ where[site_administrator] | _boolean_ | query on a specific site_administrator
 where[people_permissions] | _string_ | query on a specific people_permissions
 where[membership] | _string_ | query on a specific membership
 where[inactivated_at] | _date_time_ | query on a specific inactivated_at
-where[remote_id] | _integer_ | query on a specific remote_id
 where[medical_notes] | _string_ | query on a specific medical_notes
 where[created_at] | _date_time_ | query on a specific created_at
 where[updated_at] | _date_time_ | query on a specific updated_at
+where[remote_id] | _integer_ | query on a specific remote_id
 where[id] | _primary_key_ | query on a specific id
 filter | created_since | filter people created in the last 24 hours; pass an additional `time` parameter in ISO 8601 format to specify your own timeframe
 filter | admins | filter using the named scope "admins"
@@ -3026,7 +3180,9 @@ include | marital_status | include associated marital_status
 include | name_prefix | include associated name_prefix
 include | name_suffix | include associated name_suffix
 include | person_apps | include associated person_apps
+include | primary_campus | include associated primary_campus
 include | phone_numbers | include associated phone_numbers
+include | platform_notifications | include associated platform_notifications
 include | school | include associated school
 include | social_profiles | include associated social_profiles
 offset | _integer_ | get results from given offset
@@ -3048,10 +3204,10 @@ order | site_administrator | prefix with a hyphen (-site_administrator) to rever
 order | people_permissions | prefix with a hyphen (-people_permissions) to reverse the order
 order | membership | prefix with a hyphen (-membership) to reverse the order
 order | inactivated_at | prefix with a hyphen (-inactivated_at) to reverse the order
-order | remote_id | prefix with a hyphen (-remote_id) to reverse the order
 order | medical_notes | prefix with a hyphen (-medical_notes) to reverse the order
 order | created_at | prefix with a hyphen (-created_at) to reverse the order
 order | updated_at | prefix with a hyphen (-updated_at) to reverse the order
+order | remote_id | prefix with a hyphen (-remote_id) to reverse the order
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=addresses,emails</code></aside>
 
@@ -3092,6 +3248,12 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1
       "updated_at": "2015-04-21T22:52:53Z"
     },
     "relationships": {
+      "primary_campus": {
+        "data": {
+          "type": "PrimaryCampus",
+          "id": "123"
+        }
+      }
     }
   }
 }
@@ -3114,7 +3276,9 @@ include | marital_status | include associated marital_status
 include | name_prefix | include associated name_prefix
 include | name_suffix | include associated name_suffix
 include | person_apps | include associated person_apps
+include | primary_campus | include associated primary_campus
 include | phone_numbers | include associated phone_numbers
+include | platform_notifications | include associated platform_notifications
 include | school | include associated school
 include | social_profiles | include associated social_profiles
 
@@ -3143,6 +3307,8 @@ name_suffix | https://api.planningcenteronline.com/people/v2/people/1/name_suffi
 notes | https://api.planningcenteronline.com/people/v2/people/1/notes | Note
 person_apps | https://api.planningcenteronline.com/people/v2/people/1/person_apps | PersonApp
 phone_numbers | https://api.planningcenteronline.com/people/v2/people/1/phone_numbers | PhoneNumber
+platform_notifications | https://api.planningcenteronline.com/people/v2/people/1/platform_notifications | PlatformNotification
+primary_campus | https://api.planningcenteronline.com/people/v2/people/1/primary_campus | Campus
 school | https://api.planningcenteronline.com/people/v2/people/1/school | SchoolOption
 social_profiles | https://api.planningcenteronline.com/people/v2/people/1/social_profiles | SocialProfile
 workflow_cards | https://api.planningcenteronline.com/people/v2/people/1/workflow_cards | WorkflowCard
