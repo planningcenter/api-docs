@@ -4333,8 +4333,6 @@ curl -v -u token:secret -X POST -d '{"data":{"type":"SocialProfile","attributes"
 ```
 
 
-<aside class='info'>Only users with the role <code>editor</code> can create this resource.</aside>
-
 #### HTTP Request
 
 `POST https://api.planningcenteronline.com/people/v2/people/1/social_profiles`
@@ -4355,8 +4353,6 @@ curl -v -u token:secret -X PATCH -d '{"data":{"type":"SocialProfile","id":"1","a
 ```
 
 
-<aside class='info'>Only users with the role <code>editor</code> can update this resource.</aside>
-
 #### HTTP Request
 
 `PATCH https://api.planningcenteronline.com/people/v2/social_profiles/1`
@@ -4376,8 +4372,6 @@ verified | boolean
 curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v2/social_profiles/1"
 ```
 
-
-<aside class='info'>Only users with the role <code>editor</code> can delete this resource.</aside>
 
 #### HTTP Request
 
