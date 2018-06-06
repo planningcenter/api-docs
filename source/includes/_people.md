@@ -2125,8 +2125,6 @@ curl -v -u token:secret -X POST -d '{"data":{"type":"MaritalStatus","attributes"
 ```
 
 
-<aside class='info'>Only users with the role <code>manager</code> can create this resource.</aside>
-
 #### HTTP Request
 
 `POST https://api.planningcenteronline.com/people/v2/marital_statuses`
@@ -2162,8 +2160,6 @@ value | string
 curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v2/marital_statuses/1"
 ```
 
-
-<aside class='info'>Only users with the role <code>manager</code> can delete this resource.</aside>
 
 #### HTTP Request
 
@@ -2203,13 +2199,13 @@ where[subject] | _string_ | query on a specific subject
 where[file] | _string_ | query on a specific file
 where[delivery_status] | _string_ | query on a specific delivery_status
 where[reject_reason] | _string_ | query on a specific reject_reason
-where[from_name] | _graph/type_annotation/unknown_type_annotation_ | query on a specific from_name
-where[from_address] | _graph/type_annotation/unknown_type_annotation_ | query on a specific from_address
+where[from_name] | _unknown_ | query on a specific from_name
+where[from_address] | _unknown_ | query on a specific from_address
 where[created_at] | _date_time_ | query on a specific created_at
 where[sent_at] | _date_time_ | query on a specific sent_at
 where[bounced_at] | _date_time_ | query on a specific bounced_at
 where[rejection_notification_sent_at] | _date_time_ | query on a specific rejection_notification_sent_at
-where[app_name] | _graph/type_annotation/unknown_type_annotation_ | query on a specific app_name
+where[app_name] | _unknown_ | query on a specific app_name
 include | message_group | include associated message_group
 include | to | include associated to
 offset | _integer_ | get results from given offset
@@ -2470,8 +2466,6 @@ curl -v -u token:secret -X POST -d '{"data":{"type":"NamePrefix","attributes":{.
 ```
 
 
-<aside class='info'>Only users with the role <code>manager</code> can create this resource.</aside>
-
 #### HTTP Request
 
 `POST https://api.planningcenteronline.com/people/v2/name_prefixes`
@@ -2490,8 +2484,6 @@ curl -v -u token:secret -X PATCH -d '{"data":{"type":"NamePrefix","id":"1","attr
 ```
 
 
-<aside class='info'>Only users with the role <code>manager</code> can update this resource.</aside>
-
 #### HTTP Request
 
 `PATCH https://api.planningcenteronline.com/people/v2/name_prefixes/1`
@@ -2509,8 +2501,6 @@ value | string
 curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v2/name_prefixes/1"
 ```
 
-
-<aside class='info'>Only users with the role <code>manager</code> can delete this resource.</aside>
 
 #### HTTP Request
 
@@ -2585,8 +2575,6 @@ curl -v -u token:secret -X POST -d '{"data":{"type":"NameSuffix","attributes":{.
 ```
 
 
-<aside class='info'>Only users with the role <code>manager</code> can create this resource.</aside>
-
 #### HTTP Request
 
 `POST https://api.planningcenteronline.com/people/v2/name_suffixes`
@@ -2604,8 +2592,6 @@ value | string
 curl -v -u token:secret -X PATCH -d '{"data":{"type":"NameSuffix","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/name_suffixes/1"
 ```
 
-
-<aside class='info'>Only users with the role <code>manager</code> can update this resource.</aside>
 
 #### HTTP Request
 
@@ -2625,8 +2611,6 @@ curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v
 ```
 
 
-<aside class='info'>Only users with the role <code>manager</code> can delete this resource.</aside>
-
 #### HTTP Request
 
 `DELETE https://api.planningcenteronline.com/people/v2/name_suffixes/1`
@@ -2637,7 +2621,14 @@ A note is text with a category connected to a person’s profile.
 
 
 
+### Relationships
 
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+note_category | NoteCategory | _false_ |
+organization | Organization | _false_ |
+person | Person | _false_ |
+created_by | Person | _false_ |
 
 ### List Notes
 
@@ -2656,15 +2647,17 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/notes"
 Parameter | Value | Description
 --------- | ----- | -----------
 where[note] | _string_ | query on a specific note
-where[note_category_id] | _integer_ | query on a specific note_category_id
+where[note_category_id] | _primary_key_ | query on a specific note_category_id
 include | category | include associated category
 include | created_by | include associated created_by
 include | person | include associated person
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 order | note | prefix with a hyphen (-note) to reverse the order
-order | note_category_id | prefix with a hyphen (-note_category_id) to reverse the order
 order | created_at | prefix with a hyphen (-created_at) to reverse the order
+order | updated_at | prefix with a hyphen (-updated_at) to reverse the order
+order | note_category_id | prefix with a hyphen (-note_category_id) to reverse the order
+order | id | prefix with a hyphen (-id) to reverse the order
 
 <aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=category,created_by</code></aside>
 
