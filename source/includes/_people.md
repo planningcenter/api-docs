@@ -3974,8 +3974,6 @@ curl -v -u token:secret -X POST -d '{"data":{"type":"Report","attributes":{...}}
 ```
 
 
-<aside class='info'>Only users with the role <code>manager</code> can create this resource.</aside>
-
 #### HTTP Request
 
 `POST https://api.planningcenteronline.com/people/v2/reports`
@@ -3995,8 +3993,6 @@ curl -v -u token:secret -X PATCH -d '{"data":{"type":"Report","id":"1","attribut
 ```
 
 
-<aside class='info'>Only users with the role <code>manager</code> can update this resource.</aside>
-
 #### HTTP Request
 
 `PATCH https://api.planningcenteronline.com/people/v2/reports/1`
@@ -4015,8 +4011,6 @@ body | string
 curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v2/reports/1"
 ```
 
-
-<aside class='info'>Only users with the role <code>manager</code> can delete this resource.</aside>
 
 #### HTTP Request
 
@@ -4132,9 +4126,9 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/school_o
 Parameter | Value | Description
 --------- | ----- | -----------
 where[value] | _string_ | query on a specific value
-where[school_types] | _graph/type_annotation/unknown_type_annotation_ | query on a specific school_types
-where[beginning_grade] | _graph/type_annotation/unknown_type_annotation_ | query on a specific beginning_grade
-where[ending_grade] | _graph/type_annotation/unknown_type_annotation_ | query on a specific ending_grade
+where[school_types] | _unknown_ | query on a specific school_types
+where[beginning_grade] | _unknown_ | query on a specific beginning_grade
+where[ending_grade] | _unknown_ | query on a specific ending_grade
 where[sequence] | _integer_ | query on a specific sequence
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
