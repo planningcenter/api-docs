@@ -4471,8 +4471,6 @@ curl -v -u token:secret -X POST -d '{"data":{"type":"Tab","attributes":{...}}}' 
 ```
 
 
-<aside class='info'>Only users with the role <code>manager</code> can create this resource.</aside>
-
 #### HTTP Request
 
 `POST https://api.planningcenteronline.com/people/v2/tabs`
@@ -4493,8 +4491,6 @@ curl -v -u token:secret -X PATCH -d '{"data":{"type":"Tab","id":"1","attributes"
 ```
 
 
-<aside class='info'>Only users with the role <code>manager</code> can update this resource.</aside>
-
 #### HTTP Request
 
 `PATCH https://api.planningcenteronline.com/people/v2/tabs/1`
@@ -4514,8 +4510,6 @@ slug | string
 curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v2/tabs/1"
 ```
 
-
-<aside class='info'>Only users with the role <code>manager</code> can delete this resource.</aside>
 
 #### HTTP Request
 
