@@ -248,6 +248,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/campuses
 
 Parameter | Value | Description
 --------- | ----- | -----------
+include | service_times | include associated service_times
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 
