@@ -3813,9 +3813,74 @@ curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v
 
 `DELETE https://api.planningcenteronline.com/people/v2/people/1/phone_numbers/1`
 
+## PlatformNotifications
+
+A Platform Notification is a suite-wide notification that shows at the top of each application's screen until dismissed by the user.
+
+
+
+
+
+### List Platform Notifications
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1/platform_notifications"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/people/v2/people/1/platform_notifications`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+offset | _integer_ | get results from given offset
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+### Get a single Platform Notification
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/people/1/platform_notifications/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "PlatformNotification",
+    "id": "primary_key",
+    "attributes": {
+      "html": "unknown"
+    },
+    "relationships": {
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/people/v2/people/1/platform_notifications/1`
+
+#### URL Parameters
+
+_none_
+
+
+
+
+
+
+
 ## Reports
 
-A report is editable liquid syntax that provides a powerful tool for presenting your Lists however you want.
+A report is editable liquid syntax that provides  a powerful tool for presenting your Lists however you want.
 
 
 
