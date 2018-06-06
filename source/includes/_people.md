@@ -4404,12 +4404,16 @@ Parameter | Value | Description
 where[name] | _string_ | query on a specific name
 where[sequence] | _integer_ | query on a specific sequence
 where[slug] | _string_ | query on a specific slug
+filter | with_field_definitions | filter using the named scope "with_field_definitions"
 include | field_definitions | include associated field_definitions
+include | field_options | include associated field_options
 offset | _integer_ | get results from given offset
 per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
 order | name | prefix with a hyphen (-name) to reverse the order
 order | sequence | prefix with a hyphen (-sequence) to reverse the order
 order | slug | prefix with a hyphen (-slug) to reverse the order
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=field_definitions,field_options</code></aside>
 
 ### Get a single Tab
 
@@ -4446,6 +4450,9 @@ curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/tabs/1"
 Parameter | Value | Description
 --------- | ----- | -----------
 include | field_definitions | include associated field_definitions
+include | field_options | include associated field_options
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=field_definitions,field_options</code></aside>
 
 ### Associations for a Tab
 
@@ -4454,6 +4461,7 @@ You can append one of the following associations onto this resource URL to jump 
 Association | URL | Endpoint
 ----------- | --- | --------
 field_definitions | https://api.planningcenteronline.com/people/v2/tabs/1/field_definitions | FieldDefinition
+field_options | https://api.planningcenteronline.com/people/v2/tabs/1/field_options | FieldOption
 
 ### Create a new Tab
 
