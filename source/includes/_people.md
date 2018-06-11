@@ -2774,6 +2774,381 @@ curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v
 
 `DELETE https://api.planningcenteronline.com/people/v2/notes/1`
 
+## NoteCategories
+
+A Note Category
+
+
+
+### Relationships
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+organization | Organization | _false_ |
+
+### List Note Categories
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/note_categories"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/people/v2/note_categories`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+where[name] | _string_ | query on a specific name
+where[locked] | _boolean_ | query on a specific locked
+where[created_at] | _date_time_ | query on a specific created_at
+where[updated_at] | _date_time_ | query on a specific updated_at
+where[organization_id] | _primary_key_ | query on a specific organization_id
+include | shares | include associated shares
+include | subscribers | include associated subscribers
+include | subscriptions | include associated subscriptions
+offset | _integer_ | get results from given offset
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | name | prefix with a hyphen (-name) to reverse the order
+order | locked | prefix with a hyphen (-locked) to reverse the order
+order | created_at | prefix with a hyphen (-created_at) to reverse the order
+order | updated_at | prefix with a hyphen (-updated_at) to reverse the order
+order | organization_id | prefix with a hyphen (-organization_id) to reverse the order
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=shares,subscribers</code></aside>
+
+### Get a single Note Category
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/note_categories/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "NoteCategory",
+    "id": "primary_key",
+    "attributes": {
+      "created_at": "2000-01-01T12:00:00Z",
+      "locked": true,
+      "name": "string",
+      "note_count": "unknown",
+      "note_person_count": "unknown",
+      "organization_id": "primary_key",
+      "updated_at": "2000-01-01T12:00:00Z"
+    },
+    "relationships": {
+      "organization": {
+        "data": {
+          "type": "Organization",
+          "id": "123"
+        }
+      }
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/people/v2/note_categories/1`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+include | shares | include associated shares
+include | subscribers | include associated subscribers
+include | subscriptions | include associated subscriptions
+
+<aside class='info'>You can specify multiple includes with a comma, e.g. <code>?include=shares,subscribers</code></aside>
+
+### Associations for a Note Category
+
+You can append one of the following associations onto this resource URL to jump to an associated record.
+
+Association | URL | Endpoint
+----------- | --- | --------
+shares | https://api.planningcenteronline.com/people/v2/note_categories/1/shares | NoteCategoryShare
+subscribers | https://api.planningcenteronline.com/people/v2/note_categories/1/subscribers | Person
+subscriptions | https://api.planningcenteronline.com/people/v2/note_categories/1/subscriptions | NoteCategorySubscription
+
+### Create a new Note Category
+
+```shell
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{"type":"NoteCategory","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/note_categories"
+```
+
+
+#### HTTP Request
+
+`POST https://api.planningcenteronline.com/people/v2/note_categories`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+name | string
+
+### Update an existing Note Category
+
+```shell
+# to update a record...
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"NoteCategory","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/note_categories/1"
+```
+
+
+#### HTTP Request
+
+`PATCH https://api.planningcenteronline.com/people/v2/note_categories/1`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+name | string
+
+### Delete a Note Category
+
+```shell
+# to delete a record...
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v2/note_categories/1"
+```
+
+
+#### HTTP Request
+
+`DELETE https://api.planningcenteronline.com/people/v2/note_categories/1`
+
+## NoteCategoryShares
+
+A note category share defines who can view notes in a category.
+
+### Attribute Info
+
+<span class='attribute-info-name'>group</span>
+
+Possible values: `No Access`, `Viewer`, `Editor`, or `Manager`
+
+### Relationships
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+person | Person | _false_ |
+note_category | NoteCategory | _false_ |
+
+### List Note Category Shares
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/note_categories/1/shares"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/people/v2/note_categories/1/shares`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+include | person | include associated person
+offset | _integer_ | get results from given offset
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+
+### Get a single Note Category Share
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/note_categories/1/shares/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "NoteCategoryShare",
+    "id": "primary_key",
+    "attributes": {
+      "group": "value",
+      "person_id": "primary_key"
+    },
+    "relationships": {
+      "note_category": {
+        "data": {
+          "type": "NoteCategory",
+          "id": "123"
+        }
+      },
+      "person": {
+        "data": {
+          "type": "Person",
+          "id": "123"
+        }
+      }
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/people/v2/note_categories/1/shares/1`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+include | person | include associated person
+
+### Create a new Note Category Share
+
+```shell
+# to create a record...
+curl -v -u token:secret -X POST -d '{"data":{"type":"NoteCategoryShare","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/note_categories/1/shares"
+```
+
+
+#### HTTP Request
+
+`POST https://api.planningcenteronline.com/people/v2/note_categories/1/shares`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+group | string
+person_id | primary_key
+
+### Update an existing Note Category Share
+
+```shell
+# to update a record...
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"NoteCategoryShare","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/people/v2/note_categories/1/shares/1"
+```
+
+
+#### HTTP Request
+
+`PATCH https://api.planningcenteronline.com/people/v2/note_categories/1/shares/1`
+
+#### Resource Attributes
+
+Attribute | Type
+--------- | ----
+group | string
+person_id | primary_key
+
+### Delete a Note Category Share
+
+```shell
+# to delete a record...
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/people/v2/note_categories/1/shares/1"
+```
+
+
+#### HTTP Request
+
+`DELETE https://api.planningcenteronline.com/people/v2/note_categories/1/shares/1`
+
+## NoteCategorySubscriptions
+
+A subscription for note categories
+
+
+
+### Relationships
+
+Name | Type | To Many | Description
+---- | ---- | ------- | -----------
+person | Person | _false_ |
+note_category | NoteCategory | _false_ |
+
+### List Note Category Subscriptions
+
+```shell
+# to list records...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/note_category_subscriptions"
+```
+
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/people/v2/note_category_subscriptions`
+
+#### URL Parameters
+
+Parameter | Value | Description
+--------- | ----- | -----------
+where[created_at] | _date_time_ | query on a specific created_at
+where[updated_at] | _date_time_ | query on a specific updated_at
+offset | _integer_ | get results from given offset
+per_page | _integer_ | how many records to return per page (min=1, max=100, default=25)
+order | created_at | prefix with a hyphen (-created_at) to reverse the order
+order | updated_at | prefix with a hyphen (-updated_at) to reverse the order
+
+### Get a single Note Category Subscription
+
+```shell
+# to show...
+curl -v -u token:secret "https://api.planningcenteronline.com/people/v2/note_category_subscriptions/1"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "type": "NoteCategorySubscription",
+    "id": "primary_key",
+    "attributes": {
+      "created_at": "2000-01-01T12:00:00Z",
+      "updated_at": "2000-01-01T12:00:00Z"
+    },
+    "relationships": {
+      "note_category": {
+        "data": {
+          "type": "NoteCategory",
+          "id": "123"
+        }
+      },
+      "person": {
+        "data": {
+          "type": "Person",
+          "id": "123"
+        }
+      }
+    }
+  }
+}
+```
+
+#### HTTP Request
+
+`GET https://api.planningcenteronline.com/people/v2/note_category_subscriptions/1`
+
+#### URL Parameters
+
+_none_
+
+
+
+
+
+
+
 ## Organizations
 
 The organization represents a single church. Every other resource is scoped to this record.
@@ -2839,8 +3214,8 @@ message_groups | https://api.planningcenteronline.com/people/v2/message_groups |
 messages | https://api.planningcenteronline.com/people/v2/messages | Message
 name_prefixes | https://api.planningcenteronline.com/people/v2/name_prefixes | NamePrefix
 name_suffixes | https://api.planningcenteronline.com/people/v2/name_suffixes | NameSuffix
- |  | 
- |  | 
+note_categories | https://api.planningcenteronline.com/people/v2/note_categories | NoteCategory
+note_category_subscriptions | https://api.planningcenteronline.com/people/v2/note_category_subscriptions | NoteCategorySubscription
 notes | https://api.planningcenteronline.com/people/v2/notes | Note
 people | https://api.planningcenteronline.com/people/v2/people | Person
 people_imports | https://api.planningcenteronline.com/people/v2/people_imports | PeopleImport
@@ -3310,7 +3685,7 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
- |  | 
+ | https://api.planningcenteronline.com/people/v2/people/1/ | NoteCategorySubscription
  |  | 
 addresses | https://api.planningcenteronline.com/people/v2/people/1/addresses | Address
 apps | https://api.planningcenteronline.com/people/v2/people/1/apps | App
