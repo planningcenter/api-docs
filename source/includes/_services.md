@@ -2514,27 +2514,29 @@ A piece of media
 
 Possible Values:
 
-- `Audio`
+- `audio`
 
-- `Background Audio`
+- `background_audio`
 
-- `Background Image`
+- `background_image`
 
-- `Background Video`
+- `background_video`
 
-- `Countdown`
+- `countdown`
 
-- `Document`
+- `document`
 
-- `Drama`
+- `drama`
 
-- `Image`
+- `image`
 
-- `Powerpoint`
+- `powerpoint`
 
-- `Song Video`
+- `song_video`
 
-- `Video`
+- `video`
+
+
 
 
 ### List Medias
