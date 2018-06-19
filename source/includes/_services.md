@@ -2543,13 +2543,13 @@ Possible Values:
 
 ```shell
 # to list records...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/medias"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/media"
 ```
 
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/medias`
+`GET https://api.planningcenteronline.com/services/v2/media`
 
 #### URL Parameters
 
@@ -2574,7 +2574,7 @@ per_page | _integer_ | how many records to return per page (min=1, max=100, defa
 
 ```shell
 # to show...
-curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/medias/1"
+curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/media/1"
 ```
 
 
@@ -2614,7 +2614,7 @@ curl -v -u token:secret "https://api.planningcenteronline.com/services/v2/medias
 
 #### HTTP Request
 
-`GET https://api.planningcenteronline.com/services/v2/medias/1`
+`GET https://api.planningcenteronline.com/services/v2/media/1`
 
 #### URL Parameters
 
@@ -2628,9 +2628,9 @@ You can append one of the following associations onto this resource URL to jump 
 
 Association | URL | Endpoint
 ----------- | --- | --------
-attachments | https://api.planningcenteronline.com/services/v2/medias/1/attachments | Attachment
-media_schedules | https://api.planningcenteronline.com/services/v2/medias/1/media_schedules | MediaSchedule
-tags | https://api.planningcenteronline.com/services/v2/medias/1/tags | Tag
+attachments | https://api.planningcenteronline.com/services/v2/media/1/attachments | Attachment
+media_schedules | https://api.planningcenteronline.com/services/v2/media/1/media_schedules | MediaSchedule
+tags | https://api.planningcenteronline.com/services/v2/media/1/tags | Tag
 
 ### Actions for a Media
 
@@ -2638,7 +2638,7 @@ You can perform the following actions on a Media by POSTing to the specified URL
 
 Action | URL | Description
 ------ | --- | -----------
-assign_tags | https://api.planningcenteronline.com/services/v2/medias/1/assign_tags | Used to assign tags to a media.
+assign_tags | https://api.planningcenteronline.com/services/v2/media/1/assign_tags | Used to assign tags to a media.
 
 #### assign_tags
 
@@ -2693,13 +2693,13 @@ themes | string
 
 ```shell
 # to update a record...
-curl -v -u token:secret -X PATCH -d '{"data":{"type":"Media","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/medias/1"
+curl -v -u token:secret -X PATCH -d '{"data":{"type":"Media","id":"1","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/media/1"
 ```
 
 
 #### HTTP Request
 
-`PATCH https://api.planningcenteronline.com/services/v2/medias/1`
+`PATCH https://api.planningcenteronline.com/services/v2/media/1`
 
 #### Resource Attributes
 
@@ -2714,13 +2714,13 @@ themes | string
 
 ```shell
 # to delete a record...
-curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/services/v2/medias/1"
+curl -v -u token:secret -X DELETE "https://api.planningcenteronline.com/services/v2/media/1"
 ```
 
 
 #### HTTP Request
 
-`DELETE https://api.planningcenteronline.com/services/v2/medias/1`
+`DELETE https://api.planningcenteronline.com/services/v2/media/1`
 
 ## MediaSchedules
 
