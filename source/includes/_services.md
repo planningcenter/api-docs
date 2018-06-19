@@ -2672,13 +2672,13 @@ On success you will get back a `204 No Content`.
 
 ```shell
 # to create a record...
-curl -v -u token:secret -X POST -d '{"data":{"type":"Media","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/medias"
+curl -v -u token:secret -X POST -d '{"data":{"type":"Media","attributes":{...}}}' "https://api.planningcenteronline.com/services/v2/media"
 ```
 
 
 #### HTTP Request
 
-`POST https://api.planningcenteronline.com/services/v2/medias`
+`POST https://api.planningcenteronline.com/services/v2/media`
 
 #### Resource Attributes
 
