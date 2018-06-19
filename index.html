@@ -20742,12 +20742,12 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 
 <h3 id="list-medias">List Medias</h3>
 <pre><code class="highlight shell"><span class="c"># to list records...</span>
-curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/services/v2/medias"</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/services/v2/media"</span>
 </code></pre>
 
 <h4 id="http-request">HTTP Request</h4>
 
-<p><code class="prettyprint">GET https://api.planningcenteronline.com/services/v2/medias</code></p>
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/services/v2/media</code></p>
 
 <h4 id="url-parameters">URL Parameters</h4>
 
@@ -20832,7 +20832,7 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 
 <h3 id="get-a-single-media">Get a single Media</h3>
 <pre><code class="highlight shell"><span class="c"># to show...</span>
-curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/services/v2/medias/1"</span>
+curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/services/v2/media/1"</span>
 </code></pre>
 
 <blockquote>
@@ -20871,7 +20871,7 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 
 <h4 id="http-request">HTTP Request</h4>
 
-<p><code class="prettyprint">GET https://api.planningcenteronline.com/services/v2/medias/1</code></p>
+<p><code class="prettyprint">GET https://api.planningcenteronline.com/services/v2/media/1</code></p>
 
 <h4 id="url-parameters">URL Parameters</h4>
 
@@ -20902,17 +20902,17 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 </thead><tbody>
 <tr>
 <td>attachments</td>
-<td>https://api.planningcenteronline.com/services/v2/medias/1/attachments</td>
+<td>https://api.planningcenteronline.com/services/v2/media/1/attachments</td>
 <td>Attachment</td>
 </tr>
 <tr>
 <td>media_schedules</td>
-<td>https://api.planningcenteronline.com/services/v2/medias/1/media_schedules</td>
+<td>https://api.planningcenteronline.com/services/v2/media/1/media_schedules</td>
 <td>MediaSchedule</td>
 </tr>
 <tr>
 <td>tags</td>
-<td>https://api.planningcenteronline.com/services/v2/medias/1/tags</td>
+<td>https://api.planningcenteronline.com/services/v2/media/1/tags</td>
 <td>Tag</td>
 </tr>
 </tbody></table>
@@ -20930,7 +20930,7 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/s
 </thead><tbody>
 <tr>
 <td>assign_tags</td>
-<td>https://api.planningcenteronline.com/services/v2/medias/1/assign_tags</td>
+<td>https://api.planningcenteronline.com/services/v2/media/1/assign_tags</td>
 <td>Used to assign tags to a media.</td>
 </tr>
 </tbody></table>
@@ -20997,12 +20997,12 @@ curl -v -u token:secret -X POST -d <span class="s1">'{"data":{"type":"Media","at
 
 <h3 id="update-an-existing-media">Update an existing Media</h3>
 <pre><code class="highlight shell"><span class="c"># to update a record...</span>
-curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{"type":"Media","id":"1","attributes":{...}}}'</span> <span class="s2">"https://api.planningcenteronline.com/services/v2/medias/1"</span>
+curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{"type":"Media","id":"1","attributes":{...}}}'</span> <span class="s2">"https://api.planningcenteronline.com/services/v2/media/1"</span>
 </code></pre>
 
 <h4 id="http-request">HTTP Request</h4>
 
-<p><code class="prettyprint">PATCH https://api.planningcenteronline.com/services/v2/medias/1</code></p>
+<p><code class="prettyprint">PATCH https://api.planningcenteronline.com/services/v2/media/1</code></p>
 
 <h4 id="resource-attributes">Resource Attributes</h4>
 
@@ -21032,12 +21032,12 @@ curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{"type":"Media","i
 
 <h3 id="delete-a-media">Delete a Media</h3>
 <pre><code class="highlight shell"><span class="c"># to delete a record...</span>
-curl -v -u token:secret -X DELETE <span class="s2">"https://api.planningcenteronline.com/services/v2/medias/1"</span>
+curl -v -u token:secret -X DELETE <span class="s2">"https://api.planningcenteronline.com/services/v2/media/1"</span>
 </code></pre>
 
 <h4 id="http-request">HTTP Request</h4>
 
-<p><code class="prettyprint">DELETE https://api.planningcenteronline.com/services/v2/medias/1</code></p>
+<p><code class="prettyprint">DELETE https://api.planningcenteronline.com/services/v2/media/1</code></p>
 
 <h2 id="mediaschedules">MediaSchedules</h2>
 
