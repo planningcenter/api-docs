@@ -3840,6 +3840,12 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/g
 <td><em>false</em></td>
 <td><code class="prettyprint">PaymentSource</code> is required, but cannot be <code class="prettyprint">planning_center</code>, as that is reserved for Donations created in the Planning Center Giving Web UI.</td>
 </tr>
+<tr>
+<td>labels</td>
+<td>Labels</td>
+<td><em>true</em></td>
+<td></td>
+</tr>
 </tbody></table>
 
 <h3 id="list-donations">List Donations</h3>
@@ -3929,6 +3935,14 @@ curl -v -u token:secret <span class="s2">"https://api.planningcenteronline.com/g
           </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Batch"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123"</span><span class="w">
         </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"labels"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Labels"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="s2">"payment_source"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -4137,6 +4151,11 @@ curl -u token:secret -X POST -d <span class="s1">'
         },
         "payment_source": {
           "data": { "type": "PaymentSource", "id": "123" }
+        },
+        "labels": {
+          "data": [
+            { "type": "Label", "id": 123 }
+          ]
         }
       }
     },
@@ -4249,12 +4268,21 @@ curl -v -u token:secret -X PATCH -d <span class="s1">'{"data":{"type":"Donation"
 
 <h4 id="notes">Notes</h4>
 
+<h5 id="designations">Designations</h5>
+
 <p>When updating a Donation, if you specify an <code class="prettyprint">id</code> attribute for each Designation,
 those Designations can be updated.</p>
 
 <p>However, if you have Designations in the <code class="prettyprint">included</code> array <em>without</em> <code class="prettyprint">id</code>s,
 all Designations will be removed and replaced with the Designations in your <code class="prettyprint">PATCH</code>
 request.</p>
+
+<h5 id="labels">Labels</h5>
+
+<p>Passing a <code class="prettyprint">labels</code> key in the <code class="prettyprint">relationships</code> object will have the effect of replacing
+any existing associated <code class="prettyprint">Label</code>s with those in the request. Including a <code class="prettyprint">null</code> or empty
+<code class="prettyprint">{}</code> value will remove all <code class="prettyprint">Label</code> relationships, but omitting the <code class="prettyprint">labels</code> key
+altogether will leave existing relationships in tact.</p>
 
 <h3 id="delete-a-donation">Delete a Donation</h3>
 <pre><code class="highlight shell"><span class="c"># to delete a record...</span>
