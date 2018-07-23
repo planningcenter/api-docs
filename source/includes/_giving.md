@@ -441,6 +441,7 @@ Name | Type | To Many | Description
 batch | Batch | _false_ |
 person | Person | _false_ |
 payment_source | PaymentSource | _false_ | `PaymentSource` is required, but cannot be `planning_center`, as that is reserved for Donations created in the Planning Center Giving Web UI.
+labels | Labels | _true_ |
 
 ### List Donations
 
@@ -505,6 +506,14 @@ curl -v -u token:secret "https://api.planningcenteronline.com/giving/v2/donation
           "type": "Batch",
           "id": "123"
         }
+      },
+      "labels": {
+        "data": [
+          {
+            "type": "Labels",
+            "id": "123"
+          }
+        ]
       },
       "payment_source": {
         "data": {
@@ -632,6 +641,11 @@ curl -u token:secret -X POST -d '
         },
         "payment_source": {
           "data": { "type": "PaymentSource", "id": "123" }
+        },
+        "labels": {
+          "data": [
+            { "type": "Label", "id": 123 }
+          ]
         }
       }
     },
@@ -700,12 +714,21 @@ fund | Fund | _false_ |
 
 #### Notes
 
+##### Designations
+
 When updating a Donation, if you specify an `id` attribute for each Designation,
 those Designations can be updated.
 
 However, if you have Designations in the `included` array _without_ `id`s,
 all Designations will be removed and replaced with the Designations in your `PATCH`
 request.
+
+##### Labels
+
+Passing a `labels` key in the `relationships` object will have the effect of replacing
+any existing associated `Label`s with those in the request. Including a `null` or empty
+`{}` value will remove all `Label` relationships, but omitting the `labels` key
+altogether will leave existing relationships in tact.
 
 ### Delete a Donation
 
